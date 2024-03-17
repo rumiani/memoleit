@@ -1,17 +1,18 @@
 import storeToLocal from "@/app/components/review/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
 import { item } from "@/types/interface";
+import { reviewHandler } from "./reviewHandler";
 
 export function learnedHandler(currentItem: item | undefined, status: boolean) {
-  console.log(currentItem, status);
-  
   const items = storeToLocal();
   const foundItem = items.find((item) => item.id === currentItem?.id);
-  if (foundItem) {
-    status ? (foundItem.learned = true) : (foundItem.createdAt = Date.now());
+  const days = reviewHandler(foundItem!.createdAt).days;
+  if (foundItem && !status) {
+    foundItem.createdAt = Date.now();
   }
-console.log(foundItem);
-
+  if (foundItem && days > 31) {
+    foundItem.learned = true;
+  }
   localStorage.setItem("itemsData", JSON.stringify(items));
 
   return randomItemHandler(storeToLocal());
