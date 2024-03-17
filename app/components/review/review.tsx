@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import words from '../../data/11plus.json'
-import words from "../../../data/4.json";
+import words from '@/data/11plus.json'
+// import words from "@/data/4.json";
 import storeToLocal from "./storeToLocal";
 import { item } from "@/types/interface";
 import { reviewHandler } from "@/handlers/reviewHandler";
