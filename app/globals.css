@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+button {
+    @apply  transition-all duration-300;
+}

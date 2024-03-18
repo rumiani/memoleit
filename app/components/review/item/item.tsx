@@ -1,5 +1,6 @@
 import { item } from "@/types/interface";
-import React from "react";
+import React, { useState } from "react";
+import Options from "./options/options";
 
 export default function Item({
   item,
@@ -10,13 +11,21 @@ export default function Item({
   days: number;
   goToNextItem: any;
 }) {
+  const [text, setText] = useState <string> ('Editable Heading');
+
+  const handleChange = (event: React.FormEvent<HTMLHeadingElement>) => {
+    setText(event.target.textContent || '');
+  };
   return (
     <div>
       <div>
+        <div className="relative flex justify-between mb-4">
         <h3 id="days" title={`Created ${days} days ago`} className="text-sm">
           {days} Days
         </h3>
-        <h2 id="title" className="text-2xl font-bold text-center">
+        <Options item={item}/>
+        </div>
+        <h2 id="title" contentEditable onInput={handleChange} className="text-2xl font-bold text-center">
           {item?.title}
         </h2>
         <p className="text-gray-600">{item?.description}</p>
