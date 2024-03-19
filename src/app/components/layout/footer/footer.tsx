@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-500 text-white p-4">
+    <footer className="bg-gray-800 text-white p-4">
       <div className="container mx-auto">
         <div className="text-center">
           <Link href='/faq' className="gen_link m-4">FAQ</Link>
@@ -34,7 +34,7 @@ const Footer = () => {
             </Link>
           </div>
           <p className="mt-4 text-sm">
-            &copy; {new Date().getFullYear()} Blog Platform. All rights
+            &copy; {new Date().getFullYear()} 11Plus. All rights
             reserved.
           </p>
         </div>
