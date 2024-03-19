@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { Providers } from "../redux/provider";
+import { ReduxProvider } from "../redux/provider";
 import Header from "./components/layout/header/header";
 import Footer from "./components/layout/footer/footer";
 import { NextAuthProvider } from "./providers";
@@ -23,21 +23,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ToastContainer limit={3} />
       <body className={inter.className}>
         <SpeedInsights />
+        <ToastContainer limit={3} />
         <NextAuthProvider>
-          <Providers>
+          <ReduxProvider>
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
               <Header />
               <main className="pt-20 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-lg min-h-screen break-words">
                 {children}
               </main>
               <Footer />
-              <ToastContainer />
             </div>
-          </Providers>
+          </ReduxProvider>
         </NextAuthProvider>
+        <ToastContainer />
       </body>
     </html>
   );
