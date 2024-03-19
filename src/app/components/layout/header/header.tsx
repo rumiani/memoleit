@@ -1,46 +1,96 @@
-import React, { useEffect, useRef, useState } from "react";
-import Navbar from "./navbar/navbar";
-import { useRouter } from "next/router";
-import Logo from "./logo/logo";
-import MenuBtn from "./menuBtn/menuBtn";
-import UserProfileMenu from "./userAvatar/userProfileMenu";
-import { useSelector } from "react-redux";
-import LoginBtn from "./loginBtn/loginBtn";
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
-const Header = () => {
-  const { user } = useSelector((state) => state.appState);
-  const router = useRouter();
-  const HeaderPosition = router.pathname === "/newpath" ? "-mb-10" : "fixed";
-  const [mobileMenu, setMobileMenu] = useState(false);
+let navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+  { name: "FAQ", href: "/faq" },
+];
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = usePathname();
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { data: session } = useSession();
 
   useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (e.target?.classList?.contains("header_link")) setMobileMenu(false);
-    });
-  }, []);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        targetRef.current &&
+        !targetRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+      if (session) {
+        navLinks.push({ name: "Dashboard", href: "/dashboard" });
+        console.log("signed In");
+      } else {
+        navLinks = navLinks.filter(link => link.href !== "/dashboard");
+        console.log("signed Out");
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [session]);
 
   return (
-    <div
-      className={`${HeaderPosition} ${
-        mobileMenu && "h-screen"
-      } bg-white z-50 mx-auto px-4 sm:px-6 lg:px-8 top-0 left-0 right-0 max-w-screen-lg`}
-    >
+    <nav className="h-20 w-full">
       <div
-        className="relative bg-blue-500 flex justify-between flex-col md:flex-row align-top my-2 mx-auto px-5 py-4 rounded-3xl"
+        ref={targetRef}
+        className="z-50 fixed left-1/2 transform -translate-x-1/2 my-2 w-11/12 bg-gray-800 px-4 py-2  rounded-lg mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between"
       >
-        <div className="flex flex-row justify-between w-full h-8">
-          <Logo />
-          <MenuBtn mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+        <div className="flex items-center justify-between w-full sm:w-auto">
+          <span className="text-white align-middle text-xl pt-3 font-bold">
+            YouTuMaz
+          </span>
+          <button
+            className="block sm:hidden text-white font text-3xl focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? "X" : "☰"}
+          </button>
         </div>
-        <Navbar mobileMenu={mobileMenu} />
-        {user.loggedIn ? (
-          <UserProfileMenu mobileMenu={mobileMenu} />
-        ) : (
-          <LoginBtn />
-        )}
+        <div
+          className={`bg-gray-900 sm:bg-transparent flex flex-col-reverse w-full p-4 sm:p-0 mt-2 rounded-lg sm:flex-row flex-grow justify-between items-center ${
+            isOpen ? "block" : "hidden"
+          } sm:flex text-center `}
+        >
+          <ul className="sm:flex  w-full mx-auto max-w-96 justify-around">
+            {navLinks.map((link) => {
+              const isActive = router.endsWith(link.href);
+              return (
+                <li
+                  key={link.name}
+                  onClick={() => setIsOpen(false)}
+                  className="mt-4 sm:mt-0"
+                >
+                  <Link
+                    href={link.href}
+                    className={`${
+                      isActive ? "text-gray-400" : "text-white"
+                    } hover:text-gray-400 `}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          {!router.endsWith("login") && (
+            <Link href="/login" className="btn_secondary">
+              Login
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;

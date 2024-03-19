@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Head from "next/head";
 import Login_Page_Components from "../../components/login_Page_Components/Login_Page_Components";

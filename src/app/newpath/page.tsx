@@ -1,3 +1,5 @@
+'use client'
+
 import NewPath from '@/components/newpath/newPath'
 import React from 'react'
 
