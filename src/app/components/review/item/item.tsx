@@ -1,4 +1,4 @@
-import { item } from "@/types/interface";
+import { item } from "@/src/types/interface";
 import React, { useState } from "react";
 import Options from "./options/options";
 

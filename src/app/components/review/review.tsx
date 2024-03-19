@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import words_11plus  from "@/data/11plus.json";
-import words_test from "@/data/4.json";
+import words_11plus  from "@/src/data/11plus.json";
+import words_test from "@/src/data/4.json";
 import storeToLocal from "./storeToLocal";
-import { item } from "@/types/interface";
-import { reviewHandler } from "@/handlers/reviewHandler";
-import { randomItemHandler } from "@/handlers/randomItemHandler";
-import { learnedHandler } from "@/handlers/learnedHandler";
+import { item } from "@/src/types/interface";
+import { reviewHandler } from "@/src/handlers/reviewHandler";
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { learnedHandler } from "@/src/handlers/learnedHandler";
 import Item from "./item/item";
 console.log(process.env.NODE_ENV);
 let words: string[];

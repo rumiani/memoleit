@@ -1,6 +1,6 @@
-import storeToLocal from "@/app/components/review/storeToLocal";
+import storeToLocal from "@/src/app/components/review/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
-import { item } from "@/types/interface";
+import { item } from "@/src/types/interface";
 import { reviewHandler } from "./reviewHandler";
 
 export function learnedHandler(currentItem: item | undefined, status: boolean) {

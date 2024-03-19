@@ -1,4 +1,4 @@
-import { item } from "@/types/interface";
+import { item } from "@/src/types/interface";
 import { reviewHandler } from "./reviewHandler";
 
 export const randomItemHandler = (itemsData: item[]) => {

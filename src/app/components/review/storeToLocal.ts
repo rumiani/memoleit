@@ -1,4 +1,4 @@
-import { item } from "@/types/interface";
+import { item } from "@/src/types/interface";
 import { v4 as uuidv4 } from "uuid";
 
 export default function storeToLocal(items?: string[]) {

@@ -1,4 +1,4 @@
-import storeToLocal from "@/app/components/review/storeToLocal";
+import storeToLocal from "@/src/app/components/review/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
 import { ToastContainer, toast } from 'react-toastify';
 

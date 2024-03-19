@@ -1,6 +1,6 @@
-import { editHandler } from "@/handlers/editHandler";
-import { removeHandler } from "@/handlers/removeHandler";
-import { item } from "@/types/interface";
+import { editHandler } from "@/src/handlers/editHandler";
+import { removeHandler } from "@/src/handlers/removeHandler";
+import { item } from "@/src/types/interface";
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
