@@ -1,4 +1,4 @@
-import storeToLocal from "@/src/app/components/review/storeToLocal";
+import storeToLocal from "@/src/app/components/home/review/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
 import { item } from "@/src/types/interface";
 import { reviewHandler } from "./reviewHandler";

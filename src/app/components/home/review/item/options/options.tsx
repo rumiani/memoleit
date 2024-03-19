@@ -1,3 +1,5 @@
+'use client'
+
 import { editHandler } from "@/src/handlers/editHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
 import { item } from "@/src/types/interface";

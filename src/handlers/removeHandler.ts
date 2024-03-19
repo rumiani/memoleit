@@ -1,6 +1,6 @@
-import storeToLocal from "@/src/app/components/review/storeToLocal";
+import storeToLocal from "@/src/app/components/home/review/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export const removeHandler = (id: string) => {
   console.log(id);

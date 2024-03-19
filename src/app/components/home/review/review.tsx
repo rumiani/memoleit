@@ -36,7 +36,7 @@ export default function Review() {
   };
 
   return (
-    <div className="word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-80 mx-auto mt-10">
+    <div className="word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full sm:w-80 mx-auto mt-10">
       {item ? (
         <Item item={item} days={days} goToNextItem={goToNextItem} />
       ) : (
