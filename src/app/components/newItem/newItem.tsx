@@ -1,9 +1,9 @@
 import React from "react";
 import CreatedPath from "../form_components/createdPath/createdPath";
 import { useSelector } from "react-redux";
-import PathForm from "./pathForm/pathForm";
+import PathForm from "./itemForm/itemForm";
 
-const NewPath = () => {
+const NewItem = () => {
   const { path } = useSelector((state) => state.appState);
   const defaultValues = {
     title: '',
@@ -19,4 +19,4 @@ const NewPath = () => {
   );
 };
 
-export default NewPath;
+export default NewItem;

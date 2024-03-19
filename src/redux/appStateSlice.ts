@@ -3,23 +3,32 @@ import { initialStateTypes } from "./interfaces";
 
 const initialState: initialStateTypes = {
   user: {
+    id: "",
     isAuth: false,
+    avatar: '',
     username: "",
-    uid: "",
+    name: '',
     isModerator: false,
-    catagories: {},
-    items: [],
+    catagories: [],
+    email: '',
+    role: '',
+    joinTime: '',
+    loggedIn: false,
   },
   item: {
     id: "",
     title: "",
-    description: "",
-    subject: "",
+    body: "",
     createdAt: "",
     learned: false,
     days: 0,
     shouldReview: false,
+    length: 0,
+    catagory:'',
+    tags: [],
+    url: '',
   },
+  items:[]
 };
 
 export const appStateSlice = createSlice({
@@ -33,10 +42,13 @@ export const appStateSlice = createSlice({
     itemReducer: (state, action: PayloadAction<object>) => {
       state.item = { ...state.item, ...action.payload };
     },
+    allItemsReducer: (state, action: PayloadAction<object>) => {
+      state.item = { ...state.item, ...action.payload };
+    },
   },
 });
 
-export const { itemReducer, logInReducer, logOutReducer } =
+export const { itemReducer, logInReducer, logOutReducer, allItemsReducer } =
   appStateSlice.actions;
 
 export default appStateSlice.reducer;

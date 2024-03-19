@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import TitleInput from "../../form_components/titleInput/titleInput";
 import TagsInput from "../../form_components/tagsInput/tagsInput";
-import { toast } from "react-toastify";
 import Preview from "../../form_components/preview/preview";
-import _ from "lodash";
 import { useForm } from "react-hook-form";
 import QuillEditor from "../../form_components/textInput/TextInput";
 import { createPath } from "@/actions/path/createPath";

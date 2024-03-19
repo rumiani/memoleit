@@ -1,12 +1,12 @@
 'use client'
 
-import NewPath from '@/components/newpath/newPath'
 import React from 'react'
+import NewItem from '../components/newItem/newItem'
 
 const Index = () => {
   return (
     <div>
-        <NewPath/>
+        <NewItem/>
     </div>
   )
 }
