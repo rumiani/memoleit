@@ -1,3 +1,4 @@
+'use client'
 import Head from "next/head";
 import { FormEvent, useState } from "react";
 
@@ -23,14 +24,6 @@ const Index = () => {
     
     return (
       <>
-         <Head>
-            <link rel="icon" href="/assets/favicon.ico" /> 
-            <title>SkillPath|Contact us</title>
-            <meta name="author" content="Maziar Rumiani" />
-            <meta name="keywords" content="skill, skillpath" />
-            <meta name="description" content="Contact us" />
-        </Head>
-        <main className="main-content" dir="rtl">
             <h2 className="w-11/12 max-w-md my-10 text-lg mx-auto">
                 Contact us:
             </h2>
@@ -87,7 +80,6 @@ const Index = () => {
                 Send
             </button>
         </form>
-        </main>
       </>
     )
   }
