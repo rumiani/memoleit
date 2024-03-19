@@ -5,14 +5,14 @@ const initialState: initialStateTypes = {
   user: {
     id: "",
     isAuth: false,
-    avatar: '',
+    avatar: "",
     username: "",
-    name: '',
+    name: "",
     isModerator: false,
     catagories: [],
-    email: '',
-    role: '',
-    joinTime: '',
+    email: "",
+    role: "",
+    joinTime: "",
     loggedIn: false,
   },
   item: {
@@ -24,17 +24,20 @@ const initialState: initialStateTypes = {
     days: 0,
     shouldReview: false,
     length: 0,
-    catagory:'',
+    catagory: "",
     tags: [],
-    url: '',
+    url: "",
   },
-  items:[]
+  items: [],
 };
 
 export const appStateSlice = createSlice({
   name: "appState",
   initialState,
   reducers: {
+    userReducer: (state, action: PayloadAction<object>) => {
+      state.user = { ...state.user, ...action.payload };
+    },
     logOutReducer: () => initialState,
     logInReducer: (state, action: PayloadAction<object>) => {
       state.user = { ...state.user, ...action.payload };
@@ -45,10 +48,13 @@ export const appStateSlice = createSlice({
     allItemsReducer: (state, action: PayloadAction<object>) => {
       state.item = { ...state.item, ...action.payload };
     },
+    resetStateReducer: (state) => {
+      state.item = initialState.item;
+    },
   },
 });
 
-export const { itemReducer, logInReducer, logOutReducer, allItemsReducer } =
+export const { userReducer, logOutReducer, logInReducer,itemReducer, allItemsReducer,resetStateReducer } =
   appStateSlice.actions;
 
 export default appStateSlice.reducer;

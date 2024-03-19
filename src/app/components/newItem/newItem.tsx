@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import PathForm from "./itemForm/itemForm";
 
 const NewItem = () => {
-  const { path } = useSelector((state) => state.appState);
+  const { item } = useSelector((state) => state.appState);
   const defaultValues = {
     title: '',
     html: '',
@@ -15,7 +15,7 @@ const NewItem = () => {
     },
   }
   return (
-    <>{path.url ? <CreatedPath/> : <PathForm defaultValues={defaultValues}/> }</>
+    <>{item.url ? <CreatedPath/> : <PathForm defaultValues={defaultValues}/> }</>
   );
 };
 

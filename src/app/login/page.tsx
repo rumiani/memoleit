@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import Head from "next/head";
-import Login_Page_Components from "../../components/login_Page_Components/Login_Page_Components";
+import Login from "../components/logIn/login";
 
 const Index = () => {
   return (
@@ -18,7 +18,7 @@ const Index = () => {
       </Head>
       <section>
         <div className="g-6 flex flex-row h-full items-center justify-center lg:justify-between">
-          <Login_Page_Components />
+          <Login />
         </div>
       </section>
     </>

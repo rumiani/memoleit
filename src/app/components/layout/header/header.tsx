@@ -47,7 +47,7 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between w-full sm:w-auto">
           <span className="text-white align-middle text-xl pt-3 font-bold">
-            YouTuMaz
+            11Plus
           </span>
           <button
             className="block sm:hidden text-white font text-3xl focus:outline-none"
@@ -83,7 +83,7 @@ const Navbar = () => {
             })}
           </ul>
           {!router.endsWith("login") && (
-            <Link href="/login" className="btn_secondary">
+            <Link href="/login" className="btn_secondary text-blue-400">
               Login
             </Link>
           )}

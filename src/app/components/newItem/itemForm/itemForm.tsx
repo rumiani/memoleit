@@ -4,10 +4,9 @@ import TagsInput from "../../form_components/tagsInput/tagsInput";
 import Preview from "../../form_components/preview/preview";
 import { useForm } from "react-hook-form";
 import QuillEditor from "../../form_components/textInput/TextInput";
-import { createPath } from "@/actions/path/createPath";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPathReducer } from "@/redux/appStateSlice";
 import SubmitBtn from "../../form_components/submitBtn/submitBtn";
+import { resetStateReducer } from "@/src/redux/appStateSlice";
 
 type FormValues = {
   title: string;
@@ -18,8 +17,8 @@ type FormValues = {
     tag: string;
   };
 };
-const PathForm = () => {
-  const { path } = useSelector((state) => state.appState);
+const ItemForm = () => {
+  const { item } = useSelector((state) => state.appState);
   const dispatch = useDispatch();
   const form = useForm<FormValues>({
     defaultValues: {
@@ -45,14 +44,14 @@ const PathForm = () => {
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = (data: FormValues) => {
-    const path = { title: data.title, body: data.html, tags: data.tags?.array };
-    if (path.title) {
-      dispatch(createPath(path));
+    const item = { title: data.title, body: data.html, tags: data.tags?.array };
+    if (item.title) {
+      dispatch(createItem(item));
     }
   };
 
   useEffect(() => {
-    dispatch(resetPathReducer());
+    dispatch(resetStateReducer());
 
     const subscription = watch((value) => {
       //   console.log("form values", value);
@@ -63,7 +62,7 @@ const PathForm = () => {
   if (isSubmitSuccessful) {
     // console.log("Submit Successful");
     // reset()
-    // return  <SentComponent path={path} newPathHandler={newPathHandler}/>
+    // return  <SentComponent item={item} newItemHandler={newItemHandler}/>
   }
   return (
     <div>
@@ -100,4 +99,4 @@ const PathForm = () => {
   );
 };
 
-export default PathForm;
+export default ItemForm;

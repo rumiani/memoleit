@@ -1,4 +1,4 @@
-import { resetPathReducer } from "@/redux/appStateSlice";
+import { resetStateReducer } from "@/src/redux/appStateSlice";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -11,7 +11,7 @@ const CreatedPath = () => {
   
   const dispatch = useDispatch();
   const resetHandler = () => {
-    dispatch(resetPathReducer());
+    dispatch(resetStateReducer());
   };
 
   return (
