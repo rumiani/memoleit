@@ -1,9 +1,9 @@
-import storeToLocal from "@/src/app/components/home/review/storeToLocal";
+import {storeToLocal} from "@/src/handlers/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
-import { item } from "@/src/types/interface";
+import { itemTypes } from "@/src/types/interface";
 import { reviewHandler } from "./reviewHandler";
 
-export function learnedHandler(currentItem: item | undefined, status: boolean) {
+export function learnedHandler(currentItem: itemTypes | undefined, status: boolean) {
   const items = storeToLocal();
   const foundItem = items.find((item) => item.id === currentItem?.id);
   const days = reviewHandler(foundItem!.createdAt).days;

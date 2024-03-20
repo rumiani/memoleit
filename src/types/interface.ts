@@ -2,14 +2,13 @@ export interface itemTypes {
   id: string,
   title: string,
   body: string,
-  createdAt: string,
-  learned: false,
+  createdAt: number,
+  learned: boolean,
   days: number,
-  shouldReview: false,
+  shouldReview: boolean,
   length: number,
   catagory:string,
   tags: string[],
-  url: string,
 }
 
 export interface userTypes {

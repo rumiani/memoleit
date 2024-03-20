@@ -1,36 +1,43 @@
-'use client'
+"use client";
 
-import { item } from "@/src/types/interface";
+import { itemTypes } from "@/src/types/interface";
 import React, { useState } from "react";
 import Options from "./options/options";
 
 export default function Item({
   item,
-  days,
   goToNextItem,
 }: {
-  item: item | undefined;
-  days: number;
+  item: itemTypes | undefined;
   goToNextItem: any;
 }) {
-  const [text, setText] = useState <string> ('Editable Heading');
+  const [text, setText] = useState<string>("Editable Heading");
 
   const handleChange = (event: React.FormEvent<HTMLHeadingElement>) => {
-    setText(event.target.textContent || '');
+    setText(event.target.textContent || "");
   };
   return (
     <div>
       <div>
         <div className="relative flex justify-between mb-4">
-        <h3 id="days" title={`Created ${days} days ago`} className="text-sm">
-          {days} Days
-        </h3>
-        <Options item={item}/>
+          <h3
+            id="days"
+            title={`Created ${item?.days} days ago`}
+            className="text-sm"
+          >
+            {item?.days} Days
+          </h3>
+          <Options item={item} />
         </div>
-        <h2 id="title" contentEditable onInput={handleChange} className="text-2xl font-bold text-center">
+        <h2
+          id="title"
+          contentEditable
+          onInput={handleChange}
+          className="text-2xl font-bold text-center"
+        >
           {item?.title}
         </h2>
-        <p className="text-gray-600">{item?.description}</p>
+        <p className="text-gray-600">{item?.body}</p>
       </div>
       <div className="buttons flex justify-between w-full mt-4">
         <button

@@ -1,4 +1,4 @@
-import storeToLocal from "@/src/app/components/home/review/storeToLocal";
+import {storeToLocal} from "@/src/handlers/storeToLocal";
 import { randomItemHandler } from "./randomItemHandler";
 
 export const editHandler = (id: string) => {

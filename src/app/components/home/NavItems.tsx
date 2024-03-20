@@ -3,7 +3,6 @@
 import React from "react";
 import { FaChartBar } from "react-icons/fa";
 import { MdNoteAdd } from "react-icons/md";
-import { FaFilter } from "react-icons/fa6";
 import Link from "next/link";
 import Filters from "../filters/filters";
 

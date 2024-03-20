@@ -4,8 +4,8 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { ReduxProvider } from "../redux/provider";
-import Header from "./components/layout/header/header";
-import Footer from "./components/layout/footer/footer";
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
