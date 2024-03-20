@@ -18,7 +18,7 @@ export default function Options({item}:{item:item}) {
   }
   return (
     <div className="">
-      <button onClick={() => setShowOptions(true)} className="hover:bg-gray-200 rounded-full p-1 ">
+      <button onClick={() => setShowOptions(true)} className="icon">
         <BsThreeDotsVertical />
       </button>
       {showOptions && (
