@@ -1,10 +1,10 @@
-import { item } from "@/src/types/interface";
+import { itemTypes } from "@/src/types/interface";
 import { reviewHandler } from "./reviewHandler";
 
-export const randomItemHandler = (itemsData: item[]) => {
+export const randomItemHandler = (itemsData: itemTypes[]) => {
   if (itemsData.length > 0) {
     const unlearnedItems = itemsData.filter(
-      (item: item) =>
+      (item: itemTypes) =>
         item.learned === false && reviewHandler(item.createdAt).shouldReview
     );
     const randomIndex = Math.floor(Math.random() * unlearnedItems.length);

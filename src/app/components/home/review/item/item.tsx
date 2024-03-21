@@ -1,5 +1,4 @@
 "use client";
-
 import { itemTypes } from "@/src/types/interface";
 import React, { useState } from "react";
 import Options from "./options/options";
@@ -31,7 +30,7 @@ export default function Item({
         </div>
         <h2
           id="title"
-          contentEditable
+          // contentEditable
           onInput={handleChange}
           className="text-2xl font-bold text-center"
         >

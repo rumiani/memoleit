@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { learnedHandler } from "@/src/handlers/learnedHandler";
 import { itemTypes } from "@/src/types/interface";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
-import { storeToLocal } from "@/src/handlers/storeToLocal";
 import Item from "./item/item";
 import { useDispatch, useSelector } from "react-redux";
 import { itemReducer } from "@/src/redux/appStateSlice";
@@ -22,7 +21,6 @@ export default function Review() {
   };
 
   useEffect(()=>{
-    storeToLocal()
     // dispatch();
   },[])
 

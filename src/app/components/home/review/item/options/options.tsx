@@ -2,11 +2,12 @@
 
 import { editHandler } from "@/src/handlers/editHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
-import { item } from "@/src/types/interface";
+import { itemTypes } from "@/src/types/interface";
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
-export default function Options({item}:{item:item}) {
+
+export default function Options({item}:{item:itemTypes}) {
   const [showOptions, setShowOptions] = useState(false);
   const removeBtnFunction = () =>{
     setShowOptions(false)
