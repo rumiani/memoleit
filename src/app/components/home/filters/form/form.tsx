@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CheckboxInput from "./input/input";
 import { useDispatch, useSelector } from "react-redux";
 import { userReducer } from "@/src/redux/appStateSlice";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 
 const Form = () => {
   const{user} = useSelector(state => state.appState)
@@ -9,14 +10,13 @@ const Form = () => {
   const dispatch = useDispatch()
 
   const catagoryChangeHandler = (updatedCatagory:string) => {   
-     
-    const catagory = {[updatedCatagory] : !user.catagories[updatedCatagory] }   
-        
-    dispatch(userReducer({catagory}))
+    const catagories = {[updatedCatagory] : !user.catagories[updatedCatagory] }           
+    dispatch(userReducer({catagories}))
   }
   const applyFiltersHandler = () => {
-    console.log(user.catagories);
-    
+    const appData = getAppDataHandler()
+    appData.catagories = user.catagories
+    localStorage.setItem("appData", JSON.stringify(appData));
   };
   
   return (

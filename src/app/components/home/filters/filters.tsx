@@ -6,7 +6,8 @@ import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 
 const Filters = () => {
-  const st = useSelector(state => state.appstate)
+  const{user} = useSelector(state => state.appState)
+
   const dispatch = useDispatch()
   const dialogElement = useRef(null);
 
@@ -21,7 +22,6 @@ const Filters = () => {
   };
 
   useEffect(() => {
-    console.log(st);
     
     onclick = (event) => {
       if (event.target === dialogElement.current!) {
