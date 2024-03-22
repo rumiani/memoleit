@@ -1,12 +1,14 @@
 'use client'
 
 import React from 'react'
-import NewItem from '../components/newItem/newItem'
+import CreatedPath from '../components/form_components/createdPath/createdPath'
+import NewItemForm from '../components/newItemForm/newItemForm'
 
 const Index = () => {
   return (
     <div>
-        <NewItem/>
+        {/* <CreatedPath/> */}
+         <NewItemForm/>
     </div>
   )
 }

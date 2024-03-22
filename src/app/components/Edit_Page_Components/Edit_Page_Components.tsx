@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import TitleInput from "../form_components/titleInput/titleInput";
+import TitleInput from "../newItemForm/titleInput/titleInput";
 import TagsInput from "../form_components/tagsInput/tagsInput";
-import Preview from "../form_components/preview/preview";
+import Preview from "../newItemForm/preview/preview";
 import _ from "lodash";
 import { useForm } from "react-hook-form";
-import QuillEditor from "../form_components/textInput/quillInput";
+import QuillEditor from "../newItemForm/richTexhEditor/quillInput";
 import { useDispatch } from "react-redux";
 import { resetPathReducer } from "@/redux/appStateSlice";
 import UpdateBtn from "../form_components/updateBtn/updateBtn";

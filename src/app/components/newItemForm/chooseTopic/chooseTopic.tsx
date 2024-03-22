@@ -15,6 +15,7 @@ export default function ChooseTopic({ register, error }) {
         list="topics"
         name="topic"
         id="topic"
+        autoComplete={false}
         className="outline-none p-1 focus:bg-gray-100 transition-all duration-300"
         // value={value}
         // onChange={(e) => changeHandler(e)}
