@@ -13,19 +13,14 @@ const Filters = () => {
 
   const filterHnadler = () => {
     dialogElement.current!.showModal();
-
-    const appData = getAppDataHandler(); 
-    const catagories = appData.catagories
-    console.log({catagories});
-    
+    const {catagories} = getAppDataHandler(); 
     dispatch(userReducer({catagories}));
   };
 
   useEffect(() => {
-    
     onclick = (event) => {
       if (event.target === dialogElement.current!) {
-        dialogElement.current!.close();
+        dialogElement.current?.close();
       }
     };
   }, []);
@@ -38,7 +33,7 @@ const Filters = () => {
       >
         <FaFilter className="icon" />
       </button>
-      <dialog ref={dialogElement} className="rounded-md w-full sm:w-96 h-80">
+      <dialog ref={dialogElement} className="cursor-default rounded-md w-full sm:w-96 h-80">
         <Form />
       </dialog>
     </div>

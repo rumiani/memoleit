@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import ItemsNav from "./components/home/NavItems";
+import ItemsNav from "./components/home/navItems/NavItems";
 import Review from "./components/home/review/review";
 import { initialDataStoreToLocal } from "../handlers/initialDataStoreToLocal";
 

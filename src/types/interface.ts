@@ -22,5 +22,6 @@ export interface userTypes {
   role: string,
   joinTime: string,
   loggedIn: boolean,
-  catagories: string[],
+  catagories: object,
+  forReview:boolean,
 }

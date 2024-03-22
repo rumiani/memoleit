@@ -5,7 +5,8 @@ import { itemTypes } from "@/src/types/interface";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import Item from "./item/item";
 import { useDispatch, useSelector } from "react-redux";
-import { itemReducer } from "@/src/redux/appStateSlice";
+import { itemReducer, userReducer } from "@/src/redux/appStateSlice";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 
 export default function Review() {
   const { user, item } = useSelector((state) => state.appState);
@@ -21,12 +22,17 @@ export default function Review() {
   };
 
   useEffect(()=>{
-    // dispatch();
-  },[])
+    const {catagories} = getAppDataHandler()    
+    dispatch(userReducer({catagories}))
+    const anyFilter = Object.values(user.catagories).some( status => status )
+    
+    console.log(anyFilter)
+    
+  },[dispatch])
 
   return (
     <div>
-      {user.catagories.length !== 0 ? (
+      {!Object.values(getAppDataHandler().catagories).some( status => status ) ? (
         <div className="word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full sm:w-80 mx-auto mt-10">
           <Item item={item} goToNextItem={goToNextItem} />
         </div>
