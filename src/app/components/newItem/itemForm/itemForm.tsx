@@ -3,10 +3,11 @@ import TitleInput from "../../form_components/titleInput/titleInput";
 import TagsInput from "../../form_components/tagsInput/tagsInput";
 import Preview from "../../form_components/preview/preview";
 import { useForm } from "react-hook-form";
-import QuillEditor from "../../form_components/textInput/TextInput";
+import QuillEditor from "../../form_components/textInput/quillInput";
 import { useDispatch, useSelector } from "react-redux";
 import SubmitBtn from "../../form_components/submitBtn/submitBtn";
 import { resetStateReducer } from "@/src/redux/appStateSlice";
+import RichTextEditor from "../../form_components/textInput/RichTextEditor";
 
 type FormValues = {
   title: string;
@@ -72,14 +73,14 @@ const ItemForm = () => {
         onSubmit={handleSubmit(submitHandler)}
       >
         <TitleInput register={register} error={errors.title?.message} />
-
-        <QuillEditor
+        <RichTextEditor/>
+        {/* <QuillEditor
           error={errors.html?.message}
           watch={watch}
           register={register}
           setValue={setValue}
           getValues={getValues}
-        />
+        /> */}
 
         <TagsInput
           register={register}

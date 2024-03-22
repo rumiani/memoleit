@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import he from 'he'
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 import dynamic from "next/dynamic";
-
+import he from 'he';
 const ReactQuill = dynamic(import("react-quill"), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
@@ -64,17 +63,17 @@ const QuillEditor = ({ register, error, watch, setValue, getValues }) => {
       <div
         onDrop={(e) => e.preventDefault()}
         className="relative w-full min-w-[200px] text-lg"
-      >
+      > quill
         <ReactQuill
-          options="options"
-          ready="onQuillReady"
+          // options="options"
+          // ready="onQuillReady"
           className="quill"
           modules={modules}
           formats={formats}
           theme="bubble"
           placeholder="Write your path here step by step..."
           value={editorContent}
-          onChange={onEditorStateChange}
+          // onChange={onEditorStateChange}
         />
       </div>
       <p className="text-red-600">{error}</p>
