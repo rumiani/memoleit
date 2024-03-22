@@ -1,21 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import dynamic from 'next/dynamic';
-const Editor = dynamic(() => import('react-draft-wysiwyg').then(mod => mod.Editor), { ssr: false });
+import React, { useEffect, useState } from "react";
+import { EditorState, convertToRaw } from "draft-js";
+import he from 'he'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import dynamic from "next/dynamic";
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+);
 
 const toolbar = {
-  options: ['inline', 'blockType','list', 'textAlign', 'colorPicker', 'link', 'embedded', 'image'],
+  options: ["inline", "blockType", "list", "textAlign", "colorPicker", "link"],
   inline: {
     inDropdown: false,
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace', 'superscript', 'subscript'],
-    },
+    options: [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "monospace",
+      "superscript",
+      "subscript",
+    ],
+  },
   blockType: {
     inDropdown: true,
-    options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code'],
+    options: [
+      "Normal",
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H5",
+      "H6",
+      "Blockquote",
+      "Code",
+    ],
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
@@ -25,15 +47,15 @@ const toolbar = {
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['unordered', 'ordered'],
-   },
+    options: ["unordered", "ordered"],
+  },
   textAlign: {
     inDropdown: true,
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['left', 'center', 'right', 'justify'],
-   },
+    options: ["left", "center", "right", "justify"],
+  },
   link: {
     inDropdown: false,
     className: undefined,
@@ -41,65 +63,55 @@ const toolbar = {
     popupClassName: undefined,
     dropdownClassName: undefined,
     showOpenOptionOnHover: true,
-    defaultTargetOption: '_self',
-    options: ['link'],
-   linkCallback: undefined
+    defaultTargetOption: "_self",
+    options: ["link"],
+    linkCallback: undefined,
   },
-  embedded: {
-    className: undefined,
-    component: undefined,
-    popupClassName: undefined,
-    embedCallback: undefined,
-    defaultSize: {
-      height: 'auto',
-      width: 'auto',
-    },
-  },
-  image: {
-    className: undefined,
-    component: undefined,
-    popupClassName: undefined,
-    urlEnabled: true,
-    uploadEnabled: true,
-    alignmentEnabled: true,
-    uploadCallback: undefined,
-    previewImage: false,
-    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
-    alt: { present: false, mandatory: false },
-    defaultSize: {
-      height: 'auto',
-      width: 'auto',
-    },
-  },
-}
-const RichTextEditor = () => {
+};
+const RichTextEditor = ({register,error,setValue, getValues, watch}) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-useEffect(()=>{
-  console.log(editorState);
+  const [hideToolbar, setHideToolbar] = useState(true);
+  useEffect(() => {
+    // console.log(editorState);
+  }, [editorState]);
   
-},[editorState])
   const onEditorStateChange = (editorState) => {
-    console.log(editorState);
-    
     setEditorState(editorState);
+    const content = editorState.getCurrentContent().getPlainText('')
+    const jsonContent = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent())
+    );
+    register("body", {
+      required: "Body is required",
+      validate: {
+        minMax: () => {
+          return (
+            content.length - 1 > 10 || `Body must be 3-1000 character`
+          );
+        },
+      },
+    });
+    setValue('body',jsonContent)
+    // console.log();
+    // console.log(jsonContent);
   };
 
-  const onSave = () => {
-    const content = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-    console.log(content);    
-  };
 
   return (
     <div>
       <Editor
-      // toolbarOnFocus
+        onFocus={() => setHideToolbar(false)}
+        onBlur={() => setHideToolbar(true)}
+        toolbarHidden={hideToolbar}
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}
         toolbar={toolbar}
+        editorClassName="editor"
+        placeholder="Add a description here ..."
       />
-      <button onClick={onSave}>Save</button>
+      <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
-     );
-    };
-    
-    export default RichTextEditor;
+  );
+};
+
+export default RichTextEditor;

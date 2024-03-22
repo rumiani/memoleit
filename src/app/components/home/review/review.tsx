@@ -28,7 +28,7 @@ export default function Review() {
     
     console.log(anyFilter)
     
-  },[dispatch])
+  },[dispatch,user])
 
   return (
     <div>

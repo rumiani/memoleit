@@ -45,13 +45,14 @@ const Preview = ({ getValues }) => {
             ></div>
             <div className="my-4 mx-auto">
               <br />
-              {getValues().tags.array.map((tag, index) => {
+              {_.capitalize(getValues().topic)}
+              {/* {getValues().tags.array.map((tag, index) => {
                 return (
                   <span className="bg-blue-200 p-1 rounded-md mx-1" key={index}>
                     {tag}
                   </span>
                 );
-              })}
+              })} */}
             </div>
             <button id="close" className="primaryBtn mr-4"
             onClick={exitFullScreen}>

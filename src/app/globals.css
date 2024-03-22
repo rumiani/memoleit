@@ -23,11 +23,14 @@ button {
   .primaryInput {
     @apply h-full w-full rounded-[7px] border border-blue-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-200 placeholder-shown:border-t-blue-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-50;
   }
-.wrapperClassName{
-  @apply w-full h-44 bg-red-400;
+/* .wrapperClassName{
+} */
+.editor{
+  @apply w-full h-44 px-2  focus:bg-gray-500;
 }
-
-
+.editor a{
+  @apply w-full h-full text-blue-500 hover:text-blue-700 cursor-pointer;
+}
 
 
 
