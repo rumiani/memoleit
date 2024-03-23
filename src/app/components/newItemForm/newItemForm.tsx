@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import { DevTool } from '@hookform/devtools';
+import React from "react";
 import TitleInput from "./titleInput/titleInput";
 import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import SubmitBtn from "../form_components/submitBtn/submitBtn";
-import { resetStateReducer } from "@/src/redux/appStateSlice";
 import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
+import { saveNewItemToLocal } from '@/src/handlers/saveHandler';
 
 type FormValues = {
   title: string;
@@ -24,7 +24,7 @@ const NewItemForm = () => {
 
   const {
     register,
-    // control,
+    control,
     handleSubmit,
     formState,
     watch,
@@ -35,15 +35,9 @@ const NewItemForm = () => {
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
-  const submitHandler = (data: FormValues) => {
-    const item = { title: data.title, body: data.body, topic: data.topic };
-    console.log(data);
-    const values = getValues();
-    console.log(values);
+  const submitHandler = (item: FormValues) => {
+    saveNewItemToLocal(item)
 
-    if (item.title) {
-      // dispatch(createItem(item));
-    }
   };
 
   // useEffect(() => {
@@ -75,6 +69,7 @@ const NewItemForm = () => {
         />
         <ChooseTopic register={register} error={errors.title?.message} />
         <button className="primaryBtn mx-auto">publish</button>
+      {/* <DevTool control={control} placement="top-right" /> */}
       </form>
       <Preview getValues={getValues} />
     </div>

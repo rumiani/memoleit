@@ -1,18 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { exitFullScreen, fullScreen } from "./fullScreen";
-import { EditorState,convertFromRaw } from "draft-js";
+import { convertFromRaw } from "draft-js";
 import { stateToHTML } from 'draft-js-export-html';
 const Preview = ({ getValues }) => {
+  const[html,setHtml] = useState('')
   const dialogElement = useRef(null);
   const itemlement = useRef<HTMLDialogElement | null>(null);
 
   const showModalHnadler = () => {
     dialogElement.current?.showModal();
-    const html = stateToHTML(convertFromRaw(JSON.parse(getValues().body)))
-console.log(html);
-
+    console.log(getValues().body);
+    
+    if(getValues().body)
+    setHtml(stateToHTML(convertFromRaw(JSON.parse(getValues().body))))
   };
 
   useEffect(() => {
@@ -44,21 +46,13 @@ console.log(html);
             </h1>
             <div
               className="text-lg"
-              dangerouslySetInnerHTML={{ __html: stateToHTML(convertFromRaw(JSON.parse(getValues().body))) }}
+              dangerouslySetInnerHTML={{ __html: html }}
             ></div>
             <div className="my-4 mx-auto">
-              <br />
-              Topic:              
+              <p className="font-bold text-gray-500">Topic:</p>              
               {_.capitalize(getValues().topic)}
-              {/* {getValues().tags.array.map((tag, index) => {
-                return (
-                  <span className="bg-blue-200 p-1 rounded-md mx-1" key={index}>
-                    {tag}
-                  </span>
-                );
-              })} */}
             </div>
-            <button id="close" className="primaryBtn mr-4"
+            <button id="close" className="primaryBtn m-4"
             onClick={exitFullScreen}>
               Back
             </button>

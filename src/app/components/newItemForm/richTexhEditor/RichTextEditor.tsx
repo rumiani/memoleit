@@ -22,28 +22,23 @@ const RichTextEditor = ({register,error,setValue }) => {
     const jsonContent = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );
+    setValue('body',content)
     register("body", {
       required: "Body is required",
-      validate: {
-        minMax: () => {
-          return (
-            content.length - 1 > 10 || `Body must be 3-1000 character`
-          );
-        },
+      pattern: {
+        value: /^.{3,100}$/,
+        message: "Body must be 3-100 character",
       },
     });
-    setValue('body',jsonContent)
-    // console.log();
-    // console.log(jsonContent);
   };
 
 
   return (
     <div>
       <Editor
-        onFocus={() => setHideToolbar(false)}
-        onBlur={() => setHideToolbar(true)}
-        toolbarHidden={hideToolbar}
+        // onFocus={() => setHideToolbar(false)}
+        // onBlur={() => setHideToolbar(true)}
+        // toolbarHidden={hideToolbar}
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}
         toolbar={toolbar}

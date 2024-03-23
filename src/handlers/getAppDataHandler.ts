@@ -1,10 +1,7 @@
-import { itemTypes } from "../types/interface";
+import { initialDataStoreToLocal } from "./initialDataStoreToLocal";
 
 export const getAppDataHandler = () => {
+  initialDataStoreToLocal();
   const appDataJson: string | null = localStorage.getItem("appData");
-  let appData;
-  let itemsData: itemTypes[] = [];
-  appData = JSON.parse(appDataJson);
-    
-  return appData;
+  if (appDataJson) return JSON.parse(appDataJson);
 };
