@@ -10,7 +10,7 @@ import { resetPathReducer } from "@/redux/appStateSlice";
 import UpdateBtn from "../form_components/updateBtn/updateBtn";
 import { updatePath } from "@/actions/path/updatePath";
 import { useRouter } from "next/router";
-import CreatedPath from "../form_components/createdPath/createdPath";
+import CreatedPath from "../form_components/CreatedMessage/CreatedMessage";
 import CancelBtn from "../form_components/cancelBtn/cancelBtn";
 interface pathType {
   id:string,

@@ -31,7 +31,7 @@ export default function ChooseTopic({ register, error }) {
       <datalist id="topics">
         {topics &&
           Object.keys(topics).map((topic) => {
-            return <option key="topic" value={topic} />;
+            return <option key={topic} value={topic} />;
           })}
       </datalist>
       <p className="text-red-500 text-sm pl-4">{error}</p>
