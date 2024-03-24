@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
+import { itemTypes } from "../types/interface";
 
 interface itemProps {
   title: string;
@@ -14,21 +15,18 @@ export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
     let { catagories, itemsData } = appData;
 
     if (!catagories[topic]) catagories[topic] = false;
-
-    itemsData.push({
+    const itemObject: itemTypes = {
       id: uuidv4(),
       title,
       body,
       catagory: topic,
       createdAt: Date.now(),
+      startedAt: Date.now(),
       learned: false,
-      days: 0,
-      shouldReview: false,
       length: 0,
       tags: [],
-    });
-
-    console.log(appData);
+    };
+    itemsData.push(itemObject);
     localStorage.setItem("appData", JSON.stringify({ catagories, itemsData }));
     toast.success("The new item has been saved.");
   }

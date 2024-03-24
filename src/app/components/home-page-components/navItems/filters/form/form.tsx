@@ -1,40 +1,44 @@
 import React, { useEffect, useRef, useState } from "react";
 import CheckboxInput from "./input/input";
 import { useDispatch, useSelector } from "react-redux";
-import { userReducer } from "@/src/redux/appStateSlice";
+import { itemReducer, userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { toast } from "react-toastify";
-
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { saveTopicsToLocal } from "@/src/handlers/saveTopicsToLocal";
+import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
+interface FormState {
+  [key: string]: string;
+}
 const Form = () => {
+  const [formData, setFormData] = useState<FormState>({});
+
   const { user } = useSelector((state) => state.appState);
   const [disabled, setDisabled] = useState(true);
   const dispatch = useDispatch();
 
-  const catagoryChangeHandler = (updatedCatagory: string) => {
-    const catagories = { [updatedCatagory]: !user.catagories[updatedCatagory] };
-    dispatch(userReducer({ catagories }));
-  };
-  const applyFiltersHandler = () => {
-    const appData = getAppDataHandler();
-    appData.catagories = user.catagories;
-    localStorage.setItem("appData", JSON.stringify(appData));
-    toast.success("New filters have been saved.", {
-      // position: "top-right",
-      // autoClose: 5000,
-      // hideProgressBar: false,
-      // closeOnClick: true,
-      // pauseOnHover: true,
-      // theme: "light",
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: checked,
     });
-    setDisabled(true);
+  };
+
+  const applyFiltersHandler = () => {
+    saveTopicsToLocal(formData);
+    const randomItem = randomItemHandler();
+    dispatch(itemReducer(randomItem));
+    dispatch(userReducer({ catagories: { ...user.catagories, ...formData } }));
   };
 
   return (
     <>
       <form
-        onChange={() => setDisabled(false)}
         method="dialog"
-        className="h-full text-lg flex flex-col justify-center py-2 w-full mx-auto max-w-96"
+        className="h-full text-lg flex flex-col justify-center p-4 w-full mx-auto max-w-96"
       >
         <p className="text-center w-full">Choose your catagory to review:</p>
         <div className="my-2 h-40 overflow-y-auto ">
@@ -47,9 +51,7 @@ const Form = () => {
                 <CheckboxInput
                   catagory={catagory}
                   reviewing={reviewing}
-                  catagoryChangeHandler={(updatedCatagory: string) =>
-                    catagoryChangeHandler(updatedCatagory)
-                  }
+                  handleInputChange={handleInputChange}
                 />
               </div>
             );

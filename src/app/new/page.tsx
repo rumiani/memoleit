@@ -2,12 +2,12 @@
 
 import React from 'react'
 import CreatedPath from '../components/form_components/CreatedMessage/CreatedMessage'
-import NewItemForm from '../components/newItemForm/newItemForm'
+import ItemForm from '../components/itemForm/itemForm'
 
 const Index = () => {
   return (
     <div className=''>
-         <NewItemForm/>
+         <ItemForm/>
     </div>
   )
 }

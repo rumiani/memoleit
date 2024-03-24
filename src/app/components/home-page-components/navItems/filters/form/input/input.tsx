@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
+import React, { useEffect, useState } from "react";
 interface checkBoxProps {
   catagory: string;
   reviewing: boolean;
-  catagoryChangeHandler: Function;
+  handleInputChange: Function;
 }
 export default function CheckboxInput({
   catagory,
   reviewing,
-  catagoryChangeHandler,
+  handleInputChange,
 }: checkBoxProps) {
   const [isChecked, setIsChecked] = useState(reviewing);
+  const [itemInfo, setItemInfo] = useState<{
+    all: number;
+    learned: number;
+    unLearned: number;
+  }>({ all: 0, learned: 0, unLearned: 0 });
 
-  const inputChangeHandler = () => {
-    setIsChecked(!isChecked);    
-    catagoryChangeHandler(catagory);
+  const inputChangeHandler = (e) => {
+    setIsChecked(!isChecked);
+    handleInputChange(e);
   };
 
+  useEffect(() => {
+    const info = topicItemsCountHandler(catagory);
+    setItemInfo(info);
+  }, [catagory]);
+
   return (
-    <div className="flex">
+    <div>
+      <div className="flex">
       <input
         checked={isChecked}
-        onChange={() => inputChangeHandler()}
+        onChange={(e) => inputChangeHandler(e)}
         type="checkbox"
         id={catagory}
         name={catagory}
@@ -50,6 +62,12 @@ pointer-events-none"
       >
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
+    </div>
+      <div className="pr-4 w-full text-left flex justify-between">
+        <span>All:{itemInfo.all}</span>
+        <span className="text-green-600">Learned:{itemInfo.learned}</span>
+        <span className="text-yellow-500">Left:{itemInfo.unLearned}</span>
+      </div>
     </div>
   );
 }

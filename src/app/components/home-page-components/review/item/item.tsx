@@ -1,7 +1,9 @@
 "use client";
 import { itemTypes } from "@/src/types/interface";
-import React, { useState } from "react";
+import React from "react";
 import Options from "./options/options";
+import { daysToNowHandler } from "@/src/handlers/home/general/daysToNowHandler";
+import Spinner from "../../../spinner/spinner";
 
 export default function Item({
   item,
@@ -10,30 +12,26 @@ export default function Item({
   item: itemTypes | undefined;
   goToNextItem: any;
 }) {
-  const [text, setText] = useState<string>("Editable Heading");
-
-  const handleChange = (event: React.FormEvent<HTMLHeadingElement>) => {
-    setText(event.target.textContent || "");
-  };
+  if (!item)
+    return (
+      <div className="p-8 flex justify-center">
+        <Spinner size={100} />
+      </div>
+    );
   return (
-    <div>
+    <div className="word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full sm:w-80 mx-auto mt-10">
       <div>
         <div className="relative flex justify-between mb-4">
           <h3
             id="days"
-            title={`Created ${item?.days} days ago`}
+            title={`Created ${daysToNowHandler(item?.startedAt)} days ago`}
             className="text-sm"
           >
-            {item?.days} Days
+            {daysToNowHandler(item?.startedAt)} Days
           </h3>
           <Options item={item} />
         </div>
-        <h2
-          id="title"
-          // contentEditable
-          onInput={handleChange}
-          className="text-2xl font-bold text-center"
-        >
+        <h2 id="title" className="text-2xl font-bold text-center">
           {item?.title}
         </h2>
         <p className="text-gray-600">{item?.body}</p>

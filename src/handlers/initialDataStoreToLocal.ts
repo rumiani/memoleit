@@ -18,11 +18,10 @@ export const initialDataStoreToLocal = () => {
         id: uuidv4(),
         title: word,
         body: "",
-        catagory: "",
+        catagory: '11plus',
         createdAt: Date.now(),
+        startedAt:Date.now(),
         learned: false,
-        days: 0,
-        shouldReview: false,
         length: 0,
         tags: [],
       });
