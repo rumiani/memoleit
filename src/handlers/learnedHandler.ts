@@ -1,12 +1,12 @@
 import { randomItemHandler } from "./randomItemHandler";
 import { itemTypes } from "@/src/types/interface";
-import { reviewHandler } from "./home/general/shouldReviewHandler";
 import { getAppDataHandler } from "./getAppDataHandler";
+import { daysToNowHandler } from "./home/general/daysToNowHandler";
 
 export function learnedHandler(currentItem: itemTypes | undefined, status: boolean) {
   const items = getAppDataHandler();
   const foundItem = items.find((item) => item.id === currentItem?.id);
-  const days = reviewHandler(foundItem!.createdAt).days;
+  const days = daysToNowHandler(foundItem!.startedAt)
   if (foundItem && !status) {
     foundItem.createdAt = Date.now();
   }
@@ -15,5 +15,5 @@ export function learnedHandler(currentItem: itemTypes | undefined, status: boole
   }
   localStorage.setItem("itemsData", JSON.stringify(items));
 
-  return randomItemHandler(storeToLocal());
+  return randomItemHandler();
 }

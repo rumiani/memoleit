@@ -1,3 +1,4 @@
+"use client";
 import { v4 as uuidv4 } from "uuid";
 import { itemTypes } from "../types/interface";
 import words_test from "@/src/data/4.json";
@@ -9,25 +10,30 @@ process.env.NODE_ENV === "development"
   ? (words = words_test)
   : (words = words_11plus);
 export const initialDataStoreToLocal = () => {
-  const appDataJson: string | null = localStorage.getItem("appData");
-  let itemsData: itemTypes[] = [];
-  let catagories = { catagories: { "11plus": false } };
-  if (!appDataJson) {
-    words?.forEach((word, i) => {
-      itemsData!.push({
-        id: uuidv4(),
-        title: word,
-        body: "",
-        catagory: '11plus',
-        createdAt: Date.now(),
-        startedAt:Date.now(),
-        learned: false,
-        length: 0,
-        tags: [],
+  if (typeof window !== "undefined") {
+    const appDataJson: string | null = localStorage.getItem("appData");
+    let itemsData: itemTypes[] = [];
+    let catagories = { catagories: { "11plus": false } };
+    if (!appDataJson) {
+      words?.forEach((word, i) => {
+        itemsData!.push({
+          id: uuidv4(),
+          title: word,
+          body: "",
+          catagory: "11plus",
+          createdAt: Date.now(),
+          startedAt: Date.now(),
+          learned: false,
+          length: 0,
+          tags: [],
+        });
+        console.log({ ...catagories, itemsData });
+
+        localStorage.setItem(
+          "appData",
+          JSON.stringify({ ...catagories, itemsData })
+        );
       });
-      console.log({ ...catagories, itemsData });
-      
-      localStorage.setItem("appData", JSON.stringify({ ...catagories, itemsData }));
-    });
+    }
   }
 };

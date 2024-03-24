@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import CheckboxInput from "./input/input";
 import { useDispatch, useSelector } from "react-redux";
 import { itemReducer, userReducer } from "@/src/redux/appStateSlice";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { toast } from "react-toastify";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { saveTopicsToLocal } from "@/src/handlers/saveTopicsToLocal";
-import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
+
 interface FormState {
   [key: string]: string;
 }
