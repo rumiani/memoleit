@@ -4,8 +4,8 @@ import { getAppDataHandler } from "./getAppDataHandler";
 import { daysToNowHandler } from "./home/general/daysToNowHandler";
 
 export function learnedHandler(currentItem: itemTypes | undefined, status: boolean) {
-  const items = getAppDataHandler();
-  const foundItem = items.find((item) => item.id === currentItem?.id);
+  const {itemsData} = getAppDataHandler();
+  const foundItem = itemsData.find((item) => item.id === currentItem?.id);
   const days = daysToNowHandler(foundItem!.startedAt)
   if (foundItem && !status) {
     foundItem.createdAt = Date.now();

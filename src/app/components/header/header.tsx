@@ -29,7 +29,7 @@ const Navbar = () => {
         navLinks.push({ name: "Dashboard", href: "/dashboard" });
         console.log("signed In");
       } else {
-        navLinks = navLinks.filter(link => link.href !== "/dashboard");
+        navLinks = navLinks.filter((link) => link.href !== "/dashboard");
         console.log("signed Out");
       }
     };
@@ -46,9 +46,11 @@ const Navbar = () => {
         className="z-50 fixed left-1/2 transform -translate-x-1/2 my-2 w-11/12 bg-gray-800 px-4 py-2  rounded-lg mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between"
       >
         <div className="flex items-center justify-between w-full sm:w-auto">
-          <span className="text-white align-middle text-xl pt-3 font-bold">
-            11Plus
-          </span>
+          <Link href={"/"}>
+            <span className="text-white align-middle text-xl pt-3 font-bold">
+              11Plus
+            </span>
+          </Link>
           <button
             className="block sm:hidden text-white font text-3xl focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
