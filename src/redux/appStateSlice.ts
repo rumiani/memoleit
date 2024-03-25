@@ -20,12 +20,13 @@ const initialState: initialStateTypes = {
     id: "",
     title: "",
     body: "",
-    createdAt: 0,
-    startedAt:0,
-    learned: false,
-    length: 0,
     catagory: "",
-    tags: [],
+    reviews: {
+      box:0,
+      startedAt:0
+    },
+    createdAt: 0,
+    startedAt: 0,
   },
   items: [],
 };
@@ -36,7 +37,7 @@ export const appStateSlice = createSlice({
   reducers: {
     userReducer: (state, action: PayloadAction<object>) => {
       console.log(action.payload);
-      
+
       state.user = { ...state.user, ...action.payload };
     },
     logOutReducer: () => initialState,
@@ -55,7 +56,13 @@ export const appStateSlice = createSlice({
   },
 });
 
-export const { userReducer, logOutReducer, logInReducer,itemReducer, allItemsReducer,resetStateReducer } =
-  appStateSlice.actions;
+export const {
+  userReducer,
+  logOutReducer,
+  logInReducer,
+  itemReducer,
+  allItemsReducer,
+  resetStateReducer,
+} = appStateSlice.actions;
 
 export default appStateSlice.reducer;

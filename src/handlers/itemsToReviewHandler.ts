@@ -1,16 +1,19 @@
 import { itemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
-import { shouldReviewHandler } from "./home/general/shouldReviewHandler";
+import { daysToNowHandler } from "./home/general/daysToNowHandler";
 
-export const toReviewHandler = () => {
+const boxes = [1, 3, 7, 15, 31];
+
+export const itemsToReviewHandler = () => {
   if (typeof window !== "undefined") {
     let { itemsData, catagories } = getAppDataHandler();
     if (itemsData.length > 0) {
       const toReveiwItems = itemsData.filter(
         (item: itemTypes) =>
-          item.learned === false &&
+          item.reviews.box <= 5 &&
           catagories[item.catagory] &&
-          shouldReviewHandler(item.startedAt)
+          boxes[item.reviews.box - 1] <=
+            daysToNowHandler(item.reviews.startedAt)
       );
       return toReveiwItems;
     }

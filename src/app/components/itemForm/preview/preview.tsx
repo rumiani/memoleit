@@ -22,7 +22,6 @@ const Preview = ({ getValues }) => {
       if (event.target === dialogElement.current || event.target.id === "close")
         dialogElement.current!.close();
     };
-    console.log(getValues().body)
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { learnedHandler } from "@/src/handlers/learnedHandler";
+import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { itemTypes } from "@/src/types/interface";
 import Item from "./item/item";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ export default function Review() {
   const dispatch = useDispatch();
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
-    let newRandomItem = learnedHandler(item, status);
+    let newRandomItem = reviewHandler(item, status);
     if (newRandomItem) {
       dispatch(itemReducer({ ...newRandomItem }));
     }

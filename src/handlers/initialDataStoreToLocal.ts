@@ -21,11 +21,12 @@ export const initialDataStoreToLocal = () => {
           title: word,
           body: "",
           catagory: "11plus",
+          reviews: {
+            box: 0,
+            startedAt: Date.now(),
+          },
           createdAt: Date.now(),
           startedAt: Date.now(),
-          learned: false,
-          length: 0,
-          tags: [],
         });
         console.log({ ...catagories, itemsData });
 

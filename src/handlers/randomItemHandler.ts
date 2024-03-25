@@ -1,9 +1,9 @@
 import { randomElementHandler } from "./home/general/randomElementHandler";
-import { toReviewHandler } from "./toReviewHandler";
+import { itemsToReviewHandler } from "./itemsToReviewHandler";
 
 export const randomItemHandler = () => {
-  const toReveiwItems = toReviewHandler();
-  if(toReveiwItems){
+  const toReveiwItems = itemsToReviewHandler();
+  if (toReveiwItems) {
     const randomItem = randomElementHandler(toReveiwItems);
     return randomItem;
   }
