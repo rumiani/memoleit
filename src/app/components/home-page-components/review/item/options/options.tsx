@@ -19,7 +19,9 @@ export default function Options({ item }: { item: itemTypes }) {
     setShowOptions(false);
     removeHandler(item.id);
     const randomItem = randomItemHandler();
-    dispatch(itemReducer(randomItem));
+    if(randomItem){
+      dispatch(itemReducer(randomItem));
+    }
   };
   const editBtnFunction = () => {
     setShowOptions(false);

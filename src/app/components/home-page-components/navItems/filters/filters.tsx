@@ -1,21 +1,20 @@
 import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
 import { FaFilter } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
 import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
+
+type DialogElement = HTMLDialogElement | null;
 
 const Filters = () => {
-  const{user} = useAppSelector(state => state.appState)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const dialogElement = useRef(null);
 
   const filterHnadler = () => {
-    type DialogElement = HTMLDialogElement | null;
-    type ShowModalFunction = () => void;
-    (dialogElement.current as DialogElement)?.showModal as ShowModalFunction
+
+    (dialogElement.current as DialogElement)?.showModal()
     const {catagories} = getAppDataHandler(); 
     dispatch(userReducer({catagories}));
   };
@@ -23,7 +22,7 @@ const Filters = () => {
   useEffect(() => {
     onclick = (event) => {
       if (event.target === dialogElement.current!) {
-        dialogElement.current?.close();
+        (dialogElement.current as DialogElement)?.close()
       }
     };
   }, []);

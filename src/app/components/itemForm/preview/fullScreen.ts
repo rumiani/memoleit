@@ -1,12 +1,11 @@
-export const fullScreen = (element)=>{
-    console.log(element);
+export const fullScreen = ()=>{
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
       } else if (document.exitFullscreen) {
         document.exitFullscreen();
       }
 }
-export const exitFullScreen = (element) =>{
+export const exitFullScreen = () =>{
   if (document.fullscreenElement)
     document.exitFullscreen();
 }

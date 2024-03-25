@@ -29,7 +29,7 @@ const UserProfileMenu = ({ mobileMenu }:{mobileMenu:boolean}) => {
       <div className=" py-2 md:py-0  text-left text-gray-300 hover:text-white transition-transform duration-300">
         <UserAvatar
           userMenuHandler={() => setUserMenu(!userMenu)}
-          url={user.url}
+          url={user.avatar}
         />
         <UserMenu userMenu={userMenu} />
       </div>

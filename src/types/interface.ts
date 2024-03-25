@@ -25,3 +25,8 @@ export interface userTypes {
   catagories: object;
   forReview: boolean;
 }
+export interface FormValues {
+  title: string;
+  body: string;
+  topic: string;
+}

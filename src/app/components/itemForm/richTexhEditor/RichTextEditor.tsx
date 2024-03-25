@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { toolbar } from "./toolbar";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { FormValues } from "@/src/types/interface";
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
 );
+interface propsEditor {
+  register:UseFormRegister<FormValues>,
+  error:string | undefined,
+  setValue:UseFormSetValue<FormValues>
+}
 
-
-const RichTextEditor = ({register,error,setValue }) => {
+const RichTextEditor = ({register,error,setValue }:propsEditor) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [hideToolbar, setHideToolbar] = useState(true);
-  useEffect(() => {
-    // console.log(editorState);
-  }, [editorState]);
   
-  const onEditorStateChange = (editorState) => {
+  const onEditorStateChange = (editorState:EditorState) => {
     setEditorState(editorState);
     const content = editorState.getCurrentContent().getPlainText('')
     const jsonContent = JSON.stringify(
@@ -36,9 +38,6 @@ const RichTextEditor = ({register,error,setValue }) => {
   return (
     <div>
       <Editor
-        // onFocus={() => setHideToolbar(false)}
-        // onBlur={() => setHideToolbar(true)}
-        // toolbarHidden={hideToolbar}
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}
         toolbar={toolbar}

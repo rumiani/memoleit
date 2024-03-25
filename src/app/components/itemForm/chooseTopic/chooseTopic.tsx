@@ -1,7 +1,9 @@
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { FormValues } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
-export default function ChooseTopic({ register, error }) {
+export default function ChooseTopic({ register, error }:{register: UseFormRegister<FormValues>, error: string | undefined}) {
   const [topics, setTopics] = useState(null);
   useEffect(() => {
     const { catagories } = getAppDataHandler();
@@ -13,7 +15,6 @@ export default function ChooseTopic({ register, error }) {
       {/* <label htmlFor="topic" className="text-gray-500"></label> */}
       <input
         list="topics"
-        name="topic"
         id="topic"
         autoComplete="off"
         className="outline-none p-1 focus:bg-gray-100 transition-all duration-300"

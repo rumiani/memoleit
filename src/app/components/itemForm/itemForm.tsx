@@ -7,13 +7,13 @@ import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "../form_components/CreatedMessage/CreatedMessage";
 import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
+import { FormValues } from "@/src/types/interface";
 
-type FormValues = {
-  title: string;
-  body: string;
-  topic: string;
-};
-const ItemForm = ({defaultValues}:FormValues = { title: "", body: "", topic: "" } ) => {
+
+interface Props {
+  defaultValues?: FormValues; // Make defaultValues prop optional
+}
+const ItemForm:React.FC<Props> = ({defaultValues = { title: "", body: "", topic: "" } }) => {
   const [createdMessage, setCreatedMessage] = useState(false);
 
   const form = useForm<FormValues>({

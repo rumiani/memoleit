@@ -1,6 +1,11 @@
+import { FormValues } from '@/src/types/interface'
 import React from 'react'
-
-const TitleInput = ({register, error}) => {
+import { UseFormRegister } from 'react-hook-form'
+interface titleProps {
+  register: UseFormRegister<FormValues>,
+  error:string | undefined
+}
+const TitleInput = ({register, error}:titleProps) => {
 
   return (
     <div className="w-full mx-auto my-2">

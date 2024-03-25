@@ -3,15 +3,15 @@ import React, { useEffect } from "react";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { itemTypes } from "@/src/types/interface";
 import Item from "./item/item";
-import { useDispatch, useSelector } from "react-redux";
 import { itemReducer, userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { isEmpty } from "lodash";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 
 export default function Review() {
-  const { user, item } = useSelector((state) => state.appState);
-  const dispatch = useDispatch();
+  const { user, item } = useAppSelector((state) => state.appState);
+  const dispatch = useAppDispatch();
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
     let newRandomItem = reviewHandler(item, status);
@@ -26,8 +26,7 @@ export default function Review() {
     dispatch(userReducer({ catagories }));
 
     const randomItem = randomItemHandler();
-
-    dispatch(itemReducer(randomItem));
+    if (randomItem) dispatch(itemReducer(randomItem));
   }, [dispatch, user]);
 
   return (
