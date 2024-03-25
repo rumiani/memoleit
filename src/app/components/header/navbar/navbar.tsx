@@ -8,7 +8,7 @@ const navLinks = [
   { name: "FAQ", link: "/faq" },
 ];
 
-const Navbar = ({ mobileMenu }) => {
+const Navbar = ({ mobileMenu }:{mobileMenu: boolean}) => {
   
   return (
     <div

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const UserMenu = ({userMenu}) => {
+const UserMenu = ({userMenu}:{userMenu: boolean}) => {
   
   return (
     <div className={`${userMenu?'md:flex':'md:hidden'} w-fit  md:absolute bg-opacity-90  bg-blue-500 md:rounded-lg md:w-32 md:right-0  md:top-[50px] flex flex-col md:shadow-gray-50 md:shadow-sm`}>

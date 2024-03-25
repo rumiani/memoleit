@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import UserMenu from "./userAvatarMenu/userAvatarMenu";
 import UserAvatar from "./userAvatar";
+import { useAppSelector } from "@/src/app/hooks";
 
-const UserProfileMenu = ({ mobileMenu }) => {
-  const { user } = useSelector((state) => state.appState);
+const UserProfileMenu = ({ mobileMenu }:{mobileMenu:boolean}) => {
+  const { user } = useAppSelector((state) => state.appState);
   const [userMenu, setUserMenu] = useState(false);
   const userMenuElement = useRef<HTMLDivElement>(null);
   useEffect(() => {

@@ -4,15 +4,18 @@ import { FaFilter } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { useAppSelector } from "@/src/app/hooks";
 
 const Filters = () => {
-  const{user} = useSelector(state => state.appState)
+  const{user} = useAppSelector(state => state.appState)
 
   const dispatch = useDispatch()
   const dialogElement = useRef(null);
 
   const filterHnadler = () => {
-    dialogElement.current!.showModal();
+    type DialogElement = HTMLDialogElement | null;
+    type ShowModalFunction = () => void;
+    (dialogElement.current as DialogElement)?.showModal as ShowModalFunction
     const {catagories} = getAppDataHandler(); 
     dispatch(userReducer({catagories}));
   };

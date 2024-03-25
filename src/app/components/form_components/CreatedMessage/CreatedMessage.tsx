@@ -1,14 +1,9 @@
 import { resetStateReducer } from "@/src/redux/appStateSlice";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const CreatedMessage = ({newItemHandler}:{newItemHandler:Function}) => {
-  const { path } = useSelector((state) => state.appState);
-  // const router = useRouter()
-  // const actionType = router.pathname.split('/')[1] === 'path-edit'?'updated':'created'
-  
+const CreatedMessage = ({ newItemHandler }: { newItemHandler: Function }) => {
   const dispatch = useDispatch();
   const resetHandler = () => {
     dispatch(resetStateReducer());
@@ -22,7 +17,7 @@ const CreatedMessage = ({newItemHandler}:{newItemHandler:Function}) => {
             Home
           </button>
         </Link>
-        <button className="primaryBtn" onClick={()=> newItemHandler()}>
+        <button className="primaryBtn" onClick={() => newItemHandler()}>
           Add a new item
         </button>
       </div>

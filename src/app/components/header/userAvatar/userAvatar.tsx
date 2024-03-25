@@ -1,7 +1,10 @@
 import Image from "next/image";
-import React from "react";
-
-const UserAvatar = ({ userMenuHandler, url }) => {
+import React, { MouseEventHandler } from "react";
+interface avatarProps {
+  userMenuHandler:MouseEventHandler<HTMLDivElement>,
+  url:string
+}
+const UserAvatar = ({ userMenuHandler, url }:avatarProps) => {
   return (
     <div
       onClick={userMenuHandler}
