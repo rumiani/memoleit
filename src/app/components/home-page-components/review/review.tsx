@@ -26,6 +26,8 @@ export default function Review() {
     dispatch(userReducer({ catagories }));
 
     const randomItem = randomItemHandler();
+    console.log(randomItem);
+    
     if (randomItem) dispatch(itemReducer(randomItem));
   }, [dispatch, user]);
 
