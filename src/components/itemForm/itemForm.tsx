@@ -5,7 +5,7 @@ import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";
 import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
-import CreatedMessage from "../form_components/CreatedMessage/CreatedMessage";
+import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
 

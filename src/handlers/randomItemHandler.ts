@@ -6,7 +6,6 @@ export const randomItemHandler = () => {
   // console.log(toReveiwItems);
   if (toReveiwItems) {
     const randomItem = randomElementHandler(toReveiwItems);
-    
     return randomItem;
   }
 };

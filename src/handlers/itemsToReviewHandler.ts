@@ -8,20 +8,14 @@ export const itemsToReviewHandler = () => {
   if (typeof window !== "undefined") {
     let { itemsData, catagories } = getAppDataHandler();
     if (itemsData.length > 0) {
-      const testItems = itemsData.filter(item =>
-        boxes[item.reviews
-          .box - 1] <=
-            daysToNowHandler(item.reviews.startedAt))
-      console.log(itemsData,testItems);
-      
-      const toReveiwItems = itemsData.filter(
+      return itemsData.filter(
         (item: itemTypes) =>
-          item.reviews.box <= 5 &&
-          catagories[item.catagory] &&
-          boxes[item.reviews.box - 1] <=
-            daysToNowHandler(item.reviews.startedAt)
+          item.reviews.box <= 5 
+          &&
+          catagories[item.catagory] 
+          // &&
+          // boxes[item.reviews.box - 1] <= daysToNowHandler(item.reviews.startedAt)
       );
-      return toReveiwItems;
     }
   }
 };

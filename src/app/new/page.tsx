@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import CreatedPath from '../components/form_components/CreatedMessage/CreatedMessage'
-import ItemForm from '../components/itemForm/itemForm'
+import CreatedPath from '../../components/itemForm/CreatedMessage/CreatedMessage'
+import ItemForm from '../../components/itemForm/itemForm'
 
 const Index = () => {
   return (

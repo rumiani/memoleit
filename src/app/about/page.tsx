@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import ImgHoverZoom from "@/src/app/components/imgHoverZoom/imgHoverZoom";
+import ImgHoverZoom from "@/src/components/imgHoverZoom/imgHoverZoom";
 import aboutImage from "@/public/assets/images/about/about.jpeg";
 export default function About() {
   const [seeMore, setSeeMore] = useState(false);
