@@ -25,8 +25,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SpeedInsights />
-        <ToastContainer limit={3} />
         <NextAuthProvider>
+          <ToastContainer limit={3} />
           <ReduxProvider>
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
               <Header />
@@ -36,8 +36,8 @@ export default function RootLayout({
               <Footer />
             </div>
           </ReduxProvider>
+          <ToastContainer />
         </NextAuthProvider>
-        <ToastContainer />
       </body>
     </html>
   );

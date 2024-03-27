@@ -9,7 +9,8 @@ export const itemsToReviewHandler = () => {
     let { itemsData, catagories } = getAppDataHandler();
     if (itemsData.length > 0) {
       const testItems = itemsData.filter(item =>
-        boxes[item.reviews.box - 1] <=
+        boxes[item.reviews
+          .box - 1] <=
             daysToNowHandler(item.reviews.startedAt))
       console.log(itemsData,testItems);
       
