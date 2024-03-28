@@ -22,7 +22,7 @@ const initialState: initialStateTypes = {
     body: "",
     catagory: "",
     reviews: {
-      box:1,
+      box:0,
       startedAt:0
     },
     createdAt: 0,

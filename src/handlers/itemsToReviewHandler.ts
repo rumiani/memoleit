@@ -2,7 +2,8 @@ import { itemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 import { daysToNowHandler } from "./home/general/daysToNowHandler";
 
-const boxes = [1, 3, 7, 15, 31];
+// These are the 6 boxes.Box zero means the learning proccess hasn't started yet.
+const reviewBoxes = [0, 1, 3, 7, 15, 31];
 
 export const itemsToReviewHandler = () => {
   if (typeof window !== "undefined") {
@@ -10,11 +11,11 @@ export const itemsToReviewHandler = () => {
     if (itemsData.length > 0) {
       return itemsData.filter(
         (item: itemTypes) =>
-          item.reviews.box <= 5 
+          item.reviews.box < 6 
           &&
           catagories[item.catagory] 
-          // &&
-          // boxes[item.reviews.box - 1] <= daysToNowHandler(item.reviews.startedAt)
+          &&
+          reviewBoxes[item.reviews.box] <= daysToNowHandler(item.reviews.startedAt)
       );
     }
   }

@@ -22,7 +22,7 @@ export const initialDataStoreToLocal = () => {
           body: "",
           catagory: "11plus",
           reviews: {
-            box: 1,
+            box: 0,
             startedAt: Date.now(),
           },
           createdAt: Date.now(),

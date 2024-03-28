@@ -28,8 +28,8 @@ export default function CheckboxInput({
   }, [catagory]);
 
   return (
-    <div>
-      <div className="flex relative">
+    <div className="hover:bg-gray-100 p-2 rounded-lg transition-all duration-300">
+      <div className="flex relative ">
         <input
           checked={isChecked}
           onChange={(e) => inputChangeHandler(e)}
@@ -42,7 +42,7 @@ appearance-none w-5 h-5 border-2 border-blue-500 rounded-sm bg-white
 mt-1 mx-0
 checked:bg-blue-600 checked:border-0"
         />
-        <label htmlFor={catagory} className="cursor-pointer px-2">
+        <label htmlFor={catagory} className="cursor-pointer pl-2">
           {catagory}
         </label>
         <svg

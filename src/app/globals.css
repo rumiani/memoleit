@@ -23,8 +23,7 @@ button {
   .primaryInput {
     @apply h-full w-full rounded-[7px] border border-blue-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-200 placeholder-shown:border-t-blue-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-50;
   }
-/* .wrapperClassName{
-} */
+
 .editor{
   @apply w-full h-44 px-2  focus:bg-gray-500;
 }
@@ -37,7 +36,7 @@ button {
 
 
 
-
+/*
 
   .quill img {
     @apply rounded-lg w-3/4 sm:w-1/2 h-auto mx-auto my-4;
@@ -51,13 +50,10 @@ button {
     @apply text-blue-500 hover:underline;
   }
   .quill{
-    /* background: rgba(128, 128, 128, 0.101); */
     min-height: 50px;
     font-size: 16px;
     z-index: 50;
     width: 100%;
-    
-  
   }
   .ql-editor:focus {
     background: #f3f1f1c6;
@@ -106,3 +102,4 @@ button {
   .settings::backdrop{
     background:rgba(128, 128, 128, 0.575);
   }
+  */

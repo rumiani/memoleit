@@ -4,38 +4,35 @@ import React from "react";
 import Options from "./options/options";
 import { daysToNowHandler } from "@/src/handlers/home/general/daysToNowHandler";
 import Spinner from "../../../spinner/spinner";
+import ItemProgress from "./itemProgress/itemProgress";
 
 export default function Item({
   item,
   goToNextItem,
 }: {
-  item: itemTypes | undefined;
+  item: itemTypes;
   goToNextItem: any;
 }) {
-  if (!item)
-    return (
-      <div className="p-8 flex justify-center">
-        <Spinner size={100} />
-      </div>
-    );
+
   return (
     <div className="word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full sm:w-80 mx-auto mt-10">
       <div>
         <div className="relative flex justify-between mb-4">
           <h3
-            id="days"
-            title={`Created ${daysToNowHandler(item?.startedAt)} days ago`}
-            className="text-sm"
+            id="box"
+            title={`The item is in box ${item.reviews.box}`}
+            className="text-sm cursor-default"
           >
-            {daysToNowHandler(item?.startedAt)} Days
+            Box: {item.reviews.box}
           </h3>
           <Options item={item} />
         </div>
         <h2 id="title" className="text-2xl font-bold text-center">
-          {item?.title}
+          {item.title}
         </h2>
-        <p className="text-gray-600">{item?.body}</p>
+        <p className="text-gray-600">{item.body}</p>
       </div>
+      <ItemProgress itemBoxNumber={item.reviews.box}/>
       <div className="buttons flex justify-between w-full mt-4">
         <button
           onClick={() => goToNextItem(item, false)}

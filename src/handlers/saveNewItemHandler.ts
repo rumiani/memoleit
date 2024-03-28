@@ -21,7 +21,7 @@ export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
       body,
       catagory: topic,
       reviews: {
-        box:1,
+        box:0,
         startedAt:Date.now()
       },
       createdAt: Date.now(),

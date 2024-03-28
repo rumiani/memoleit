@@ -8,6 +8,8 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { isEmpty } from "lodash";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import Spinner from "../../spinner/spinner";
+import NoResult from "./noResult/noResult";
 
 export default function Review() {
   const { user, item } = useAppSelector((state) => state.appState);
@@ -24,25 +26,17 @@ export default function Review() {
     if (!isEmpty(user.catagories)) return;
     const { catagories } = getAppDataHandler();
     dispatch(userReducer({ catagories }));
-
     const randomItem = randomItemHandler();
-    console.log(randomItem);
-    
     if (randomItem) dispatch(itemReducer(randomItem));
   }, [dispatch, user]);
 
   return (
-    <div>
-      {randomItemHandler() ? (
+    <>
+      {item.id ? (
         <Item item={item} goToNextItem={goToNextItem} />
       ) : (
-        <p className="text-red-500 mt-5">
-          There is no item to review.
-          <br />
-          Please click on filters button and choose a catagory or add a new item
-          to review.
-        </p>
+        <NoResult/>
       )}
-    </div>
+    </>
   );
 }

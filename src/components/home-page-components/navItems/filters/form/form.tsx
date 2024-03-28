@@ -35,18 +35,15 @@ const Form = () => {
     <>
       <form
         method="dialog"
-        className="h-full text-lg flex flex-col justify-center p-4 w-full mx-auto max-w-96"
+        className="h-full text-lg flex flex-col justify-center p-1 w-full mx-auto max-w-96"
       >
         <p className="text-center w-full">Choose your catagory to review:</p>
-        <div className="my-2 h-40 overflow-y-auto ">
+        <div className="my-2 h-40 overflow-y-auto bg-gray-200">
           {Object.entries(user.catagories).map(
             ([catagory, reviewing]: [string, unknown], i) => {
               const isReviewing: boolean = reviewing as boolean;
               return (
-                <div
-                  key={i}
-                  className="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem]"
-                >
+                <div key={i}>
                   <CheckboxInput
                     catagory={catagory}
                     reviewing={isReviewing}
