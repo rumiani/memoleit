@@ -9,6 +9,7 @@ let words: string[];
 process.env.NODE_ENV === "development"
   ? (words = words_test)
   : (words = words_11plus);
+
 export const initialDataStoreToLocal = () => {
   if (typeof window !== "undefined") {
     const appDataJson: string | null = localStorage.getItem("appData");
@@ -28,8 +29,6 @@ export const initialDataStoreToLocal = () => {
           createdAt: Date.now(),
           startedAt: Date.now(),
         });
-        console.log({ ...catagories, itemsData });
-
         localStorage.setItem(
           "appData",
           JSON.stringify({ ...catagories, itemsData })

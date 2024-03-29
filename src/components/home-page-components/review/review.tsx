@@ -16,10 +16,8 @@ export default function Review() {
     if (!isEmpty(user.catagories)) return;
     const { catagories } = getAppDataHandler();
     const randomItem = randomItemHandler();
-    if (!user.catagories) {
-      dispatch(userReducer(catagories) && itemReducer(randomItem!));
-    }
+    dispatch(userReducer(catagories) && itemReducer(randomItem!));
   }, [dispatch, user]);
 
-  return <>{item.id ? <Item item={item}/> : <NoResult />}</>;
+  return <>{item.id ? <Item item={item} /> : <NoResult />}</>;
 }

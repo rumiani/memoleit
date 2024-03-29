@@ -14,6 +14,8 @@ export const itemsToReviewHandler = () => {
         // conditions
         const isInTheBox = item.reviews.box < 6;
         const isCategorySelected = catagories[item.catagory];
+        console.log(catagories[item.catagory]);
+        
         const isTimeToReview =
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
 

@@ -3,7 +3,5 @@ export const daysToNowHandler = (time: number) => {
   let startedDate = new Date(time).getTime();
   let timeDifference = currentDate - startedDate;
   let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-console.log(days);
-
   return days;
 };
