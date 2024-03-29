@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialStateTypes } from "./interfaces";
+import { itemTypes, userTypes } from "../types/interface";
 
 const initialState: initialStateTypes = {
   user: {
@@ -35,20 +36,20 @@ export const appStateSlice = createSlice({
   name: "appState",
   initialState,
   reducers: {
-    userReducer: (state, action: PayloadAction<object>) => {
-      console.log(action.payload);
-
+    userReducer: (state, action: PayloadAction<userTypes>) => {
       state.user = { ...state.user, ...action.payload };
     },
     logOutReducer: () => initialState,
     logInReducer: (state, action: PayloadAction<object>) => {
       state.user = { ...state.user, ...action.payload };
     },
-    itemReducer: (state, action: PayloadAction<object>) => {
+    itemReducer: (state, action: PayloadAction<itemTypes>) => {
       state.item = { ...state.item, ...action.payload };
     },
-    allItemsReducer: (state, action: PayloadAction<object>) => {
-      state.item = { ...state.item, ...action.payload };
+    allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {
+      console.log(action.payload);
+      
+      state.items = [...state.items, ... action.payload] ;
     },
     resetStateReducer: (state) => {
       state.item = initialState.item;
