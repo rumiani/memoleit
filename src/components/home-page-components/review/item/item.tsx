@@ -32,7 +32,6 @@ export default function Item({
         </h2>
         <p className="text-gray-600">{item.body}</p>
       </div>
-      <ItemProgress itemBoxNumber={item.reviews.box}/>
       <div className="buttons flex justify-between w-full mt-4">
         <button
           onClick={() => goToNextItem(item, false)}
@@ -49,6 +48,7 @@ export default function Item({
           I know
         </button>
       </div>
+      <ItemProgress itemBoxNumber={item.reviews.box}/>
     </div>
   );
 }
