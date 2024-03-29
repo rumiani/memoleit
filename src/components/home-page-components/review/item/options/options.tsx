@@ -1,7 +1,6 @@
 "use client";
 
 import { editHandler } from "@/src/handlers/editHandler";
-import { randomElementHandler } from "@/src/handlers/home/general/randomElementHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
 import { itemReducer } from "@/src/redux/appStateSlice";
@@ -19,7 +18,7 @@ export default function Options({ item }: { item: itemTypes }) {
     setShowOptions(false);
     removeHandler(item.id);
     const randomItem = randomItemHandler();
-    if(randomItem){
+    if (randomItem) {
       dispatch(itemReducer(randomItem));
     }
   };
@@ -40,10 +39,13 @@ export default function Options({ item }: { item: itemTypes }) {
           >
             <IoClose />
           </button>
-          <Link href={`/edit/${item.id}`}>
+          <Link
+            href={`/edit/${item.id}`}
+            className="mt-8 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-500 hover:text-yellow-700"
+          >
             <button
               onClick={() => editBtnFunction()}
-              className="mt-8 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-500 hover:text-yellow-700"
+              className="text-center w-full pt-2"
             >
               Edit
             </button>
