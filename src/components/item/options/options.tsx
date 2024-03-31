@@ -6,6 +6,7 @@ import { removeHandler } from "@/src/handlers/removeHandler";
 import { itemReducer } from "@/src/redux/appStateSlice";
 import { itemTypes } from "@/src/types/interface";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
@@ -14,12 +15,19 @@ import { useDispatch } from "react-redux";
 export default function Options({ item }: { item: itemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
+const path = usePathname()
   const removeBtnFunction = () => {
+    
     setShowOptions(false);
     removeHandler(item.id);
-    const randomItem = randomItemHandler();
-    if (randomItem) {
-      dispatch(itemReducer(randomItem));
+    if (path.startsWith('/catagory')) {
+      
+    }else{
+
+      const randomItem = randomItemHandler();
+      if (randomItem) {
+        dispatch(itemReducer(randomItem));
+      }
     }
   };
   const editBtnFunction = () => {

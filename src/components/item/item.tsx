@@ -34,10 +34,10 @@ export default function Item({item}:{item:itemTypes}) {
           {_.capitalize(item.title)}
         </h3>
       </div>
-      <div className="buttons flex justify-around w-full mt-4">
+      <div className="buttons flex justify-around w-full mt-4 gap-2">
         <button
           onClick={() => goToNextItem(item, false)}
-          className="primaryBtn !bg-red-500"
+          className="primaryBtn !w-42 !bg-red-500"
         >
           I don&apos;t know
         </button>
