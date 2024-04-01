@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { initialDataStoreToLocal } from "../handlers/initialDataStoreToLocal";
-import HomeComps from "../components/dashboard-components/dashboardComps";
 import Link from "next/link";
 
 export default function Home() {

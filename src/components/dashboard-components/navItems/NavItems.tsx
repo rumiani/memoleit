@@ -3,6 +3,7 @@
 import React from "react";
 import { FaChartBar } from "react-icons/fa";
 import { MdNoteAdd } from "react-icons/md";
+import { RiFoldersFill } from "react-icons/ri";
 import Link from "next/link";
 import { MdFilterListAlt } from "react-icons/md";
 export default function ItemsNav() {
@@ -11,9 +12,15 @@ export default function ItemsNav() {
       <Link href={"/progress"} title="Check out your progress" className="icon">
         <FaChartBar className="text-blue-700 text-xl" />
       </Link>
-
+      <Link
+        href={"/catagories"}
+        title="See all the catagories"
+        className="icon"
+      >
+        <RiFoldersFill className="text-gray-500 text-2xl" />
+      </Link>
       <span className="icon text-3xl" title="Filter catagories">
-      <MdFilterListAlt/>
+        <MdFilterListAlt />
       </span>
 
       <Link href={"/new"} className="icon">
