@@ -5,7 +5,6 @@ import { FaChartBar } from "react-icons/fa";
 import { MdNoteAdd } from "react-icons/md";
 import { RiFoldersFill } from "react-icons/ri";
 import Link from "next/link";
-import { MdFilterListAlt } from "react-icons/md";
 import Filters from "./filters/filters";
 
 export default function ItemsNav() {

@@ -2,19 +2,20 @@ import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
 import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { useAppDispatch } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
 
 type DialogElement = HTMLDialogElement | null;
 
-export default function Filters ()  {
+export default function Filters() {
+  const { user } = useAppSelector((state) => state.appState);
   const dispatch = useAppDispatch();
   const dialogElement = useRef(null);
 
   const filterHnadler = () => {
     (dialogElement.current as DialogElement)?.showModal();
     const { catagories } = getAppDataHandler();
-    dispatch(userReducer(catagories));
+    dispatch(userReducer({ catagories }));
   };
 
   useEffect(() => {
@@ -27,11 +28,8 @@ export default function Filters ()  {
 
   return (
     <div className="">
-      <button
-        onClick={filterHnadler}
-        className="icon"
-      >
-        <MdFilterListAlt className="" />
+      <button onClick={filterHnadler} className="icon">
+        <MdFilterListAlt />
       </button>
       <dialog
         ref={dialogElement}
@@ -41,4 +39,4 @@ export default function Filters ()  {
       </dialog>
     </div>
   );
-};
+}

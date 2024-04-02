@@ -36,7 +36,7 @@ export const appStateSlice = createSlice({
   name: "appState",
   initialState,
   reducers: {
-    userReducer: (state, action: PayloadAction<userTypes>) => {
+    userReducer: (state, action: PayloadAction<any>) => {      
       state.user = { ...state.user, ...action.payload };
     },
     logOutReducer: () => initialState,

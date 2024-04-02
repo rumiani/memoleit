@@ -1,5 +1,6 @@
 "use client";
 
+import { catagoryFilterHandler } from "@/src/handlers/catagoryFilterHandler";
 import { editHandler } from "@/src/handlers/editHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
@@ -15,15 +16,15 @@ import { useDispatch } from "react-redux";
 export default function Options({ item }: { item: itemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
-const path = usePathname()
+  const path = usePathname();
   const removeBtnFunction = () => {
-    
     setShowOptions(false);
     removeHandler(item.id);
-    if (path.startsWith('/catagory')) {
-      
-    }else{
+    if (path.startsWith("/catagory")) {
+      const filteredItemsData = catagoryFilterHandler(params.catagory)
+    if (items.length === 0) dispatch(allItemsReducer(filteredItemsData));
 
+    } else {
       const randomItem = randomItemHandler();
       if (randomItem) {
         dispatch(itemReducer(randomItem));
