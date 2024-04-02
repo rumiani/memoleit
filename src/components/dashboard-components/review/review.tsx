@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Item from "../../item/item";
 import NoResult from "./noResult/noResult";
 import { useAppSelector } from "@/src/app/hooks";

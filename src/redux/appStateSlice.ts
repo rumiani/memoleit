@@ -46,10 +46,9 @@ export const appStateSlice = createSlice({
     itemReducer: (state, action: PayloadAction<itemTypes>) => {
       state.item = { ...state.item, ...action.payload };
     },
-    allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {
-      console.log(action.payload);
-      
-      state.items = [...state.items, ... action.payload] ;
+    allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {  
+
+      state.items = [... action.payload] ;
     },
     resetStateReducer: (state) => {
       state.item = initialState.item;

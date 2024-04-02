@@ -14,9 +14,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     initialDataStoreToLocal();
-    if (!isEmpty(user.catagories)) return;
     const { catagories } = getAppDataHandler();
-    const randomItem = randomItemHandler();
+    const randomItem = randomItemHandler();    
     dispatch(userReducer(catagories) && itemReducer(randomItem!));
   }, [dispatch, user]);
 
