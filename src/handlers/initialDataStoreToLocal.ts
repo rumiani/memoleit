@@ -23,15 +23,13 @@ export const initialDataStoreToLocal = () => {
           title: word,
           body: "",
           catagory: "11plus",
+          createdAt: Date.now(),
           reviews: {
             box: 0,
-            startedAt: Date.now(),
-          },
-          createdAt: Date.now(),
-          startedAt: Date.now(),
+            review:0,
+            lastReviewDate: Date.now(),
+          }
         });
-        console.log(catagories);
-        console.log({ catagories, itemsData });
 
         localStorage.setItem(
           "appData",

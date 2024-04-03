@@ -13,10 +13,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
-import { useAppSelector } from "@/src/app/hooks";
 
 export default function Options({ item }: { item: itemTypes }) {
-  const { items } = useAppSelector((state) => state.appState);
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
   const params = useParams<{ catagory: string }>();

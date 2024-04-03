@@ -3,12 +3,12 @@ export interface itemTypes {
   title: string;
   body: string;
   catagory: string;
+  createdAt: number;
   reviews: {
     box: number;
-    startedAt: number;
+    review:number,
+    lastReviewDate: number;
   };
-  createdAt: number;
-  startedAt: number;
 }
 export interface catagoryTypes {
   name: string;

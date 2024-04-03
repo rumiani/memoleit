@@ -20,12 +20,12 @@ export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
       title,
       body,
       catagory:topic,
+      createdAt: Date.now(),
       reviews: {
         box:0,
-        startedAt:Date.now()
+        review:0,
+        lastReviewDate:Date.now()
       },
-      createdAt: Date.now(),
-      startedAt: Date.now(),
     };
     itemsData.push(itemObject);
     localStorage.setItem("appData", JSON.stringify({ catagories, itemsData }));

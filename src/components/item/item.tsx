@@ -9,16 +9,19 @@ import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
-export default function Item({item}:{item:itemTypes}) {
+export default function Item({ item }: { item: itemTypes }) {
   const dispatch = useAppDispatch();
+  console.log("item is rendered");
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
-    let newRandomItem = reviewHandler(item, status);
-      dispatch(itemReducer(newRandomItem!));
+    reviewHandler(item, status);
+    const newRandomItem = randomItemHandler();
+    dispatch(itemReducer(newRandomItem!));
   };
   return (
-    <div className="word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full max-w-96 mx-auto mt-10">
+    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full max-w-96 mx-auto mt-10">
       <div>
         <div className="relative flex justify-between">
           <Link

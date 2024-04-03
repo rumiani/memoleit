@@ -1,6 +1,6 @@
 import { catagoryTypes, itemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
-import { daysToNowHandler } from "./home/general/daysToNowHandler";
+import { timeToNowHandler } from "./home/general/timeToNowHandler";
 
 // These are the 6 boxes.Box zero means the learning proccess hasn't started yet.
 const reviewBoxes = [0, 1, 3, 7, 15, 31];
@@ -10,8 +10,13 @@ export const itemsToReviewHandler = () => {
     const appData = getAppDataHandler();
     const { itemsData, catagories } = appData;
     if (itemsData.length > 0) {
-      return itemsData.filter((item: itemTypes) => {
-        const daysSinceReviewed = daysToNowHandler(item.reviews.startedAt);
+      const itemsToReview = itemsData.filter((item: itemTypes) => {
+        const daysSinceReviewed = timeToNowHandler(
+          item.reviews.lastReviewDate
+        ).days;
+        const hoursSinceReviewed = timeToNowHandler(
+          item.reviews.lastReviewDate
+        ).hours;
         const catagory = catagories.find(
           (catagory: catagoryTypes) => catagory.name === item.catagory
         );
@@ -20,9 +25,13 @@ export const itemsToReviewHandler = () => {
         const isInTheBox = item.reviews.box < 6;
         const isTimeToReview =
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
-
-        return isInTheBox && isTimeToReview && catagory.status;
+        const reviewedAfterAnHour =
+          item.reviews.box === 0 ? hoursSinceReviewed > 0 : true;
+        return (
+          reviewedAfterAnHour && catagory.status && isInTheBox && isTimeToReview
+        );
       });
+      return itemsToReview;
     }
   }
 };
