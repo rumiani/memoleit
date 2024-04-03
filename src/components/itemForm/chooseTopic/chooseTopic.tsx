@@ -1,12 +1,15 @@
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { FormValues } from "@/src/types/interface";
+import { FormValues, catagoryTypes } from "@/src/types/interface";
+import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
 export default function ChooseTopic({ register, error }:{register: UseFormRegister<FormValues>, error: string | undefined}) {
-  const [topics, setTopics] = useState(null);
+  const [topics, setTopics] = useState<catagoryTypes[]>([]);
   useEffect(() => {
     const { catagories } = getAppDataHandler();
+    console.log(catagories);
+    
     if (!topics) setTopics(catagories);
   }, [topics]);
 
@@ -30,9 +33,9 @@ export default function ChooseTopic({ register, error }:{register: UseFormRegist
         })}
       />
       <datalist id="topics">
-        {topics &&
-          Object.keys(topics).map((topic) => {
-            return <option key={topic} value={topic} />;
+        {
+          topics.map((topic) => {
+            return <option key={topic.name} value={topic.name} />;
           })}
       </datalist>
       <p className="text-red-500 text-sm pl-4">{error}</p>

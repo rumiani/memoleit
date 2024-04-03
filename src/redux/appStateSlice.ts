@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialStateTypes } from "./interfaces";
-import { itemTypes, userTypes } from "../types/interface";
+import { catagoryTypes, itemTypes } from "../types/interface";
 
 const initialState: initialStateTypes = {
   user: {
@@ -23,20 +23,21 @@ const initialState: initialStateTypes = {
     body: "",
     catagory: "",
     reviews: {
-      box:0,
-      startedAt:0
+      box: 0,
+      startedAt: 0,
     },
     createdAt: 0,
     startedAt: 0,
   },
   items: [],
+  catagories: [],
 };
 
 export const appStateSlice = createSlice({
   name: "appState",
   initialState,
   reducers: {
-    userReducer: (state, action: PayloadAction<any>) => {      
+    userReducer: (state, action: PayloadAction<any>) => {
       state.user = { ...state.user, ...action.payload };
     },
     logOutReducer: () => initialState,
@@ -46,9 +47,19 @@ export const appStateSlice = createSlice({
     itemReducer: (state, action: PayloadAction<itemTypes>) => {
       state.item = { ...state.item, ...action.payload };
     },
-    allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {  
-
-      state.items = [... action.payload] ;
+    allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {
+      state.items = [...action.payload];
+    },
+    catagoriesReducer: (state, action: PayloadAction<catagoryTypes[]>) => {
+      console.log(action.payload);
+      state.catagories = action.payload;
+    },
+    updateCatagoryReducer: (state, action: PayloadAction<string>) => {
+      state.catagories = state.catagories.map((catagory) =>
+        catagory.name === action.payload
+          ? { ...catagory, status: !catagory.status }
+          : catagory
+      );
     },
     resetStateReducer: (state) => {
       state.item = initialState.item;
@@ -63,6 +74,8 @@ export const {
   itemReducer,
   allItemsReducer,
   resetStateReducer,
+  catagoriesReducer,
+  updateCatagoryReducer,
 } = appStateSlice.actions;
 
 export default appStateSlice.reducer;

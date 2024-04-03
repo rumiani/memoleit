@@ -10,7 +10,11 @@ export interface itemTypes {
   createdAt: number;
   startedAt: number;
 }
-
+export interface catagoryTypes {
+  name: string;
+  status: boolean;
+  createdAt:number
+}
 export interface userTypes {
   id: string;
   isAuth: boolean;

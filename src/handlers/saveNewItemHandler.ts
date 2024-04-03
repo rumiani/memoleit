@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import { itemTypes } from "../types/interface";
+import { catagoryTypes, itemTypes } from "../types/interface";
 
 interface itemProps {
   title: string;
@@ -13,13 +13,13 @@ export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
     let appData = JSON.parse(appDataJson);
 
     let { catagories, itemsData } = appData;
-
-    if (!catagories[topic]) catagories[topic] = false;
+    const catagoryExists = catagories.find( (catagory:catagoryTypes) => catagory.name === topic );    
+    if (!catagoryExists) catagories.push({ name:topic,status:false, createdAt:Date.now()});
     const itemObject: itemTypes = {
       id: uuidv4(),
       title,
       body,
-      catagory: topic,
+      catagory:topic,
       reviews: {
         box:0,
         startedAt:Date.now()

@@ -1,34 +1,30 @@
 import React, { useState } from "react";
 import CheckboxInput from "./input/input";
-import { itemReducer, userReducer } from "@/src/redux/appStateSlice";
+import {
+  catagoriesReducer,
+  itemReducer,
+  updateCatagoryReducer,
+  userReducer,
+} from "@/src/redux/appStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { saveTopicsToLocal } from "@/src/handlers/saveTopicsToLocal";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 
-interface FormState {
-  [key: string]: boolean;
-}
 const Form = () => {
-  const [formData, setFormData] = useState<FormState>({});
+  const { catagories } = useAppSelector((state) => state.appState);
 
-  const { user } = useAppSelector((state) => state.appState);
   const dispatch = useAppDispatch();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: checked,
-    });
+  const handleInputChange = (name:string) => {
+    dispatch(updateCatagoryReducer(name));
   };
 
   const applyFiltersHandler = () => {
-    saveTopicsToLocal(formData);
+    saveTopicsToLocal(catagories);
     const randomItem = randomItemHandler();
     if (randomItem) {
       dispatch(itemReducer(randomItem));
     }
-    dispatch(userReducer({ catagories: { ...user.catagories, ...formData } }));
   };
 
   return (
@@ -39,20 +35,17 @@ const Form = () => {
       >
         <p className="text-center w-full">Choose your catagory to review:</p>
         <div className="my-2 h-40 overflow-y-auto bg-gray-200">
-          {Object.entries(user.catagories).map(
-            ([catagory, reviewing]: [string, unknown], i) => {
-              const isReviewing: boolean = reviewing as boolean;
-              return (
-                <div key={i}>
-                  <CheckboxInput
-                    catagory={catagory}
-                    reviewing={isReviewing}
-                    handleInputChange={handleInputChange}
-                  />
-                </div>
-              );
-            }
-          )}
+          {catagories.map((catagory, i) => {            
+            return (
+              <div key={i}>
+                <CheckboxInput
+                  catagory={catagory.name}
+                  status={catagory.status}
+                  handleInputChange={() => handleInputChange(catagory.name)}
+                />
+              </div>
+            );
+          })}
         </div>
         <button
           onClick={() => applyFiltersHandler()}

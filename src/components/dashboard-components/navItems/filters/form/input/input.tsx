@@ -2,15 +2,15 @@ import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
 import React, { FormEvent, useEffect, useState } from "react";
 interface checkBoxProps {
   catagory: string;
-  reviewing: boolean;
+  status: boolean;
   handleInputChange: Function;
 }
 export default function CheckboxInput({
   catagory,
-  reviewing,
+  status,
   handleInputChange,
 }: checkBoxProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(reviewing);
+  const [isChecked, setIsChecked] = useState<boolean>(status);
   const [itemInfo, setItemInfo] = useState<{
     all: number;
     learned: number;

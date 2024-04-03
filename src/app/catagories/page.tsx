@@ -10,9 +10,12 @@ export default function Catagories() {
         const {itemsData, Catagories} = getAppDataHandler()
         const catagoriesData = getCatagoriesDataHandler(itemsData, Catagories)
         console.log(catagoriesData);
-        
     })
   return (
-    <div>Catagories</div>
+    <div>Catagories
+      <div>
+        
+      </div>
+    </div>
   )
 }

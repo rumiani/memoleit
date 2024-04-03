@@ -1,6 +1,6 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
-import { itemTypes } from "../types/interface";
+import { catagoryTypes, itemTypes } from "../types/interface";
 import words_test from "@/src/data/4.json";
 import words_11plus from "@/src/data/11plus.json";
 
@@ -14,8 +14,9 @@ export const initialDataStoreToLocal = () => {
   if (typeof window !== "undefined") {
     const appDataJson: string | null = localStorage.getItem("appData");
     let itemsData: itemTypes[] = [];
-    let catagories = { catagories: { "11plus": false } };
+    const catagories: catagoryTypes[] = [];
     if (!appDataJson) {
+      catagories.push({ name: "11plus", status: false, createdAt: Date.now() });
       words?.forEach((word, i) => {
         itemsData!.push({
           id: uuidv4(),
@@ -29,9 +30,12 @@ export const initialDataStoreToLocal = () => {
           createdAt: Date.now(),
           startedAt: Date.now(),
         });
+        console.log(catagories);
+        console.log({ catagories, itemsData });
+
         localStorage.setItem(
           "appData",
-          JSON.stringify({ ...catagories, itemsData })
+          JSON.stringify({ catagories, itemsData })
         );
       });
     }

@@ -1,4 +1,4 @@
-import { itemTypes } from "../types/interface";
+import { catagoryTypes, itemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 import { daysToNowHandler } from "./home/general/daysToNowHandler";
 
@@ -7,19 +7,21 @@ const reviewBoxes = [0, 1, 3, 7, 15, 31];
 
 export const itemsToReviewHandler = () => {
   if (typeof window !== "undefined") {
-    let { itemsData, catagories } = getAppDataHandler();
+    const appData = getAppDataHandler();
+    const { itemsData, catagories } = appData;
     if (itemsData.length > 0) {
       return itemsData.filter((item: itemTypes) => {
         const daysSinceReviewed = daysToNowHandler(item.reviews.startedAt);
+        const catagory = catagories.find(
+          (catagory: catagoryTypes) => catagory.name === item.catagory
+        );
+
         // conditions
         const isInTheBox = item.reviews.box < 6;
-        const isCategorySelected = catagories[item.catagory];
-        console.log(catagories[item.catagory]);
-
         const isTimeToReview =
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
 
-        return isInTheBox && isCategorySelected && isTimeToReview;
+        return isInTheBox && isTimeToReview && catagory.status;
       });
     }
   }
