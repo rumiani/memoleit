@@ -9,11 +9,12 @@ import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
 
-
 interface Props {
   defaultValues?: FormValues; // Make defaultValues prop optional
 }
-const ItemForm:React.FC<Props> = ({defaultValues = { title: "", body: "", topic: "" } }) => {
+const ItemForm: React.FC<Props> = ({
+  defaultValues = { title: "", body: "", topic: "" },
+}) => {
   const [createdMessage, setCreatedMessage] = useState(false);
 
   const form = useForm<FormValues>({
@@ -49,7 +50,6 @@ const ItemForm:React.FC<Props> = ({defaultValues = { title: "", body: "", topic:
         <CreatedMessage newItemHandler={() => setCreatedMessage(false)} />
       ) : (
         <div>
-          <h2 className="text-gray-800 text-3xl text-center my-16">New Item</h2>
           <form
             className="bg-white rounded-xl p-2 md:p-4 flex flex-col justify-center"
             noValidate

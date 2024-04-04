@@ -1,11 +1,11 @@
 import React from "react";
-import ItemsNav from "./navItems/NavItems";
 import Review from "./review/review";
+import Filters from "./filters/filters";
 
 export default function DashboardComps() {
   return (
     <>
-      <ItemsNav />
+      <Filters />
       <Review />
     </>
   );

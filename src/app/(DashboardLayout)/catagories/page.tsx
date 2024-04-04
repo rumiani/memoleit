@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { getCatagoriesDataHandler } from "@/src/handlers/getCatagoriesDataHandler";
 import { catagoriesReducer } from "@/src/redux/appStateSlice";
@@ -9,6 +9,7 @@ import { isEmpty } from "lodash";
 import Link from "next/link";
 import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
 import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 
 export default function Catagories() {
   const { catagories } = useAppSelector((state) => state.appState);
@@ -32,14 +33,10 @@ export default function Catagories() {
       ) : (
         <div className="flex flex-wrap justify-center gap-2 my-8">
           {catagories.map((catagory: catagoryTypes, i) => {
-            console.log(catagory);
             const { daysHoursAgo, startedDate } = timeToNowHandler(
               catagory.createdAt
             );
             const catagoryData = topicItemsCountHandler(catagory.name);
-            console.log(catagoryData);
-            //
-            //
             return (
               <div
                 key={i}
@@ -47,7 +44,7 @@ export default function Catagories() {
               >
                 <div className=" flex flex-row justify-between mb-4">
                   <Link
-                    href={"/catagory/" + catagory.name}
+                    href={"/catagories/" + catagory.name}
                     title="Open for more details"
                     className="text-blue-500 text-xl hover:underline"
                   >
@@ -57,7 +54,7 @@ export default function Catagories() {
                   </Link>
                   <span
                     title={"Created At: " + startedDate}
-                    className="text-bold cursor-default" 
+                    className="text-bold cursor-default"
                   >
                     {daysHoursAgo}
                   </span>
@@ -66,10 +63,16 @@ export default function Catagories() {
                   <span className="Number of Items text-gray-500 px-1 cursor-default">
                     All: {catagoryData.all}
                   </span>
-                  <span title="Number of items have been learned" className=" text-green-500 px-1 cursor-default">
+                  <span
+                    title="Number of items have been learned"
+                    className=" text-green-500 px-1 cursor-default"
+                  >
                     Done: {catagoryData.learned}
                   </span>
-                  <span title="Number of items left to learn" className="text-yellow-500 px-1 cursor-default">
+                  <span
+                    title="Number of items left to learn"
+                    className="text-yellow-500 px-1 cursor-default"
+                  >
                     Left: {catagoryData.unLearned}
                   </span>
                 </div>

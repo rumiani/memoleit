@@ -4,11 +4,12 @@ import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
+import { usePathname } from "next/navigation";
 
 type DialogElement = HTMLDialogElement | null;
 
 export default function Filters() {
-  const { user } = useAppSelector((state) => state.appState);
+  const router = usePathname();
   const dispatch = useAppDispatch();
   const dialogElement = useRef(null);
 
@@ -26,10 +27,17 @@ export default function Filters() {
     };
   }, []);
 
+  if (!router.startsWith("/dashboard")) return;
+
   return (
-    <div className="">
-      <button onClick={filterHnadler} className="icon">
-        <MdFilterListAlt />
+    <>
+      <button
+        onClick={filterHnadler}
+        className="icon text-xl !w-fit"
+        title="Filter catagories"
+      >
+        <MdFilterListAlt className="text-3xl"/>
+        <span className="mx-2 hidden sm:block">Filters</span>
       </button>
       <dialog
         ref={dialogElement}
@@ -37,6 +45,6 @@ export default function Filters() {
       >
         <Form />
       </dialog>
-    </div>
+    </>
   );
 }
