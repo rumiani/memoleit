@@ -1,8 +1,11 @@
 export const timeToNowHandler = (time: number) => {
-  let currentDate = new Date().getTime();
-  let startedDate = new Date(time).getTime();
-  let timeDifference = currentDate - startedDate;
-  let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  let hours = Math.floor(timeDifference / (1000 * 60 * 60 )) % 24;
-  return {hours, days};
+  const currentDate = new Date().getTime();
+  const timeDifference = currentDate - time;
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24;
+  const startedDate = new Date(time);
+  const daysSuffix = days > 1 ? " Days ago" : " Day ago";
+  const hoursSuffix = hours > 1 ? " Hours ago" : " Hour ago";
+  const daysHoursAgo = days === 0 ? hours + hoursSuffix : days + daysSuffix;
+  return { hours, days, daysHoursAgo, startedDate };
 };
