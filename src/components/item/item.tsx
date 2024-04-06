@@ -25,11 +25,11 @@ export default function Item({ item }: { item: itemTypes }) {
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={"/catagories/" + _.capitalize(item.catagory)}
-            title={"catagory: " + _.capitalize(item.catagory)}
+            href={"/categories/" + _.capitalize(item.category)}
+            title={"category: " + _.capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
           >
-            <h2>{_.capitalize(item.catagory)}</h2>
+            <h2>{_.capitalize(item.category)}</h2>
           </Link>
           <Options item={item} />
         </div>

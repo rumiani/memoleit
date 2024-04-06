@@ -1,7 +1,7 @@
 import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
 import React, { useEffect, useState } from "react";
 
-export default function CatagoryInfo({ catagory }: { catagory: string }) {
+export default function CategoryInfo({ category }: { category: string }) {
   const [itemInfo, setItemInfo] = useState<{
     all: number;
     learned: number;
@@ -9,9 +9,9 @@ export default function CatagoryInfo({ catagory }: { catagory: string }) {
   }>({ all: 0, learned: 0, unLearned: 0 });
 
   useEffect(() => {
-    const info = topicItemsCountHandler(catagory);
+    const info = topicItemsCountHandler(category);
     setItemInfo(info);
-  }, [catagory]);
+  }, [category]);
   return (
     <div>
       <div className="pr-4 w-full text-left flex justify-between">

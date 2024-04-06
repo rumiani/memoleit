@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CheckboxInput from "./input/input";
 import {
-  catagoriesReducer,
+  categoriesReducer,
   itemReducer,
   updateCatagoryReducer,
   userReducer,
@@ -11,7 +11,7 @@ import { saveTopicsToLocal } from "@/src/handlers/saveTopicsToLocal";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 
 const Form = () => {
-  const { catagories } = useAppSelector((state) => state.appState);
+  const { categories } = useAppSelector((state) => state.appState);
 
   const dispatch = useAppDispatch();
 
@@ -20,7 +20,7 @@ const Form = () => {
   };
 
   const applyFiltersHandler = () => {
-    saveTopicsToLocal(catagories);
+    saveTopicsToLocal(categories);
     const randomItem = randomItemHandler();
     if (randomItem) {
       dispatch(itemReducer(randomItem));
@@ -33,15 +33,15 @@ const Form = () => {
         method="dialog"
         className="h-full text-lg flex flex-col justify-center p-1 w-full mx-auto max-w-96"
       >
-        <p className="text-center w-full">Choose your catagory to review:</p>
+        <p className="text-center w-full">Choose your category to review:</p>
         <div className="my-2 h-40 overflow-y-auto bg-gray-200">
-          {catagories.map((catagory, i) => {            
+          {categories.map((category, i) => {            
             return (
               <div key={i}>
                 <CheckboxInput
-                  catagory={catagory.name}
-                  status={catagory.status}
-                  handleInputChange={() => handleInputChange(catagory.name)}
+                  category={category.name}
+                  status={category.status}
+                  handleInputChange={() => handleInputChange(category.name)}
                 />
               </div>
             );

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { initialDataStoreToLocal } from "@/src/handlers/initialDataStoreToLocal";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
-import { catagoriesReducer, itemReducer } from "@/src/redux/appStateSlice";
+import { categoriesReducer, itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 
 export default function InitializingData() {
@@ -11,9 +11,9 @@ export default function InitializingData() {
 
     useEffect(() => {
       initialDataStoreToLocal();
-      const { catagories } = getAppDataHandler();
+      const { categories } = getAppDataHandler();
       const randomItem = randomItemHandler();                  
-      dispatch(catagoriesReducer(catagories))    
+      dispatch(categoriesReducer(categories))    
       dispatch( itemReducer(randomItem!));
     }, [dispatch]);
 

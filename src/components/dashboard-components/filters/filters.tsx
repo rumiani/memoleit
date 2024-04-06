@@ -15,8 +15,8 @@ export default function Filters() {
 
   const filterHnadler = () => {
     (dialogElement.current as DialogElement)?.showModal();
-    const { catagories } = getAppDataHandler();
-    dispatch(userReducer({ catagories }));
+    const { categories } = getAppDataHandler();
+    dispatch(userReducer({ categories }));
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Filters() {
       <button
         onClick={filterHnadler}
         className="icon text-xl !w-fit"
-        title="Filter catagories"
+        title="Filter categories"
       >
         <MdFilterListAlt className="text-3xl"/>
         <span className="mx-2 hidden sm:block">Filters</span>

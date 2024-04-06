@@ -19,8 +19,8 @@ const itemsNav = [
     icon: <FaChartBar className="text-blue-700" />,
   },
   {
-    url: "/catagories",
-    title: "See all the catagories",
+    url: "/categories",
+    title: "See all the categories",
     icon: <RiFoldersFill className=" text-gray-700" />,
   },
   {

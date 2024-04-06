@@ -16,7 +16,7 @@ export default function NoResult() {
         <p className="text-red-500 mt-5">
           There is no item to review.
           <br />
-          Please click on filters button and choose a catagory or add a new item
+          Please click on filters button and choose a category or add a new item
           to review.
         </p>
       )}

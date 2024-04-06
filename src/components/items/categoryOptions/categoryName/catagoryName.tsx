@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CatagoryEdit() {
+export default function CategoryEdit() {
   return (
     <div>
                   <input
@@ -10,8 +10,8 @@ export default function CatagoryEdit() {
             autoComplete="off"
             type="text"
             required
-            // value={catagoryValue}
-            // onChange={changeCatagoryNameHandler}
+            // value={categoryValue}
+            // onChange={changeCategoryNameHandler}
           />
           <p className="text-red-500 text-sm pl-4">error</p>
     </div>

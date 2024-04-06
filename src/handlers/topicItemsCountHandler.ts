@@ -4,7 +4,7 @@ import { getAppDataHandler } from "./getAppDataHandler";
 export const topicItemsCountHandler = (topic: string) => {
   const { itemsData } = getAppDataHandler();
   const all: itemTypes[] = itemsData.filter(
-    (item: itemTypes) => item.catagory === topic
+    (item: itemTypes) => item.category === topic
   );
   const learned: itemTypes[] = all.filter(
     (item: itemTypes) => item.reviews.box > 5

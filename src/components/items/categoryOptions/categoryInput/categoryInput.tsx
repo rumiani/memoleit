@@ -3,18 +3,18 @@ import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { usePathname } from "next/navigation";
-import CatagoryInput from "../catagoryFilter/catagoryFilter";
-import CatagoryDelete from "../catagoryDelete/catagoryDelete";
+import CategoryInput from "../categoryFilter/categoryFilter";
+import CategoryDelete from "../categoryDelete/categoryDelete";
 
 type DialogElement = HTMLDialogElement | null;
-export default function CatagoryForm({ catagory }: { catagory: string }) {
-  const [catagoryValue, setCatagoryValue] = useState<string>(catagory);
+export default function CategoryForm({ category }: { category: string }) {
+  const [categoryValue, setCategoryValue] = useState<string>(category);
   const [readOnly, setReadOnly] = useState<boolean>(true);
-  const changeCatagoryNameHandler = (e) => {
-    setCatagoryValue(e.target.value);
-    console.log(catagoryValue);
+  const changeCategoryNameHandler = (e) => {
+    setCategoryValue(e.target.value);
+    console.log(categoryValue);
   };
-  const saveCatagoryHandler = () => {
+  const saveCategoryHandler = () => {
     console.log(readOnly);
 
     if (readOnly) {
@@ -31,8 +31,8 @@ export default function CatagoryForm({ catagory }: { catagory: string }) {
 
   const filterHnadler = () => {
     (dialogElement.current as DialogElement)?.showModal();
-    const { catagories } = getAppDataHandler();
-    dispatch(userReducer({ catagories }));
+    const { categories } = getAppDataHandler();
+    dispatch(userReducer({ categories }));
   };
 
 

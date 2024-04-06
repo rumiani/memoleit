@@ -1,10 +1,10 @@
 import { toast } from "react-toastify";
 import { getAppDataHandler } from "./getAppDataHandler";
-import { catagoryTypes } from "../types/interface";
+import { categoryTypes } from "../types/interface";
 
-export const saveTopicsToLocal = (newCatagories: catagoryTypes[]) => {
+export const saveTopicsToLocal = (newCategories: categoryTypes[]) => {
   const appData = getAppDataHandler();
-  appData.catagories = [...newCatagories];
+  appData.categories = [...newCategories];
   localStorage.setItem("appData", JSON.stringify(appData));
   toast.success("New filters have been saved.");
 };

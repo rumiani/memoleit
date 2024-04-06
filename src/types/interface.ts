@@ -2,7 +2,7 @@ export interface itemTypes {
   id: string;
   title: string;
   body: string;
-  catagory: string;
+  category: string;
   createdAt: number;
   reviews: {
     box: number;
@@ -10,7 +10,7 @@ export interface itemTypes {
     lastReviewDate: number;
   };
 }
-export interface catagoryTypes {
+export interface categoryTypes {
   name: string;
   status: boolean;
   createdAt:number
@@ -26,7 +26,7 @@ export interface userTypes {
   role: string;
   joinTime: string;
   loggedIn: boolean;
-  catagories: object;
+  categories: object;
   forReview: boolean;
 }
 export interface FormValues {

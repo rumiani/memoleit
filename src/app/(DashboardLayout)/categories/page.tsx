@@ -2,41 +2,41 @@
 import React, { useEffect } from "react";
 
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { getCatagoriesDataHandler } from "@/src/handlers/getCatagoriesDataHandler";
-import { catagoriesReducer } from "@/src/redux/appStateSlice";
-import { catagoryTypes } from "@/src/types/interface";
+import { getCategoriesDataHandler } from "@/src/handlers/getCategoriesDataHandler";
+import { categoriesReducer } from "@/src/redux/appStateSlice";
+import { categoryTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import Link from "next/link";
 import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
 import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 
-export default function Catagories() {
-  const { catagories } = useAppSelector((state) => state.appState);
+export default function Categories() {
+  const { categories } = useAppSelector((state) => state.appState);
   const dispatch = useAppDispatch();
   useEffect(() => {
     const appData = getAppDataHandler();
-    const storageCatagories = appData.catagories;
-    const storageItemsData = appData.catagories;
-    const catagoriesData = getCatagoriesDataHandler(
+    const storageCategories = appData.categories;
+    const storageItemsData = appData.categories;
+    const categoriesData = getCategoriesDataHandler(
       storageItemsData,
-      storageCatagories
+      storageCategories
     );
-    if (isEmpty(catagories)) dispatch(catagoriesReducer(storageCatagories));
+    if (isEmpty(categories)) dispatch(categoriesReducer(storageCategories));
   });
 
   return (
     <div>
-      <h2 className="border-b border-gray-300">Catagories</h2>
-      {isEmpty(catagories) ? (
-        <div className="text-red-500">There is no catagories here.</div>
+      <h2 className="border-b border-gray-300">Categories</h2>
+      {isEmpty(categories) ? (
+        <div className="text-red-500">There is no categories here.</div>
       ) : (
         <div className="flex flex-wrap justify-center gap-2 my-8">
-          {catagories.map((catagory: catagoryTypes, i) => {
+          {categories.map((category: categoryTypes, i) => {
             const { daysHoursAgo, startedDate } = timeToNowHandler(
-              catagory.createdAt
+              category.createdAt
             );
-            const catagoryData = topicItemsCountHandler(catagory.name);
+            const categoryData = topicItemsCountHandler(category.name);
             return (
               <div
                 key={i}
@@ -44,12 +44,12 @@ export default function Catagories() {
               >
                 <div className=" flex flex-row justify-between mb-4">
                   <Link
-                    href={"/catagories/" + catagory.name}
+                    href={"/categories/" + category.name}
                     title="Open for more details"
                     className="text-blue-500 text-xl hover:underline"
                   >
                     <h3 className="w-fit mx-auto text-center">
-                      {catagory.name}
+                      {category.name}
                     </h3>
                   </Link>
                   <span
@@ -61,19 +61,19 @@ export default function Catagories() {
                 </div>
                 <div className="w-full flex flex-row justify-between font-bold">
                   <span className="Number of Items text-gray-500 px-1 cursor-default">
-                    All: {catagoryData.all}
+                    All: {categoryData.all}
                   </span>
                   <span
                     title="Number of items have been learned"
                     className=" text-green-500 px-1 cursor-default"
                   >
-                    Done: {catagoryData.learned}
+                    Done: {categoryData.learned}
                   </span>
                   <span
                     title="Number of items left to learn"
                     className="text-yellow-500 px-1 cursor-default"
                   >
-                    Left: {catagoryData.unLearned}
+                    Left: {categoryData.unLearned}
                   </span>
                 </div>
               </div>

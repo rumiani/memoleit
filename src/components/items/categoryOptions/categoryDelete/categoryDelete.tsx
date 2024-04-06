@@ -6,9 +6,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
 type DialogElement = HTMLDialogElement | null;
 
-export default function CatagoryDelete({ catagory }: { catagory: string }) {
+export default function CategoryDelete({ category }: { category: string }) {
   const router = useRouter()
   const [inputValue, setInputValue] = useState<string>('');
 
@@ -17,8 +18,8 @@ export default function CatagoryDelete({ catagory }: { catagory: string }) {
 
   const deleteHadndler = () => {
     (dialogElement.current as DialogElement)?.showModal();
-    const { catagories } = getAppDataHandler();
-    dispatch(userReducer({ catagories }));
+    const { categories } = getAppDataHandler();
+    dispatch(userReducer({ categories }));
   };
   useEffect(() => {
     onclick = (event) => {
@@ -30,16 +31,23 @@ export default function CatagoryDelete({ catagory }: { catagory: string }) {
 
   const changeInputHandler = (e) => {
     setInputValue(e.target.value);
-    console.log(inputValue === catagory);
+    console.log(inputValue === category);
     
   };
-  const deleteCatagoryHandler = () =>{
+  const deleteCategory = () =>{
     (dialogElement.current as DialogElement)?.close();
-    toast.success(catagory+'catagory was successfully deleted.',{autoClose:2000})
-    toast.info('You are being redirected to catagories page.',{autoClose:2000})
-    setTimeout(() => {
-      router.push('/catagories')
-    }, 3000);
+    const result = deleteCategoryHandler(category)
+    console.log(result);
+    
+    if(result){
+      toast.success(category+'category was successfully deleted.',{autoClose:2000})
+      toast.info('You are being redirected to categories page.',{autoClose:2000})
+      setTimeout(() => {
+        // router.push('/categories')
+      }, 3000);
+    }else{
+      toast.error('Item was not found')
+    }
     
   }
   return (
@@ -52,7 +60,7 @@ export default function CatagoryDelete({ catagory }: { catagory: string }) {
         className="bg-gray-300 cursor-default rounded-md w-full sm:w-96"
       >
         <div className="bg-red-100 p-4 w-full h-full">
-          Please write down <strong>{catagory}</strong> then click on the delete
+          Please write down <strong>{category}</strong> then click on the delete
           button.
           <input
             id="inputTitle"
@@ -64,7 +72,7 @@ export default function CatagoryDelete({ catagory }: { catagory: string }) {
             value={inputValue}
             onChange={changeInputHandler}
           />
-          <button disabled={ inputValue !== catagory} onClick={() => deleteCatagoryHandler()} className="icon !px-2 disabled:bg-gray-400 bg-red-400 !w-fit">Delete</button>
+          <button disabled={ inputValue !== category} onClick={() => deleteCategory()} className="icon !px-2 disabled:bg-gray-400 bg-red-400 !w-fit">Delete</button>
         </div>
       </dialog>
     </div>

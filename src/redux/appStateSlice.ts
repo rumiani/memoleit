@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialStateTypes } from "./interfaces";
-import { catagoryTypes, itemTypes } from "../types/interface";
+import { categoryTypes, itemTypes } from "../types/interface";
 
 const initialState: initialStateTypes = {
   user: {
@@ -10,7 +10,7 @@ const initialState: initialStateTypes = {
     username: "",
     name: "",
     isModerator: false,
-    catagories: {},
+    categories: {},
     forReview: false,
     email: "",
     role: "",
@@ -21,7 +21,7 @@ const initialState: initialStateTypes = {
     id: "",
     title: "",
     body: "",
-    catagory: "",
+    category: "",
     createdAt: 0,
     reviews: {
       box: 0,
@@ -30,7 +30,7 @@ const initialState: initialStateTypes = {
     },
   },
   items: [],
-  catagories: [],
+  categories: [],
 };
 
 export const appStateSlice = createSlice({
@@ -50,15 +50,15 @@ export const appStateSlice = createSlice({
     allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {
       state.items = [...action.payload];
     },
-    catagoriesReducer: (state, action: PayloadAction<catagoryTypes[]>) => {
+    categoriesReducer: (state, action: PayloadAction<categoryTypes[]>) => {
       console.log(action.payload);
-      state.catagories = action.payload;
+      state.categories = action.payload;
     },
-    updateCatagoryReducer: (state, action: PayloadAction<string>) => {
-      state.catagories = state.catagories.map((catagory) =>
-        catagory.name === action.payload
-          ? { ...catagory, status: !catagory.status }
-          : catagory
+    updateCategoryReducer: (state, action: PayloadAction<string>) => {
+      state.categories = state.categories.map((category) =>
+        category.name === action.payload
+          ? { ...category, status: !category.status }
+          : category
       );
     },
     resetStateReducer: (state) => {
@@ -74,8 +74,8 @@ export const {
   itemReducer,
   allItemsReducer,
   resetStateReducer,
-  catagoriesReducer,
-  updateCatagoryReducer,
+  categoriesReducer,
+  updateCategoryReducer,
 } = appStateSlice.actions;
 
 export default appStateSlice.reducer;

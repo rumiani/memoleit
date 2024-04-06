@@ -2,7 +2,7 @@
 import Items from "@/src/components/items/items";
 import React from "react";
 
-export default function Catagory({ params }: { params: { catagory: string } }) {
+export default function Category({ params }: { params: { category: string } }) {
 
 
   return (

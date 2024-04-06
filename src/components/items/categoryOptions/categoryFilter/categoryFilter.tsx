@@ -1,12 +1,12 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
 interface checkBoxProps {
-  catagory: string;
+  category: string;
   status: boolean;
   handleInputChange: Function;
 }
 
-export default function CatagoryFilter({ catagory }: { catagory: string }) {
+export default function CategoryFilter({ category }: { category: string }) {
 
   const inputChangeHandler = (e: FormEvent) => {};
 
@@ -17,16 +17,16 @@ export default function CatagoryFilter({ catagory }: { catagory: string }) {
           checked={true}
           onChange={(e) => inputChangeHandler(e)}
           type="checkbox"
-          id={catagory}
-          name={catagory}
+          id={category}
+          name={category}
           className="cursor-pointer
 relative peer shrink-0 flex justify-center align-middle
 appearance-none w-5 h-5 border-2 border-blue-500 rounded-sm bg-white
 mt-1 mx-0
 checked:bg-blue-600 checked:border-0"
         />
-        <label htmlFor={catagory} className=" cursor-pointer pl-2">
-          {catagory}
+        <label htmlFor={category} className=" cursor-pointer pl-2">
+          {category}
         </label>
         <svg
           className="

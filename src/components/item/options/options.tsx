@@ -1,6 +1,6 @@
 "use client";
 
-import { catagoryFilterHandler } from "@/src/handlers/catagoryFilterHandler";
+import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { editHandler } from "@/src/handlers/editHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
@@ -17,14 +17,14 @@ import { useParams } from "next/navigation";
 export default function Options({ item }: { item: itemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
-  const params = useParams<{ catagory: string }>();
+  const params = useParams<{ category: string }>();
   const path = usePathname();
 
   const removeBtnFunction = () => {
     setShowOptions(false);
     removeHandler(item.id);
-    if (path.startsWith("/catagories")) {
-      const filteredItemsData = catagoryFilterHandler(params.catagory);
+    if (path.startsWith("/categories")) {
+      const filteredItemsData = categoryFilterHandler(params.category);
       dispatch(allItemsReducer(filteredItemsData));
     } else {
       const randomItem = randomItemHandler();
