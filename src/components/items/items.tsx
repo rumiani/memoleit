@@ -5,7 +5,7 @@ import Item from "../item/item";
 import { allItemsReducer } from "@/src/redux/appStateSlice";
 import { isEmpty } from "lodash";
 import { catagoryFilterHandler } from "@/src/handlers/catagoryFilterHandler";
-import CatagoryName from "./catagoryName/catagoryName";
+import CatagoryOptions from "./catagoryOptions/catagoryOptions";
 
 export default function Items({ params }: { params: { catagory: string } }) {
 
@@ -25,7 +25,7 @@ export default function Items({ params }: { params: { catagory: string } }) {
         <div>Nothing is here</div>
       ) : (
         <div>
-          <CatagoryName catagory={params.catagory}/>
+          <CatagoryOptions catagory={params.catagory}/>
           <div className="flex flex-wrap justify-around gap-4 mb-16">
             {items.map((item: itemTypes) => (
               <div key={item.id}>
