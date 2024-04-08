@@ -10,7 +10,6 @@ const initialState: initialStateTypes = {
     username: "",
     name: "",
     isModerator: false,
-    categories: {},
     forReview: false,
     email: "",
     role: "",
@@ -28,6 +27,11 @@ const initialState: initialStateTypes = {
       review: 0,
       lastReviewDate: 0,
     },
+  },
+  category: {
+    name: "",
+    status: false,
+    createdAt: 0,
   },
   items: [],
   categories: [],
@@ -51,7 +55,6 @@ export const appStateSlice = createSlice({
       state.items = [...action.payload];
     },
     categoriesReducer: (state, action: PayloadAction<categoryTypes[]>) => {
-      console.log(action.payload);
       state.categories = action.payload;
     },
     updateCategoryReducer: (state, action: PayloadAction<string>) => {

@@ -1,15 +1,19 @@
 import { getAppDataHandler } from "./getAppDataHandler";
 import { categoryTypes, itemTypes } from "../types/interface";
 import { capitalize } from "lodash";
+import { toast } from "react-toastify";
 
 export default function deleteCategoryHandler(category: string) {
   let appData = getAppDataHandler();
   const { categories, itemsData } = appData;
-  const foundCategory = categories.findIndex(
+  const foundCategory = categories.find(
     (item: categoryTypes) => item.name.toLowerCase() === category.toLowerCase()
   );
-  if (!foundCategory) return false;
-  else {
+  console.log(foundCategory);
+
+  if (!foundCategory) {
+    toast.error("Item was not found");
+  } else {
     appData.categories = categories.filter(
       (item: categoryTypes) => capitalize(item.name) !== capitalize(category)
     );
@@ -17,6 +21,9 @@ export default function deleteCategoryHandler(category: string) {
       (item: itemTypes) => capitalize(item.category) !== capitalize(category)
     );
     localStorage.setItem("appData", JSON.stringify(appData));
-    return true;
+    toast.success(category + "category was successfully deleted.", {
+      autoClose: 2000,
+    });
+    return appData.categories
   }
 }

@@ -25,9 +25,9 @@ appearance-none w-5 h-5 border-2 border-blue-500 rounded-sm bg-white
 mt-1 mx-0
 checked:bg-blue-600 checked:border-0"
         />
-        <label htmlFor={category} className=" cursor-pointer pl-2">
+        {/* <label htmlFor={category} className=" cursor-pointer pl-2">
           {category}
-        </label>
+        </label> */}
         <svg
           className="
         cursor-pointer

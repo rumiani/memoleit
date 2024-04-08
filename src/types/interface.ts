@@ -26,7 +26,6 @@ export interface userTypes {
   role: string;
   joinTime: string;
   loggedIn: boolean;
-  categories: object;
   forReview: boolean;
 }
 export interface FormValues {
