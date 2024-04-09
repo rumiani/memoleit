@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
-import { userReducer } from "@/src/redux/appStateSlice";
+import { categoriesReducer, userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
@@ -16,7 +16,7 @@ export default function Filters() {
   const filterHnadler = () => {
     (dialogElement.current as DialogElement)?.showModal();
     const { categories } = getAppDataHandler();
-    dispatch(userReducer({ categories }));
+    dispatch(categoriesReducer(categories));
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function Filters() {
         className="icon text-xl !w-fit"
         title="Filter categories"
       >
-        <MdFilterListAlt className="text-3xl"/>
+        <MdFilterListAlt className="text-3xl" />
         <span className="mx-2 hidden sm:block">Filters</span>
       </button>
       <dialog

@@ -17,9 +17,9 @@ export default function CheckboxInput({
     unLearned: number;
   }>({ all: 0, learned: 0, unLearned: 0 });
 
-  const inputChangeHandler = (e: FormEvent) => {
+  const inputChangeHandler = () => {
     setIsChecked(!isChecked);
-    handleInputChange(e);
+    handleInputChange();
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function CheckboxInput({
       <div className="flex relative ">
         <input
           checked={isChecked}
-          onChange={(e) => inputChangeHandler(e)}
+          onChange={inputChangeHandler}
           type="checkbox"
           id={category}
           name={category}

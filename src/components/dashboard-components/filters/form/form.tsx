@@ -22,8 +22,6 @@ const Form = () => {
   const applyFiltersHandler = () => {
     saveTopicsToLocal(categories);
     const randomItem = randomItemHandler();
-    console.log(randomItem);
-    
     if (randomItem) {
       dispatch(itemReducer(randomItem));
     }

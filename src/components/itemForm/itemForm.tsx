@@ -8,6 +8,8 @@ import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
+import { useAppDispatch } from "@/src/app/hooks";
+import { categoriesReducer } from "@/src/redux/appStateSlice";
 
 interface Props {
   defaultValues?: FormValues; // Make defaultValues prop optional
@@ -16,7 +18,7 @@ const ItemForm: React.FC<Props> = ({
   defaultValues = { title: "", body: "", topic: "" },
 }) => {
   const [createdMessage, setCreatedMessage] = useState(false);
-
+const dispatch = useAppDispatch()
   const form = useForm<FormValues>({
     defaultValues,
     mode: "onBlur",
