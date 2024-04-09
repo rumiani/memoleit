@@ -32,5 +32,5 @@ export interface userTypes {
 export interface FormValues {
   title: string;
   body: string;
-  topic: string;
+  category: string;
 }

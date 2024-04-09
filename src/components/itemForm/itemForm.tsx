@@ -8,17 +8,15 @@ import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
-import { useAppDispatch } from "@/src/app/hooks";
-import { categoriesReducer } from "@/src/redux/appStateSlice";
 
 interface Props {
   defaultValues?: FormValues; // Make defaultValues prop optional
 }
 const ItemForm: React.FC<Props> = ({
-  defaultValues = { title: "", body: "", topic: "" },
+  defaultValues = { title: "", body: "", category: "" },
 }) => {
   const [createdMessage, setCreatedMessage] = useState(false);
-const dispatch = useAppDispatch()
+
   const form = useForm<FormValues>({
     defaultValues,
     mode: "onBlur",
@@ -42,7 +40,6 @@ const dispatch = useAppDispatch()
   };
 
   if (isSubmitSuccessful) {
-    console.log("Submit Successful");
     setCreatedMessage(true);
     reset();
   }
@@ -63,7 +60,7 @@ const dispatch = useAppDispatch()
               register={register}
               setValue={setValue}
             />
-            <ChooseTopic register={register} error={errors.title?.message} />
+            <ChooseTopic register={register} error={errors.category?.message} />
             <button className="primaryBtn mx-auto">publish</button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>

@@ -1,25 +1,21 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import { categoryTypes, itemTypes } from "../types/interface";
+import { FormValues, categoryTypes, itemTypes } from "../types/interface";
 
-interface itemProps {
-  title: string;
-  body: string;
-  topic: string;
-}
-export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
+
+export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   const appDataJson: string | null = localStorage.getItem("appData");
   if (appDataJson) {
     let appData = JSON.parse(appDataJson);
 
     let { categories, itemsData } = appData;
     const categoryExists = categories.find(
-      (category: categoryTypes) => category.name === topic
+      (savedCategory: categoryTypes) => savedCategory.name === category
     );
     if (!categoryExists)
       categories.push({
         id: uuidv4(),
-        name: topic,
+        name: category,
         status: false,
         createdAt: Date.now(),
       });
@@ -27,7 +23,7 @@ export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
       id: uuidv4(),
       title,
       body,
-      category: topic,
+      category: category,
       createdAt: Date.now(),
       reviews: {
         box: 0,

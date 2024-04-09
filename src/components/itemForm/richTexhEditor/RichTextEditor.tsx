@@ -17,19 +17,24 @@ interface propsEditor {
 
 const RichTextEditor = ({register,error,setValue }:propsEditor) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorContent, setEditorContent] = useState('');
+
   
   const onEditorStateChange = (editorState:EditorState) => {
     setEditorState(editorState);
     const content = editorState.getCurrentContent().getPlainText('')
+    setEditorContent(content)
+
     const jsonContent = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );
+    
     setValue('body',content)
     register("body", {
-      required: "Body is required",
+      // required: "Body is required",
       pattern: {
-        value: /^.{3,100}$/,
-        message: "Body must be 3-100 character",
+        value: /^.{1,1000}$/,
+        message: "Body must ≤ 1000 character",
       },
     });
   };
@@ -44,6 +49,7 @@ const RichTextEditor = ({register,error,setValue }:propsEditor) => {
         editorClassName="editor"
         placeholder="Add a description here ..."
       />
+      <p>{editorContent.length + '/1000'}</p>
       <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
   );
