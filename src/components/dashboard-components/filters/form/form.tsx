@@ -3,7 +3,7 @@ import CheckboxInput from "./input/input";
 import {
   categoriesReducer,
   itemReducer,
-  updateCatagoryReducer,
+  updateCategoryReducer,
   userReducer,
 } from "@/src/redux/appStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
@@ -15,8 +15,8 @@ const Form = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleInputChange = (name:string) => {
-    dispatch(updateCatagoryReducer(name));
+  const handleInputChange = (name: string) => {
+    dispatch(updateCategoryReducer(name));
   };
 
   const applyFiltersHandler = () => {
@@ -35,7 +35,7 @@ const Form = () => {
       >
         <p className="text-center w-full">Choose your category to review:</p>
         <div className="my-2 h-40 overflow-y-auto bg-gray-200">
-          {categories.map((category, i) => {            
+          {categories.map((category, i) => {
             return (
               <div key={i}>
                 <CheckboxInput

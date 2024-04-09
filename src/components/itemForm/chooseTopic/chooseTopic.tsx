@@ -1,11 +1,11 @@
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { FormValues, catagoryTypes } from "@/src/types/interface";
+import { FormValues, categoryTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
 export default function ChooseTopic({ register, error }:{register: UseFormRegister<FormValues>, error: string | undefined}) {
-  const [topics, setTopics] = useState<catagoryTypes[]>([]);
+  const [topics, setTopics] = useState<categoryTypes[]>([]);
   useEffect(() => {
     const { catagories } = getAppDataHandler();
     console.log(catagories);

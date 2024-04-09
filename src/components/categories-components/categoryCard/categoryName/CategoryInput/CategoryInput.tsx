@@ -12,7 +12,9 @@ export default function CategoryInput({
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const inputElement = useRef(null);
 
-  const changeCategoryNameHandler = (e) => {
+  const changeCategoryNameHandler = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setCategoryValue(e.target.value);
     console.log(categoryValue);
   };
@@ -56,13 +58,13 @@ export default function CategoryInput({
           Edit
         </button>
       </div>
-        <button
-          onClick={editHnadler}
-          className="icon !p-2 text-xl !w-fit"
-          title="Filter categories"
-        >
-          <FaEdit className="text-3xl text-yellow-600" />
-        </button>
+      <button
+        onClick={editHnadler}
+        className="icon !p-2 text-xl !w-fit"
+        title="Filter categories"
+      >
+        <FaEdit className="text-3xl text-yellow-600" />
+      </button>
     </div>
   );
 }

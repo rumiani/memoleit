@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import CategoryDelete from "./categoryDelete/categoryDelete";
-import CategoryInput from "./CategoryInput/CategoryInput";
+import CategoryInput from "../categoryName/CategoryInput/CategoryInput";
 
 export default function CardOptions({ category }: { category: categoryTypes }) {
   const [showOptions, setShowOptions] = useState(false);

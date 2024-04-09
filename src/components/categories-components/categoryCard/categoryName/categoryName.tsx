@@ -14,13 +14,13 @@ export default function CategoryName({category}:{category:categoryTypes}) {
           <h3 className="w-fit mx-auto text-center">{category.name}</h3>
         </Link>
         <CategoryInput category={category}/>
-        <button
+        {/* <button
           onClick={saveCategoryHandler}
           className="icon !p-2 text-xl !w-fit"
           title="Filter categories"
         >
           <FaSave className="text-3xl text-green-600" />
-        </button>
+        </button> */}
       </div>
   )
 }
