@@ -3,7 +3,7 @@ import { randomElementHandler } from "./home/general/randomElementHandler";
 import { itemsToReviewHandler } from "./itemsToReviewHandler";
 
 export const randomItemHandler = () => {
-  const toReveiwItems = itemsToReviewHandler();
+  const toReveiwItems = itemsToReviewHandler();  
   if (!isEmpty(toReveiwItems)) {
     return randomElementHandler(toReveiwItems);
   } else {

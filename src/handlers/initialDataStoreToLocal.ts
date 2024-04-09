@@ -16,7 +16,7 @@ export const initialDataStoreToLocal = () => {
     let itemsData: itemTypes[] = [];
     const categories: categoryTypes[] = [];
     if (!appDataJson) {
-      categories.push({ name: "11plus", status: false, createdAt: Date.now() });
+      categories.push({ id:uuidv4(),name: "11plus", status: false, createdAt: Date.now() });
       words?.forEach((word, i) => {
         itemsData!.push({
           id: uuidv4(),
@@ -27,7 +27,7 @@ export const initialDataStoreToLocal = () => {
           reviews: {
             box: 0,
             review:0,
-            lastReviewDate: Date.now(),
+            lastReviewDate: 0,
           }
         });
 

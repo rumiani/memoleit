@@ -14,9 +14,10 @@ export const itemsToReviewHandler = () => {
         const daysSinceReviewed = timeToNowHandler(
           item.reviews.lastReviewDate
         ).days;
-        const hoursSinceReviewed = timeToNowHandler(
-          item.reviews.lastReviewDate
-        ).hours;
+        const newlyAddedItem = item.reviews.lastReviewDate === 0;
+        const lastFailMoreThanAnHour =
+          new Date().getTime() - item.reviews.lastReviewDate > 3600000;
+
         const category = categories.find(
           (category: categoryTypes) => category.name === item.category
         );
@@ -25,10 +26,13 @@ export const itemsToReviewHandler = () => {
         const isInTheBox = item.reviews.box < 6;
         const isTimeToReview =
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
-        const reviewedAfterAnHour =
-          item.reviews.box === 0 ? hoursSinceReviewed > 0 : true;
+
         return (
-          reviewedAfterAnHour && category.status && isInTheBox && isTimeToReview
+          newlyAddedItem ||
+          (lastFailMoreThanAnHour &&
+            category.status &&
+            isInTheBox &&
+            isTimeToReview)
         );
       });
       return itemsToReview;

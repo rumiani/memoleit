@@ -29,6 +29,7 @@ const initialState: initialStateTypes = {
     },
   },
   category: {
+    id: "",
     name: "",
     status: false,
     createdAt: 0,

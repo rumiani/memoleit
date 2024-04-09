@@ -13,18 +13,26 @@ export const saveNewItemToLocal = ({ title, body, topic }: itemProps) => {
     let appData = JSON.parse(appDataJson);
 
     let { categories, itemsData } = appData;
-    const categoryExists = categories.find( (category:categoryTypes) => category.name === topic );    
-    if (!categoryExists) categories.push({ name:topic,status:false, createdAt:Date.now()});
+    const categoryExists = categories.find(
+      (category: categoryTypes) => category.name === topic
+    );
+    if (!categoryExists)
+      categories.push({
+        id: uuidv4(),
+        name: topic,
+        status: false,
+        createdAt: Date.now(),
+      });
     const itemObject: itemTypes = {
       id: uuidv4(),
       title,
       body,
-      category:topic,
+      category: topic,
       createdAt: Date.now(),
       reviews: {
-        box:0,
-        review:0,
-        lastReviewDate:Date.now()
+        box: 0,
+        review: 0,
+        lastReviewDate: 0,
       },
     };
     itemsData.push(itemObject);

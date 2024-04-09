@@ -11,6 +11,7 @@ export interface itemTypes {
   };
 }
 export interface categoryTypes {
+  id:string,
   name: string;
   status: boolean;
   createdAt:number
