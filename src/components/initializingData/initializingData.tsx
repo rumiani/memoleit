@@ -8,7 +8,6 @@ import { useAppDispatch } from "@/src/app/hooks";
 
 export default function InitializingData() {
     const dispatch = useAppDispatch();
-
     useEffect(() => {
       initialDataStoreToLocal();
       const { categories } = getAppDataHandler();

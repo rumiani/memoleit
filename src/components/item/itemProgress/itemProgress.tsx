@@ -23,7 +23,7 @@ export default function ItemProgress({
             <span
               className={`${
                 boxNumber === itemBoxNumber && "bg-green-700 text-white"
-              } w-full h-5 border border-gray-300 border-collapse text-center`}
+              } w-full h-6 border border-gray-300 border-collapse text-center`}
             >
               {boxNumber}
             </span>

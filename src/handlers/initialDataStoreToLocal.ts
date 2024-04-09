@@ -7,7 +7,7 @@ import words_11plus from "@/src/data/11plus.json";
 let words: string[];
 
 process.env.NODE_ENV === "development"
-  ? (words = words_test)
+  ? (words = words_11plus)
   : (words = words_11plus);
 
 export const initialDataStoreToLocal = () => {

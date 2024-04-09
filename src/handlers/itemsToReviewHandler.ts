@@ -28,11 +28,9 @@ export const itemsToReviewHandler = () => {
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
 
         return (
-          newlyAddedItem ||
-          (lastFailMoreThanAnHour &&
-            category.status &&
-            isInTheBox &&
-            isTimeToReview)
+          category.status &&
+          (newlyAddedItem ||
+            (lastFailMoreThanAnHour && isInTheBox && isTimeToReview))
         );
       });
       return itemsToReview;

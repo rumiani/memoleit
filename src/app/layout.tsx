@@ -30,8 +30,8 @@ export default function RootLayout({
           <ToastContainer limit={3} />
           <ReduxProvider>
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
-              <Header />
               <InitializingData />
+              <Header />
               <main className="pt-0 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-lg min-h-screen break-words">
                 {children}
               </main>
