@@ -10,6 +10,7 @@ const initialCategoryState: initialCategoryStateTypes = {
     createdAt: 0,
   },
   categories: [],
+  categoryNameEditable:false
 };
 
 export const categoryStateSlice = createSlice({

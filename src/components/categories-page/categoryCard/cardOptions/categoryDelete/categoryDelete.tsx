@@ -37,12 +37,12 @@ export default function CategoryDelete({
     dispatch(categoriesReducer(remainedCategories));
   };
   return (
-    <div>
+    <>
       <button
         onClick={deleteHadndler}
-        className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-red-400 hover:text-red-600"
+        className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg font-bold text-red-400 hover:text-red-600"
       >
-        Remove
+        Delete
       </button>
       <dialog
         ref={dialogElement}
@@ -70,6 +70,6 @@ export default function CategoryDelete({
           </button>
         </div>
       </dialog>
-    </div>
+    </>
   );
 }

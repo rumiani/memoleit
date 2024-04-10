@@ -16,7 +16,7 @@ const TitleInput = ({register, error}:titleProps) => {
           autoComplete="off"
           type='text'
           {...register('title',{
-            required:'Titleaaaaaa is required',
+            required:'Title is required',
             pattern:{
               value: /^.{3,100}$/,
               message:'Title must be 3-100 character'

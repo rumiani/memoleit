@@ -32,13 +32,22 @@ export default function ChooseTopic({
         {...register("category", {
           required: "Category is required",
           pattern: {
-            value: /^.{3,100}$/,
-            message: "Category must be 3-100 character",
+            value: /^[a-zA-Z0-9]*$/, 
+            message: 'Please enter only letters and numbers'
           },
+          minLength: {
+            value: 3,
+            message: 'Input must be 3 - 12 character long'
+          },
+          maxLength: {
+            value: 12,
+            message: 'Input must be 3 - 12 characters long'
+          }
         })}
       />
       <datalist id="categories">
         {categories.map((category) => {
+
           return <option key={category.name} value={category.name} />;
         })}
       </datalist>
