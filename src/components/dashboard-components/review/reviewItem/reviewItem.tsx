@@ -1,9 +1,9 @@
 "use client";
 import { itemTypes } from "@/src/types/interface";
 import React from "react";
-import Options from "../../../category-components/categoryItems/categoryItem/options/options";
-import ItemProgress from "../../../category-components/categoryItems/categoryItem/itemProgress/itemProgress";
-import ItemBody from "../../../category-components/categoryItems/categoryItem/itemBody/itemBody";
+import Options from "./options/options";
+import ItemProgress from "./itemProgress/itemProgress";
+import ItemBody from "./itemBody/itemBody";
 import _ from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";

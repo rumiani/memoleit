@@ -10,7 +10,7 @@ export default function ItemBody({ body }: { body: string }) {
         onClick={() => setShowBody(!showBody)}
         className="text-blue-500 w-fit mx-auto block text-center"
       >
-        {showBody ? "Hide" : "See"} the description
+        {showBody ? "Hide" : "See"} the descriptiond
       </button>
     </div>
   );

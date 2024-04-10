@@ -1,12 +1,10 @@
 "use client";
-import CategoryItems from "@/src/components/category-components/categoryItems/categoryItems";
+import CategoryPage from "@/src/components/category-page/categoryPage";
 import React from "react";
-
 export default function Category({ params }: { params: { category: string } }) {
-
   return (
     <div>
-      <CategoryItems params={params}/>
+      <CategoryPage params={params} />
     </div>
   );
 }

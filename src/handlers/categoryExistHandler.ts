@@ -1,4 +1,3 @@
-import React from "react";
 import { getAppDataHandler } from "./getAppDataHandler";
 import { categoryTypes } from "../types/interface";
 

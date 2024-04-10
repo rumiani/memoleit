@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import CategoriesComponents from "@/src/components/categories-components/categories-components";
+import CategoriesPage from "@/src/components/categories-page/CategoriesPage";
 
 export default function Categories() {
   return (
     <div>
-      <CategoriesComponents />
+      <CategoriesPage />
     </div>
   );
 }

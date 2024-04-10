@@ -2,9 +2,8 @@
 
 import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { editHandler } from "@/src/handlers/editHandler";
-import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
-import { allItemsReducer, itemReducer } from "@/src/redux/appStateSlice";
+import { allItemsReducer } from "@/src/redux/appStateSlice";
 import { itemTypes } from "@/src/types/interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -56,8 +55,7 @@ export default function Options({ item }: { item: itemTypes }) {
             <button
               onClick={() => editBtnFunction()}
               className="text-center w-full pt-2"
-            >
-              Edit
+            >Edit
             </button>
           </Link>
           <button

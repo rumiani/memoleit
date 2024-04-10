@@ -2,7 +2,7 @@
 import { itemTypes } from "@/src/types/interface";
 import React from "react";
 import Options from "./options/options";
-import ItemProgress from "./itemProgress/itemProgress";
+import ItemProgress from "../../../../dashboard-components/review/reviewItem/itemProgress/itemProgress";
 import ItemBody from "./itemBody/itemBody";
 import _ from "lodash";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
-export default function ReviewItem({ item }: { item: itemTypes }) {
+export default function CategoryItem({ item }: { item: itemTypes }) {
   const dispatch = useAppDispatch();
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
@@ -36,23 +36,8 @@ export default function ReviewItem({ item }: { item: itemTypes }) {
           {_.capitalize(item.title)}
         </h3>
       </div>
-      <div className="buttons flex justify-around w-full mt-4 gap-2">
-        <button
-          onClick={() => goToNextItem(item, false)}
-          className="primaryBtn !w-42 !bg-red-500"
-        >
-          I don&apos;t know
-        </button>
-        <button
-          onClick={() => goToNextItem(item, true)}
-          className="primaryBtn !bg-green-500"
-        >
-          I know
-        </button>
-      </div>
       <div className="mt-8">
         <ItemBody body={item.body} />
-        <ItemProgress itemBoxNumber={item.reviews.box} />
       </div>
     </div>
   );

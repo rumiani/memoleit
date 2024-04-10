@@ -16,7 +16,6 @@ const ItemForm: React.FC<Props> = ({
   defaultValues = { title: "", body: "", category: "" },
 }) => {
   const [createdMessage, setCreatedMessage] = useState(false);
-
   const form = useForm<FormValues>({
     defaultValues,
     mode: "onBlur",
@@ -46,7 +45,7 @@ const ItemForm: React.FC<Props> = ({
   return (
     <>
       {createdMessage ? (
-        <CreatedMessage newItemHandler={() => setCreatedMessage(false)} />
+        <CreatedMessage createdMsgHandler={() => setCreatedMessage(false)} />
       ) : (
         <div>
           <form
