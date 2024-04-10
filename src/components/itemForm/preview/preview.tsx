@@ -56,8 +56,8 @@ const Preview = ({
               dangerouslySetInnerHTML={{ __html: html }}
             ></div>
             <div className="my-4 mx-auto">
-              <p className="font-bold text-gray-500">Topic:</p>
-              {_.capitalize(getValues().topic)}
+              <p className="font-bold text-gray-500">Category:</p>
+              {_.capitalize(getValues().category)}
             </div>
             <button
               id="close"

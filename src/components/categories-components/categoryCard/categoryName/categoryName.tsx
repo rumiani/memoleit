@@ -13,7 +13,7 @@ export default function CategoryName({category}:{category:categoryTypes}) {
         >
           <h3 className="w-fit mx-auto text-center">{category.name}</h3>
         </Link>
-        <CategoryInput category={category}/>
+        {/* <CategoryInput category={category}/> */}
         {/* <button
           onClick={saveCategoryHandler}
           className="icon !p-2 text-xl !w-fit"

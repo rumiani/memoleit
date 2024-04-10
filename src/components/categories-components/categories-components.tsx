@@ -6,10 +6,10 @@ import { useAppSelector } from "@/src/app/hooks";
 import CategoryCard from "./categoryCard/categoryCard";
 
 export default function CategoriesComponents() {
-  const { categories } = useAppSelector((state) => state.appState);
+  const { categories } = useAppSelector((state) => state.categoryState);
   return (
     <div>
-      <h2 className="border-b border-gray-300">Categories</h2>
+      <h2 className="font-bold">Categories</h2>
       {isEmpty(categories) ? (
         <div className="text-red-500">
           There is no categories here.

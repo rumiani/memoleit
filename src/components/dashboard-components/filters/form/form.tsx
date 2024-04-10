@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import CheckboxInput from "./input/input";
-import {
-  categoriesReducer,
-  itemReducer,
-  updateCategoryReducer,
-  userReducer,
-} from "@/src/redux/appStateSlice";
+import { itemReducer } from "@/src/redux/appStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { saveTopicsToLocal } from "@/src/handlers/saveTopicsToLocal";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { categoryReducer } from "@/src/redux/categoryStateSlice";
 
 const Form = () => {
-  const { categories } = useAppSelector((state) => state.appState);
+  const { categories } = useAppSelector((state) => state.categoryState);
 
   const dispatch = useAppDispatch();
 
   const handleInputChange = (name: string) => {
-    dispatch(updateCategoryReducer(name));
+    dispatch(categoryReducer(name));
   };
 
   const applyFiltersHandler = () => {

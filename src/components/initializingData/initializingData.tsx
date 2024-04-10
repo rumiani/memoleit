@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import { initialDataStoreToLocal } from "@/src/handlers/initialDataStoreToLocal";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
-import { categoriesReducer, itemReducer } from "@/src/redux/appStateSlice";
+import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+import { categoriesReducer } from '@/src/redux/categoryStateSlice';
 
 export default function InitializingData() {
     const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialStateTypes } from "./interfaces";
-import { categoryTypes, itemTypes } from "../types/interface";
+import { itemTypes } from "../types/interface";
 
 const initialState: initialStateTypes = {
   user: {
@@ -28,14 +28,7 @@ const initialState: initialStateTypes = {
       lastReviewDate: 0,
     },
   },
-  category: {
-    id: "",
-    name: "",
-    status: false,
-    createdAt: 0,
-  },
   items: [],
-  categories: [],
 };
 
 export const appStateSlice = createSlice({
@@ -55,16 +48,6 @@ export const appStateSlice = createSlice({
     allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {
       state.items = [...action.payload];
     },
-    categoriesReducer: (state, action: PayloadAction<categoryTypes[]>) => {
-      state.categories = action.payload;
-    },
-    updateCategoryReducer: (state, action: PayloadAction<string>) => {
-      state.categories = state.categories.map((category) =>
-        category.name === action.payload
-          ? { ...category, status: !category.status }
-          : category
-      );
-    },
     resetStateReducer: (state) => {
       state.item = initialState.item;
     },
@@ -78,8 +61,6 @@ export const {
   itemReducer,
   allItemsReducer,
   resetStateReducer,
-  categoriesReducer,
-  updateCategoryReducer,
 } = appStateSlice.actions;
 
 export default appStateSlice.reducer;

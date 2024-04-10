@@ -1,11 +1,11 @@
 "use client";
 import { useAppDispatch } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { categoriesReducer, userReducer } from "@/src/redux/appStateSlice";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
 import { categoryTypes } from "@/src/types/interface";
+import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 type DialogElement = HTMLDialogElement | null;
 
 export default function CategoryDelete({
