@@ -13,6 +13,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Options({ item }: { item: itemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -22,15 +23,13 @@ export default function Options({ item }: { item: itemTypes }) {
 
   const removeBtnFunction = () => {
     setShowOptions(false);
-    removeHandler(item.id);
-    if (path.startsWith("/categories")) {
+    const isItemRemoved = removeHandler(item.id);
+    if (isItemRemoved) {
+      toast.success("The item was removed.");
       const filteredItemsData = categoryFilterHandler(params.category);
       dispatch(allItemsReducer(filteredItemsData));
     } else {
-      const randomItem = randomItemHandler();
-      if (randomItem) {
-        dispatch(itemReducer(randomItem));
-      }
+      toast.error("Item was not found.");
     }
   };
   const editBtnFunction = () => {

@@ -1,12 +1,12 @@
 "use client";
-import Items from "@/src/components/category-components/items/items";
+import CategoryItems from "@/src/components/category-components/categoryItems/categoryItems";
 import React from "react";
 
 export default function Category({ params }: { params: { category: string } }) {
 
   return (
     <div>
-      <Items params={params}/>
+      <CategoryItems params={params}/>
     </div>
   );
 }

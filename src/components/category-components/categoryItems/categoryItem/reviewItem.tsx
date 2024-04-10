@@ -11,9 +11,8 @@ import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
-export default function Item({ item }: { item: itemTypes }) {
+export default function ReviewItem({ item }: { item: itemTypes }) {
   const dispatch = useAppDispatch();
-  console.log("item is rendered");
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
     reviewHandler(item, status);
