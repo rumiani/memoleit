@@ -10,7 +10,7 @@ const initialCategoryState: initialCategoryStateTypes = {
     createdAt: 0,
   },
   categories: [],
-  categoryNameEditable:false
+  categoryNameEditable: false,
 };
 
 export const categoryStateSlice = createSlice({
@@ -27,10 +27,13 @@ export const categoryStateSlice = createSlice({
           : category
       );
     },
+    categoryEditNameReducer: (state) => {
+      state.categoryNameEditable = !state.categoryNameEditable;
+    },
   },
 });
 
-export const { categoryReducer, categoriesReducer } =
+export const { categoryReducer, categoriesReducer, categoryEditNameReducer } =
   categoryStateSlice.actions;
 
 export default categoryStateSlice.reducer;

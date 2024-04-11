@@ -2,8 +2,7 @@ import { categoryTypes } from "@/src/types/interface";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import CategoryInput from "./CategoryInput/CategoryInput";
-import { FaSave } from "react-icons/fa";
-import { useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 
 export default function CategoryName({
@@ -14,8 +13,9 @@ export default function CategoryName({
   const { categoryNameEditable } = useAppSelector(
     (state) => state.categoryState
   );
-  category.name = makeUrlFriendly(category.name)
-  
+
+  const categoryUrl = makeUrlFriendly(category.name);
+
   useEffect(() => {
     console.log(categoryNameEditable);
   }, [categoryNameEditable]);
@@ -23,7 +23,7 @@ export default function CategoryName({
     <div className="my-8">
       {!categoryNameEditable ? (
         <Link
-          href={"/categories/" + category.name}
+          href={"/categories/" + categoryUrl}
           title="Open for more details"
           className="text-blue-500 my-4 text-xl hover:underline"
         >
@@ -32,13 +32,7 @@ export default function CategoryName({
       ) : (
         <div>
           <CategoryInput category={category} />
-          <button
-            // onClick={saveCategoryHandler}
-            className="icon !p-2 text-xl !w-fit"
-            title="Filter categories"
-          >
-            <FaSave className="text-3xl text-green-600" />
-          </button>
+          
         </div>
       )}
     </div>

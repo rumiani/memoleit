@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/src/app/hooks";
+import { categoryEditNameReducer } from "@/src/redux/categoryStateSlice";
 import { categoryTypes } from "@/src/types/interface";
 import React, { useRef, useState } from "react";
 import { FaEdit, FaSave } from "react-icons/fa";
@@ -11,6 +13,7 @@ export default function CategoryInput({
   const [categoryValue, setCategoryValue] = useState<string>(category.name);
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const inputElement = useRef(null);
+  const dispatch = useAppDispatch();
 
   const changeCategoryNameHandler = (e: {
     target: { value: React.SetStateAction<string> };
@@ -51,20 +54,15 @@ export default function CategoryInput({
         )}
       </div>
       <div>
-        <button
-          onClick={editHnadler}
-          className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-500 hover:text-yellow-700"
-        >
-          Edit
-        </button>
+
       </div>
       <button
-        onClick={editHnadler}
-        className="icon !p-2 text-xl !w-fit"
-        title="Filter categories"
-      >
-        <FaEdit className="text-3xl text-yellow-600" />
-      </button>
+            onClick={() => dispatch(categoryEditNameReducer())}
+            className="icon !p-2 text-xl !w-fit"
+            title="Filter categories"
+          >
+            <FaSave className="text-3xl text-green-600" />
+          </button>
     </div>
   );
 }
