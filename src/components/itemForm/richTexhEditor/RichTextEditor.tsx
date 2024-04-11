@@ -24,18 +24,18 @@ const RichTextEditor = ({register,error,setValue }:propsEditor) => {
     setEditorState(editorState);
     const content = editorState.getCurrentContent().getPlainText('')
     setEditorContent(content)
-
     const jsonContent = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );
     
     setValue('body',content)
     register("body", {
-      // required: "Body is required",
-      pattern: {
-        value: /^.{1,1000}$/,
-        message: "Body must ≤ 1000 character",
-      },
+
+      validate:{
+        fieldLength : (content) =>{
+          return content.length <=10 ||"Body must be ≤ 10 character" 
+        }
+      }
     });
   };
 
