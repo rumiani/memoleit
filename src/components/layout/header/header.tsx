@@ -48,7 +48,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between w-full sm:w-auto">
           <Link href={"/"}>
             <span className="text-white align-middle text-xl pt-3 font-bold">
-              11Plus
+              MemoLight
             </span>
           </Link>
           <button

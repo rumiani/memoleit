@@ -34,7 +34,7 @@ const Footer = () => {
             </Link>
           </div>
           <p className="mt-4 text-sm">
-            &copy; {new Date().getFullYear()} 11Plus. All rights
+            &copy; {new Date().getFullYear()} MemoLight. All rights
             reserved.
           </p>
         </div>
