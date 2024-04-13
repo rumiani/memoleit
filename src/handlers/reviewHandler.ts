@@ -20,7 +20,7 @@ export function reviewHandler(
       );
     } else {
       toast.success("Item moved to the box 0 and can be reviewed in 1 hour");
-      foundItem.reviews.box = 0;
+      foundItem.reviews.box = 1;
     }
 
     localStorage.setItem("appData", JSON.stringify(appData));

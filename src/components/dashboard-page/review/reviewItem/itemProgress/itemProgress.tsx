@@ -6,11 +6,11 @@ export default function ItemProgress({
 }: {
   itemBoxNumber: number;
 }) {
-  const boxes = [0, 1, 2, 3, 4, 5];
+  const boxes = [1, 2, 3, 4, 5];
   return (
     <div
       title={`The item is in the box ${itemBoxNumber}`}
-      className="w-full flex flex-row mt-2 cursor-default"
+      className=" w-full flex flex-row justify-between mt-2 cursor-default"
     >
       {boxes.map((boxNumber) => {
         return (

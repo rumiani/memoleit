@@ -2,7 +2,7 @@
 import { itemTypes } from "@/src/types/interface";
 import React from "react";
 import Options from "./options/options";
-import ItemProgress from "../../../../dashboard-components/review/reviewItem/itemProgress/itemProgress";
+import ItemProgress from "../../../../dashboard-page/review/reviewItem/itemProgress/itemProgress";
 import ItemBody from "./itemBody/itemBody";
 import _ from "lodash";
 import Link from "next/link";

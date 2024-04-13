@@ -25,7 +25,7 @@ export const initialDataStoreToLocal = () => {
           category: "11plus",
           createdAt: Date.now(),
           reviews: {
-            box: 0,
+            box: 1,
             review:0,
             lastReviewDate: 0,
           }

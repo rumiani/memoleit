@@ -1,10 +1,13 @@
 "use client";
+import ProgressPage from "@/src/components/progress-page/progressPage";
 import React from "react";
 
 export default function Progress() {
   return (
     <>
-      <div className="card_message">Nothing here yet.</div>
+      <div className="">
+        <ProgressPage/>
+      </div>
     </>
   );
 }

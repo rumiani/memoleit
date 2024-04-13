@@ -5,7 +5,7 @@ export default function ItemBody({ body }: { body: string }) {
 
   return (
     <div>
-      {showBody && <p className="text-gray-600">{body}</p>}
+      {showBody && <p className="text-gray-600">{body.length === 0? 'There is no description for this item.':body}</p>}
       <button
         onClick={() => setShowBody(!showBody)}
         className="text-blue-500 w-fit mx-auto block text-center"

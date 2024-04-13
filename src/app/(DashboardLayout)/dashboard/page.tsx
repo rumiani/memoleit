@@ -1,12 +1,12 @@
 "use client";
+import DashboardPage from "@/src/components/dashboard-page/dashboardPage";
 import React from "react";
-import DashboardComps from "@/src/components/dashboard-components/dashboardComps";
 
 export default function Dashboard() {
 
   return (
     <div>
-      <DashboardComps />
+      <DashboardPage />
     </div>
   );
 }
