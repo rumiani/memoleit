@@ -33,7 +33,7 @@ const RichTextEditor = ({register,error,setValue }:propsEditor) => {
 
       validate:{
         fieldLength : (content) =>{
-          return content.length <=10 ||"Body must be ≤ 10 character" 
+          return content.length <=1000 ||"Body must be ≤ 1000 character" 
         }
       }
     });

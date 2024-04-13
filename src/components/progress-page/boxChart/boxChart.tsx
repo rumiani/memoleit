@@ -1,4 +1,8 @@
-import React from "react";
+import { barChartDataHandler } from "@/src/handlers/boxChartDataHandler";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
+import { categoryTypes } from "@/src/types/interface";
+import React, { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -7,21 +11,19 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
-
+import SelectCategory from "./selectCategory/selectCategory";
+interface DataType {
+  name: string;
+  Reviewed: number;
+  Pending: number;
+}
 interface DataPoint {
   name: string;
   value: number;
 }
-const data = [
-  { name: "Day 1", uv: 24, pv: 2400, amt: 2400 },
-  { name: "Day 2", uv: 32, pv: 2400, amt: 2400 },
-  { name: "Day 3", uv: 8, pv: 2400, amt: 2400 },
-  { name: "Day 4", uv: 19, pv: 2400, amt: 2400 },
-  { name: "Day 5", uv: 93, pv: 2400, amt: 2400 },
-  { name: "Day 6", uv: 16, pv: 2400, amt: 2400 },
-  { name: "Day 7", uv: 0, pv: 2400, amt: 2400 },
-];
+
 interface lableTypes {
   payload: string;
   x: number;
@@ -46,19 +48,53 @@ const renderCustomBarLabel = ({
 };
 
 const BoxChart: React.FC = () => {
+  const [data, setData] = useState<DataType[]>([
+    { name: "Box 1", Reviewed: 0, Pending: 0 },
+    { name: "Box 2", Reviewed: 0, Pending: 0 },
+    { name: "Box 3", Reviewed: 0, Pending: 0 },
+    { name: "Box 4", Reviewed: 0, Pending: 0 },
+    { name: "Box 5", Reviewed: 0, Pending: 0 },
+  ]);
+  useEffect(() => {
+    const chartData = barChartDataHandler({ data, category: null });
+    console.log(chartData);
+
+    setData(chartData);
+  }, [data]);
+
   return (
     <div style={{ width: "100%", height: "400px" }}>
+        <SelectCategory/>
       <ResponsiveContainer>
-        <BarChart width={600} height={300} data={data}>
+        <BarChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="name" stroke="#8884d8" />
           <YAxis />
-          {/* <Tooltip /> */}
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+          <Tooltip />
+          <Legend />
           <Bar
             label={renderCustomBarLabel}
-            dataKey="uv"
-            fill="#8884d8"
-            barSize={30}
+            dataKey="Reviewed"
+            fill="lightgreen"
+            barSize={50}
+            stackId="i"
+          />
+          <Bar
+            label={renderCustomBarLabel}
+            dataKey="Pending"
+            fill="red"
+            barSize={50}
+            stackId="i"
           />
         </BarChart>
       </ResponsiveContainer>

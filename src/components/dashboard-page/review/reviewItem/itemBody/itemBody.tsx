@@ -4,7 +4,8 @@ export default function ItemBody({ body }: { body: string }) {
   const [showBody, setShowBody] = useState<boolean>(false);
   useEffect(() => {
     setShowBody(false);
-  }, []);
+  }, [body]);
+
   return (
     <div>
       {showBody && (
