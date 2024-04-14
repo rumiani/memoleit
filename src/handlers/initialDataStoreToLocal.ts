@@ -41,23 +41,6 @@ export const initialDataStoreToLocal = () => {
           JSON.stringify({ categories, itemsData })
         );
       });
-    } else { // puting all the data in the box 1
-      categories.push({
-        id: uuidv4(),
-        name: "11plus",
-        status: false,
-        createdAt: Date.now(),
-      });
-      const itemsData = JSON.parse(localStorage.getItem("appData")!).itemsData;
-      itemsData.forEach((item: itemTypes) => {
-        if (item.reviews.box === 0) {
-          item.reviews.box = 1;
-        }
-      });
-      localStorage.setItem(
-        "appData",
-        JSON.stringify({ categories, itemsData })
-      );
     }
   }
 };

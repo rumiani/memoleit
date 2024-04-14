@@ -15,7 +15,7 @@ export const itemsToReviewHandler = () => {
           item.reviews.lastReviewDate
         ).days;
         console.log(categories);
-        
+
         const category = categories.find(
           (category: categoryTypes) => category.name === item.category
         );
@@ -25,7 +25,11 @@ export const itemsToReviewHandler = () => {
         const isTimeToReview =
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
 
-        return category.status && isInTheBox; //&& isTimeToReview;
+        return (
+          category.status &&
+          isInTheBox &&
+          (item.reviews.box === 0 || isTimeToReview)
+        );
       });
       return itemsToReview;
     }
