@@ -16,7 +16,12 @@ export const initialDataStoreToLocal = () => {
     let itemsData: itemTypes[] = [];
     const categories: categoryTypes[] = [];
     if (!appDataJson) {
-      categories.push({ id:uuidv4(),name: "11plus", status: false, createdAt: Date.now() });
+      categories.push({
+        id: uuidv4(),
+        name: "11plus",
+        status: false,
+        createdAt: Date.now(),
+      });
       words?.forEach((word, i) => {
         itemsData!.push({
           id: uuidv4(),
@@ -25,10 +30,10 @@ export const initialDataStoreToLocal = () => {
           category: "11plus",
           createdAt: Date.now(),
           reviews: {
-            box: 1,
-            review:0,
+            box: 0,
+            review: 0,
             lastReviewDate: 0,
-          }
+          },
         });
 
         localStorage.setItem(
@@ -36,6 +41,23 @@ export const initialDataStoreToLocal = () => {
           JSON.stringify({ categories, itemsData })
         );
       });
+    } else { // puting all the data in the box 1
+      categories.push({
+        id: uuidv4(),
+        name: "11plus",
+        status: false,
+        createdAt: Date.now(),
+      });
+      const itemsData = JSON.parse(localStorage.getItem("appData")!).itemsData;
+      itemsData.forEach((item: itemTypes) => {
+        if (item.reviews.box === 0) {
+          item.reviews.box = 1;
+        }
+      });
+      localStorage.setItem(
+        "appData",
+        JSON.stringify({ categories, itemsData })
+      );
     }
   }
 };

@@ -14,6 +14,8 @@ import {
   Legend,
 } from "recharts";
 import SelectCategory from "./selectCategory/selectCategory";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { categoryNameReducer } from "@/src/redux/categoryStateSlice";
 interface DataType {
   name: string;
   Reviewed: number;
@@ -46,25 +48,36 @@ const renderCustomBarLabel = ({
     </text>
   );
 };
-
+const initialData = [
+  { name: "Box 1", Reviewed: 0, Pending: 0 },
+  { name: "Box 2", Reviewed: 0, Pending: 0 },
+  { name: "Box 3", Reviewed: 0, Pending: 0 },
+  { name: "Box 4", Reviewed: 0, Pending: 0 },
+  { name: "Box 5", Reviewed: 0, Pending: 0 },
+];
 const BoxChart: React.FC = () => {
-  const [data, setData] = useState<DataType[]>([
-    { name: "Box 1", Reviewed: 0, Pending: 0 },
-    { name: "Box 2", Reviewed: 0, Pending: 0 },
-    { name: "Box 3", Reviewed: 0, Pending: 0 },
-    { name: "Box 4", Reviewed: 0, Pending: 0 },
-    { name: "Box 5", Reviewed: 0, Pending: 0 },
-  ]);
-  useEffect(() => {
-    const chartData = barChartDataHandler({ data, category: null });
-    console.log(chartData);
+  const { category } = useAppSelector((state) => state.categoryState);
+  const dispatch = useAppDispatch();
 
-    setData(chartData);
-  }, [data]);
+  const [data, setData] = useState<DataType[]>(initialData);
+  useEffect(() => {
+    // const chartData = barChartDataHandler({ data, category: category.name });
+    // setData(chartData);
+  }, [data, category]);
+
+  const handleChange = (selectedCategory: string) => {
+    console.log(data);
+    console.log(selectedCategory);
+    setData(initialData);
+    const chartData = barChartDataHandler({ data, category: selectedCategory });
+    setTimeout(() => {
+      setData(chartData);
+    }, 1000);
+  };
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
-        <SelectCategory/>
+      <SelectCategory handleChange={handleChange} />
       <ResponsiveContainer>
         <BarChart
           width={500}
