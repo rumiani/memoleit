@@ -23,7 +23,7 @@ export const itemsToReviewHandler = () => {
         // conditions
         const isInTheBox = item.reviews.box < 6;
         const isTimeToReview =
-          daysSinceReviewed >= reviewBoxes[item.reviews.box];
+          daysSinceReviewed >= reviewBoxes[item.reviews.box] ||  reviewBoxes[item.reviews.box] === 0;
 
         return (
           category.status &&
