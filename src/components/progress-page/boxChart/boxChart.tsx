@@ -17,6 +17,7 @@ import SelectCategory from "./selectCategory/selectCategory";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { categoryNameReducer } from "@/src/redux/categoryStateSlice";
 import _ from "lodash";
+import TotalData from "./totalData/totalData";
 interface DataType {
   name: string;
   Reviewed: number;
@@ -79,7 +80,10 @@ const BoxChart: React.FC = () => {
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
+      <div className="flex flex-row justify-around items-center">
       <SelectCategory handleChange={handleChange} />
+      <TotalData data={data}/>
+      </div>
       <ResponsiveContainer>
         <BarChart
           width={500}
