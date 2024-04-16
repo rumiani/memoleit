@@ -14,8 +14,6 @@ export const itemsToReviewHandler = () => {
         const daysSinceReviewed = timeToNowHandler(
           item.reviews.lastReviewDate
         ).days;
-        console.log(categories);
-
         const category = categories.find(
           (category: categoryTypes) => category.name === item.category
         );

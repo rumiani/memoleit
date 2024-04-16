@@ -16,6 +16,7 @@ import {
 import SelectCategory from "./selectCategory/selectCategory";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { categoryNameReducer } from "@/src/redux/categoryStateSlice";
+import _ from "lodash";
 interface DataType {
   name: string;
   Reviewed: number;
@@ -57,22 +58,23 @@ const initialData = [
 ];
 const BoxChart: React.FC = () => {
   const { category } = useAppSelector((state) => state.categoryState);
-  const dispatch = useAppDispatch();
-
-  const [data, setData] = useState<DataType[]>(initialData);
+  const [data, setData] = useState<DataType[] | undefined>(undefined);
   useEffect(() => {
-    // const chartData = barChartDataHandler({ data, category: category.name });
-    // setData(chartData);
+    if (!data) {
+      const chartData = barChartDataHandler(
+        _.cloneDeep(initialData),
+        category.name
+      );
+      setData(chartData);
+    }
   }, [data, category]);
 
   const handleChange = (selectedCategory: string) => {
-    console.log(data);
-    console.log(selectedCategory);
-    setData(initialData);
-    const chartData = barChartDataHandler({ data, category: selectedCategory });
-    setTimeout(() => {
-      setData(chartData);
-    }, 1000);
+    const chartData = barChartDataHandler(
+      _.cloneDeep(initialData),
+      selectedCategory
+    );
+    setData(chartData);
   };
 
   return (
@@ -90,11 +92,8 @@ const BoxChart: React.FC = () => {
             bottom: 5,
           }}
         >
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="name" stroke="#8884d8" />
-          <YAxis />
           <Tooltip />
-          <Legend />
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <Bar
             label={renderCustomBarLabel}
             dataKey="Reviewed"
@@ -109,6 +108,9 @@ const BoxChart: React.FC = () => {
             barSize={50}
             stackId="i"
           />
+          <XAxis dataKey="name" stroke="#8884d8" />
+          <YAxis />
+          <Legend />
         </BarChart>
       </ResponsiveContainer>
     </div>
