@@ -4,11 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-let navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "FAQ", href: "/faq" },
-];
+let navLinks = [{ name: "Dashboard", href: "/dashboard" }];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,13 +20,13 @@ const Navbar = () => {
       ) {
         setIsOpen(false);
       }
-      if (session) {
-        navLinks.push({ name: "Dashboard", href: "/dashboard" });
-        console.log("signed In");
-      } else {
-        navLinks = navLinks.filter((link) => link.href !== "/dashboard");
-        console.log("signed Out");
-      }
+      // if (session) {
+      //   navLinks.push({ name: "Dashboard", href: "/dashboard" });
+      //   console.log("signed In");
+      // } else {
+      //   navLinks = navLinks.filter((link) => link.href !== "/dashboard");
+      //   console.log("signed Out");
+      // }
     };
     document.addEventListener("click", handleClickOutside);
     return () => {
@@ -39,7 +35,7 @@ const Navbar = () => {
   }, [session]);
 
   return (
-    <nav className="h-20 w-full">
+    <nav className="h-20 w-full max-w-5xl">
       <div
         ref={targetRef}
         className="z-50 fixed left-1/2 transform -translate-x-1/2 my-2 w-11/12 bg-gray-800 px-4 py-2  rounded-lg mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between"
@@ -83,11 +79,11 @@ const Navbar = () => {
               );
             })}
           </ul>
-          {!router.endsWith("login") && (
+          {/* {!router.endsWith("login") && (
             <Link href="/login" className="btn_secondary text-blue-400">
               Login
             </Link>
-          )}
+          )} */}
         </div>
       </div>
     </nav>
