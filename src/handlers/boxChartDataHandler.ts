@@ -4,6 +4,7 @@ import { timeToNowHandler } from "./home/general/timeToNowHandler";
 type ReviewBoxesType = {
   [key: number]: number;
 };
+
 interface InitialDataType {
   name: string;
   Reviewed: number;
@@ -14,7 +15,6 @@ export const barChartDataHandler = (
   data: InitialDataType[],
   category: string | null
 ) => {
-  console.log(category);
   const { itemsData } = getAppDataHandler();
   if (category === "") {
     itemsData.forEach((item: itemTypes) => dataModifier(data, item));

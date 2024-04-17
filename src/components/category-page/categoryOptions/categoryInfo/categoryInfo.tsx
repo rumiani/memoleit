@@ -10,8 +10,9 @@ export default function CategoryInfo({ category }: { category: string }) {
 
   useEffect(() => {
     const info = categoryItemsCountHandler(category);
-    info.learnedCount
-    setItemInfo(info);
+    if(info){
+      setItemInfo(info);
+    }
   }, [category]);
   return (
     <div>

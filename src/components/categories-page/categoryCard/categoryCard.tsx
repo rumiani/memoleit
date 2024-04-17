@@ -27,19 +27,19 @@ export default function CategoryCard({
       <CategoryName category={category}/>
       <div className="w-full flex flex-row justify-between font-bold">
         <span className="Number of Items text-gray-500 px-1 cursor-default">
-          All: {categoryData.allItemsCount}
+          All: {categoryData?.allItemsCount}
         </span>
         <span
           title="Number of items have been learned"
           className=" text-green-500 px-1 cursor-default"
         >
-          Done: {categoryData.learnedCount}
+          Done: {categoryData?.learnedCount}
         </span>
         <span
           title="Number of items left to learn"
           className="text-yellow-500 px-1 cursor-default"
         >
-          Left: {categoryData.unLearnedCount}
+          Left: {categoryData?.unLearnedCount}
         </span>
       </div>
     </div>

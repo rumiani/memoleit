@@ -24,7 +24,9 @@ export default function CheckboxInput({
 
   useEffect(() => {
     const info = categoryItemsCountHandler(category);
-    setItemInfo(info);
+    if(info){
+      setItemInfo(info);
+    }
   }, [category]);
 
   return (
