@@ -30,8 +30,8 @@ export const categoryStateSlice = createSlice({
           : category
       );
     },
-    categoryEditNameReducer: (state) => {
-      state.categoryNameEditable = !state.categoryNameEditable;
+    categoryEditNameReducer: (state,action: PayloadAction<boolean>) => {
+      state.categoryNameEditable = action.payload;
     },
   },
 });

@@ -20,6 +20,8 @@ const Form = () => {
     const randomItem = randomItemHandler();
     if (randomItem) {
       dispatch(itemReducer(randomItem));
+    }else{
+      dispatch(itemReducer())
     }
   };
 

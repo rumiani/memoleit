@@ -2,7 +2,7 @@ import { categoryTypes } from "@/src/types/interface";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import CategoryInput from "./CategoryInput/CategoryInput";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppSelector } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 
 export default function CategoryName({
@@ -21,7 +21,11 @@ export default function CategoryName({
   }, [categoryNameEditable]);
   return (
     <div className="my-8">
-      {!categoryNameEditable ? (
+      {categoryNameEditable ? (
+        <div>
+          <CategoryInput category={category} />
+        </div>
+      ) : (
         <Link
           href={"/categories/" + categoryUrl}
           title="Open for more details"
@@ -29,11 +33,6 @@ export default function CategoryName({
         >
           <h3 className="w-fit mx-auto text-center">{category.name}</h3>
         </Link>
-      ) : (
-        <div>
-          <CategoryInput category={category} />
-          
-        </div>
       )}
     </div>
   );

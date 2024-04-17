@@ -42,8 +42,10 @@ export const appStateSlice = createSlice({
     logInReducer: (state, action: PayloadAction<object>) => {
       state.user = { ...state.user, ...action.payload };
     },
-    itemReducer: (state, action: PayloadAction<itemTypes>) => {
-      state.item = { ...state.item, ...action.payload };
+    itemReducer: (state, action: PayloadAction<itemTypes | undefined>) => {
+      action.payload
+        ? (state.item = { ...state.item, ...action.payload })
+        : (state.item = initialState.item);
     },
     allItemsReducer: (state, action: PayloadAction<itemTypes[]>) => {
       state.items = [...action.payload];

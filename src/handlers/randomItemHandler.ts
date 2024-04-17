@@ -1,12 +1,10 @@
 import { isEmpty } from "lodash";
-import { randomElementHandler } from "./home/general/randomElementHandler";
 import { itemsToReviewHandler } from "./itemsToReviewHandler";
 
 export const randomItemHandler = () => {
-  const toReveiwItems = itemsToReviewHandler();  
+  const toReveiwItems = itemsToReviewHandler();
   if (!isEmpty(toReveiwItems)) {
-    return randomElementHandler(toReveiwItems);
-  } else {
-    return null;
+    const randomIndex = Math.floor(Math.random() * toReveiwItems.length);
+    return toReveiwItems[randomIndex];
   }
 };

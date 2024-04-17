@@ -10,7 +10,7 @@ process.env.NODE_ENV === "development"
   ? (words = words_11plus)
   : (words = words_11plus);
 
-export const initialDataStoreToLocal = () => {
+export const appDataInitialiser = () => {
   if (typeof window !== "undefined") {
     const appDataJson: string | null = localStorage.getItem("appData");
     let itemsData: itemTypes[] = [];

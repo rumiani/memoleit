@@ -1,8 +1,10 @@
 import { useAppDispatch } from "@/src/app/hooks";
+import saveCategoryNameHandler from "@/src/handlers/saveCategoryNameHandler";
 import { categoryEditNameReducer } from "@/src/redux/categoryStateSlice";
 import { categoryTypes } from "@/src/types/interface";
-import React, { useRef, useState } from "react";
-import { FaEdit, FaSave } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { FaSave } from "react-icons/fa";
+import { toast } from "react-toastify";
 type InputElement = HTMLInputElement | null;
 
 export default function CategoryInput({
@@ -19,50 +21,56 @@ export default function CategoryInput({
     target: { value: React.SetStateAction<string> };
   }) => {
     setCategoryValue(e.target.value);
-    console.log(categoryValue);
   };
-  const editHnadler = () => {
-    (inputElement.current as InputElement)?.focus();
-    setReadOnly(false);
-  };
-  const saveCategoryHandler = () => {
-    console.log("saved");
 
+  const saveCategoryHandler = () => {
     setReadOnly(true);
+    const saveTheCategory = saveCategoryNameHandler({
+      id: category.id,
+      categoryValue,
+    });
+    if (saveTheCategory) {
+      toast.success("category name was saved successfully.", {
+        autoClose: 2000,
+      });
+
+    } else {
+      toast.error("Item was not found");
+    }
+    dispatch(categoryEditNameReducer(false));
   };
+  useEffect(() => {
+    (inputElement.current as InputElement)?.focus();
+  }, []);
   return (
-    <div className="bg-gray-300 my-4 flex flex-wrap gap-2 w-72">
+    <div className=" my-4 flex flex-wrap gap-2">
       <div>
         <input
           ref={inputElement}
           id="inputTitle"
-          className={`w-56 h-full p-1 rounded-lg focus:bg-gray-50 text-xl outline outline-0 transition-all border-none ${
-            readOnly && "focus:shadow-lg focus:shadow-gray-200"
-          }`}
+          className="w-44 h-8 p-1 rounded-lg border px-2 focus:bg-gray-50 text-xl transition-all focus:shadow-lg focus:shadow-gray-200"
           placeholder="Write a title here..."
           autoComplete="off"
           type="text"
           required
-          readOnly={readOnly}
+          // readOnly={readOnly}
           value={categoryValue}
           onChange={changeCategoryNameHandler}
         />
         {categoryValue.length < 3 && (
-          <p className="text-red-500 text-sm pl-4">
-            The input must be more at least 3 characters.
+          <p className="text-red-500 text-xs font-bold p-1">
+            The input must be ≥ 3 letters
           </p>
         )}
       </div>
-      <div>
-
-      </div>
+      <div></div>
       <button
-            onClick={() => dispatch(categoryEditNameReducer())}
-            className="icon !p-2 text-xl !w-fit"
-            title="Filter categories"
-          >
-            <FaSave className="text-3xl text-green-600" />
-          </button>
+        onClick={saveCategoryHandler}
+        className="icon !p-2 text-xl !w-fit"
+        title="Save the category name"
+      >
+        <FaSave className="text-3xl text-green-600" />
+      </button>
     </div>
   );
 }

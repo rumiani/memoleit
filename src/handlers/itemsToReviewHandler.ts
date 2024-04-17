@@ -24,7 +24,7 @@ export const itemsToReviewHandler = () => {
           daysSinceReviewed >= reviewBoxes[item.reviews.box] ||  reviewBoxes[item.reviews.box] === 0;
 
         return (
-          category.status &&
+          category?.status &&
           isInTheBox &&
           (item.reviews.box === 0 || isTimeToReview)
         );

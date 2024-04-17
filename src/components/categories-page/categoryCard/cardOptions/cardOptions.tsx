@@ -25,7 +25,10 @@ export default function CardOptions({ category }: { category: categoryTypes }) {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [showOptions]);
-
+const editHandler = () =>{
+  setShowOptions(false)
+  dispatch(categoryEditNameReducer(true))
+}
   return (
     <div className="relative">
       <button
@@ -46,7 +49,7 @@ export default function CardOptions({ category }: { category: categoryTypes }) {
           >
             <IoClose />
           </button>
-          <button onClick={() => dispatch(categoryEditNameReducer())} className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-400 font-bold hover:text-yellow-600">
+          <button onClick={editHandler} className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-400 font-bold hover:text-yellow-600">
             Edit
           </button>{" "}
           <CategoryDelete category={category} />

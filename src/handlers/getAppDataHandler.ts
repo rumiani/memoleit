@@ -1,8 +1,8 @@
-import { initialDataStoreToLocal } from "./initialDataStoreToLocal";
+import { appDataInitialiser } from "./appDataInitialiser";
 
 export const getAppDataHandler = () => {
   if (typeof window !== "undefined") {
-    initialDataStoreToLocal();
+    appDataInitialiser();
     const appDataJson: string | null = localStorage.getItem("appData");
     if (appDataJson) return JSON.parse(appDataJson);
   }
