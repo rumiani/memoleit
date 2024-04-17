@@ -13,9 +13,9 @@ export default function CategoriesPage() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     appDataInitialiser();
-    const { categories } = getAppDataHandler();
-    if (isEmpty(categories)) {
-      dispatch(categoriesReducer(categories));
+    const newCategories = getAppDataHandler().categories;
+    if (isEmpty(categories) && !isEmpty(newCategories)) {
+      dispatch(categoriesReducer(newCategories));
     }
   }, [categories, dispatch]);
   return (
