@@ -27,13 +27,16 @@ const RichTextEditor = ({register,error,setValue }:propsEditor) => {
     const jsonContent = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );
+    console.log(content);
     
     setValue('body',content)
     register("body", {
 
       validate:{
-        fieldLength : (content) =>{
-          return content.length <=1000 ||"Body must be ≤ 1000 character" 
+        fieldLength : () =>{
+          console.log(content);
+          
+          return editorContent.length <=1000 ||"Body must be ≤ 1000 character" 
         }
       }
     });

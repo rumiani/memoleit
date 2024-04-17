@@ -31,9 +31,11 @@ const CreatedMessage = ({
             Dashboard
           </button>
         </Link>
-        <button className="primaryBtn" onClick={() => newItemHandler()}>
-          New item
-        </button>
+        <Link href="/new">
+          <button className="primaryBtn" onClick={() => newItemHandler()}>
+            New item
+          </button>
+        </Link>
       </div>
     </div>
   );

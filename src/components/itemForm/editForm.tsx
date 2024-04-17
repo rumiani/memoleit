@@ -6,15 +6,20 @@ import { useForm } from "react-hook-form";
 import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
-import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
+import { saveEditedItemHandler } from "@/src/handlers/saveEditedItemHandler";
 
-const ItemForm = () => {
+const EditForm = ({
+  itemDefaultValues,id
+}: {
+  itemDefaultValues: FormValues | undefined, id:string
+}) => {
   const [createdMessage, setCreatedMessage] = useState(false);
   const form = useForm<FormValues>({
-    defaultValues: { title: "", body: "", category: "" },
+    defaultValues: itemDefaultValues,
     mode: "onBlur",
   });
+  console.log(itemDefaultValues);
 
   const {
     register,
@@ -26,11 +31,18 @@ const ItemForm = () => {
     setValue,
     reset,
   } = form;
+  useEffect(() => {
+    if (itemDefaultValues) {
+      setValue("title", itemDefaultValues!.title);
+      setValue("body", itemDefaultValues!.body);
+      setValue("category", itemDefaultValues!.category);
+    }
+  }, [formState, setValue, itemDefaultValues]);
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = (item: FormValues) => {
-    saveNewItemToLocal(item);
+    saveEditedItemHandler(item,id);
   };
 
   if (isSubmitSuccessful) {
@@ -55,7 +67,7 @@ const ItemForm = () => {
               setValue={setValue}
             />
             <ChooseTopic register={register} error={errors.category?.message} />
-            <button className="primaryBtn mx-auto">Save</button>
+            <button className="primaryBtn mx-auto">Save Edit</button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>
           <Preview getValues={getValues} />
@@ -65,4 +77,4 @@ const ItemForm = () => {
   );
 };
 
-export default ItemForm;
+export default EditForm;
