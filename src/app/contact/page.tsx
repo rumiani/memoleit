@@ -1,5 +1,6 @@
 'use client'
 import Head from "next/head";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const Index = () => {
@@ -21,7 +22,14 @@ const Index = () => {
         e.preventDefault();
         console.log(formData);
       };
-    
+    return (
+      <div className="w-full flex justify-center my-16">
+
+      <Link href='mailto:maziar.rumiani@gmail.com' >
+        <button className="primaryBtn mx-auto">Send Email</button>
+      </Link>
+      </div>
+    )
     return (
       <>
             <h2 className="w-11/12 max-w-md my-10 text-lg mx-auto">

@@ -74,7 +74,7 @@ export default function RootLayout({
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
               <InitializingData />
               <Header />
-              <main className="pt-0 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-lg min-h-screen break-words">
+              <main className="pt-0 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-2xl min-h-screen break-words">
                 {children}
               </main>
               <Footer />
