@@ -1,4 +1,4 @@
-import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
+import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHandler";
 import React, { FormEvent, useEffect, useState } from "react";
 interface checkBoxProps {
   category: string;
@@ -12,10 +12,10 @@ export default function CheckboxInput({
 }: checkBoxProps) {
   const [isChecked, setIsChecked] = useState<boolean>(status);
   const [itemInfo, setItemInfo] = useState<{
-    all: number;
-    learned: number;
-    unLearned: number;
-  }>({ all: 0, learned: 0, unLearned: 0 });
+    allItemsCount: number;
+    learnedCount: number;
+    unLearnedCount: number;
+  }>({ allItemsCount: 0, learnedCount: 0, unLearnedCount: 0 });
 
   const inputChangeHandler = () => {
     setIsChecked(!isChecked);
@@ -23,7 +23,7 @@ export default function CheckboxInput({
   };
 
   useEffect(() => {
-    const info = topicItemsCountHandler(category);
+    const info = categoryItemsCountHandler(category);
     setItemInfo(info);
   }, [category]);
 
@@ -64,9 +64,9 @@ pointer-events-none"
         </svg>
       </div>
       <div className="pr-4 w-full text-left flex justify-between">
-        <span>All:{itemInfo.all}</span>
-        <span className="text-green-600">Learned:{itemInfo.learned}</span>
-        <span className="text-yellow-500">Left:{itemInfo.unLearned}</span>
+        <span>All:{itemInfo.allItemsCount}</span>
+        <span className="text-green-600">Learned:{itemInfo.learnedCount}</span>
+        <span className="text-yellow-500">Left:{itemInfo.unLearnedCount}</span>
       </div>
     </div>
   );

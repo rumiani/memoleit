@@ -1,7 +1,4 @@
 import { barChartDataHandler } from "@/src/handlers/boxChartDataHandler";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { topicItemsCountHandler } from "@/src/handlers/topicItemsCountHandler";
-import { categoryTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
 import {
   BarChart,
@@ -14,8 +11,7 @@ import {
   Legend,
 } from "recharts";
 import SelectCategory from "./selectCategory/selectCategory";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { categoryNameReducer } from "@/src/redux/categoryStateSlice";
+import { useAppSelector } from "@/src/app/hooks";
 import _ from "lodash";
 import TotalData from "./totalData/totalData";
 interface DataType {
@@ -79,44 +75,46 @@ const BoxChart: React.FC = () => {
   };
 
   return (
-    <div style={{ width: "100%", height: "400px" }}>
-      <div className="flex flex-row justify-around items-center">
-      <SelectCategory handleChange={handleChange} />
-      <TotalData data={data}/>
+    <div className="w-full">
+      <div className="flex flex-wrap mb-8 justify-around items-center">
+        <SelectCategory handleChange={handleChange} />
+        <TotalData category={category.name} data={data} />
       </div>
-      <ResponsiveContainer>
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <Tooltip />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <Bar
-            label={renderCustomBarLabel}
-            dataKey="Reviewed"
-            fill="lightgreen"
-            barSize={50}
-            stackId="i"
-          />
-          <Bar
-            label={renderCustomBarLabel}
-            dataKey="Pending"
-            fill="red"
-            barSize={50}
-            stackId="i"
-          />
-          <XAxis dataKey="name" stroke="#8884d8" />
-          <YAxis />
-          <Legend />
-        </BarChart>
-      </ResponsiveContainer>
+      <div className="w-full h-[400px]">
+        <ResponsiveContainer>
+          <BarChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <Tooltip />
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <Bar
+              label={renderCustomBarLabel}
+              dataKey="Reviewed"
+              fill="lightgreen"
+              barSize={50}
+              stackId="i"
+            />
+            <Bar
+              label={renderCustomBarLabel}
+              dataKey="Pending"
+              fill="red"
+              barSize={50}
+              stackId="i"
+            />
+            <XAxis dataKey="name" stroke="#8884d8" />
+            <YAxis />
+            <Legend />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
