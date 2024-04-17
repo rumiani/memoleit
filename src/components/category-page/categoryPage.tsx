@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import categoryExistHandler from "@/src/handlers/categoryExistHandler";
 import Link from "next/link";
 import CategoryOptions from "./categoryOptions/categoryOptions";

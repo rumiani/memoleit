@@ -10,7 +10,7 @@ const initialCategoryState: initialCategoryStateTypes = {
     createdAt: 0,
   },
   categories: [],
-  categoryNameEditable: false,
+  categoryNameEditable: '',
 };
 
 export const categoryStateSlice = createSlice({
@@ -30,7 +30,9 @@ export const categoryStateSlice = createSlice({
           : category
       );
     },
-    categoryEditNameReducer: (state,action: PayloadAction<boolean>) => {
+    categoryEditNameReducer: (state,action: PayloadAction<string>) => {
+      console.log(action.payload);
+      
       state.categoryNameEditable = action.payload;
     },
   },

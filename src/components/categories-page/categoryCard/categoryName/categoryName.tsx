@@ -13,15 +13,11 @@ export default function CategoryName({
   const { categoryNameEditable } = useAppSelector(
     (state) => state.categoryState
   );
-
   const categoryUrl = makeUrlFriendly(category.name);
 
-  useEffect(() => {
-    console.log(categoryNameEditable);
-  }, [categoryNameEditable]);
   return (
     <div className="my-8">
-      {categoryNameEditable ? (
+      {categoryNameEditable === category.name? (
         <div>
           <CategoryInput category={category} />
         </div>

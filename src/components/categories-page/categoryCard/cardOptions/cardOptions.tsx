@@ -27,7 +27,7 @@ export default function CardOptions({ category }: { category: categoryTypes }) {
   }, [showOptions]);
 const editHandler = () =>{
   setShowOptions(false)
-  dispatch(categoryEditNameReducer(true))
+  dispatch(categoryEditNameReducer(category.name))
 }
   return (
     <div className="relative">

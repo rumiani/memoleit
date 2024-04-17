@@ -1,7 +1,13 @@
 import { useAppDispatch } from "@/src/app/hooks";
+import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import saveCategoryNameHandler from "@/src/handlers/saveCategoryNameHandler";
-import { categoryEditNameReducer } from "@/src/redux/categoryStateSlice";
+import {
+  categoriesReducer,
+  categoryEditNameReducer,
+} from "@/src/redux/categoryStateSlice";
 import { categoryTypes } from "@/src/types/interface";
+import { isEmpty } from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -34,14 +40,14 @@ export default function CategoryInput({
         autoClose: 2000,
       });
 
+      const { categories } = getAppDataHandler();
+      dispatch(categoriesReducer(categories));
+      dispatch(categoryEditNameReducer(""));
     } else {
       toast.error("Item was not found");
     }
-    dispatch(categoryEditNameReducer(false));
   };
-  useEffect(() => {
-    (inputElement.current as InputElement)?.focus();
-  }, []);
+
   return (
     <div className=" my-4 flex flex-wrap gap-2">
       <div>
@@ -53,7 +59,6 @@ export default function CategoryInput({
           autoComplete="off"
           type="text"
           required
-          // readOnly={readOnly}
           value={categoryValue}
           onChange={changeCategoryNameHandler}
         />

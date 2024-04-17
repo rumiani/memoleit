@@ -8,5 +8,5 @@ export interface initialStateTypes {
 export interface initialCategoryStateTypes {
   category:categoryTypes,
   categories:categoryTypes[],
-  categoryNameEditable:boolean
+  categoryNameEditable:string
 }

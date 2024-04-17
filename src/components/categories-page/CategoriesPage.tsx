@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { categoryTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import Link from "next/link";
-import { useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryCard from "./categoryCard/categoryCard";
+import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 
 export default function CategoriesPage() {
   const { categories } = useAppSelector((state) => state.categoryState);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    appDataInitialiser();
+    const { categories } = getAppDataHandler();
+    if (isEmpty(categories)) {
+      dispatch(categoriesReducer(categories));
+    }
+  }, [categories, dispatch]);
   return (
     <div>
       <h2 className="font-bold">Categories</h2>
