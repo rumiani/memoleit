@@ -11,7 +11,7 @@ import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
-export default function ReviewItem({ item }: { item: itemTypes }) {
+export default function ReviewItemCard({ item }: { item: itemTypes }) {
   const dispatch = useAppDispatch();
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
@@ -39,7 +39,7 @@ export default function ReviewItem({ item }: { item: itemTypes }) {
       <div className="buttons flex justify-around w-full mt-4 gap-2">
         <button
           onClick={() => goToNextItem(item, false)}
-          className="primaryBtn !w-42 !bg-red-500"
+          className="primaryBtn !px-0 !w-42 !bg-red-500"
         >
           I don&apos;t know
         </button>

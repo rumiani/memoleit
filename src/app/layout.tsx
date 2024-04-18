@@ -12,9 +12,9 @@ import InitializingData from "../components/initializingData/initializingData";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const APP_NAME = "MemoLight";
-const APP_DEFAULT_TITLE = "MemoLight";
-const APP_TITLE_TEMPLATE = "%s - MemoLight";
+const APP_NAME = "Memoleit";
+const APP_DEFAULT_TITLE = "Memoleit";
+const APP_TITLE_TEMPLATE = "%s - Memoleit";
 const APP_DESCRIPTION = "Memorise anything faster";
 export const metadata: Metadata = {
   icons: {

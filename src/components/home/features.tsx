@@ -40,7 +40,7 @@ export default function Features() {
           Everything you need to memorise things faster
         </h2>
         <p className="text-lg mt-4 text-slate-600">
-          Memolight helps you to learn more efficent and faster.
+          Memoleit helps you to learn more efficent and faster.
         </p>
       </div>
 

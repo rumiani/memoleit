@@ -10,11 +10,11 @@ export default function Hero() {
           Master Knowledge, One Card at a Time!
         </h1>
         <p className="text-lg mt-4 text-slate-600 max-w-xl">
-          Memolight is an innovative learning platform that helps you master
-          new topics using the proven Leitner method. Harness the power of
-          spaced repetition to improve memory retention and recall while making
-          your study sessions more efficient and engaging. Join our community
-          and accelerate your learning journey today!
+          Memoleit is an innovative learning platform that helps you master new
+          topics using the proven Leitner method. Harness the power of spaced
+          repetition to improve memory retention and recall while making your
+          study sessions more efficient and engaging. Join our community and
+          accelerate your learning journey today!
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <Link href="/dashboard" rel="noopener" className="primaryBtn">

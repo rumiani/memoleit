@@ -18,18 +18,18 @@ const q = [
   },
   {
     id: 2,
-    q: "How do I create flashcards on Memolight?",
+    q: "How do I create flashcards on Memoleit?",
     a: "Creating flashcards is simple! You can enter your question and an answer as the description or definition and then a category for that question.",
   },
   {
     id: 3,
     q: "How often should I review my flashcards?",
-    a: "MemoLight uses spaced repetition to schedule your reviews. Flashcards in lower boxes are reviewed more frequently, while those in higher boxes are reviewed less often.",
+    a: "Memoleit uses spaced repetition to schedule your reviews. Flashcards in lower boxes are reviewed more frequently, while those in higher boxes are reviewed less often.",
   },
   {
     id: 4,
-    q: "Is MemoLight available on mobile devices?",
-    a: "Absolutely! MemoLight is designed to be mobile-friendly so you can study and review your flashcards on the go.",
+    q: "Is Memoleit available on mobile devices?",
+    a: "Absolutely! Memoleit is designed to be mobile-friendly so you can study and review your flashcards on the go.",
   },
 ];
 export default function Faq() {

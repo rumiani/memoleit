@@ -1,7 +1,7 @@
 {
-  "name": "MemoLight PWA app",
-  "short_name": "MemoLight",
-  "description": "MemoLight is a PWA that helps you memorise things faster.",
+  "name": "Memoleit PWA app",
+  "short_name": "Memoleit",
+  "description": "Memoleit is a PWA that helps you memorise things faster.",
   "icons": [
     {
       "src": "/icons/favicon.png",

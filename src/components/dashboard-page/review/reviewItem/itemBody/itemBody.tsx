@@ -7,7 +7,7 @@ export default function ItemBody({ body }: { body: string }) {
   }, [body]);
 
   return (
-    <div>
+    <div className="mt-4">
       {showBody && (
         <p className="text-gray-600">
           {body.length === 0 ? "There is no description for this item." : body}
