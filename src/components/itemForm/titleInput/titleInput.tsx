@@ -18,8 +18,16 @@ const TitleInput = ({register, error}:TitleProps) => {
           {...register('title',{
             required:'Title is required',
             pattern:{
-              value: /^.{3,100}$/,
-              message:'Title must be 3-100 character'
+              value: /^(?!\s*$).{1,100}$/,
+              message:'Title must be 1-100 character'
+            },
+            minLength: {
+              value: 1,
+              message: 'Input must be 1 - 100 character long'
+            },
+            maxLength: {
+              value: 100,
+              message: 'Input must be 1 - 100 characters long'
             }
           })}
         />

@@ -33,7 +33,7 @@ export default function ChooseTopic({
           required: "Category is required",
           pattern: {
             value: /^[a-zA-Z0-9]*$/, 
-            message: 'Please enter only letters and numbers'
+            message: 'Please enter only English letters and numbers'
           },
           minLength: {
             value: 3,
