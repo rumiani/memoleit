@@ -47,7 +47,7 @@ const EditForm = ({
       console.log(getValues().body);      
       setValue("category", itemDefaultValues!.category);
     }
-  }, [formState, setValue, itemDefaultValues]);
+  }, [formState, setValue, itemDefaultValues,getValues]);
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
