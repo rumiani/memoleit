@@ -9,9 +9,10 @@ import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 type DialogElement = HTMLDialogElement | null;
 
 export default function CategoryDelete({
-  category,
+  category,deleteHandler
 }: {
-  category: categoryTypes;
+  category: categoryTypes,
+  deleteHandler:Function
 }) {
   const [inputValue, setInputValue] = useState<string>("");
   const dispatch = useAppDispatch();
@@ -27,14 +28,11 @@ export default function CategoryDelete({
 
   const deleteHadndler = () => {
     (dialogElement.current as DialogElement)?.showModal();
-    const { categories } = getAppDataHandler();
-    dispatch(categoriesReducer(categories));
   };
-
+  
   const deleteCategory = () => {
     (dialogElement.current as DialogElement)?.close();
-    const remainedCategories = deleteCategoryHandler(category.name);
-    dispatch(categoriesReducer(remainedCategories));
+    deleteHandler()
   };
   return (
     <>

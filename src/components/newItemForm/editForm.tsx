@@ -8,18 +8,25 @@ import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
 import { saveEditedItemHandler } from "@/src/handlers/saveEditedItemHandler";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { isEmpty } from "lodash";
+import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { useAppDispatch } from "@/src/app/hooks";
 
 const EditForm = ({
-  itemDefaultValues,id
+  itemDefaultValues,
+  id,
 }: {
-  itemDefaultValues: FormValues | undefined, id:string
+  itemDefaultValues: FormValues | undefined;
+  id: string;
 }) => {
   const [createdMessage, setCreatedMessage] = useState(false);
+  const dispatch = useAppDispatch();
+
   const form = useForm<FormValues>({
     defaultValues: itemDefaultValues,
     mode: "onBlur",
   });
-  console.log(itemDefaultValues);
 
   const {
     register,
@@ -42,12 +49,16 @@ const EditForm = ({
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = (item: FormValues) => {
-    saveEditedItemHandler(item,id);
+    saveEditedItemHandler(item, id);
   };
 
   if (isSubmitSuccessful) {
     setCreatedMessage(true);
     reset();
+    const existedCategories = getAppDataHandler().categories;
+    if (!isEmpty(existedCategories)) {
+      dispatch(categoriesReducer(existedCategories));
+    }
   }
   return (
     <>

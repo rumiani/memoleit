@@ -2,7 +2,7 @@
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { FormValues, itemTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
-import EditForm from "@/src/components/itemForm/editForm";
+import EditForm from "@/src/components/newItemForm/editForm";
 
 export default function Item({ params }: { params: { id: string } }) {
   const [formData, setFormData] = useState<FormValues | undefined>(undefined);

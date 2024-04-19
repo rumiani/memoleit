@@ -1,5 +1,5 @@
 import { DevTool } from "@hookform/devtools";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TitleInput from "./titleInput/titleInput";
 import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";
@@ -8,8 +8,13 @@ import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { isEmpty } from "lodash";
+import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { useAppDispatch } from "@/src/app/hooks";
 
 const ItemForm = () => {
+  const dispatch = useAppDispatch();
   const [createdMessage, setCreatedMessage] = useState(false);
   const form = useForm<FormValues>({
     defaultValues: { title: "", body: "", category: "" },
@@ -31,6 +36,10 @@ const ItemForm = () => {
 
   const submitHandler = (item: FormValues) => {
     saveNewItemToLocal(item);
+    const existedCategories = getAppDataHandler().categories;
+    if (!isEmpty(existedCategories)) {
+      dispatch(categoriesReducer(existedCategories));
+    }
   };
 
   if (isSubmitSuccessful) {

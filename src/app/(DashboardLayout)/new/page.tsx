@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import React from 'react'
-import ItemForm from '@/src/components/itemForm/itemForm'
+import React from "react";
+import ItemForm from "@/src/components/newItemForm/itemForm";
 
 const Index = () => {
   return (
-    <div className=''>
-         <ItemForm/>
+    <div>
+      <ItemForm />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

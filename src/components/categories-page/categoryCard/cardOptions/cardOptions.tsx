@@ -4,7 +4,12 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import CategoryDelete from "./categoryDelete/categoryDelete";
 import { useAppDispatch } from "@/src/app/hooks";
-import { categoryEditNameReducer } from "@/src/redux/categoryStateSlice";
+import {
+  categoriesReducer,
+  categoryEditNameReducer,
+} from "@/src/redux/categoryStateSlice";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
 
 export default function CardOptions({ category }: { category: categoryTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -14,21 +19,31 @@ export default function CardOptions({ category }: { category: categoryTypes }) {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (modelRef.current && !modelRef.current.contains(event.target as Node)) { 
-               setShowOptions(false)
+      if (
+        modelRef.current &&
+        !modelRef.current.contains(event.target as Node)
+      ) {
+        setShowOptions(false);
       }
     };
     if (showOptions) {
-      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener("mousedown", handleOutsideClick);
     }
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [showOptions]);
-const editHandler = () =>{
-  setShowOptions(false)
-  dispatch(categoryEditNameReducer(category.name))
-}
+
+  const editHandler = () => {
+    setShowOptions(false);
+    dispatch(categoryEditNameReducer(category.name));
+  };
+  const deleteHandler = () => {
+    setShowOptions(false);
+    const remainedCategories = deleteCategoryHandler(category.name);
+    dispatch(categoriesReducer(remainedCategories));
+  };
+
   return (
     <div className="relative">
       <button
@@ -49,10 +64,13 @@ const editHandler = () =>{
           >
             <IoClose />
           </button>
-          <button onClick={editHandler} className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-400 font-bold hover:text-yellow-600">
+          <button
+            onClick={editHandler}
+            className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-400 font-bold hover:text-yellow-600"
+          >
             Edit
           </button>{" "}
-          <CategoryDelete category={category} />
+          <CategoryDelete category={category} deleteHandler={deleteHandler} />
         </div>
       )}
     </div>

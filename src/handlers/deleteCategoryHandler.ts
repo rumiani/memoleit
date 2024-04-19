@@ -9,8 +9,6 @@ export default function deleteCategoryHandler(category: string) {
   const foundCategory = categories.find(
     (item: categoryTypes) => item.name.toLowerCase() === category.toLowerCase()
   );
-  console.log(foundCategory);
-
   if (!foundCategory) {
     toast.error("Item was not found");
   } else {
