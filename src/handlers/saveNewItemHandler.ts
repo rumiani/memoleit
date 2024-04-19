@@ -28,7 +28,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       reviews: {
         box: 1,
         review: 0,
-        lastReviewDate: 0,
+        lastReviewDate: Date.now(),
       },
     };
     itemsData.push(itemObject);

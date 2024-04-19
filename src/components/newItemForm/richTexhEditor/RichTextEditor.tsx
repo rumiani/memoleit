@@ -47,8 +47,6 @@ const RichTextEditor = ({
     setEditorState(editorState);
     const content = editorState.getCurrentContent().getPlainText("");
     setEditorContent(content);
-    console.log(editorState.getCurrentContent());
-
     const jsonContent = JSON.stringify(
       convertToRaw(editorState.getCurrentContent())
     );

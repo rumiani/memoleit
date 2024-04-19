@@ -30,6 +30,7 @@ const dataModifier = (data: InitialDataType[], item: itemTypes) => {
   const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
   const daysSinceReviewed = timeToNowHandler(item.reviews.lastReviewDate).days;
   const isTimeToReview = daysSinceReviewed >= reviewBoxes[item.reviews.box];
+  
   if (isTimeToReview) {
     data[item.reviews.box - 1].Pending += 1;
   } else {

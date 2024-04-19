@@ -17,17 +17,12 @@ export const itemsToReviewHandler = () => {
         const category = categories.find(
           (category: categoryTypes) => category.name === item.category
         );
-
         // conditions
         const isInTheBox = item.reviews.box < 6;
         const isTimeToReview =
-          daysSinceReviewed >= reviewBoxes[item.reviews.box] ||  reviewBoxes[item.reviews.box] === 0;
+          daysSinceReviewed >= reviewBoxes[item.reviews.box];
 
-        return (
-          category?.status &&
-          isInTheBox &&
-          (item.reviews.box === 0 || isTimeToReview)
-        );
+        return category?.status && isInTheBox && isTimeToReview;
       });
       return itemsToReview;
     }

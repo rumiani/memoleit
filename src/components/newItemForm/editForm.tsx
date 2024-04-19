@@ -44,7 +44,6 @@ const EditForm = ({
     if (itemDefaultValues) {
       setValue("title", itemDefaultValues!.title);
       setValue("body", itemDefaultValues!.body);
-      console.log(getValues().body);      
       setValue("category", itemDefaultValues!.category);
     }
   }, [formState, setValue, itemDefaultValues,getValues]);
