@@ -12,6 +12,7 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
 import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+import { convertFromRaw } from "draft-js";
 
 const EditForm = ({
   itemDefaultValues,
@@ -42,6 +43,7 @@ const EditForm = ({
     if (itemDefaultValues) {
       setValue("title", itemDefaultValues!.title);
       setValue("body", itemDefaultValues!.body);
+      console.log(getValues().body);      
       setValue("category", itemDefaultValues!.category);
     }
   }, [formState, setValue, itemDefaultValues]);
@@ -76,6 +78,8 @@ const EditForm = ({
               error={errors.body?.message}
               register={register}
               setValue={setValue}
+              defaultValue={itemDefaultValues?.body}
+              getValues={getValues}
             />
             <ChooseTopic register={register} error={errors.category?.message} />
             <button className="primaryBtn mx-auto">Save Edit</button>
