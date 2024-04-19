@@ -17,7 +17,6 @@ interface propsEditor {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
   setValue: UseFormSetValue<FormValues>;
-  getValues: UseFormGetValues<FormValues>;
   defaultValue?: string;
 }
 
@@ -25,22 +24,24 @@ const RichTextEditor = ({
   register,
   error,
   setValue,
-  getValues,
   defaultValue,
 }: propsEditor) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [editorContent, setEditorContent] = useState("");
+  const [bodyLoaded, setBodyLoaded] = useState(false);
+
 
   useEffect(() => {
-    if (defaultValue) {
+    if (defaultValue && !bodyLoaded) {
       const contentState = convertFromRaw(JSON.parse(defaultValue));
       const newEditorState = EditorState.createWithContent(contentState);
       const content = editorState.getCurrentContent().getPlainText("");
       setEditorContent(content);
       setEditorState(newEditorState);
+      setBodyLoaded(true)
     }
     // }
-  }, [defaultValue]);
+  }, [defaultValue,editorState, bodyLoaded]);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);

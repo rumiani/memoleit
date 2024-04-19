@@ -22,6 +22,7 @@ const EditForm = ({
   id: string;
 }) => {
   const [createdMessage, setCreatedMessage] = useState(false);
+
   const dispatch = useAppDispatch();
 
   const form = useForm<FormValues>({
@@ -79,7 +80,6 @@ const EditForm = ({
               register={register}
               setValue={setValue}
               defaultValue={itemDefaultValues?.body}
-              getValues={getValues}
             />
             <ChooseTopic register={register} error={errors.category?.message} />
             <button className="primaryBtn mx-auto">Save Edit</button>
