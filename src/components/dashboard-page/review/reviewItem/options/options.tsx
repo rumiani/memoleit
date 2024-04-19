@@ -1,25 +1,19 @@
 "use client";
-
-import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
+import React, { useState } from "react";
 import { editHandler } from "@/src/handlers/editHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
-import { allItemsReducer, itemReducer } from "@/src/redux/appStateSlice";
+import { itemReducer } from "@/src/redux/appStateSlice";
 import { itemTypes } from "@/src/types/interface";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 
 export default function Options({ item }: { item: itemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
-  const params = useParams<{ category: string }>();
-  const path = usePathname();
 
   const removeBtnFunction = () => {
     setShowOptions(false);
@@ -29,6 +23,8 @@ export default function Options({ item }: { item: itemTypes }) {
       const randomItem = randomItemHandler();
       if (randomItem) {
         dispatch(itemReducer(randomItem));
+      } else {
+        dispatch(itemReducer());
       }
     }
   };
