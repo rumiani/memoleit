@@ -25,14 +25,14 @@ const itemsNav = [
     icon: <RiFoldersFill className=" text-gray-700" />,
   },
   {
-    url: "/new",
-    title: "Add a new item",
-    icon: <MdNoteAdd className="text-green-700" />,
-  },
-  {
     url: "/search",
     title: "Search an item",
     icon: <IoSearchCircle className="text-gray-700" />,
+  },
+  {
+    url: "/new",
+    title: "Add a new item",
+    icon: <MdNoteAdd className="text-green-700" />,
   },
 ];
 
@@ -51,7 +51,7 @@ export default function ItemsNav() {
               } icon !p-2 !w-fit`}
             >
               {item.icon}
-              <span className="hidden sm:block text-xl mx-2 pt-2">
+              <span className="hidden md:block text-xl mx-2 pt-2">
                 {item.url.substring(1)}
               </span>
             </Link>
