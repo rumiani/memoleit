@@ -11,7 +11,7 @@ const features = [
   {
     title: "Leitner Box Organization",
     description:
-      "Organize your flashcards into boxes based on familiarity and and saved time.",
+      "Organize your flashcards into boxes based on familiarity and saved time.",
     icon: <IoSettings />,
   },
   {
@@ -40,7 +40,7 @@ export default function Features() {
           Everything you need to memorise things faster
         </h2>
         <p className="text-lg mt-4 text-slate-600">
-          Memoleit helps you to learn more efficent and faster.
+          Memoleit helps you to learn more efficiently and faster.
         </p>
       </div>
 
