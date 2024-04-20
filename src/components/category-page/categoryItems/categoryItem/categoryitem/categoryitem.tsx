@@ -2,7 +2,6 @@
 import { itemTypes } from "@/src/types/interface";
 import React from "react";
 import Options from "./options/options";
-import ItemProgress from "../../../../dashboard-page/review/reviewItem/itemProgress/itemProgress";
 import ItemBody from "./itemBody/itemBody";
 import _ from "lodash";
 import Link from "next/link";
@@ -20,7 +19,7 @@ export default function CategoryItem({ item }: { item: itemTypes }) {
     dispatch(itemReducer(newRandomItem!));
   };
   return (
-    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full max-w-96 mx-auto mt-10">
+    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-60 sm:w-72 mx-auto">
       <div>
         <div className="relative flex justify-between">
           <Link
@@ -36,9 +35,7 @@ export default function CategoryItem({ item }: { item: itemTypes }) {
           {_.capitalize(item.title)}
         </h3>
       </div>
-      <div className="mt-8">
-        <ItemBody body={item.body} />
-      </div>
+      <ItemBody body={item.body} />
     </div>
   );
 }

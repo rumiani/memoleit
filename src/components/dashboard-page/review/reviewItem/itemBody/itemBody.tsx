@@ -17,11 +17,11 @@ export default function ItemBody({ body }: { body: string }) {
   return (
     <div className="mt-4">
       {showBody && (
-        <p className="text-gray-600">
-          {body.length === 0
+        <div className="text-gray-600">
+          {bodyValue === ''
             ? "There is no description for this item."
             : bodyValue}
-        </p>
+        </div>
       )}
       <button
         onClick={() => setShowBody(!showBody)}

@@ -9,12 +9,22 @@ export default function ItemBody({ body }: { body: string }) {
     setShowBody(false);
     if (body) {
       const convertedFromRaw = convertFromRaw(JSON.parse(body)).getPlainText();
+      console.log(convertedFromRaw);
       setBodyValue(convertedFromRaw);
+      
     }
-  }, [body]);
+    console.log(bodyValue);
+    
+  }, [body,bodyValue]);
   return (
-    <div>
-      {showBody && body && <p className="text-gray-600">{bodyValue}</p>}
+    <div className="mt-8">
+      {showBody && (
+        <div className="text-gray-600">
+          {bodyValue === ""
+            ? "There is no description for this item."
+            : bodyValue}
+        </div>
+      )}
       <button
         onClick={() => setShowBody(!showBody)}
         className="text-blue-500 w-fit mx-auto block text-center"

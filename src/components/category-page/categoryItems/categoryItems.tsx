@@ -16,7 +16,7 @@ export default function CategoryItems({ category }: { category: string }) {
       dispatch(allItemsReducer(filteredItemsData));
   }, [items, dispatch, category]);
   return (
-    <div className="">
+    <div className="flex flex-wrap justify-around mt-8 gap-2">
       {isEmpty(items) ? (
         <div className="card_message">{category} is empty.</div>
       ) : (
