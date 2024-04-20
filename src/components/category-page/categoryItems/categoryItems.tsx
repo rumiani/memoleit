@@ -4,7 +4,7 @@ import { isEmpty } from "lodash";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { allItemsReducer } from "@/src/redux/appStateSlice";
-import CategoryItem from "./categoryItem/categoryitem/categoryitem";
+import CategoryItem from "../../categoryitem/categoryitem";
 
 export default function CategoryItems({ category }: { category: string }) {
   const { items } = useAppSelector((state) => state.appState);

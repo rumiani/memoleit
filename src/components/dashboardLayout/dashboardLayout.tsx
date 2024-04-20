@@ -6,6 +6,7 @@ import { MdNoteAdd } from "react-icons/md";
 import { RiFoldersFill } from "react-icons/ri";
 import Link from "next/link";
 import { FaReadme } from "react-icons/fa";
+import { IoSearchCircle } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 const itemsNav = [
   {
@@ -27,6 +28,11 @@ const itemsNav = [
     url: "/new",
     title: "Add a new item",
     icon: <MdNoteAdd className="text-green-700" />,
+  },
+  {
+    url: "/search",
+    title: "Search an item",
+    icon: <IoSearchCircle className="text-gray-700" />,
   },
 ];
 

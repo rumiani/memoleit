@@ -19,7 +19,7 @@ export default function CategoryItem({ item }: { item: itemTypes }) {
     dispatch(itemReducer(newRandomItem!));
   };
   return (
-    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-60 sm:w-72 mx-auto">
+    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-60 sm:w-72 mx-auto my-4">
       <div>
         <div className="relative flex justify-between">
           <Link
