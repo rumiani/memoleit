@@ -6,12 +6,12 @@ export default function ItemBody({ body }: { body: string }) {
 
   return (
     <div>
-      {showBody && <p className="text-gray-600">{convertFromRaw(JSON.parse(body)).getPlainText()}</p>}
+      {showBody && body && <p className="text-gray-600">{convertFromRaw(JSON.parse(body)).getPlainText()}</p>}
       <button
         onClick={() => setShowBody(!showBody)}
         className="text-blue-500 w-fit mx-auto block text-center"
       >
-        {showBody ? "Hide" : "See"} the descriptiond
+        {showBody ? "Hide" : "See"} the description
       </button>
     </div>
   );
