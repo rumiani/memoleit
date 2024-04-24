@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FaReadme } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
 import { usePathname } from "next/navigation";
+import { capitalize } from "lodash";
 const itemsNav = [
   {
     url: "/dashboard",
@@ -51,8 +52,8 @@ export default function ItemsNav() {
               } icon !p-2 !w-fit`}
             >
               {item.icon}
-              <span className="hidden md:block text-xl mx-2 pt-2">
-                {item.url.substring(1)}
+              <span className="hidden lg:block text-xl mx-2 pt-2">
+                {capitalize(item.url.substring(1))}
               </span>
             </Link>
           </div>

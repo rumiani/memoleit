@@ -22,7 +22,7 @@ export const itemsToReviewHandler = () => {
         const isTimeToReview =
           daysSinceReviewed >= reviewBoxes[item.reviews.box];
 
-        return category?.status && isInTheBox && isTimeToReview;
+        return category?.status && isInTheBox //&& isTimeToReview;
       });
       return itemsToReview;
     }
