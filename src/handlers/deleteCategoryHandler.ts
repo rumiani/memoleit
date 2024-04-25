@@ -10,7 +10,7 @@ export default function deleteCategoryHandler(category: string) {
     (item: categoryTypes) => item.name.toLowerCase() === category.toLowerCase()
   );
   if (!foundCategory) {
-    toast.error("Item was not found");
+    return false;
   } else {
     appData.categories = categories.filter(
       (item: categoryTypes) => capitalize(item.name) !== capitalize(category)
@@ -19,9 +19,6 @@ export default function deleteCategoryHandler(category: string) {
       (item: itemTypes) => capitalize(item.category) !== capitalize(category)
     );
     localStorage.setItem("appData", JSON.stringify(appData));
-    toast.success(category + "category was successfully deleted.", {
-      autoClose: 2000,
-    });
-    return appData.categories
+    return true;
   }
 }

@@ -6,25 +6,27 @@ type ReviewBoxesType = {
 };
 const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
 
-export const itemsToReviewHandler = () => {
+export const closestItemToReview = () => {
   if (typeof window !== "undefined") {
     const { itemsData, categories } = getAppDataHandler();
+    let timeToReview: number;
     if (itemsData.length > 0) {
-      const itemsToReview = itemsData.filter((item: itemTypes) => {
+      itemsData.forEach((item: itemTypes, i: number) => {
         const daysSinceReviewed = timeToNowHandler(
           item.reviews.lastReviewDate
         ).days;
-        const category = categories.find(
-          (category: categoryTypes) => category.name === item.category
-        );
-        // conditions
         const isInTheBox = item.reviews.box < 6;
-        const isTimeToReview =
-          daysSinceReviewed >= reviewBoxes[item.reviews.box];
-
-        return category?.status && isInTheBox && isTimeToReview;
+        const notTimeToReview =
+          daysSinceReviewed < reviewBoxes[item.reviews.box];
+        if (
+          !timeToReview ||
+          (isInTheBox &&
+            notTimeToReview &&
+            timeToReview < item.reviews.lastReviewDate)
+        )
+          timeToReview = item.reviews.lastReviewDate;
       });
-      return itemsToReview;
     }
+    return timeToReview!;
   }
 };

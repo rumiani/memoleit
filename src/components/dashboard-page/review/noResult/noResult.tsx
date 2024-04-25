@@ -1,5 +1,6 @@
 import Spinner from "@/src/components/spinner/spinner";
 import React, { useEffect, useState } from "react";
+import NextClosest from "./nextClosest/nextClosest";
 
 export default function NoResult() {
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,8 @@ export default function NoResult() {
     }, 1000);
   });
   return (
-    <div className="p-8 flex justify-center">
+    <div className="p-8 flex flex-col text-center justify-center">
+      <NextClosest />
       {loading ? (
         <Spinner size={100} />
       ) : (

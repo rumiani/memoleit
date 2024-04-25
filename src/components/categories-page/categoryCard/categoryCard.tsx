@@ -13,6 +13,7 @@ export default function CategoryCard({
 }) {
   const { daysHoursAgo, startedDate } = timeToNowHandler(category.createdAt);
   const categoryData = categoryItemsCountHandler(category.name);
+  
   return (
     <div className="w-full max-w-72 p-4 rounded-lg border border-gray-300 shadow-sm shadow-gray-200">
       <div className=" flex flex-row justify-between mb-4">

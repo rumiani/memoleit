@@ -7,7 +7,6 @@ export default function ItemBody({ body }: { body: string }) {
 
   useEffect(() => {
     setShowBody(false);
-
     if (body) {
       const convertedFromRaw = convertFromRaw(JSON.parse(body)).getPlainText();
       setBodyValue(convertedFromRaw);

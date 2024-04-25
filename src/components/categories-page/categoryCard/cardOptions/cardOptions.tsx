@@ -10,6 +10,7 @@ import {
 } from "@/src/redux/categoryStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
+import { toast } from "react-toastify";
 
 export default function CardOptions({ category }: { category: categoryTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -38,10 +39,19 @@ export default function CardOptions({ category }: { category: categoryTypes }) {
     setShowOptions(false);
     dispatch(categoryEditNameReducer(category.name));
   };
+
   const deleteHandler = () => {
     setShowOptions(false);
-    const remainedCategories = deleteCategoryHandler(category.name);
-    dispatch(categoriesReducer(remainedCategories));
+    const deleteResult = deleteCategoryHandler(category.name);
+    if (deleteResult) {
+      const { categories } = getAppDataHandler();
+      if (categories) dispatch(categoriesReducer(categories));
+      toast.success(category.name + " category was successfully deleted.", {
+        autoClose: 2000,
+      });
+    } else {
+      toast.error(category.name + " category was not found");
+    }
   };
 
   return (

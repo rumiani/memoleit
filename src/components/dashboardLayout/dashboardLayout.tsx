@@ -7,6 +7,7 @@ import { RiFoldersFill } from "react-icons/ri";
 import Link from "next/link";
 import { FaReadme } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
+import { TbTransferVertical } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import { capitalize } from "lodash";
 const itemsNav = [
@@ -29,6 +30,11 @@ const itemsNav = [
     url: "/search",
     title: "Search an item",
     icon: <IoSearchCircle className="text-gray-700" />,
+  },
+  {
+    url: "/transfer",
+    title: "Transfer your data",
+    icon: <TbTransferVertical className="text-gray-700" />,
   },
   {
     url: "/new",

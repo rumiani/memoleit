@@ -9,10 +9,11 @@ import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 type DialogElement = HTMLDialogElement | null;
 
 export default function CategoryDelete({
-  category,deleteHandler
+  category,
+  deleteHandler,
 }: {
-  category: categoryTypes,
-  deleteHandler:Function
+  category: categoryTypes;
+  deleteHandler: Function;
 }) {
   const [inputValue, setInputValue] = useState<string>("");
   const dispatch = useAppDispatch();
@@ -26,18 +27,18 @@ export default function CategoryDelete({
     };
   }, []);
 
-  const deleteHadndler = () => {
+  const showDeleteBox = () => {
     (dialogElement.current as DialogElement)?.showModal();
   };
-  
-  const deleteCategory = () => {
+
+  const confirmDeleteCategory = () => {
     (dialogElement.current as DialogElement)?.close();
-    deleteHandler()
+    deleteHandler();
   };
   return (
     <>
       <button
-        onClick={deleteHadndler}
+        onClick={showDeleteBox}
         className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg font-bold text-red-400 hover:text-red-600"
       >
         Delete
@@ -61,7 +62,7 @@ export default function CategoryDelete({
           />
           <button
             disabled={inputValue !== category.name}
-            onClick={() => deleteCategory()}
+            onClick={() => confirmDeleteCategory()}
             className="icon !px-2 disabled:bg-gray-400 bg-red-400 !w-fit"
           >
             Delete
