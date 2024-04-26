@@ -1,6 +1,5 @@
 import { itemTypes } from "@/src/types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
-import { toast } from "react-toastify";
 
 export function reviewHandler(
   currentItem: itemTypes | undefined,
@@ -15,14 +14,12 @@ export function reviewHandler(
     foundItem.reviews.review += 1;
     if (status) {
       foundItem.reviews.box += 1;
-      toast.success(
-        `The item has been moved to the box ${foundItem.reviews.box + 1}`
-      );
+      localStorage.setItem("appData", JSON.stringify(appData));
+      return true;
     } else {
-      toast.success("Item moved to the box 0 and can be reviewed in 1 hour");
       foundItem.reviews.box = 1;
+      localStorage.setItem("appData", JSON.stringify(appData));
+      return false;
     }
-
-    localStorage.setItem("appData", JSON.stringify(appData));
   }
 }

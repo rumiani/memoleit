@@ -10,12 +10,18 @@ import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { toast } from "react-toastify";
 
 export default function ReviewItemCard({ item }: { item: itemTypes }) {
   const dispatch = useAppDispatch();
 
   const goToNextItem = (item: itemTypes, status: boolean) => {
-    reviewHandler(item, status);
+    const reviewResult = reviewHandler(item, status);
+    reviewResult
+      ? toast.success(
+          `The item has been moved to the box ${item.reviews.box + 1}`
+        )
+      : toast.success("Item moved to the box 1 and can be reviewed tomorrow");
     const newRandomItem = randomItemHandler();
     dispatch(itemReducer(newRandomItem!));
   };
