@@ -7,9 +7,11 @@ export default function ItemBody({ body }: { body: string }) {
 
   useEffect(() => {
     setShowBody(false);
-    if (body) {
+    try {
       const convertedFromRaw = convertFromRaw(JSON.parse(body)).getPlainText();
       setBodyValue(convertedFromRaw);
+    } catch (e) {
+      setBodyValue(body);
     }
   }, [body]);
 
@@ -17,7 +19,7 @@ export default function ItemBody({ body }: { body: string }) {
     <div className="mt-4">
       {showBody && (
         <div className="text-gray-600">
-          {bodyValue === ''
+          {bodyValue === ""
             ? "There is no description for this item."
             : bodyValue}
         </div>

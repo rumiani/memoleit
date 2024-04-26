@@ -7,14 +7,12 @@ export default function ItemBody({ body }: { body: string }) {
 
   useEffect(() => {
     setShowBody(false);
-    let itemBody: string = "";
     try {
       const convertedFromRaw = convertFromRaw(JSON.parse(body)).getPlainText();
-      itemBody = convertedFromRaw;
+      setBodyValue(convertedFromRaw);
     } catch (e) {
-      itemBody = body;
+      setBodyValue(body);
     }
-    setBodyValue(itemBody);
   }, [body, bodyValue]);
   return (
     <div className="mt-8">
