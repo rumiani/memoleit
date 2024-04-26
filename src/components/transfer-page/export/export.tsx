@@ -7,8 +7,8 @@ export default function ExportComponent() {
     fileName: string,
     contentType: string
   ) => {
-    var a = document.createElement("a");
-    var file = new Blob([content], { type: contentType });
+    let a = document.createElement("a");
+    let file = new Blob([content], { type: contentType });
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
@@ -23,13 +23,15 @@ export default function ExportComponent() {
     }
   };
   return (
-    <div>
+    <div className="w-fit mx-auto flex flex-col gap-4">
+      <p>Export your data as a text file:</p>
       <button
-        className="hover:bg-gray-300 rounded-lg transition-all duration-600 block mx-auto my-16"
+        className="primaryBtn  !w-fit !flex flex-row justify-center items-center gap-2 hover:bg-blue-600 rounded-lg transition-all duration-600 mx-auto"
         id="exportHistory"
         onClick={downloadLocalStorageData}
       >
-        <CiExport className="w-16 h-16"/>
+        Export
+        <CiExport className="w-6 h-6" />
       </button>
     </div>
   );
