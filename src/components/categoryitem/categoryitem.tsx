@@ -5,19 +5,9 @@ import Options from "./options/options";
 import ItemBody from "./itemBody/itemBody";
 import _ from "lodash";
 import Link from "next/link";
-import { reviewHandler } from "@/src/handlers/reviewHandler";
-import { itemReducer } from "@/src/redux/appStateSlice";
-import { useAppDispatch } from "@/src/app/hooks";
-import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
 export default function CategoryItem({ item }: { item: itemTypes }) {
-  const dispatch = useAppDispatch();
 
-  const goToNextItem = (item: itemTypes, status: boolean) => {
-    reviewHandler(item, status);
-    const newRandomItem = randomItemHandler();
-    dispatch(itemReducer(newRandomItem!));
-  };
   return (
     <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-60 sm:w-72 mx-auto my-4">
       <div>

@@ -50,7 +50,7 @@ const EditForm = ({
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
-  const submitHandler = (item: FormValues) => {
+  const submitHandler = (item: FormValues) => {    
     saveEditedItemHandler(item, id);
   };
 
