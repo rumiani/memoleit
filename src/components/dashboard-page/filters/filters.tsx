@@ -34,7 +34,7 @@ export default function Filters() {
     <>
       <button
         onClick={filterHnadler}
-        className="icon text-xl !w-fit"
+        className="absolute right-10 icon text-xl !w-fit"
         title="Filter categories"
       >
         <MdFilterListAlt className="text-3xl" />

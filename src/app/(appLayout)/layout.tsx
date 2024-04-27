@@ -1,5 +1,5 @@
 "use client";
-import ItemsNav from "@/src/components/appLayout/appLayout";
+import ItemsNav from "@/src/components/layouts/appLayout/appLayout";
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <section>

@@ -20,7 +20,6 @@ export default function CategoriesPage() {
   }, [categories, dispatch]);
   return (
     <div>
-      <h2 className="font-bold">Categories</h2>
       {isEmpty(categories) ? (
         <div className="card_message text-red-500">
           You have not created a category yet.

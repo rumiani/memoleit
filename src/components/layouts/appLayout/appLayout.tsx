@@ -2,7 +2,6 @@
 
 import React from "react";
 import { MdDashboard } from "react-icons/md";
-import { usePathname } from "next/navigation";
 import { FaBoxOpen } from "react-icons/fa";
 import SuperPage from "./superPage/superPage";
 
@@ -48,7 +47,6 @@ const superPages: any[] = [
 ];
 
 export default function ItemsNav() {
-  const pathname = usePathname();
   return (
     <div className="group text-gray-800 bg-gray-100 fixed top-20 z-50 left-0 h-full w-14  hover:w-48 pt-4 mb-4 border-b border-gray-300 text-3xl gap-2">
       {superPages.map((superPage, i) => {

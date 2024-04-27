@@ -6,8 +6,8 @@ import { ToastContainer } from "react-toastify";
 import ReduxProvider from "../redux/provider";
 import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "../components/generalLayout/footer/footer";
-import Header from "../components/generalLayout/header/header";
+import Footer from "../components/layouts/generalLayout/footer/footer";
+import Header from "../components/layouts/generalLayout/header/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
