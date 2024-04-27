@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4">
+    <footer className="hidden sm:block bg-gray-800 text-white p-4">
       <div className="container mx-auto">
         <div className="text-center">
           <Link href='/faq' className="gen_link m-4">FAQ</Link>

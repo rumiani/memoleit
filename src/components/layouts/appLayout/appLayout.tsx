@@ -48,10 +48,12 @@ const superPages: any[] = [
 
 export default function ItemsNav() {
   return (
-    <div className="group text-gray-800 bg-gray-100 fixed top-20 z-50 left-0 h-full w-14  hover:w-48 pt-4 mb-4 border-b border-gray-300 text-3xl gap-2">
+    <div className="group fixed sm:top-20 bottom-0 left-0 flex flex-row sm:flex-col h-16 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4">
       {superPages.map((superPage, i) => {
         return <SuperPage key={i} superPage={superPage} />;
       })}
+      <div>
+      </div>
     </div>
   );
 }
