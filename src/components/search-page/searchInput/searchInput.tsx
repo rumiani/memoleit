@@ -10,7 +10,7 @@ const SearchInput = ({ onSearch }: { onSearch: Function }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-    
+
     if(searchTerm.length < 1) {
         if (inputRef.current) {
             inputRef.current.focus();

@@ -22,8 +22,13 @@ export const saveNewDataToLocalHandler = (newAppData: any) => {
             appData.categories.push(newCategory);
           }
         });
-        newAppData.itemsData.forEach((item: itemTypes) => {
-          appData.itemsData.push(item);
+        newAppData.itemsData.forEach((newItem: itemTypes) => {
+          const itemExists = appData.itemsData.find((item: categoryTypes) => {
+            item.id === newItem.id;
+          });
+          if (!itemExists) {
+            appData.itemsData.push(newItem);
+          }
         });
         localStorage.setItem("appData", JSON.stringify(appData));
         return true;

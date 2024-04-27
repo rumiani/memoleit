@@ -9,7 +9,7 @@ export default function Cta() {
         With our progress charts you can track your learning and see your progress
       </p>
       <div className="flex mt-5">
-        <Link href="/login" className="btn_secondary">
+        <Link href="/dashboard/review" className="btn_secondary">
           Get Started
         </Link>
       </div>

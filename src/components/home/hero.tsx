@@ -17,7 +17,7 @@ export default function Hero() {
           accelerate your learning journey today!
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
-          <Link href="/dashboard" rel="noopener" className="primaryBtn">
+          <Link href="/dashboard/review" rel="noopener" className="primaryBtn">
             Get Started
           </Link>
           <Link rel="noopener" href="/contact" className="secondaryBtn">

@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import MainPage from "../components/home/mainPage";
 
 export default function Home() {
