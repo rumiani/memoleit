@@ -3,6 +3,8 @@
 import React from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
+import { TbTransferVertical } from "react-icons/tb";
+
 import SuperPage from "./superPage/superPage";
 
 interface SuperPageTypes {}
@@ -19,11 +21,7 @@ const superPages: any[] = [
       {
         url: "/dashboard/new",
         title: "New Item",
-      },
-      {
-        url: "/dashboard/transfer",
-        title: "Transfer Data",
-      },
+      }
     ],
   },
   {
@@ -44,11 +42,25 @@ const superPages: any[] = [
       },
     ],
   },
+  {
+    name: "transfer",
+    icon: <TbTransferVertical />,
+    links: [
+      {
+        url: "/transfer/export",
+        title: "export",
+      },
+      {
+        url: "/transfer/import",
+        title: "import",
+      }
+    ],
+  },
 ];
 
 export default function ItemsNav() {
   return (
-    <div className="group fixed sm:top-20 bottom-0 left-0 flex flex-row sm:flex-col h-16 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4">
+    <div className="group fixed sm:top-20 bottom-0 left-0 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
       {superPages.map((superPage, i) => {
         return <SuperPage key={i} superPage={superPage} />;
       })}
