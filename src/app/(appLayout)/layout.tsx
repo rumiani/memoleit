@@ -7,7 +7,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {" "}
         <ItemsNav />
       </nav>
-      <div className="ml-14">{children}</div>
+      <div className="sm:ml-14">{children}</div>
     </section>
   );
 }

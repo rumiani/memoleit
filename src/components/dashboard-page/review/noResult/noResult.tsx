@@ -1,6 +1,7 @@
-import Spinner from "@/src/components/spinner/spinner";
+import Spinner from "@/src/components/loading-comps/spinner/spinner";
 import React, { useEffect, useState } from "react";
 import NextClosest from "./nextClosest/nextClosest";
+import LoadingPulse from "@/src/components/loading-comps/loadingPulse/loadingPulse";
 
 export default function NoResult() {
   const [loading, setLoading] = useState(true);
@@ -10,10 +11,12 @@ export default function NoResult() {
     }, 1000);
   });
   return (
-    <div className="p-8 flex flex-col text-center justify-center">
+    <div className="flex w-full flex-col text-center justify-center">
       <NextClosest />
       {loading ? (
-        <Spinner size={100} />
+        <div className="w-full">
+          <LoadingPulse />
+        </div>
       ) : (
         <p className="text-red-500 mt-5">
           There is no item to review.
