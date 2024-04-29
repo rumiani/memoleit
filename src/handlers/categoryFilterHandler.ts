@@ -1,12 +1,16 @@
 import { capitalize } from "lodash";
 import { itemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
+import { makeUrlFriendly } from "./makeUrlFriendly";
 
-export const categoryFilterHandler = (topic: string) => {
+export const categoryFilterHandler = (category: string) => {
     let { itemsData } = getAppDataHandler();    
     itemsData =itemsData.filter(
-        (item: itemTypes) =>
-          capitalize(item.category) === capitalize(topic)
+        (item: itemTypes) =>{
+console.log(category);
+
+         return   capitalize(makeUrlFriendly(item.category)) === capitalize(makeUrlFriendly(category))
+        }
       );
       return itemsData;
 };

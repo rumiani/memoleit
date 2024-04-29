@@ -26,12 +26,12 @@ const CreatedMessage = ({
   return (
     <div className="text-center flex flex-col gap-10 items-center w-full p-4">
       <div className="flex flex-row gap-4 max-w-xs">
-        <Link href="/dashboard" className="text-blue-500 hover:underline">
+        <Link href="/dashboard/review" className="text-blue-500 hover:underline">
           <button className="primaryBtn" onClick={resetHandler}>
             Dashboard
           </button>
         </Link>
-        <Link href="/new">
+        <Link href="/dashboard/new">
           <button className="primaryBtn" onClick={() => newItemHandler()}>
             New item
           </button>

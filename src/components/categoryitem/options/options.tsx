@@ -49,7 +49,7 @@ export default function Options({ item }: { item: itemTypes }) {
             <IoClose />
           </button>
           <Link
-            href={`/edit/${item.id}`}
+            href={`/dashboard/edit/${item.id}`}
             className="mt-8 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-500 hover:text-yellow-700"
           >
             <button

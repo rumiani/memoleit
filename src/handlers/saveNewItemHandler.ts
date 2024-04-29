@@ -24,7 +24,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       id: uuidv4(),
       title,
       body,
-      category: lowerCase(category),
+      category: category.trim(),
       createdAt: Date.now(),
       reviews: {
         box: 1,

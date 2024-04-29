@@ -33,16 +33,16 @@ export default function ChooseTopic({
         {...register("category", {
           required: "Category is required",
           pattern: {
-            value: /^[a-zA-Z0-9]*$/,
-            message: "Please enter only English letters and numbers",
+            value: /^[a-zA-Z0-9\s\-]+$/,
+            message: "Please enter only a-z, 0-9, - or space.",
           },
           minLength: {
             value: 3,
-            message: "Input must be 3 - 12 character long",
+            message: "Input must be 1 - 20 character long.",
           },
           maxLength: {
-            value: 12,
-            message: "Input must be 3 - 12 characters long",
+            value: 20,
+            message: "Input must be 1 - 20 characters long.",
           },
         })}
       />

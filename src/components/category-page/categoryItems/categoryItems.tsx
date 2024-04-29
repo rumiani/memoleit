@@ -12,23 +12,23 @@ export default function CategoryItems({ category }: { category: string }) {
 
   useEffect(() => {
     const filteredItemsData = categoryFilterHandler(category);
-    if (isEmpty(items) && !isEmpty(filteredItemsData))
+    
+    if ( !isEmpty(filteredItemsData))
       dispatch(allItemsReducer(filteredItemsData));
-  }, [items, dispatch, category]);
+  }, [ dispatch, category]);
   return (
     <div className="flex flex-wrap justify-around mt-8 gap-2">
       {isEmpty(items) ? (
-        <div className="card_message">{category} is empty.</div>
+        <div className="card_message">{category} category is empty.</div>
       ) : (
         <div className="flex flex-wrap justify-around gap-4 mb-16">
           {items.map((item: itemTypes) => {
-            console.log(item);
             return (
               <div key={item.id}>
                 <CategoryItem item={item} />{" "}
               </div>
             );
-          })}
+          })} 
         </div>
       )}
     </div>

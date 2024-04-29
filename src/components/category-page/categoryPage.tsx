@@ -13,7 +13,7 @@ export default function CategoryPage({
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
+  useEffect(() => {    
     setIsCategory(categoryExistHandler(params.category));
     setIsLoading(false)
   }, [params]);
