@@ -4,7 +4,7 @@ import React from "react";
 import Options from "./options/options";
 import ItemProgress from "./itemProgress/itemProgress";
 import ItemBody from "./itemBody/itemBody";
-import _ from "lodash";
+import { capitalize } from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { itemReducer } from "@/src/redux/appStateSlice";
@@ -30,16 +30,16 @@ export default function ReviewItemCard({ item }: { item: itemTypes }) {
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={"/categories/" + _.capitalize(item.category)}
-            title={"category: " + _.capitalize(item.category)}
+            href={"/categories/" + capitalize(item.category)}
+            title={"category: " + capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
           >
-            <h2>{_.capitalize(item.category)}</h2>
+            <h2>{capitalize(item.category)}</h2>
           </Link>
           <Options item={item} />
         </div>
         <h3 id="title" className="text-2xl font-bold text-center my-6">
-          {_.capitalize(item.title)}
+          {capitalize(item.title)}
         </h3>
       </div>
       <div className="buttons flex justify-around w-full mt-4 gap-2">

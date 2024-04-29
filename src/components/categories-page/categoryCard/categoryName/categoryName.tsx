@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import CategoryInput from "./CategoryInput/CategoryInput";
 import { useAppSelector } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
+import { capitalize } from "lodash";
 
 export default function CategoryName({
   category,
@@ -17,7 +18,7 @@ export default function CategoryName({
 
   return (
     <div className="my-8">
-      {categoryNameEditable === category.name? (
+      {categoryNameEditable === category.name ? (
         <div>
           <CategoryInput category={category} />
         </div>
@@ -27,7 +28,9 @@ export default function CategoryName({
           title="Open for more details"
           className="text-blue-500 my-4 text-xl hover:underline"
         >
-          <h3 className="w-fit mx-auto text-center">{category.name}</h3>
+          <h3 className="w-fit mx-auto text-center">
+            {capitalize(category.name)}
+          </h3>
         </Link>
       )}
     </div>

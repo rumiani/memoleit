@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues, categoryTypes, itemTypes } from "../types/interface";
+import { lowerCase } from "lodash";
 
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
@@ -23,7 +24,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       id: uuidv4(),
       title,
       body,
-      category: category,
+      category: lowerCase(category),
       createdAt: Date.now(),
       reviews: {
         box: 1,
