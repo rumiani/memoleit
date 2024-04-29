@@ -14,18 +14,16 @@ export const saveNewDataToLocalHandler = (newAppData: any) => {
       if (objectsHaveSimilarKeys) {
         newAppData.categories.forEach((newCategory: categoryTypes) => {
           const categoryExists = appData.categories.find(
-            (category: categoryTypes) => {
-              category.name === newCategory.name;
-            }
+            (category: categoryTypes) => category.name === newCategory.name
           );
           if (!categoryExists) {
             appData.categories.push(newCategory);
           }
         });
         newAppData.itemsData.forEach((newItem: itemTypes) => {
-          const itemExists = appData.itemsData.find((item: categoryTypes) => {
-            item.id === newItem.id;
-          });
+          const itemExists = appData.itemsData.find(
+            (item: categoryTypes) => item.id === newItem.id
+          );
           if (!itemExists) {
             appData.itemsData.push(newItem);
           }

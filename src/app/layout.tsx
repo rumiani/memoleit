@@ -75,7 +75,9 @@ export default function RootLayout({
               <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-2xl min-h-screen break-words">
                 {children}
               </main>
-              <Footer />
+              <div className="hidden sm:block">
+              <Footer/>
+              </div>
             </div>
           </ReduxProvider>
           <ToastContainer />

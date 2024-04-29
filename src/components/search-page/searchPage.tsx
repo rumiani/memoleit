@@ -6,18 +6,20 @@ import { itemTypes } from "@/src/types/interface";
 import CategoryItem from "../categoryitem/categoryitem";
 import BoxOption from "./boxOption/boxOption";
 import { searchItemHandler } from "@/src/handlers/searchItemHandler";
+import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 
 export default function SearchPage() {
   const [filteredItems, setFilteredItems] = useState([]);
-  const [showResult, setShowResult] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [boxNumber, setboxNumber] = useState<number | undefined>(undefined);
 
   const handleSearch = (searchTerm: string) => {
-    setShowResult(true);
+    setIsSearching(true);
     const filteredItems = searchItemHandler(searchTerm, boxNumber);
-    console.log(filteredItems);
-    
-    setFilteredItems(filteredItems);
+    if (filteredItems) {
+      setFilteredItems(filteredItems);
+      setIsSearching(false);
+    }
   };
 
   return (
@@ -26,7 +28,9 @@ export default function SearchPage() {
         <BoxOption handleChange={(value: number) => setboxNumber(value)} />
         <SearchInput onSearch={handleSearch} />
       </div>
-      {showResult && (
+      {isSearching ? (
+        <LoadingPulse />
+      ) : (
         <div className="flex flex-wrap gap-2 my-16">
           {filteredItems.length > 0 ? (
             filteredItems.map((item: itemTypes) => (

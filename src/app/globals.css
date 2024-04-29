@@ -38,7 +38,9 @@ button {
   @apply w-72 h-36 shadow-sm shadow-gray-100 mx-auto my-4 flex flex-col justify-center text-center items-center rounded-lg;
 }
 
-
+.recharts-surface{
+  @apply w-full;
+}
 
 
 /*

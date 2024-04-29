@@ -1,12 +1,12 @@
 "use client";
 
+import NewItemForm from "@/src/components/itemForm/newItemForm";
 import React from "react";
-import ItemForm from "@/src/components/newItemForm/itemForm";
 
 const Index = () => {
   return (
     <div>
-      <ItemForm />
+      <NewItemForm />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 "use client";
+import EditItemForm from "@/src/components/itemForm/editItemForm";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { FormValues, itemTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
-import EditForm from "@/src/components/newItemForm/editForm";
 
 export default function Item({ params }: { params: { id: string } }) {
   const [formData, setFormData] = useState<FormValues | undefined>(undefined);
@@ -19,7 +19,7 @@ export default function Item({ params }: { params: { id: string } }) {
   }, [params]);
   return (
     <div>
-      <EditForm id={params.id} itemDefaultValues={formData} />
+      <EditItemForm id={params.id} itemDefaultValues={formData} />
     </div>
   );
 }

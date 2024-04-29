@@ -1,7 +1,6 @@
 import { getAppDataHandler } from "./getAppDataHandler";
 import { categoryTypes, itemTypes } from "../types/interface";
 import { capitalize } from "lodash";
-import { toast } from "react-toastify";
 
 export default function deleteCategoryHandler(category: string) {
   let appData = getAppDataHandler();

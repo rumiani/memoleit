@@ -6,7 +6,6 @@ interface LinksType {
   title: string;
 }
 export default function PageLinks({ links }: { links: LinksType[] }) {
-  console.log(links);
 
   return (
     <div className="hidden group-hover:flex flex-col ml-6">

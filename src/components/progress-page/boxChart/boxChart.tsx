@@ -88,8 +88,8 @@ const BoxChart: React.FC = () => {
             data={data}
             margin={{
               top: 20,
-              right: 30,
-              left: 20,
+              right: 20,
+              left: 0,
               bottom: 5,
             }}
           >

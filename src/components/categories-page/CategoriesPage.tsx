@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { categoryTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import Link from "next/link";
@@ -7,17 +7,28 @@ import CategoryCard from "./categoryCard/categoryCard";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import LoadingPulses from "../loading-comps/loadingPulses/loadingPulses";
 
 export default function CategoriesPage() {
   const { categories } = useAppSelector((state) => state.categoryState);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
   useEffect(() => {
+    setIsLoading(true);
+
     appDataInitialiser();
     const newCategories = getAppDataHandler().categories;
     if (isEmpty(categories) && !isEmpty(newCategories)) {
       dispatch(categoriesReducer(newCategories));
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
     }
   }, [categories, dispatch]);
+
+  if (isLoading) {
+    return <LoadingPulses />;
+  }
   return (
     <div>
       {isEmpty(categories) ? (
@@ -25,7 +36,7 @@ export default function CategoriesPage() {
           You have not created a category yet.
           <br />
           <Link
-            href={"/new"}
+            href={"/dashboard/new"}
             className="text-blue-500 font-normal hover:underline"
           >
             Create a new Item with category

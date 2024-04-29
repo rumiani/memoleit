@@ -9,6 +9,7 @@ import {
   UseFormSetValue,
 } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
+import LoadingPulse from "../../loading-comps/loadingPulse/loadingPulse";
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
@@ -30,7 +31,6 @@ const RichTextEditor = ({
   const [editorContent, setEditorContent] = useState("");
   const [bodyLoaded, setBodyLoaded] = useState(false);
 
-
   useEffect(() => {
     if (defaultValue && !bodyLoaded) {
       const contentState = convertFromRaw(JSON.parse(defaultValue));
@@ -38,10 +38,10 @@ const RichTextEditor = ({
       const content = editorState.getCurrentContent().getPlainText("");
       setEditorContent(content);
       setEditorState(newEditorState);
-      setBodyLoaded(true)
+      setBodyLoaded(true);
     }
     // }
-  }, [defaultValue,editorState, bodyLoaded]);
+  }, [defaultValue, editorState, bodyLoaded]);
 
   const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);

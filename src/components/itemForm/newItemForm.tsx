@@ -12,8 +12,9 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
 import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 
-const ItemForm = () => {
+export default function NewItemForm() {
   const dispatch = useAppDispatch();
   const [createdMessage, setCreatedMessage] = useState(false);
   const form = useForm<FormValues>({
@@ -72,6 +73,4 @@ const ItemForm = () => {
       )}
     </>
   );
-};
-
-export default ItemForm;
+}

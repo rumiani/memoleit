@@ -14,13 +14,13 @@ import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { convertFromRaw } from "draft-js";
 
-const EditForm = ({
+export default function EditItemForm({
   itemDefaultValues,
   id,
 }: {
   itemDefaultValues: FormValues | undefined;
   id: string;
-}) => {
+}) {
   const [createdMessage, setCreatedMessage] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -46,11 +46,11 @@ const EditForm = ({
       setValue("body", itemDefaultValues!.body);
       setValue("category", itemDefaultValues!.category);
     }
-  }, [formState, setValue, itemDefaultValues,getValues]);
+  }, [formState, setValue, itemDefaultValues, getValues]);
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
-  const submitHandler = (item: FormValues) => {    
+  const submitHandler = (item: FormValues) => {
     saveEditedItemHandler(item, id);
   };
 
@@ -89,6 +89,4 @@ const EditForm = ({
       )}
     </>
   );
-};
-
-export default EditForm;
+}

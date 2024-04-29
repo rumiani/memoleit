@@ -1,4 +1,3 @@
-import Spinner from "@/src/components/loading-comps/spinner/spinner";
 import React, { useEffect, useState } from "react";
 import NextClosest from "./nextClosest/nextClosest";
 import LoadingPulse from "@/src/components/loading-comps/loadingPulse/loadingPulse";
