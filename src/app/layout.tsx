@@ -8,6 +8,9 @@ import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/layouts/generalLayout/footer/footer";
 import Header from "../components/layouts/generalLayout/header/header";
+import { notificationReviewHandler } from "../handlers/notificationReview";
+import { useEffect } from "react";
+import Notification from "../components/notification/notification";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -69,6 +72,8 @@ export default function RootLayout({
         <SpeedInsights />
         <NextAuthProvider>
           <ToastContainer limit={3} />
+          <ToastContainer limit={3} />
+          <Notification />
           <ReduxProvider>
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
               <Header />
@@ -76,7 +81,7 @@ export default function RootLayout({
                 {children}
               </main>
               <div className="hidden sm:block">
-              <Footer/>
+                <Footer />
               </div>
             </div>
           </ReduxProvider>

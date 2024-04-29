@@ -1,4 +1,3 @@
-import { barChartDataHandler } from "@/src/handlers/boxChartDataHandler";
 import React, { useEffect, useState } from "react";
 import {
   BarChart,
@@ -14,6 +13,8 @@ import SelectCategory from "./selectCategory/selectCategory";
 import { useAppSelector } from "@/src/app/hooks";
 import _ from "lodash";
 import TotalData from "./totalData/totalData";
+import { boxChartDataHandler } from "@/src/handlers/boxChartDataHandler";
+
 interface DataType {
   name: string;
   Reviewed: number;
@@ -58,7 +59,7 @@ const BoxChart: React.FC = () => {
   const [data, setData] = useState<DataType[] | undefined>(undefined);
   useEffect(() => {
     if (!data) {
-      const chartData = barChartDataHandler(
+      const chartData = boxChartDataHandler(
         _.cloneDeep(initialData),
         category.name
       );
@@ -67,7 +68,7 @@ const BoxChart: React.FC = () => {
   }, [data, category]);
 
   const handleChange = (selectedCategory: string) => {
-    const chartData = barChartDataHandler(
+    const chartData = boxChartDataHandler(
       _.cloneDeep(initialData),
       selectedCategory
     );

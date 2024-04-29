@@ -2,15 +2,13 @@ import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
 import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
-import { usePathname } from "next/navigation";
 import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 
 type DialogElement = HTMLDialogElement | null;
 
 export default function Filters() {
-  const router = usePathname();
   const dispatch = useAppDispatch();
   const dialogElement = useRef(null);
 
@@ -27,8 +25,6 @@ export default function Filters() {
       }
     };
   }, []);
-
-  if (!router.startsWith("/dashboard")) return;
 
   return (
     <>
