@@ -4,19 +4,16 @@ import Link from "next/link";
 import CategoryOptions from "./categoryOptions/categoryOptions";
 import CategoryItems from "./categoryItems/categoryItems";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
+import { capitalize } from "lodash";
 
-export default function CategoryPage({
-  params,
-}: {
-  params: { category: string };
-}) {
+export default function CategoryPage({ categoryName}:{categoryName:string}){
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {    
-    setIsCategory(categoryExistHandler(params.category));
+    setIsCategory(categoryExistHandler(categoryName));
     setIsLoading(false)
-  }, [params]);
+  }, [categoryName]);
   if(isLoading){
     return <LoadingPulse/>
   }
@@ -35,9 +32,9 @@ export default function CategoryPage({
         </div>
       ) : (
         <div>
-          <h3>{params.category}</h3>
-          <CategoryOptions category={params.category} />
-          <CategoryItems category={params.category} />
+          <h3 className="font-bold">{capitalize(categoryName)}</h3>
+          <CategoryOptions categoryName={categoryName} />
+          <CategoryItems categoryName={categoryName} />
         </div>
       )}
     </div>

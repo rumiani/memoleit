@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { resetStateReducer } from "@/src/redux/appStateSlice";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { resetStateReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
 import Link from "next/link";
 import React from "react";

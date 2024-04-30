@@ -1,9 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
-interface checkBoxProps {
-  category: string;
-  status: boolean;
-  handleInputChange: Function;
-}
+import React, { FormEvent} from "react";
 
 export default function CategoryFilter({ category }: { category: string }) {
 

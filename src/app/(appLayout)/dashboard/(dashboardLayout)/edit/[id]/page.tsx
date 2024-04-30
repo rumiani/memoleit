@@ -1,7 +1,7 @@
 "use client";
 import EditItemForm from "@/src/components/itemForm/editItemForm";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { FormValues, itemTypes } from "@/src/types/interface";
+import { FormValues, ItemTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
 
 export default function Item({ params }: { params: { id: string } }) {
@@ -9,7 +9,7 @@ export default function Item({ params }: { params: { id: string } }) {
   useEffect(() => {
     const appData = getAppDataHandler();
     const item = appData.itemsData.find(
-      (item: itemTypes) => item.id === params.id
+      (item: ItemTypes) => item.id === params.id
     );
     setFormData({
       title: item.title,

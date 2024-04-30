@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
-import { userReducer } from "@/src/redux/appStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { useAppDispatch } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 
 type DialogElement = HTMLDialogElement | null;
 

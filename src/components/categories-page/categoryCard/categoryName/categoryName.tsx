@@ -1,20 +1,20 @@
-import { categoryTypes } from "@/src/types/interface";
+import React from "react";
+import { CategoryTypes } from "@/src/types/interface";
 import Link from "next/link";
-import React, { useEffect } from "react";
 import CategoryInput from "./CategoryInput/CategoryInput";
 import { useAppSelector } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import { capitalize } from "lodash";
+import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 
 export default function CategoryName({
   category,
 }: {
-  category: categoryTypes;
+  category: CategoryTypes;
 }) {
   const { categoryNameEditable } = useAppSelector(
     (state) => state.categoryState
   );
-  const categoryUrl = makeUrlFriendly(category.name);
 
   return (
     <div className="my-8">
@@ -24,7 +24,7 @@ export default function CategoryName({
         </div>
       ) : (
         <Link
-          href={"/box/categories/" + categoryUrl}
+          href={getCategoryUrl(category.name)}
           title="Open for more details"
           className="text-blue-500 my-4 text-xl hover:underline"
         >

@@ -61,16 +61,16 @@ const BoxChart: React.FC = () => {
     if (!data) {
       const chartData = boxChartDataHandler(
         _.cloneDeep(initialData),
-        category.name
+        category.id
       );
       setData(chartData);
     }
   }, [data, category]);
 
-  const handleChange = (selectedCategory: string) => {
+  const handleChange = (id: string) => {
     const chartData = boxChartDataHandler(
       _.cloneDeep(initialData),
-      selectedCategory
+      id
     );
     setData(chartData);
   };

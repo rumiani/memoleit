@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import SearchInput from "./searchInput/searchInput";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { itemTypes } from "@/src/types/interface";
 import CategoryItem from "../categoryitem/categoryitem";
 import BoxOption from "./boxOption/boxOption";
 import { searchItemHandler } from "@/src/handlers/searchItemHandler";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
+import { ItemTypes } from "@/src/types/interface";
 
 export default function SearchPage() {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -33,7 +32,7 @@ export default function SearchPage() {
       ) : (
         <div className="flex flex-wrap gap-2 my-16">
           {filteredItems.length > 0 ? (
-            filteredItems.map((item: itemTypes) => (
+            filteredItems.map((item: ItemTypes) => (
               <CategoryItem key={item.id} item={item} />
             ))
           ) : (

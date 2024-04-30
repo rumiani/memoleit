@@ -1,5 +1,4 @@
 "use client";
-import Head from "next/head";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { FaTelegram } from "react-icons/fa";

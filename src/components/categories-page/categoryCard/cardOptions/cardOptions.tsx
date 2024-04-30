@@ -1,4 +1,4 @@
-import { categoryTypes } from "@/src/types/interface";
+import { CategoryTypes } from "@/src/types/interface";
 import React, { useEffect, useRef, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
@@ -7,12 +7,12 @@ import { useAppDispatch } from "@/src/app/hooks";
 import {
   categoriesReducer,
   categoryEditNameReducer,
-} from "@/src/redux/categoryStateSlice";
+} from "@/src/redux/slices/categoryStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
 import { toast } from "react-toastify";
 
-export default function CardOptions({ category }: { category: categoryTypes }) {
+export default function CardOptions({ category }: { category: CategoryTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useAppDispatch();
 

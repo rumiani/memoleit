@@ -1,4 +1,4 @@
-import { categoryTypes, itemTypes } from "../types/interface";
+import { ItemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 import { timeToNowHandler } from "./home/general/timeToNowHandler";
 type ReviewBoxesType = {
@@ -11,7 +11,7 @@ export const closestItemToReview = () => {
     const { itemsData, categories } = getAppDataHandler();
     let timeToReview: number;
     if (itemsData.length > 0) {
-      itemsData.forEach((item: itemTypes, i: number) => {
+      itemsData.forEach((item: ItemTypes, i: number) => {
         const daysSinceReviewed = timeToNowHandler(
           item.reviews.lastReviewDate
         ).days;

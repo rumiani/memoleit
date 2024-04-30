@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React, { MouseEventHandler } from "react";
+import Image from "next/image";
 interface avatarProps {
   userMenuHandler:MouseEventHandler<HTMLDivElement>,
   url:string

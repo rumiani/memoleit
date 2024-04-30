@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialCategoryStateTypes } from "./interfaces";
-import { categoryTypes } from "../types/interface";
+import { initialCategoryStateTypes } from "../interfaces";
+import { CategoryTypes } from "../../types/interface";
 
 const initialCategoryState: initialCategoryStateTypes = {
   category: {
     id: "",
+    url:'',
     name: "",
     status: false,
     createdAt: 0,
@@ -17,14 +18,14 @@ export const categoryStateSlice = createSlice({
   name: "categoryState",
   initialState: initialCategoryState,
   reducers: {
-    categoriesReducer: (state, action: PayloadAction<categoryTypes[]>) => {
+    categoriesReducer: (state, action: PayloadAction<CategoryTypes[]>) => {
       state.categories = action.payload;
     },
     categoryNameReducer: (state, action: PayloadAction<string>) => {
       state.category = { ...state.category, name:action.payload}
     },
     categoryReducer: (state, action: PayloadAction<string>) => {
-      state.categories = state.categories.map((category: categoryTypes) =>
+      state.categories = state.categories.map((category: CategoryTypes) =>
         category.name === action.payload
           ? { ...category, status: !category.status }
           : category

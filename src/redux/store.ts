@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import appStateReducer from "./appStateSlice";
-import categoriesReducer from "./categoryStateSlice";
+import categoryStateSlice from "./slices/categoryStateSlice";
+import settingStateSlice from "./slices/settingStateSlice";
+import itemStateSlice from './slices/itemStateSlice'
+import userStateSlice from './slices/userStateSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      appState: appStateReducer,
-      categoryState:categoriesReducer
+      userState: userStateSlice,
+      itemState: itemStateSlice,
+      categoryState: categoryStateSlice,
+      settingState: settingStateSlice,
     },
   });
 };

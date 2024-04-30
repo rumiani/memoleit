@@ -8,8 +8,6 @@ import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/layouts/generalLayout/footer/footer";
 import Header from "../components/layouts/generalLayout/header/header";
-import { notificationReviewHandler } from "../handlers/notificationReview";
-import { useEffect } from "react";
 import Notification from "../components/notification/notification";
 
 const inter = Inter({ subsets: ["latin"] });

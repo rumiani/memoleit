@@ -1,22 +1,16 @@
 import { useAppDispatch } from "@/src/app/hooks";
-import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import saveCategoryNameHandler from "@/src/handlers/saveCategoryNameHandler";
-import {
-  categoriesReducer,
-  categoryEditNameReducer,
-} from "@/src/redux/categoryStateSlice";
-import { categoryTypes } from "@/src/types/interface";
-import { isEmpty } from "lodash";
-import React, { useEffect, useRef, useState } from "react";
+import { categoriesReducer, categoryEditNameReducer } from "@/src/redux/slices/categoryStateSlice";
+import { CategoryTypes } from "@/src/types/interface";
+import React, { useRef, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
-type InputElement = HTMLInputElement | null;
 
 export default function CategoryInput({
   category,
 }: {
-  category: categoryTypes;
+  category: CategoryTypes;
 }) {
   const [categoryValue, setCategoryValue] = useState<string>(category.name);
   const [readOnly, setReadOnly] = useState<boolean>(true);

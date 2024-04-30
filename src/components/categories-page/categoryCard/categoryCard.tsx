@@ -1,7 +1,6 @@
 import React from "react";
 import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
-import { categoryTypes } from "@/src/types/interface";
-import Link from "next/link";
+import { CategoryTypes } from "@/src/types/interface";
 import CardOptions from "./cardOptions/cardOptions";
 import CategoryName from "./categoryName/categoryName";
 import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHandler";
@@ -9,7 +8,7 @@ import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHand
 export default function CategoryCard({
   category,
 }: {
-  category: categoryTypes;
+  category: CategoryTypes;
 }) {
   const { daysHoursAgo, startedDate } = timeToNowHandler(category.createdAt);
   const categoryData = categoryItemsCountHandler(category.name);

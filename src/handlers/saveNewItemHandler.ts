@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import { FormValues, categoryTypes, itemTypes } from "../types/interface";
-import { lowerCase } from "lodash";
-
+import { FormValues, CategoryTypes, ItemTypes } from "../types/interface";
+import { makeUrlFriendly } from "./makeUrlFriendly";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   const appDataJson: string | null = localStorage.getItem("appData");
@@ -11,17 +10,23 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
 
     let { categories, itemsData } = appData;
     const categoryExists = categories.find(
-      (savedCategory: categoryTypes) => savedCategory.name === category
+      (savedCategory: CategoryTypes) => savedCategory.name === category
     );
     if (!categoryExists)
       categories.push({
         id: uuidv4(),
-        name: category,
+        get url() {
+          return this.id.substring(0, 8) + "/" + makeUrlFriendly(category);
+        },
+        name: category.trim(),
         status: false,
         createdAt: Date.now(),
       });
-    const itemObject: itemTypes = {
+    const itemObject: ItemTypes = {
       id: uuidv4(),
+      get url() {
+        return this.id.substring(0, 8) + "/" + makeUrlFriendly(title);
+      },
       title,
       body,
       category: category.trim(),

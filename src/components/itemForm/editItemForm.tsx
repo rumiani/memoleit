@@ -10,9 +10,8 @@ import { FormValues } from "@/src/types/interface";
 import { saveEditedItemHandler } from "@/src/handlers/saveEditedItemHandler";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
-import { convertFromRaw } from "draft-js";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 
 export default function EditItemForm({
   itemDefaultValues,

@@ -3,9 +3,9 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import {
   categoriesReducer,
   categoryNameReducer,
-} from "@/src/redux/categoryStateSlice";
-import { categoryTypes } from "@/src/types/interface";
-import React, { useEffect, useState } from "react";
+} from "@/src/redux/slices/categoryStateSlice";
+import { CategoryTypes } from "@/src/types/interface";
+import React, { useEffect } from "react";
 
 export default function SelectCategory({
   handleChange,
@@ -37,8 +37,8 @@ export default function SelectCategory({
         onChange={dropdownChangeHnadler}
       >
         <option value="">All</option>
-        {categories.map((category: categoryTypes) => (
-          <option key={category.id} value={category.name}>
+        {categories.map((category: CategoryTypes) => (
+          <option key={category.id} value={category.id}>
             {category.name}
           </option>
         ))}

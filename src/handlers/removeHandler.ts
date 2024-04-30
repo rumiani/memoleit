@@ -1,12 +1,12 @@
 import { getAppDataHandler } from "./getAppDataHandler";
-import { itemTypes } from "../types/interface";
+import { ItemTypes } from "../types/interface";
 
 export const removeHandler = (id: string) => {
   let appData = getAppDataHandler();
-  const itemFount = appData.itemsData.find((item: itemTypes) => item.id === id);
+  const itemFount = appData.itemsData.find((item: ItemTypes) => item.id === id);
   if (itemFount) {
     appData.itemsData = appData.itemsData.filter(
-      (item: itemTypes) => item.id !== id
+      (item: ItemTypes) => item.id !== id
     );
     localStorage.setItem("appData", JSON.stringify(appData));
     return true;

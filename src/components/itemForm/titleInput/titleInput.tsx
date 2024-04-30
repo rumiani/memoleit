@@ -1,5 +1,5 @@
+import React from 'react'
 import { FormValues } from '@/src/types/interface'
-import React, { useEffect } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 interface TitleProps {
   register: UseFormRegister<FormValues>,

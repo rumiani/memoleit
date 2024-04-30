@@ -1,11 +1,11 @@
-import { itemTypes } from "../types/interface";
+import { ItemTypes } from "../types/interface";
 import { timeToNowHandler } from "./home/general/timeToNowHandler";
 
 type ReviewBoxesType = {
   [key: number]: number;
 };
 
-export const isTimeToReviewHandler = (item: itemTypes) => {
+export const isTimeToReviewHandler = (item: ItemTypes) => {
   const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
   const daysSinceReviewed = timeToNowHandler(item.reviews.lastReviewDate).days;
   const isInTheBox = item.reviews.box < 6;

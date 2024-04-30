@@ -1,4 +1,4 @@
-export interface itemTypes {
+export interface ItemTypes {
   id: string;
   title: string;
   body: string;
@@ -6,17 +6,22 @@ export interface itemTypes {
   createdAt: number;
   reviews: {
     box: number;
-    review:number,
+    review: number;
     lastReviewDate: number;
   };
 }
-export interface categoryTypes {
-  id:string,
+export interface CategoryTypes {
+  id: string;
   name: string;
   status: boolean;
-  createdAt:number
+  createdAt: number;
 }
-export interface userTypes {
+export interface SettingTypes {
+  isSoundOn: boolean;
+  isDictionaryOn: boolean;
+  isTourOn:boolean,
+}
+export interface UserTypes {
   id: string;
   isAuth: boolean;
   username: string;
@@ -26,8 +31,7 @@ export interface userTypes {
   isModerator: boolean;
   role: string;
   joinTime: string;
-  loggedIn: boolean;
-  forReview: boolean;
+  isLoggedIn: boolean;
 }
 export interface FormValues {
   title: string;

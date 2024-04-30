@@ -1,5 +1,7 @@
 "use client";
-import { categoryTypes, itemTypes } from "../types/interface";
+
+import { CategoryTypes, ItemTypes } from "../types/interface";
+import { makeUrlFriendly } from "./makeUrlFriendly";
 
 export const saveNewDataToLocalHandler = (newAppData: any) => {
   if (typeof window !== "undefined") {
@@ -12,19 +14,27 @@ export const saveNewDataToLocalHandler = (newAppData: any) => {
       const objectsHaveSimilarKeys =
         JSON.stringify(appDataKeys) === JSON.stringify(newAppDataKeys);
       if (objectsHaveSimilarKeys) {
-        newAppData.categories.forEach((newCategory: categoryTypes) => {
+        newAppData.categories.forEach((newCategory: CategoryTypes) => {
           const categoryExists = appData.categories.find(
-            (category: categoryTypes) => category.name === newCategory.name
+            (category: CategoryTypes) => category.name === newCategory.name
           );
           if (!categoryExists) {
+            newCategory.url =
+              newCategory.id.substring(0, 8) +
+              "/" +
+              makeUrlFriendly(newCategory.name);
             appData.categories.push(newCategory);
           }
         });
-        newAppData.itemsData.forEach((newItem: itemTypes) => {
+        newAppData.itemsData.forEach((newItem: ItemTypes) => {
           const itemExists = appData.itemsData.find(
-            (item: categoryTypes) => item.id === newItem.id
+            (item: CategoryTypes) => item.id === newItem.id
           );
           if (!itemExists) {
+            newItem.url =
+              newItem.id.substring(0, 8) +
+              "/" +
+              makeUrlFriendly(newItem.title);
             appData.itemsData.push(newItem);
           }
         });

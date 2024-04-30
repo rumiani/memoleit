@@ -1,7 +1,5 @@
 import { getAppDataHandler } from "./getAppDataHandler";
-import { categoryTypes, itemTypes } from "../types/interface";
-import { capitalize } from "lodash";
-import { toast } from "react-toastify";
+import { CategoryTypes, ItemTypes } from "../types/interface";
 
 export default function saveCategoryNameHandler({
   id,
@@ -13,13 +11,13 @@ export default function saveCategoryNameHandler({
   let appData = getAppDataHandler();
   const { categories, itemsData } = appData;
   const foundCategory = categories.find(
-    (item: categoryTypes) => item.id === id
+    (item: CategoryTypes) => item.id === id
   );
 
   if (!foundCategory) {
     return false;
   } else {
-    itemsData.forEach((item: itemTypes) => {
+    itemsData.forEach((item: ItemTypes) => {
       if (item.category === foundCategory.name) {
         item.category = categoryValue;
       }

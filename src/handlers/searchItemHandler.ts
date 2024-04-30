@@ -1,14 +1,13 @@
-import { itemTypes } from "../types/interface";
+import { ItemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 
 export const searchItemHandler = (
   searchTerm: string,
   boxNumber: number | undefined
 ) => {
-    console.log(searchTerm);
     
   const { itemsData } = getAppDataHandler();
-  const filteredItems = itemsData.filter((item: itemTypes) => {
+  const filteredItems = itemsData.filter((item: ItemTypes) => {
     if (boxNumber) {
       return (
         item.reviews.box === boxNumber &&

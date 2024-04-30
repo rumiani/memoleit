@@ -1,5 +1,5 @@
 import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHandler";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 interface checkBoxProps {
   category: string;
   status: boolean;

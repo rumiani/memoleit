@@ -1,12 +1,23 @@
-import { categoryTypes, itemTypes, userTypes } from "../types/interface";
+import {
+  CategoryTypes,
+  ItemTypes,
+  SettingTypes,
+  UserTypes,
+} from "../types/interface";
 
-export interface initialStateTypes {
-  user: userTypes,
-  item: itemTypes,
-  items: itemTypes[],
+export interface initialUserStateTypes {
+  user: UserTypes;
+}
+export interface initialItemStateTypes {
+  item: ItemTypes;
+  items: ItemTypes[];
 }
 export interface initialCategoryStateTypes {
-  category:categoryTypes,
-  categories:categoryTypes[],
-  categoryNameEditable:string
+  category: CategoryTypes;
+  categories: CategoryTypes[];
+  categoryNameEditable: string;
+}
+
+export interface initialSettingTypes {
+  setting: SettingTypes;
 }

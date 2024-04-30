@@ -1,22 +1,16 @@
 "use client";
-import { useAppDispatch } from "@/src/app/hooks";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
-import { categoryTypes } from "@/src/types/interface";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { CategoryTypes } from "@/src/types/interface";
 type DialogElement = HTMLDialogElement | null;
 
 export default function CategoryDelete({
   category,
   deleteHandler,
 }: {
-  category: categoryTypes;
+  category: CategoryTypes;
   deleteHandler: Function;
 }) {
   const [inputValue, setInputValue] = useState<string>("");
-  const dispatch = useAppDispatch();
   const dialogElement = useRef(null);
 
   useEffect(() => {

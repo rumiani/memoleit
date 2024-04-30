@@ -1,20 +1,20 @@
 "use client";
 
+import React, { useState } from "react";
 import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { editHandler } from "@/src/handlers/editHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
-import { allItemsReducer } from "@/src/redux/appStateSlice";
-import { itemTypes } from "@/src/types/interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
+import { ItemTypes } from "@/src/types/interface";
+import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
 
-export default function Options({ item }: { item: itemTypes }) {
+export default function Options({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
   const params = useParams<{ category: string }>();

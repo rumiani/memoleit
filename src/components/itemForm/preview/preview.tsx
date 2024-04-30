@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import _ from "lodash";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { exitFullScreen, fullScreen } from "./fullScreen";
 import { convertFromRaw } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
 import { UseFormGetValues } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
+import { capitalize } from "lodash";
 
 type DialogElement = HTMLDialogElement | null;
 
@@ -49,7 +49,7 @@ const Preview = ({
           <h2 className="font-bold text-gray-500">Preview</h2>
           <div className="max-w-4xl break-words mx-auto">
             <h1 className="text-center font-bold text-2xl my-4">
-              {_.capitalize(getValues().title)}
+              {capitalize(getValues().title)}
             </h1>
             <div
               className="text-lg"
@@ -57,7 +57,7 @@ const Preview = ({
             ></div>
             <div className="my-4 mx-auto">
               <p className="font-bold text-gray-500">Category:</p>
-              {_.capitalize(getValues().category)}
+              {capitalize(getValues().category)}
             </div>
             <button
               id="close"

@@ -10,9 +10,8 @@ import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
-import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 
 export default function NewItemForm() {
   const dispatch = useAppDispatch();

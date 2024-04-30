@@ -1,15 +1,14 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { toolbar } from "./toolbar";
 import {
-  UseFormGetValues,
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
-import LoadingPulse from "../../loading-comps/loadingPulse/loadingPulse";
+
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }

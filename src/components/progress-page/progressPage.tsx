@@ -3,7 +3,7 @@ import BoxChart from "./boxChart/boxChart";
 import { useAppDispatch } from "@/src/app/hooks";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 
 export default function ProgressPage() {
   const dispatch = useAppDispatch();

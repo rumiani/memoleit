@@ -1,10 +1,10 @@
 import React from "react";
 import CheckboxInput from "./input/input";
-import { itemReducer } from "@/src/redux/appStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { saveTopicsToLocal } from "@/src/handlers/saveTopicsToLocal";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { categoryReducer } from "@/src/redux/categoryStateSlice";
+import { categoryReducer } from "@/src/redux/slices/categoryStateSlice";
+import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -47,7 +47,6 @@ const Form = () => {
         </div>
         <button
           onClick={() => applyFiltersHandler()}
-          // disabled={disabled}
           className="disabledBtn rounded-md mx-auto my-2 py-1 px-2 w-24 bg-blue-300 hover:text-white hover:bg-blue-500"
         >
           Apply

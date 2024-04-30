@@ -1,4 +1,4 @@
-import { itemTypes } from "../types/interface";
+import { CategoryTypes, ItemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 import { isTimeToReviewHandler } from "./isTimeToReviewHandler";
 
@@ -8,26 +8,33 @@ interface InitialDataType {
   Pending: number;
 }
 
-export const boxChartDataHandler = (
-  data: InitialDataType[],
-  category: string | null
-) => {
-  const { itemsData } = getAppDataHandler();
-  if (category === "") {
-    itemsData.forEach((item: itemTypes) => {
+export const boxChartDataHandler = (data: InitialDataType[], id?: string) => {
+  const { itemsData, categories } = getAppDataHandler();
+  if (id === "") {
+    itemsData.forEach((item: ItemTypes) => {
       if (isTimeToReviewHandler(item)) {
         data[item.reviews.box - 1].Pending += 1;
       } else {
-        data[item.reviews.box - 1].Reviewed += 1;
+        if (item.reviews.box < 6) {
+          data[item.reviews.box - 1].Reviewed += 1;
+        }
       }
     });
   } else {
-    itemsData.forEach((item: itemTypes) => {
-      if (item.category === category) {
+    const foundCategory = categories.find((category: CategoryTypes) => {
+      return category.id === id;
+    });
+
+    itemsData.forEach((item: ItemTypes) => {
+      console.log(item.category === foundCategory.name);
+      if (item.category === foundCategory.name) {
         if (isTimeToReviewHandler(item)) {
           data[item.reviews.box - 1].Pending += 1;
         } else {
-          data[item.reviews.box - 1].Reviewed += 1;
+          if (item.reviews.box < 6) {
+
+            data[item.reviews.box - 1].Reviewed += 1;
+          }
         }
       }
     });

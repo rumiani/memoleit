@@ -1,38 +1,36 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
-import { categoryTypes, itemTypes } from "../types/interface";
-import words_test from "@/src/data/4.json";
-import words_11plus from "@/src/data/11plus.json";
+import { CategoryTypes, ItemTypes } from "../types/interface";
+import words from "@/src/data/initialData.json";
 
-let words: string[];
-
-process.env.NODE_ENV === "development"
-  ? (words = words_11plus)
-  : (words = words_11plus);
-
+const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
+const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);
+const wordsObject = words.map((word, i) => {
+  return { word, box: Math.floor(i / 2) + 1 };
+});
 export const appDataInitialiser = () => {
   if (typeof window !== "undefined") {
     const appDataJson: string | null = localStorage.getItem("appData");
-    let itemsData: itemTypes[] = [];
-    const categories: categoryTypes[] = [];
+    let itemsData: ItemTypes[] = [];
+    const categories: CategoryTypes[] = [];
     if (!appDataJson) {
       categories.push({
         id: uuidv4(),
-        name: "11plus",
+        name: "11 plus",
         status: false,
-        createdAt: Date.now(),
+        createdAt: Date.now() - 1000 * 3600 * 1000,
       });
-      words?.forEach((word, i) => {
+      words?.forEach((title, i) => {
         itemsData!.push({
           id: uuidv4(),
-          title: word,
+          title,
           body: "",
-          category: "11plus",
-          createdAt: Date.now(),
+          category: "11 plus",
+          createdAt: Date.now() - 1000 * 3600 * 1000,
           reviews: {
-            box: 1,
+            box: wordsObject[i].box,
             review: 0,
-            lastReviewDate: Date.now(),
+            lastReviewDate: timestamps[i],
           },
         });
 

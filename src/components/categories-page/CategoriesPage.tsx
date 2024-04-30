@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { categoryTypes } from "@/src/types/interface";
+import { CategoryTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryCard from "./categoryCard/categoryCard";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import LoadingPulses from "../loading-comps/loadingPulses/loadingPulses";
 
 export default function CategoriesPage() {
@@ -44,7 +44,7 @@ export default function CategoriesPage() {
         </div>
       ) : (
         <div className="flex flex-wrap justify-center gap-2 my-8">
-          {categories.map((category: categoryTypes, i) => {
+          {categories.map((category: CategoryTypes, i) => {
             return <CategoryCard key={i} category={category} />;
           })}
         </div>

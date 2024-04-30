@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-import { categoryTypes, itemTypes } from "../types/interface";
+import { CategoryTypes, ItemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 import { timeToNowHandler } from "./home/general/timeToNowHandler";
 type ReviewBoxesType = {
@@ -11,12 +11,12 @@ export const notificationReviewHandler = () => {
       if (typeof window !== "undefined") {
         const { itemsData, categories } = getAppDataHandler();
         if (itemsData.length > 0) {
-          const itemsToReview = itemsData.filter((item: itemTypes) => {
+          const itemsToReview = itemsData.filter((item: ItemTypes) => {
             const daysSinceReviewed = timeToNowHandler(
               item.reviews.lastReviewDate
             ).days;
             const category = categories.find(
-              (category: categoryTypes) => category.name === item.category
+              (category: CategoryTypes) => category.name === item.category
             );
             // conditions
             const isInTheBox = item.reviews.box < 6;

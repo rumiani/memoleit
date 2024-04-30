@@ -1,13 +1,13 @@
-import { itemTypes } from "@/src/types/interface";
+import { ItemTypes } from "@/src/types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
 
 export function reviewHandler(
-  currentItem: itemTypes | undefined,
+  currentItem: ItemTypes | undefined,
   status: boolean
 ) {
   const appData = getAppDataHandler();
   const foundItem = appData.itemsData.find(
-    (item: itemTypes) => item.id === currentItem?.id
+    (item: ItemTypes) => item.id === currentItem?.id
   );
   if (foundItem) {
     foundItem.reviews.lastReviewDate = Date.now();

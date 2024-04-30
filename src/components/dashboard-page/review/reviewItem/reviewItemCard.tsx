@@ -1,5 +1,4 @@
 "use client";
-import { itemTypes } from "@/src/types/interface";
 import React from "react";
 import Options from "./options/options";
 import ItemProgress from "./itemProgress/itemProgress";
@@ -7,15 +6,17 @@ import ItemBody from "./itemBody/itemBody";
 import { capitalize } from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
-import { itemReducer } from "@/src/redux/appStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { toast } from "react-toastify";
+import { ItemTypes } from "@/src/types/interface";
+import { itemReducer } from "@/src/redux/slices/itemStateSlice";
+import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 
-export default function ReviewItemCard({ item }: { item: itemTypes }) {
+export default function ReviewItemCard({ item }: { item: ItemTypes }) {
   const dispatch = useAppDispatch();
 
-  const goToNextItem = (item: itemTypes, status: boolean) => {
+  const goToNextItem = (item: ItemTypes, status: boolean) => {
     const reviewResult = reviewHandler(item, status);
     reviewResult
       ? toast.success(
@@ -26,11 +27,11 @@ export default function ReviewItemCard({ item }: { item: itemTypes }) {
     dispatch(itemReducer(newRandomItem!));
   };
   return (
-    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-full max-w-96 mx-auto mt-10">
+    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 mb-8 sm:mb-16 flex flex-col justify-between w-full max-w-80 mx-auto">
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={"/categories/" + capitalize(item.category)}
+            href={getCategoryUrl(item.category)}
             title={"category: " + capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
           >

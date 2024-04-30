@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { categoriesReducer } from "@/src/redux/categoryStateSlice";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { FormValues } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import React, { useEffect } from "react";
