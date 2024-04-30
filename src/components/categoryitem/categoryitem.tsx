@@ -6,6 +6,7 @@ import ItemBody from "./itemBody/itemBody";
 import Link from "next/link";
 import { capitalize } from "lodash";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
+import ItemProgress from "../general/itemProgress/itemProgress";
 
 export default function CategoryItem({ item }: { item: ItemTypes }) {
 
@@ -27,6 +28,7 @@ export default function CategoryItem({ item }: { item: ItemTypes }) {
         </h3>
       </div>
       <ItemBody body={item.body} />
+      <ItemProgress itemBoxNumber={item.reviews.box} />
     </div>
   );
 }

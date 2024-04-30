@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Options from "./options/options";
-import ItemProgress from "./itemProgress/itemProgress";
+import ItemProgress from "../../../general/itemProgress/itemProgress";
 import ItemBody from "./itemBody/itemBody";
 import { capitalize } from "lodash";
 import Link from "next/link";
