@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialItemsStateTypes } from "../interfaces";
+import { initialItemStateTypes } from "../interfaces";
 import { ItemTypes } from "../../types/interface";
 
-const initialState: initialItemsStateTypes = {
+const initialState: initialItemStateTypes = {
   item: {
     id: "",
-    url: "",
     title: "",
     body: "",
     category: "",

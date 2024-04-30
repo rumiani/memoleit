@@ -5,7 +5,6 @@ import { CategoryTypes } from "../../types/interface";
 const initialCategoryState: initialCategoryStateTypes = {
   category: {
     id: "",
-    url:'',
     name: "",
     status: false,
     createdAt: 0,

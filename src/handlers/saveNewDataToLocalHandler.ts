@@ -19,10 +19,6 @@ export const saveNewDataToLocalHandler = (newAppData: any) => {
             (category: CategoryTypes) => category.name === newCategory.name
           );
           if (!categoryExists) {
-            newCategory.url =
-              newCategory.id.substring(0, 8) +
-              "/" +
-              makeUrlFriendly(newCategory.name);
             appData.categories.push(newCategory);
           }
         });
@@ -31,10 +27,6 @@ export const saveNewDataToLocalHandler = (newAppData: any) => {
             (item: CategoryTypes) => item.id === newItem.id
           );
           if (!itemExists) {
-            newItem.url =
-              newItem.id.substring(0, 8) +
-              "/" +
-              makeUrlFriendly(newItem.title);
             appData.itemsData.push(newItem);
           }
         });

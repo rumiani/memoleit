@@ -15,18 +15,12 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
     if (!categoryExists)
       categories.push({
         id: uuidv4(),
-        get url() {
-          return this.id.substring(0, 8) + "/" + makeUrlFriendly(category);
-        },
         name: category.trim(),
         status: false,
         createdAt: Date.now(),
       });
     const itemObject: ItemTypes = {
       id: uuidv4(),
-      get url() {
-        return this.id.substring(0, 8) + "/" + makeUrlFriendly(title);
-      },
       title,
       body,
       category: category.trim(),

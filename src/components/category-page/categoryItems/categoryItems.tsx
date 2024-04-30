@@ -21,14 +21,12 @@ export default function CategoryItems({
       dispatch(allItemsReducer(filteredItemsData));
   }, [dispatch, categoryName]);
   return (
-    <div className="flex flex-wrap justify-around mt-8 gap-2">
+    <div className="flex flex-col justify-around mt-8 gap-2">
+      <BoxesDropdown categoryName={categoryName} />
       {isEmpty(items) ? (
         <div className="card_message">No item has been found.</div>
       ) : (
         <div>
-          <div>
-            <BoxesDropdown categoryName={categoryName}/>
-          </div>
           <div className="flex flex-wrap justify-around gap-4 mb-16">
             {items.map((item: ItemTypes) => {
               return (
