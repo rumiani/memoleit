@@ -19,7 +19,7 @@ export default function Review() {
     setFoundItem(true);
   }, [dispatch]);
   return (
-    <div className="mt-24">
+    <div className="my-4">
       {foundItem ? (
         item.id !== "" ? (
           <div>

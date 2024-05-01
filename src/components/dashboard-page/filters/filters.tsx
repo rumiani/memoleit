@@ -26,10 +26,10 @@ export default function Filters() {
   }, []);
 
   return (
-    <>
+    <div>
       <button
         onClick={filterHnadler}
-        className="absolute right-10 icon text-xl !w-fit"
+        className="absolute top-0 right-10 icon text-xl !w-fit"
         title="Filter categories"
       >
         <MdFilterListAlt className="text-3xl" />
@@ -41,6 +41,6 @@ export default function Filters() {
       >
         <Form />
       </dialog>
-    </>
+    </div>
   );
 }

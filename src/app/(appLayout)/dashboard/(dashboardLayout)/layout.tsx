@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {" "}
         <SuperPageLayout links={links} />
       </nav>
-      <div className="my-16">{children}</div>
+      <div className="my-4">{children}</div>
     </section>
   );
 }
