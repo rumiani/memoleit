@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { exitFullScreen, fullScreen } from "./fullScreen";
-import { convertFromRaw } from "draft-js";
-import { stateToHTML } from "draft-js-export-html";
 import { UseFormGetValues } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
 import { capitalize } from "lodash";
@@ -15,14 +13,11 @@ const Preview = ({
 }: {
   getValues: UseFormGetValues<FormValues>;
 }) => {
-  const [html, setHtml] = useState("");
   const dialogElement = useRef<HTMLDialogElement | null>(null);
   const itemlement = useRef<HTMLDivElement | null>(null);
 
   const showModalHnadler = () => {
     (dialogElement.current as DialogElement)?.showModal();
-    if (getValues().body)
-      setHtml(stateToHTML(convertFromRaw(JSON.parse(getValues().body))));
   };
 
   useEffect(() => {
@@ -52,7 +47,7 @@ const Preview = ({
             <h1 className="text-center font-bold text-2xl my-4">
               {capitalize(getValues().title)}
             </h1>
-            <ItemBody body={getValues().body}/>
+            <ItemBody body={getValues().body} />
             <div className="my-4 mx-auto">
               <p className="font-bold text-gray-500">Category:</p>
               {capitalize(getValues().category)}
