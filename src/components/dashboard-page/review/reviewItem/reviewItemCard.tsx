@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
+import Speaker from "@/src/components/general/speaker/speaker";
+import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 
 export default function ReviewItemCard({ item }: { item: ItemTypes }) {
   const dispatch = useAppDispatch();
@@ -39,9 +41,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
           </Link>
           <ItemOptions item={item} />
         </div>
-        <h3 id="title" className="text-2xl font-bold text-center my-2">
-          {capitalize(item.title)}
-        </h3>
+        <ItemTitle title={item.title} />
       </div>
       <div className="buttons flex justify-around w-full mt-4 gap-2">
         <button
