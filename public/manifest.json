@@ -1,26 +1,26 @@
 {
-  "name": "Memoleit PWA app",
+  "name": "Memoleit PWA",
   "short_name": "Memoleit",
   "description": "Memoleit is a PWA that helps you memorise things faster.",
   "icons": [
     {
-      "src": "/icons/favicon.png",
+      "src": "/favicon/favicon.ico",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/icons/favicon.png",
+      "src": "/favicon/favicon.ico",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/favicon.png",
+      "src": "/favicon/favicon.ico",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "/icons/favicon.png",
+      "src": "/favicon/favicon.ico",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { editHandler } from "@/src/handlers/editHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
@@ -14,12 +14,11 @@ import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
 
-export default function Options({ item }: { item: ItemTypes }) {
+export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
   const params = useParams<{ category: string }>();
-  const path = usePathname();
-
+  
   const removeBtnFunction = () => {
     setShowOptions(false);
     const isItemRemoved = removeHandler(item.id);
@@ -35,13 +34,34 @@ export default function Options({ item }: { item: ItemTypes }) {
     setShowOptions(false);
     editHandler(item.id);
   };
+  
+  const modelRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        modelRef.current &&
+        !modelRef.current.contains(event.target as Node)
+      ) {
+        setShowOptions(false);
+      }
+    };
+    if (showOptions) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [showOptions]);
   return (
     <div className="">
       <button onClick={() => setShowOptions(true)} className="icon">
         <BsThreeDotsVertical />
       </button>
       {showOptions && (
-        <div className="absolute left-0 flex flex-col top-0 w-full h-32 rounded-lg shadow-gray-400 shadow-lg bg-white">
+        <div
+          ref={modelRef}
+          className="absolute left-0 flex flex-col top-0 w-full h-32 rounded-lg shadow-gray-400 shadow-lg bg-white"
+        >
           <button
             onClick={() => setShowOptions(false)}
             className="absolute right-2 top-2 rounded-full p-1 text-xl text-red-500 hover:bg-red-200 "
@@ -55,7 +75,8 @@ export default function Options({ item }: { item: ItemTypes }) {
             <button
               onClick={() => editBtnFunction()}
               className="text-center w-full pt-2"
-            >Edit
+            >
+              Edit
             </button>
           </Link>
           <button

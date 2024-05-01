@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Options from "./options/options";
-import ItemProgress from "../../../general/itemProgress/itemProgress";
-import ItemBody from "./itemBody/itemBody";
+import ItemOptions from "@/src/components/general/itemOptions/itemOptions";
+import ItemBody from "@/src/components/general/itemBody/itemBody";
+import ItemProgress from "@/src/components/general/itemProgress/itemProgress";
 import { capitalize } from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
@@ -27,7 +27,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
     dispatch(itemReducer(newRandomItem!));
   };
   return (
-    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-6 mb-8 sm:mb-16 flex flex-col justify-between w-full max-w-80 mx-auto">
+    <div className=" animate-merge word-box border border-gray-300 rounded-lg p-4 my-8 sm:my-16 flex flex-col justify-between w-full max-w-80 h-72 overflow-y-auto mx-auto">
       <div>
         <div className="relative flex justify-between">
           <Link
@@ -37,9 +37,9 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
           >
             <h2>{capitalize(item.category)}</h2>
           </Link>
-          <Options item={item} />
+          <ItemOptions item={item} />
         </div>
-        <h3 id="title" className="text-2xl font-bold text-center my-6">
+        <h3 id="title" className="text-2xl font-bold text-center my-2">
           {capitalize(item.title)}
         </h3>
       </div>

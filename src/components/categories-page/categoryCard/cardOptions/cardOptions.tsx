@@ -65,7 +65,7 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
       </button>
       {showOptions && (
         <div
-          ref={modelRef}
+          ref={modelRef} 
           className="absolute w-52 right-0 flex flex-col top-0 h-32 pt-8 rounded-lg shadow-gray-400 shadow-lg bg-white"
         >
           <button

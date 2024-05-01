@@ -6,7 +6,6 @@ export const categoryItemsCountHandler = (category: string) => {
   if (typeof window !== "undefined") {
     const allItems = getAppDataHandler().itemsData;
     const categoryItems: ItemTypes[] = allItems.filter((item: ItemTypes) => {
-      console.log(item.category,category);
       
       return makeUrlFriendly(item.category) === makeUrlFriendly(category);
     });

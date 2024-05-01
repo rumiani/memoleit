@@ -26,7 +26,6 @@ export const boxChartDataHandler = (data: InitialDataType[], id?: string) => {
     });
 
     itemsData.forEach((item: ItemTypes) => {
-      console.log(item.category === foundCategory.name);
       if (item.category === foundCategory.name) {
         if (isTimeToReviewHandler(item)) {
           data[item.reviews.box - 1].Pending += 1;

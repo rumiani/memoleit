@@ -6,6 +6,7 @@ import { stateToHTML } from "draft-js-export-html";
 import { UseFormGetValues } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
 import { capitalize } from "lodash";
+import ItemBody from "../../general/itemBody/itemBody";
 
 type DialogElement = HTMLDialogElement | null;
 
@@ -51,10 +52,7 @@ const Preview = ({
             <h1 className="text-center font-bold text-2xl my-4">
               {capitalize(getValues().title)}
             </h1>
-            <div
-              className="text-lg"
-              dangerouslySetInnerHTML={{ __html: html }}
-            ></div>
+            <ItemBody body={getValues().body}/>
             <div className="my-4 mx-auto">
               <p className="font-bold text-gray-500">Category:</p>
               {capitalize(getValues().category)}

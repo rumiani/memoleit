@@ -10,8 +10,6 @@ export const getCategoryUrl = (categoryName: string) => {
   const categoryUrl = "/box/categories/" +
   foundCategory.id.substring(0, 8) +
   "/" +
-  makeUrlFriendly(categoryName)
-  console.log(categoryUrl);
-  
+  makeUrlFriendly(categoryName)  
   return categoryUrl;
 };
