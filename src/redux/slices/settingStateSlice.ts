@@ -4,6 +4,7 @@ import { initialSettingTypes } from "../interfaces";
 const initialCategoryState: initialSettingTypes = {
   setting: {
     isSoundOn: false,
+    isTextToSpeechOn:false,
     isDictionaryOn: false,
     isTourOn: false,
   },
@@ -16,6 +17,9 @@ export const SettingStateSlice = createSlice({
     soundReducer: (state) => {
       state.setting.isSoundOn = !state.setting.isSoundOn;
     },
+    textToSpeechReducer: (state) => {
+      state.setting.isTextToSpeechOn = !state.setting.isTextToSpeechOn;
+    },
     dictionaryReducer: (state) => {
       state.setting.isDictionaryOn = !state.setting.isDictionaryOn;
     },
@@ -25,7 +29,7 @@ export const SettingStateSlice = createSlice({
   },
 });
 
-export const { soundReducer, dictionaryReducer, tourReducer } =
+export const { soundReducer,textToSpeechReducer, dictionaryReducer, tourReducer } =
   SettingStateSlice.actions;
 
 export default SettingStateSlice.reducer;

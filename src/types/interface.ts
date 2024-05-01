@@ -18,6 +18,7 @@ export interface CategoryTypes {
 }
 export interface SettingTypes {
   isSoundOn: boolean;
+  isTextToSpeechOn:boolean;
   isDictionaryOn: boolean;
   isTourOn:boolean,
 }

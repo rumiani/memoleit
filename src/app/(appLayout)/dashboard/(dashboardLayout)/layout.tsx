@@ -7,6 +7,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       title: "Review",
     },
     {
+      url: "/dashboard/settings",
+      title: "App Settings",
+    },
+    {
       url: "/dashboard/new",
       title: "New Item",
     },

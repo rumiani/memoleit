@@ -1,16 +1,21 @@
-import React from 'react'
-import Speaker from '../speaker/speaker'
-import { capitalize } from 'lodash'
+import React from "react";
+import Speaker from "../speaker/speaker";
+import { capitalize } from "lodash";
+import { useAppSelector } from "@/src/app/hooks";
 
-export default function ItemTitle({title}:{title:string}) {
+export default function ItemTitle({ title }: { title: string }) {
+  const { setting } = useAppSelector((state) => state.settingState);
+
   return (
-        <div className=" relative my-2 " >
-          <span className="absolute">
+    <div className=" relative my-2 ">
+      {setting.isTextToSpeechOn && (
+        <span className="absolute">
           <Speaker text={title} />
-          </span>
-          <h3 id="title" className="text-2xl font-bold  text-center">
-            {capitalize(title)}
-          </h3>
-        </div>
-  )
+        </span>
+      )}
+      <h3 id="title" className="pl-6 text-2xl font-bold  text-center">
+        {capitalize(title)}
+      </h3>
+    </div>
+  );
 }

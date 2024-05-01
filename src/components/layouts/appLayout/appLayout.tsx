@@ -19,6 +19,10 @@ const superPages: any[] = [
         title: "Review",
       },
       {
+        url: "/dashboard/settings",
+        title: "App Settings",
+      },
+      {
         url: "/dashboard/new",
         title: "New Item",
       }

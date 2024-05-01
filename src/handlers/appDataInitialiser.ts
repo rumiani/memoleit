@@ -1,7 +1,8 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
-import { CategoryTypes, ItemTypes } from "../types/interface";
+import { CategoryTypes, ItemTypes, SettingTypes } from "../types/interface";
 import words from "@/src/data/initialData.json";
+import { getAppDataHandler } from "./getAppDataHandler";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
 const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);
@@ -13,6 +14,7 @@ export const appDataInitialiser = () => {
     const appDataJson: string | null = localStorage.getItem("appData");
     let itemsData: ItemTypes[] = [];
     const categories: CategoryTypes[] = [];
+    let settings: SettingTypes;
     if (!appDataJson) {
       categories.push({
         id: uuidv4(),
@@ -33,10 +35,15 @@ export const appDataInitialiser = () => {
             lastReviewDate: timestamps[i],
           },
         });
-
+        settings = {
+          isSoundOn: false,
+          isTextToSpeechOn: false,
+          isDictionaryOn: false,
+          isTourOn: true,
+        };
         localStorage.setItem(
           "appData",
-          JSON.stringify({ categories, itemsData })
+          JSON.stringify({ settings, categories, itemsData })
         );
       });
     }
