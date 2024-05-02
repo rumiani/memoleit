@@ -60,12 +60,13 @@ export default function ReviewSounds() {
   };
 
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="w-full flex flex-col">
       <CheckboxInput
         value="Review Sounds"
         status={setting.reviewSounds.isSoundOn}
         handleInputChange={handleInputChange}
       />
+      <div className="flex flex-row justify-center">
       <div className="ml-10">
         <p className="text-center text-sm font-bold">I Know</p>
         <DropDownSounds
@@ -81,6 +82,7 @@ export default function ReviewSounds() {
           SaveSoundHander={wrongSoundSaveHander}
           sounds={reviewSounds.wrong}
         />
+      </div>
       </div>
     </div>
   );
