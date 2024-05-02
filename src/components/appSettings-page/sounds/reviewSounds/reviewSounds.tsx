@@ -71,7 +71,7 @@ export default function ReviewSounds() {
         <DropDownSounds
           SaveSoundHander={rightSoundSaveHander}
           value={setting.reviewSounds.right}
-          sounds={reviewSounds().right}
+          sounds={reviewSounds.right}
         />
       </div>
       <div className="ml-10">
@@ -79,7 +79,7 @@ export default function ReviewSounds() {
         <DropDownSounds
           value={setting.reviewSounds.wrong}
           SaveSoundHander={wrongSoundSaveHander}
-          sounds={reviewSounds().wrong}
+          sounds={reviewSounds.wrong}
         />
       </div>
     </div>

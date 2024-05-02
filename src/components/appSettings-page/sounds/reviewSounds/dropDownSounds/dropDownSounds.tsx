@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 interface RightSoundTypes {
   SaveSoundHander: Function;
-  sounds: { name: number; sound: HTMLAudioElement }[];
+  sounds: { name: number; src: string }[];
   value: number;
 }
 export default function DropDownSounds({
@@ -10,7 +10,8 @@ export default function DropDownSounds({
   value,
 }: RightSoundTypes) {
   const changeInputHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    sounds[+event.target.value - 1].sound.play()
+    const audio = new Audio(sounds[+event.target.value - 1].src);
+    audio.play();
     SaveSoundHander(+event.target.value);
   };
   return (
@@ -20,9 +21,9 @@ export default function DropDownSounds({
         onChange={changeInputHandler}
         value={value}
       >
-        {sounds.map((item: { name: number; sound: HTMLAudioElement }, i) => (
-          <option key={i} value={item.name}>
-            Sound {item.name}
+        {sounds.map((sound: { name: number; src: string }, i) => (
+          <option key={i} value={sound.name}>
+            Sound {sound.name}
           </option>
         ))}
       </select>
