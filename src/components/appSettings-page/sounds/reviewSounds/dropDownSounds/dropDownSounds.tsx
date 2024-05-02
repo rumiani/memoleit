@@ -10,7 +10,6 @@ export default function DropDownSounds({
   value,
 }: RightSoundTypes) {
   const changeInputHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    
     const audio = new Audio(sounds[+event.target.value -1].src);
     audio.play();
     SaveSoundHander(+event.target.value);

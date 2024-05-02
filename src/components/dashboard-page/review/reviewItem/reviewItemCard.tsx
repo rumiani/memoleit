@@ -24,8 +24,6 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
     const appData = getAppDataHandler();
     if (reviewResult) {
       if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
-        console.log(5);
-
         const rightNumber = appData.settings.reviewSounds.right;
         const audio = new Audio(reviewSounds.right[rightNumber -1].src);
         audio.play();
@@ -35,9 +33,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       );
     } else {
       if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
-        const wrongNumber = appData.settings.reviewSounds.wrong;
-        console.log(wrongNumber);
-        
+        const wrongNumber = appData.settings.reviewSounds.wrong;        
         const audio = new Audio(reviewSounds.wrong[wrongNumber -1].src);
         audio.play();
       }
