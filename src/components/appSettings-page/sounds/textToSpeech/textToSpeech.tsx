@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckboxInput from "../../../general/checkBoxInput/input";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
@@ -10,6 +10,8 @@ export default function TextToSpeech() {
   const { setting } = useAppSelector((state) => state.settingState);
   const dispatch = useAppDispatch();
 
+
+
   const handleInputChange = () => {
     const appData = getAppDataHandler();
     if (appData.settings) {
@@ -19,7 +21,7 @@ export default function TextToSpeech() {
       };
       localStorage.setItem("appData", JSON.stringify(appData));
     }
-    dispatch(textToSpeechReducer());
+    dispatch(textToSpeechReducer(!setting.isTextToSpeechOn));
 
     if (setting.isTextToSpeechOn) {
       toast.success("Pronunciation turned off");

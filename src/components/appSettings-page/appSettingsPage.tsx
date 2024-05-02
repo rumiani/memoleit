@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Sounds from "./sounds/sounds";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import AppSounds from "./sounds/appSounds/appSounds";
 
 export default function AppSettingsPage() {
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function AppSettingsPage() {
   return (
     <div>
       <Sounds />
+      {/* <AppSounds /> */}
     </div>
   );
 }

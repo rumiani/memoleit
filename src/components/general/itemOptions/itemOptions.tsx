@@ -53,7 +53,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
     };
   }, [showOptions]);
   return (
-    <div className="">
+    <div className="bg-white z-10">
       <button onClick={() => setShowOptions(true)} className="icon">
         <BsThreeDotsVertical />
       </button>

@@ -11,19 +11,14 @@ export default function CheckboxInput({
   status,
   handleInputChange,
 }: checkBoxProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(status);
 
-  const inputChangeHandler = () => {
-    setIsChecked(!isChecked);
-    handleInputChange();
-  };
 
   return (
     <div className=" p-2 rounded-lg transition-all duration-300">
       <div className="flex relative ">
         <input
-          checked={isChecked}
-          onChange={inputChangeHandler}
+          checked={status}
+          onChange={()=>handleInputChange()}
           type="checkbox"
           id={value}
           name={value}

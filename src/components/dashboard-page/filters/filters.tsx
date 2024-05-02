@@ -29,7 +29,7 @@ export default function Filters() {
     <div>
       <button
         onClick={filterHnadler}
-        className="absolute top-0 right-10 icon text-xl !w-fit"
+        className="absolute top-10 right-10 icon text-xl !w-fit"
         title="Filter categories"
       >
         <MdFilterListAlt className="text-3xl" />

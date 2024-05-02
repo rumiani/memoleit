@@ -39,7 +39,7 @@ export default function BoxesDropdown({
         <option value={undefined}>All</option>
         {boxes.map((box: BoxType) => (
           <option key={box.number} value={box.number}>
-            {box.number === 6 ? "Archived" : "Box " + box.number}
+            {box.number === 6 ? "Learned" : "Box " + box.number}
           </option>
         ))}
       </select>
