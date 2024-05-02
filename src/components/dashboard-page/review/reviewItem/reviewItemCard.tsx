@@ -26,8 +26,8 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
         console.log(5);
 
-        const rightNumber = appData.settings.reviewSounds.right - 1;
-        const audio = new Audio(reviewSounds.right[rightNumber].src);
+        const rightNumber = appData.settings.reviewSounds.right;
+        const audio = new Audio(reviewSounds.right[rightNumber -1].src);
         audio.play();
       }
       toast.success(
@@ -35,10 +35,10 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       );
     } else {
       if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
-        const wrongNumber = appData.settings.reviewSounds.wrong - 1;
+        const wrongNumber = appData.settings.reviewSounds.wrong;
         console.log(wrongNumber);
         
-        const audio = new Audio(reviewSounds.wrong[wrongNumber].src);
+        const audio = new Audio(reviewSounds.wrong[wrongNumber -1].src);
         audio.play();
       }
       toast.success("Item moved to the box 1 and can be reviewed tomorrow");
