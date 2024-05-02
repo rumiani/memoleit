@@ -1,9 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialSettingTypes } from "../interfaces";
+import { SettingTypes } from "@/src/types/interface";
 
 const initialCategoryState: initialSettingTypes = {
   setting: {
-    isSoundOn: false,
+    reviewSounds:{
+      isSoundOn:false,
+      right:0,
+      wrong:0
+    } ,
     isTextToSpeechOn:false,
     isDictionaryOn: false,
     isTourOn: false,
@@ -14,8 +19,8 @@ export const SettingStateSlice = createSlice({
   name: "settingState",
   initialState: initialCategoryState,
   reducers: {
-    soundReducer: (state) => {
-      state.setting.isSoundOn = !state.setting.isSoundOn;
+    reviewSoundsReducer: (state, action: PayloadAction<any>) => {      
+      state.setting.reviewSounds = {...state.setting.reviewSounds,...action.payload}
     },
     textToSpeechReducer: (state, action: PayloadAction<boolean>) => {
       state.setting.isTextToSpeechOn = action.payload
@@ -29,7 +34,7 @@ export const SettingStateSlice = createSlice({
   },
 });
 
-export const { soundReducer,textToSpeechReducer, dictionaryReducer, tourReducer } =
+export const { reviewSoundsReducer,textToSpeechReducer, dictionaryReducer, tourReducer } =
   SettingStateSlice.actions;
 
 export default SettingStateSlice.reducer;

@@ -17,10 +17,14 @@ export interface CategoryTypes {
   createdAt: number;
 }
 export interface SettingTypes {
-  isSoundOn: boolean;
-  isTextToSpeechOn:boolean;
+  reviewSounds: {
+    isSoundOn: false;
+    right: 0;
+    wrong: 0;
+  };
+  isTextToSpeechOn: boolean;
   isDictionaryOn: boolean;
-  isTourOn:boolean,
+  isTourOn: boolean;
 }
 export interface UserTypes {
   id: string;
@@ -38,4 +42,8 @@ export interface FormValues {
   title: string;
   body: string;
   category: string;
+}
+export interface ReviewSoundsTypes {
+  right: { name: number; sound: HTMLAudioElement }[];
+  wrong: { name: number; sound: HTMLAudioElement }[];
 }

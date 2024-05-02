@@ -10,7 +10,10 @@ export default function TextToSpeech() {
   const { setting } = useAppSelector((state) => state.settingState);
   const dispatch = useAppDispatch();
 
-
+  useEffect(() => {
+    const { settings } = getAppDataHandler();
+    dispatch(textToSpeechReducer(settings.isTextToSpeechOn));
+  },[dispatch]);
 
   const handleInputChange = () => {
     const appData = getAppDataHandler();

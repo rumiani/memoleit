@@ -35,11 +35,16 @@ export const appDataInitialiser = () => {
             lastReviewDate: timestamps[i],
           },
         });
+
         settings = {
-          isSoundOn: false,
+          reviewSounds: {
+            isSoundOn: false,
+            right: 0,
+            wrong: 0,
+          },
           isTextToSpeechOn: false,
           isDictionaryOn: false,
-          isTourOn: true,
+          isTourOn: false,
         };
         localStorage.setItem(
           "appData",

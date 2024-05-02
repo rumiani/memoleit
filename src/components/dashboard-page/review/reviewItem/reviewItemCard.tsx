@@ -12,19 +12,36 @@ import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
-import Speaker from "@/src/components/general/speaker/speaker";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
+import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { reviewSounds } from "@/src/data/reviewSounds";
 
 export default function ReviewItemCard({ item }: { item: ItemTypes }) {
   const dispatch = useAppDispatch();
 
   const goToNextItem = (item: ItemTypes, status: boolean) => {
     const reviewResult = reviewHandler(item, status);
-    reviewResult
-      ? toast.success(
-          `The item has been moved to the box ${item.reviews.box + 1}`
-        )
-      : toast.success("Item moved to the box 1 and can be reviewed tomorrow");
+    const appData = getAppDataHandler();
+    if (reviewResult) {
+      if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
+        console.log(5);
+        
+        const rightNumber = appData.settings.reviewSounds.right;
+        const sounds = reviewSounds()
+        console.log(rightNumber);
+        
+        sounds.right[rightNumber].sound.play();
+      }
+      toast.success(
+        `The item has been moved to the box ${item.reviews.box + 1}`
+      );
+    } else {
+      if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
+        const wrongNumber = appData.settings.reviewSounds.wrong;
+        reviewSounds().wrong[wrongNumber].sound.play();
+      }
+      toast.success("Item moved to the box 1 and can be reviewed tomorrow");
+    }
     const newRandomItem = randomItemHandler();
     dispatch(itemReducer(newRandomItem!));
   };

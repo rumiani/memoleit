@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Sounds from "./sounds/sounds";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import AppSounds from "./sounds/appSounds/appSounds";
+import AppSounds from "./sounds/reviewSounds/reviewSounds";
 
 export default function AppSettingsPage() {
   useEffect(() => {
@@ -18,9 +18,8 @@ export default function AppSettingsPage() {
   }, []);
 
   return (
-    <div>
+    <div className="w-full p-4 border border-gray-300 h-fit">
       <Sounds />
-      {/* <AppSounds /> */}
     </div>
   );
 }
