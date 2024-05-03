@@ -1,5 +1,6 @@
-import { getAppDataHandler } from "./getAppDataHandler";
-import { CategoryTypes, ItemTypes } from "../types/interface";
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
+import { getAppDataHandler } from "../../../../handlers/getAppDataHandler";
+import { CategoryTypes, ItemTypes } from "../../../../types/interface";
 
 export default function saveCategoryNameHandler({
   id,
@@ -23,7 +24,7 @@ export default function saveCategoryNameHandler({
       }
     });
     foundCategory.name = categoryValue;
-    localStorage.setItem("appData", JSON.stringify(appData));
+    saveAppDataHandler(appData)
     return true;
   }
 }

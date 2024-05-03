@@ -47,3 +47,15 @@ export interface ReviewSoundsTypes {
   right: { name: number; sound: HTMLAudioElement }[];
   wrong: { name: number; sound: HTMLAudioElement }[];
 }
+export interface UserInfo {
+  lastVisit:string;
+  rightTimestamps:string;
+  wrongTimestamps:string;
+  itemsHistory:number
+}
+export interface AppDataTypes {
+  userInfo:UserInfo;
+  settings: SettingTypes;
+  categories: CategoryTypes[];
+  itemsData: ItemTypes[]
+}

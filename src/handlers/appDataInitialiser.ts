@@ -54,7 +54,7 @@ export const appDataInitialiser = () => {
     }
     // only to update the new settings object. The code will be removed later
     const appData =  JSON.parse(appDataJson!);
-    if(appDataJson && !appData.settings.isSoundOn){
+    if(appDataJson && !appData.settings.right){
       appData.settings = {
         reviewSounds: {
           isSoundOn: false,

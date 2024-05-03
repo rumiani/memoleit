@@ -10,8 +10,11 @@ import { reviewSounds } from "@/src/data/reviewSounds";
 export default function ReviewSounds() {
   const { setting } = useAppSelector((state) => state.settingState);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     const { settings } = getAppDataHandler();
+    console.log(settings.reviewSounds.isSoundOn);
+    
     dispatch(reviewSoundsReducer({ ...settings.reviewSounds }));
   }, [dispatch]);
 

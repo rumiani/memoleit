@@ -20,7 +20,9 @@ export const SettingStateSlice = createSlice({
   initialState: initialCategoryState,
   reducers: {
     reviewSoundsReducer: (state, action: PayloadAction<any>) => {      
-      state.setting.reviewSounds = {...state.setting.reviewSounds,...action.payload}
+      console.log(action.payload);
+      
+      state.setting.reviewSounds = {...action.payload}
     },
     textToSpeechReducer: (state, action: PayloadAction<boolean>) => {
       state.setting.isTextToSpeechOn = action.payload
