@@ -33,7 +33,11 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       );
     } else {
       if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
-        const wrongNumber = appData.settings.reviewSounds.wrong;        
+        const wrongNumber = appData.settings.reviewSounds.wrong;
+        console.log(appData.settings.reviewSounds);
+        
+        console.log(reviewSounds.wrong[wrongNumber -1]);
+                
         const audio = new Audio(reviewSounds.wrong[wrongNumber -1].src);
         audio.play();
       }

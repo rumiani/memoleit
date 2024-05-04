@@ -6,12 +6,12 @@ import { useForm } from "react-hook-form";
 import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
-import { saveNewItemToLocal } from "@/src/handlers/saveNewItemHandler";
 import { FormValues } from "@/src/types/interface";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
 import { useAppDispatch } from "@/src/app/hooks";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
 
 export default function NewItemForm() {
   const dispatch = useAppDispatch();

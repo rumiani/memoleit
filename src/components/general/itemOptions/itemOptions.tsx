@@ -2,10 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
-import { editHandler } from "@/src/handlers/editHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
@@ -32,7 +30,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   };
   const editBtnFunction = () => {
     setShowOptions(false);
-    editHandler(item.id);
+    // saveEditedItemHandler(item.id);
   };
   
   const modelRef = useRef<HTMLDivElement>(null);

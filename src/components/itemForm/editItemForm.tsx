@@ -7,11 +7,11 @@ import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
-import { saveEditedItemHandler } from "@/src/handlers/saveEditedItemHandler";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
 import { useAppDispatch } from "@/src/app/hooks";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 
 export default function EditItemForm({
   itemDefaultValues,

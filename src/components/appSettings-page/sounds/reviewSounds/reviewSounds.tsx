@@ -71,19 +71,19 @@ export default function ReviewSounds() {
       />
       <div className="flex flex-row justify-center">
       <div className="ml-10">
-        <p className="text-center text-sm font-bold">I Know</p>
-        <DropDownSounds
-          SaveSoundHander={rightSoundSaveHander}
-          value={setting.reviewSounds.right}
-          sounds={reviewSounds.right}
-        />
-      </div>
-      <div className="ml-10">
-        <p className="text-center text-sm font-bold">I Do&apos;nt Know</p>
+        <p className="text-center text-sm text-red-500 font-bold">I Do&apos;nt Know</p>
         <DropDownSounds
           value={setting.reviewSounds.wrong}
           SaveSoundHander={wrongSoundSaveHander}
           sounds={reviewSounds.wrong}
+        />
+      </div>
+      <div className="ml-10">
+        <p className="text-center text-sm text-green-600 font-bold">I Know</p>
+        <DropDownSounds
+          SaveSoundHander={rightSoundSaveHander}
+          value={setting.reviewSounds.right}
+          sounds={reviewSounds.right}
         />
       </div>
       </div>

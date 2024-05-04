@@ -1,5 +1,5 @@
-import { getAppDataHandler } from "./getAppDataHandler";
-import { CategoryTypes, ItemTypes } from "../types/interface";
+import { getAppDataHandler } from "../../../handlers/getAppDataHandler";
+import { CategoryTypes, ItemTypes } from "../../../types/interface";
 import { capitalize } from "lodash";
 
 export default function deleteCategoryHandler(category: string) {

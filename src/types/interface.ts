@@ -19,8 +19,8 @@ export interface CategoryTypes {
 export interface SettingTypes {
   reviewSounds: {
     isSoundOn: false;
-    right: 0;
-    wrong: 0;
+    right: number;
+    wrong: number;
   };
   isTextToSpeechOn: boolean;
   isDictionaryOn: boolean;

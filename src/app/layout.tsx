@@ -18,7 +18,7 @@ const APP_TITLE_TEMPLATE = "%s - Memoleit";
 const APP_DESCRIPTION = "Memorise anything faster";
 export const metadata: Metadata = {
   icons: {
-    icon: "@/public/favicon.png",
+    icon: "/favicon/favicon.ico",
   },
   applicationName: APP_NAME,
   title: {

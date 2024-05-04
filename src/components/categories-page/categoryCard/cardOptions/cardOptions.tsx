@@ -9,8 +9,8 @@ import {
   categoryEditNameReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import deleteCategoryHandler from "@/src/handlers/deleteCategoryHandler";
 import { toast } from "react-toastify";
+import deleteCategoryHandler from "../../handlers/deleteCategoryHandler";
 
 export default function CardOptions({ category }: { category: CategoryTypes }) {
   const [showOptions, setShowOptions] = useState(false);

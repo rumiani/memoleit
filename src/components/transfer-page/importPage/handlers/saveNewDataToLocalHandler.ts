@@ -1,7 +1,6 @@
 "use client";
 
-import { CategoryTypes, ItemTypes } from "../types/interface";
-import { makeUrlFriendly } from "./makeUrlFriendly";
+import { CategoryTypes, ItemTypes } from "../../../../types/interface";
 
 export const saveNewDataToLocalHandler = (newAppData: any) => {
   if (typeof window !== "undefined") {

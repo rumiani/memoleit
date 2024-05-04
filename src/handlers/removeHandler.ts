@@ -1,5 +1,6 @@
 import { getAppDataHandler } from "./getAppDataHandler";
 import { ItemTypes } from "../types/interface";
+import { saveAppDataHandler } from "./saveAppDataHandler";
 
 export const removeHandler = (id: string) => {
   let appData = getAppDataHandler();
@@ -8,7 +9,7 @@ export const removeHandler = (id: string) => {
     appData.itemsData = appData.itemsData.filter(
       (item: ItemTypes) => item.id !== id
     );
-    localStorage.setItem("appData", JSON.stringify(appData));
+    saveAppDataHandler(appData)
     return true;
   } else {
     return false;

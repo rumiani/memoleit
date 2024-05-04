@@ -1,5 +1,5 @@
-import { ItemTypes } from "../types/interface";
-import { getAppDataHandler } from "./getAppDataHandler";
+import { ItemTypes } from "../../../types/interface";
+import { getAppDataHandler } from "../../../handlers/getAppDataHandler";
 
 export const searchItemHandler = (
   searchTerm: string,

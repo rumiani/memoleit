@@ -13,6 +13,7 @@ export default function CategoriesPage() {
   const { categories } = useAppSelector((state) => state.categoryState);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
+  
   useEffect(() => {
     setIsLoading(true);
 

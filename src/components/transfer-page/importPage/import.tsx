@@ -1,8 +1,8 @@
-import { saveNewDataToLocalHandler } from "@/src/handlers/saveNewDataToLocalHandler";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
+import { saveNewDataToLocalHandler } from "./handlers/saveNewDataToLocalHandler";
 
 type InputElement = HTMLInputElement | null;
 

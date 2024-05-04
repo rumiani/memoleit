@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import SearchInput from "./searchInput/searchInput";
 import CategoryItem from "../categoryitem/categoryitem";
 import BoxOption from "./boxOption/boxOption";
-import { searchItemHandler } from "@/src/handlers/searchItemHandler";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { ItemTypes } from "@/src/types/interface";
+import { searchItemHandler } from "./handlers/searchItemHandler";
 
 export default function SearchPage() {
   const [filteredItems, setFilteredItems] = useState([]);

@@ -1,11 +1,11 @@
 import { useAppDispatch } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import saveCategoryNameHandler from "@/src/handlers/saveCategoryNameHandler";
 import { categoriesReducer, categoryEditNameReducer } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import React, { useRef, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
+import saveCategoryNameHandler from "../saveCategoryNameHandler";
 
 export default function CategoryInput({
   category,
@@ -13,7 +13,6 @@ export default function CategoryInput({
   category: CategoryTypes;
 }) {
   const [categoryValue, setCategoryValue] = useState<string>(category.name);
-  const [readOnly, setReadOnly] = useState<boolean>(true);
   const inputElement = useRef(null);
   const dispatch = useAppDispatch();
 
@@ -24,7 +23,6 @@ export default function CategoryInput({
   };
 
   const saveCategoryHandler = () => {
-    setReadOnly(true);
     const saveTheCategory = saveCategoryNameHandler({
       id: category.id,
       categoryValue,

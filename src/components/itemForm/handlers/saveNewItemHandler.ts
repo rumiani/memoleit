@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import { FormValues, CategoryTypes, ItemTypes } from "../types/interface";
-import { makeUrlFriendly } from "./makeUrlFriendly";
+import { FormValues, CategoryTypes, ItemTypes } from "../../../types/interface";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   const appDataJson: string | null = localStorage.getItem("appData");
