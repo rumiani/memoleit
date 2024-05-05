@@ -12,9 +12,7 @@ export default function ReviewSounds() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const { settings } = getAppDataHandler();
-    console.log(settings.reviewSounds.isSoundOn);
-    
+    const { settings } = getAppDataHandler();    
     dispatch(reviewSoundsReducer({ ...settings.reviewSounds }));
   }, [dispatch]);
 
