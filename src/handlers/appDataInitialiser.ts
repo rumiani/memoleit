@@ -53,22 +53,22 @@ export const appDataInitialiser = () => {
       });
     }
     // only to update the new settings object. The code will be removed later
-    // const appData =  JSON.parse(appDataJson!);
-    // if(appDataJson && !appData.settings.right){
-    //   appData.settings = {
-    //     reviewSounds: {
-    //       isSoundOn: false,
-    //       right: 0,
-    //       wrong: 0,
-    //     },
-    //     isTextToSpeechOn: false,
-    //     isDictionaryOn: false,
-    //     isTourOn: false,
-    //   };
-    //   localStorage.setItem(
-    //     "appData",
-    //     JSON.stringify(appData)
-    //   );
-    // }
+    const appData =  JSON.parse(appDataJson!);
+    if(appDataJson && !appData.settings.right){
+      appData.settings = {
+        reviewSounds: {
+          isSoundOn: false,
+          right: 0,
+          wrong: 0,
+        },
+        isTextToSpeechOn: false,
+        isDictionaryOn: false,
+        isTourOn: false,
+      };
+      localStorage.setItem(
+        "appData",
+        JSON.stringify(appData)
+      );
+    }
   }
 };
