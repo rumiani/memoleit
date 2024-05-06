@@ -1,3 +1,4 @@
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 import { getAppDataHandler } from "../../../handlers/getAppDataHandler";
 import { CategoryTypes, ItemTypes } from "../../../types/interface";
 import { capitalize } from "lodash";
@@ -17,7 +18,7 @@ export default function deleteCategoryHandler(category: string) {
     appData.itemsData = itemsData.filter(
       (item: ItemTypes) => capitalize(item.category) !== capitalize(category)
     );
-    localStorage.setItem("appData", JSON.stringify(appData));
+    saveAppDataHandler(appData)
     return true;
   }
 }

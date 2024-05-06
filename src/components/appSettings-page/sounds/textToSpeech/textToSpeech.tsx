@@ -5,6 +5,7 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { textToSpeechReducer } from "@/src/redux/slices/settingStateSlice";
 import { SettingTypes } from "@/src/types/interface";
 import { toast } from "react-toastify";
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 
 export default function TextToSpeech() {
   const { setting } = useAppSelector((state) => state.settingState);
@@ -22,7 +23,7 @@ export default function TextToSpeech() {
         ...appData.settings,
         isTextToSpeechOn: !setting.isTextToSpeechOn,
       };
-      localStorage.setItem("appData", JSON.stringify(appData));
+      saveAppDataHandler(appData)
     }
     dispatch(textToSpeechReducer(!setting.isTextToSpeechOn));
 

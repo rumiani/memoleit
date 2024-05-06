@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues, CategoryTypes } from "../../../types/interface";
 import { makeUrlFriendly } from "../../../handlers/makeUrlFriendly";
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 
 export const saveEditedItemHandler = (
   { title, body, category }: FormValues,
@@ -28,10 +29,7 @@ export const saveEditedItemHandler = (
       itemExists.title = title;
       itemExists.body = body;
       itemExists.category = category;
-      localStorage.setItem(
-        "appData",
-        JSON.stringify({ categories, itemsData })
-      );
+      saveAppDataHandler(appData)
       toast.success("The new item has been saved.");
     } else {
       toast.error("The item does not exist.");

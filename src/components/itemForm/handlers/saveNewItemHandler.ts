@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues, CategoryTypes, ItemTypes } from "../../../types/interface";
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   const appDataJson: string | null = localStorage.getItem("appData");
   if (appDataJson) {
     let appData = JSON.parse(appDataJson);
-
     let { categories, itemsData } = appData;
     const categoryExists = categories.find(
       (savedCategory: CategoryTypes) => savedCategory.name === category
@@ -31,7 +31,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       },
     };
     itemsData.push(itemObject);
-    localStorage.setItem("appData", JSON.stringify({ categories, itemsData }));
+    saveAppDataHandler(appData)
     toast.success("The new item has been saved.");
   }
 };

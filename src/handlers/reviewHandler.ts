@@ -1,5 +1,6 @@
 import { ItemTypes } from "@/src/types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
+import { saveAppDataHandler } from "./saveAppDataHandler";
 
 export function reviewHandler(
   currentItem: ItemTypes | undefined,
@@ -14,11 +15,11 @@ export function reviewHandler(
     foundItem.reviews.review += 1;
     if (status) {
       foundItem.reviews.box += 1;
-      localStorage.setItem("appData", JSON.stringify(appData));
+      saveAppDataHandler(appData)
       return true;
     } else {
       foundItem.reviews.box = 1;
-      localStorage.setItem("appData", JSON.stringify(appData));
+      saveAppDataHandler(appData)
       return false;
     }
   }

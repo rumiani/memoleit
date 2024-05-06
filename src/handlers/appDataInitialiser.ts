@@ -53,7 +53,7 @@ export const appDataInitialiser = () => {
       });
     }
     // only to update the new settings object. The code will be removed later
-    const appData =  JSON.parse(appDataJson!);
+    const appData =  JSON.parse(appDataJson!);    
     if(appDataJson && !appData.settings.reviewSounds.right){      
       appData.settings = {
         reviewSounds: {

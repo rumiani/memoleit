@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Sounds from "./sounds/sounds";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import AppSounds from "./sounds/reviewSounds/reviewSounds";
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 
 export default function AppSettingsPage() {
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function AppSettingsPage() {
         isTourOn: true,
       };
     }
-    localStorage.setItem("appData", JSON.stringify(appData));
+    saveAppDataHandler(appData)
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import { reviewSoundsReducer } from "@/src/redux/slices/settingStateSlice";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { toast } from "react-toastify";
 import { reviewSounds } from "@/src/data/reviewSounds";
+import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 
 export default function ReviewSounds() {
   const { setting } = useAppSelector((state) => state.settingState);
@@ -23,7 +24,7 @@ export default function ReviewSounds() {
         ...appData.settings.reviewSounds,
         isSoundOn: !setting.reviewSounds.isSoundOn,
       };
-      localStorage.setItem("appData", JSON.stringify(appData));
+      saveAppDataHandler(appData)
     }
     dispatch(
       reviewSoundsReducer({ isSoundOn: !setting.reviewSounds.isSoundOn })
@@ -42,7 +43,7 @@ export default function ReviewSounds() {
         ...appData.settings.reviewSounds,
         right: soundNumber,
       };
-      localStorage.setItem("appData", JSON.stringify(appData));
+      saveAppDataHandler(appData)
     }
     dispatch(reviewSoundsReducer({ right: soundNumber }));
     toast.success("Sound has changed");
@@ -54,7 +55,7 @@ export default function ReviewSounds() {
         ...appData.settings.reviewSounds,
         wrong: soundNumber,
       };
-      localStorage.setItem("appData", JSON.stringify(appData));
+      saveAppDataHandler(appData)
     }
     dispatch(reviewSoundsReducer({ wrong: soundNumber }));
     toast.success("Sound has changed");
