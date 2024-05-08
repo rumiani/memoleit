@@ -1,37 +1,67 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues, CategoryTypes, ItemTypes } from "../../../types/interface";
-import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
+import { db } from "@/src/services/db";
+import { userIdTest } from "@/src/services/userId";
+import { randomIdGenerator } from "@/src/handlers/newHandlers/randomID";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
-  const appDataJson: string | null = localStorage.getItem("appData");
-  if (appDataJson) {
-    let appData = JSON.parse(appDataJson);
-    let { categories, itemsData } = appData;
-    const categoryExists = categories.find(
-      (savedCategory: CategoryTypes) => savedCategory.name === category
-    );
-    if (!categoryExists)
-      categories.push({
-        id: uuidv4(),
-        name: category.trim(),
-        status: false,
-        createdAt: Date.now(),
-      });
+  db.categories
+    .where("name")
+    .equals(category)
+    .first()
+    .then((storedCategory) => {
+      if (storedCategory) {
+        createNewItemHandler(storedCategory.id);
+        console.log("Retrieved category:", category);
+      } else {
+        createNewCategoryHandler(category);
+        console.log(`Catecategory with name ${category} not found.`);
+      }
+    })
+    .catch((error) => {
+      console.error("Error retrieving category:", error);
+    });
+
+  const createNewItemHandler = (categoryId: string) => {
     const itemObject: ItemTypes = {
       id: uuidv4(),
+      userId: userIdTest,
+      categoryId,
       title,
       body,
-      category: category.trim(),
+      category,
+      box: 1,
       createdAt: Date.now(),
-      reviews: {
-        box: 1,
-        review: 0,
-        lastReviewDate: Date.now(),
-      },
+      lastUpdate: Date.now(),
     };
-    itemsData.push(itemObject);
-    saveAppDataHandler(appData)
-    toast.success("The new item has been saved.");
-  }
+    db.items
+      .add(itemObject)
+      .then((id) => {
+        toast.success("The new item has been saved.");
+        console.log(`Item was added with ID: ${id}`);
+      })
+      .catch((error) => {
+        console.error(`error adding item`, error);
+      });
+  };
+
+  const createNewCategoryHandler = (category: string) => {
+    const categoryObject: CategoryTypes = {
+      id: randomIdGenerator(8),
+      userId: userIdTest,
+      name: category.trim(),
+      status: false,
+      createdAt: Date.now(),
+    };
+    db.categories
+      .add(categoryObject)
+      .then((id) => {
+        createNewItemHandler(id);
+        console.log(`Category was added with ID: ${id}`);
+      })
+      .catch((error) => {
+        console.error(`error adding item`, error);
+      });
+  };
 };

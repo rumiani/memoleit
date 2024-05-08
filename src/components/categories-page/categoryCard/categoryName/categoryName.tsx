@@ -3,9 +3,8 @@ import { CategoryTypes } from "@/src/types/interface";
 import Link from "next/link";
 import CategoryInput from "./CategoryInput/CategoryInput";
 import { useAppSelector } from "@/src/app/hooks";
-import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import { capitalize } from "lodash";
-import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
+import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
 
 export default function CategoryName({
   category,
@@ -24,7 +23,7 @@ export default function CategoryName({
         </div>
       ) : (
         <Link
-          href={getCategoryUrl(category.name)}
+          href={getCategoryUrl(category.id, category.name)}
           title="Open for more details"
           className="text-blue-500 my-4 text-xl hover:underline"
         >

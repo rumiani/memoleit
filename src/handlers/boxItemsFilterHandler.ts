@@ -1,6 +1,6 @@
 import { ItemTypes } from "../types/interface";
 import { getAppDataHandler } from "./getAppDataHandler";
-import { makeUrlFriendly } from "./makeUrlFriendly";
+import { makeUrlFriendly } from "./newHandlers/makeUrlFriendly";
 
 export const boxItemsFilterHandler = (
   categoryName: string,

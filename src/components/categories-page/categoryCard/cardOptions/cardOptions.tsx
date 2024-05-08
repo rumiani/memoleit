@@ -41,17 +41,17 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
   };
 
   const deleteHandler = () => {
-    setShowOptions(false);
-    const deleteResult = deleteCategoryHandler(category.name);
-    if (deleteResult) {
-      const { categories } = getAppDataHandler();
-      if (categories) dispatch(categoriesReducer(categories));
-      toast.success(category.name + " category was successfully deleted.", {
-        autoClose: 2000,
-      });
-    } else {
-      toast.error(category.name + " category was not found");
-    }
+    // setShowOptions(false);
+    // const deleteResult = deleteCategoryHandler(category.id);
+    // if (deleteResult) {
+    //   const { categories } = getAppDataHandler();
+    //   if (categories) dispatch(categoriesReducer(categories));
+    //   toast.success(category.name + " category was successfully deleted.", {
+    //     autoClose: 2000,
+    //   });
+    // } else {
+    //   toast.error(category.name + " category was not found");
+    // }
   };
 
   return (

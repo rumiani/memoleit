@@ -1,27 +1,34 @@
 export interface ItemTypes {
   id: string;
+  userId: string;
+  categoryId: string;
   title: string;
   body: string;
-  category: string;
+  category:string;
+  box: number;
   createdAt: number;
-  reviews: {
-    box: number;
-    review: number;
-    lastReviewDate: number;
-  };
+  lastUpdate: number;
 }
 export interface CategoryTypes {
   id: string;
+  userId: string;
   name: string;
   status: boolean;
   createdAt: number;
 }
+export interface ReviewTypes {
+  id: string;
+  userId: string;
+  itemId: string;
+  status: boolean;
+  createdAt: number;
+}
 export interface SettingTypes {
-  reviewSounds: {
-    isSoundOn: false;
-    right: number;
-    wrong: number;
-  };
+  id: string;
+  userId: string;
+  isReviewSoundOn: boolean;
+  rightAnswerSoundSrc: string;
+  wrongAnswerSoundSrc: string;
   isTextToSpeechOn: boolean;
   isDictionaryOn: boolean;
   isTourOn: boolean;
@@ -42,20 +49,4 @@ export interface FormValues {
   title: string;
   body: string;
   category: string;
-}
-export interface ReviewSoundsTypes {
-  right: { name: number; sound: HTMLAudioElement }[];
-  wrong: { name: number; sound: HTMLAudioElement }[];
-}
-export interface UserInfo {
-  lastVisit:string;
-  rightTimestamps:string;
-  wrongTimestamps:string;
-  itemsHistory:number
-}
-export interface AppDataTypes {
-  userInfo:UserInfo;
-  settings: SettingTypes;
-  categories: CategoryTypes[];
-  itemsData: ItemTypes[]
 }

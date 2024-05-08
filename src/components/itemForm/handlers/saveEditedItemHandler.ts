@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues, CategoryTypes } from "../../../types/interface";
-import { makeUrlFriendly } from "../../../handlers/makeUrlFriendly";
+import { makeUrlFriendly } from "../../../handlers/newHandlers/makeUrlFriendly";
 import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
 
 export const saveEditedItemHandler = (

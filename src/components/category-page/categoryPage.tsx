@@ -5,17 +5,28 @@ import CategoryOptions from "./categoryOptions/categoryOptions";
 import CategoryItems from "./categoryItems/categoryItems";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { capitalize } from "lodash";
+import { findCategoryByName } from "@/src/handlers/newHandlers/findCategoryByName";
 
-export default function CategoryPage({ categoryName}:{categoryName:string}){
+export default function CategoryPage({
+  categoryName,
+}: {
+  categoryName: string;
+}) {
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {    
-    setIsCategory(categoryExistHandler(categoryName));
-    setIsLoading(false)
+  useEffect(() => {
+    findCategoryByName(categoryName)
+      .then((category) => {
+        category ? setIsCategory(true) : setIsCategory(false);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log("error");
+      });
   }, [categoryName]);
-  if(isLoading){
-    return <LoadingPulse/>
+  if (isLoading) {
+    return <LoadingPulse />;
   }
   return (
     <div>

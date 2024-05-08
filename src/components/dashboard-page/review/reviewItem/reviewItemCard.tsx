@@ -11,10 +11,10 @@ import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
-import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { reviewSounds } from "@/src/data/reviewSounds";
+import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
 
 export default function ReviewItemCard({ item }: { item: ItemTypes }) {
   const dispatch = useAppDispatch();
@@ -28,9 +28,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
         const audio = new Audio(reviewSounds.right[rightNumber - 1].src);
         audio.play();
       }
-      toast.success(
-        `The item has been moved to the box ${item.reviews.box + 1}`
-      );
+      toast.success(`The item has been moved to the box ${item.box + 1}`);
     } else {
       if (appData.settings && appData.settings.reviewSounds.isSoundOn) {
         const wrongNumber = appData.settings.reviewSounds.wrong;
@@ -47,7 +45,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={getCategoryUrl(item.category)}
+            href={getCategoryUrl(item.categoryId, item.category)}
             title={"category: " + capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
           >
@@ -73,7 +71,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       </div>
       <div className="mt-8">
         <ItemBody body={item.body} />
-        <ItemProgress itemBoxNumber={item.reviews.box} />
+        <ItemProgress itemBoxNumber={item.box} />
       </div>
     </div>
   );

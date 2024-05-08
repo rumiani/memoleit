@@ -1,6 +1,6 @@
 import { getAppDataHandler } from "./getAppDataHandler";
 import { CategoryTypes } from "../types/interface";
-import { makeUrlFriendly } from "./makeUrlFriendly";
+import { makeUrlFriendly } from "./newHandlers/makeUrlFriendly";
 
 export default function categoryExistHandler(category: string) {
   if (typeof window !== "undefined") {
