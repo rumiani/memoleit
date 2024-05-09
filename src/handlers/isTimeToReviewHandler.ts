@@ -1,4 +1,6 @@
-import { ItemTypes } from "../types/interface";
+import _ from "lodash";
+import { db } from "../services/db";
+import { ItemTypes, ReviewTypes } from "../types/interface";
 import { timeToNowHandler } from "./home/general/timeToNowHandler";
 
 type ReviewBoxesType = {
@@ -7,8 +9,8 @@ type ReviewBoxesType = {
 
 export const isTimeToReviewHandler = (item: ItemTypes) => {
   const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
-  const daysSinceReviewed = timeToNowHandler(item.reviews.lastReviewDate).days;
-  const isInTheBox = item.reviews.box < 6;
-  const isTimeToReview = daysSinceReviewed >= reviewBoxes[item.reviews.box];
+  const daysSinceReviewed = timeToNowHandler(item.lastReview).days;
+  const isTimeToReview = daysSinceReviewed >= reviewBoxes[item.box];
+  const isInTheBox = item.box < 6;
   return isInTheBox && isTimeToReview;
 };

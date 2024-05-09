@@ -59,20 +59,20 @@ const BoxChart: React.FC = () => {
   const [data, setData] = useState<DataType[] | undefined>(undefined);
   useEffect(() => {
     if (!data) {
-      const chartData = boxChartDataHandler(
-        _.cloneDeep(initialData),
-        category.id
+      boxChartDataHandler(_.cloneDeep(initialData), category.id).then(
+        (chartData) => {
+          console.log(chartData);
+          setData(chartData);
+        }
       );
-      setData(chartData);
     }
   }, [data, category]);
 
   const handleChange = (id: string) => {
-    const chartData = boxChartDataHandler(
-      _.cloneDeep(initialData),
-      id
-    );
-    setData(chartData);
+    boxChartDataHandler(_.cloneDeep(initialData), id).then((chartData) => {
+      console.log(chartData);
+      setData(chartData);
+    });
   };
 
   return (

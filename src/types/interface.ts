@@ -7,7 +7,7 @@ export interface ItemTypes {
   category:string;
   box: number;
   createdAt: number;
-  lastUpdate: number;
+  lastReview: number;
 }
 export interface CategoryTypes {
   id: string;

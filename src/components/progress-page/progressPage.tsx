@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BoxChart from "./boxChart/boxChart";
 import { useAppDispatch } from "@/src/app/hooks";
-import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
+import { CategoryTypes } from "@/src/types/interface";
+import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 
 export default function ProgressPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
-    appDataInitialiser();
-    const { categories } = getAppDataHandler();
-    dispatch(categoriesReducer(categories));
+    setIsLoading(true);
+
+    getCategoriesHandler()
+      .then((newCategories:CategoryTypes[]) => {
+        dispatch(categoriesReducer(newCategories));
+        setIsLoading(false);
+      })
+      .catch(() => console.log("error"));
+      
   }, [dispatch]);
-  return (
-    <>
-      <BoxChart />
-    </>
-  );
+
+  return <>{isLoading ? <LoadingPulse /> : <BoxChart />}</>;
 }

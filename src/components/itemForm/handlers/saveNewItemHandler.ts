@@ -33,7 +33,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       category,
       box: 1,
       createdAt: Date.now(),
-      lastUpdate: Date.now(),
+      lastReview: Date.now(),
     };
     db.items
       .add(itemObject)

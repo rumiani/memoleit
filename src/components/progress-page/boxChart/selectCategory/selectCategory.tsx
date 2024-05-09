@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 import {
   categoriesReducer,
   categoryNameReducer,
@@ -18,8 +19,12 @@ export default function SelectCategory({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const storedCategories = getAppDataHandler().categories;
-    dispatch(categoriesReducer(storedCategories));
+    getCategoriesHandler().then(storedCategories =>{
+      console.log(storedCategories);
+      
+      dispatch(categoriesReducer(storedCategories));
+    }).catch(error => console.log('error')
+    )
   }, [dispatch]);
 
   const dropdownChangeHnadler = (

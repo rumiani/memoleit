@@ -1,11 +1,12 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
-import { ItemTypes } from "../types/interface";
+import { ItemTypes } from "../../types/interface";
 import words from "@/src/data/initialData.json";
-import { db } from "../services/db";
-import { userIdTest } from "../services/userId";
-import { randomIdGenerator } from "./newHandlers/randomID";
-import { reviewSounds } from "../data/reviewSounds";
+import { db } from "../../services/db";
+import { userIdTest } from "../../services/userId";
+import { randomIdGenerator } from "./randomID";
+import { reviewSounds } from "../../data/reviewSounds";
+import { isEmpty } from "lodash";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
 const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);
@@ -13,7 +14,13 @@ const wordsObject = words.map((word, i) => {
   return { word, box: Math.floor(i / 2) + 1 };
 });
 
-export const appDataInitialiser = () => {
+export const appDataInitialiser = async () => {
+  const isFirstTime = await db.categories
+    .toArray()
+    .then((categoriesArray) => isEmpty(categoriesArray))
+    .catch(() => console.log("error"));
+  if (!isFirstTime) return;
+
   const categoryId = randomIdGenerator(8);
   const category = {
     id: categoryId,
@@ -22,6 +29,7 @@ export const appDataInitialiser = () => {
     status: false,
     createdAt: Date.now() - 1000 * 3600 * 1000,
   };
+
   db.categories
     .add(category)
     .then((id) => {
@@ -42,7 +50,7 @@ export const appDataInitialiser = () => {
       category: "11 plus",
       box: wordsObject[i].box,
       createdAt: Date.now() - 1000 * 3600 * 1000,
-      lastUpdate: timestamps[i],
+      lastReview: timestamps[i],
     });
   });
 

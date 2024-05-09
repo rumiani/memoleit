@@ -4,11 +4,9 @@ import { isEmpty } from "lodash";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryCard from "./categoryCard/categoryCard";
-import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import LoadingPulses from "../loading-comps/loadingPulses/loadingPulses";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategories";
+import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 
 export default function CategoriesPage() {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -18,7 +16,7 @@ export default function CategoriesPage() {
   useEffect(() => {
     setIsLoading(true);
     getCategoriesHandler()
-      .then((newCategories) => {
+      .then((newCategories:CategoryTypes[]) => {
         console.log(newCategories);
         if (isEmpty(categories) && !isEmpty(newCategories)) {
           dispatch(categoriesReducer(newCategories));
@@ -27,7 +25,7 @@ export default function CategoriesPage() {
           setIsLoading(false);
         }
       })
-      .catch((error) => console.log("error"));
+      .catch(() => console.log("error"));
   }, [categories, dispatch]);
 
   if (isLoading) {

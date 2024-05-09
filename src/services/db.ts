@@ -14,10 +14,10 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super("memoLeitDatabase");
     this.version(1).stores({
-      items: "++id, userId, categoryId, title, body, category , box, createdAt, lastUpdate",
+      items: "++id, userId, categoryId, title, body, category , box, createdAt, lastReview",
       reviews: "++id,userId, itemId, status, createdAt",
       categories: "++id,userId, name, status, createdAt",
-      settings:
+      setting:
         "++id, userId, isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, isDictionaryOn, isTourOn",
     });
   }

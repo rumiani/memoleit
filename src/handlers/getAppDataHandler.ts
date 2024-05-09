@@ -1,4 +1,4 @@
-import { appDataInitialiser } from "./appDataInitialiser";
+import { appDataInitialiser } from "./newHandlers/appDataInitialiser";
 
 export const getAppDataHandler = () => {
   if (typeof window !== "undefined") {
