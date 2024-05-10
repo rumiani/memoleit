@@ -17,9 +17,9 @@ const boxes: BoxType[] = [
 ];
 
 export default function BoxesDropdown({
-  categoryName,
+  categoryId,
 }: {
-  categoryName: string;
+  categoryId: string;
 }) {
   const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ export default function BoxesDropdown({
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const boxNumber = +event.target.value;
-    const filteredItemsData = boxItemsFilterHandler(categoryName, boxNumber);
+    const filteredItemsData = boxItemsFilterHandler(categoryId, boxNumber);
     dispatch(allItemsReducer(filteredItemsData));
   };
   return (

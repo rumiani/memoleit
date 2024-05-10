@@ -23,7 +23,7 @@ export default function CategoryName({
         </div>
       ) : (
         <Link
-          href={getCategoryUrl(category.id, category.name)}
+          href={`/box/categories/${category.id}/${category.name}`}
           title="Open for more details"
           className="text-blue-500 my-4 text-xl hover:underline"
         >

@@ -5,26 +5,22 @@ import CategoryOptions from "./categoryOptions/categoryOptions";
 import CategoryItems from "./categoryItems/categoryItems";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { capitalize } from "lodash";
-import { findCategoryByName } from "@/src/handlers/newHandlers/findCategoryByName";
+import { findCategoryById } from "@/src/handlers/newHandlers/findCategoryById";
 
-export default function CategoryPage({
-  categoryName,
-}: {
-  categoryName: string;
-}) {
+export default function CategoryPage({ categoryId }: { categoryId: string }) {
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    findCategoryByName(categoryName)
-      .then((category) => {
+  useEffect(() => {        
+    findCategoryById(categoryId)
+      .then((category) => {        
         category ? setIsCategory(true) : setIsCategory(false);
         setIsLoading(false);
       })
       .catch((error) => {
         console.log("error");
       });
-  }, [categoryName]);
+  }, [categoryId]);
   if (isLoading) {
     return <LoadingPulse />;
   }
@@ -43,9 +39,9 @@ export default function CategoryPage({
         </div>
       ) : (
         <div>
-          <h3 className="font-bold">{capitalize(categoryName)}</h3>
-          <CategoryOptions categoryName={categoryName} />
-          <CategoryItems categoryName={categoryName} />
+          <h3 className="font-bold">{capitalize(categoryId)}</h3>
+          <CategoryOptions categoryId={categoryId} />
+          <CategoryItems categoryId={categoryId} />
         </div>
       )}
     </div>

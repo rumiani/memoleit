@@ -4,10 +4,10 @@ import React from "react";
 import ItemBody from "../general/itemBody/itemBody";
 import Link from "next/link";
 import { capitalize } from "lodash";
-import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import ItemProgress from "../general/itemProgress/itemProgress";
 import ItemOptions from "../general/itemOptions/itemOptions";
 import ItemTitle from "../general/itemTitle/itemTitle";
+import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
 
 export default function CategoryItem({ item }: { item: ItemTypes }) {
   return (
@@ -15,7 +15,7 @@ export default function CategoryItem({ item }: { item: ItemTypes }) {
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={getCategoryUrl(item.category)}
+            href={getCategoryUrl(item.category,item.categoryId)}
             title={"category: " + capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
           >
@@ -26,7 +26,7 @@ export default function CategoryItem({ item }: { item: ItemTypes }) {
         <ItemTitle title={item.title} />
       </div>
       <ItemBody body={item.body} />
-      <ItemProgress itemBoxNumber={item.reviews.box} />
+      <ItemProgress itemBoxNumber={item.box} />
     </div>
   );
 }

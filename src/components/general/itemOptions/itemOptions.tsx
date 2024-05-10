@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { removeHandler } from "@/src/handlers/removeHandler";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -11,6 +10,7 @@ import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
+import { itemsCategoryIdFilterHandler } from "@/src/handlers/newHandlers/itemsCategoryIdFilterHandler";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -22,7 +22,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
     const isItemRemoved = removeHandler(item.id);
     if (isItemRemoved) {
       toast.success("The item was removed.");
-      const filteredItemsData = categoryFilterHandler(params.category);
+      const filteredItemsData = itemsCategoryIdFilterHandler(params.category);
       dispatch(allItemsReducer(filteredItemsData));
     } else {
       toast.error("Item was not found.");

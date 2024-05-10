@@ -7,6 +7,7 @@ import { userIdTest } from "../../services/userId";
 import { randomIdGenerator } from "./randomID";
 import { reviewSounds } from "../../data/reviewSounds";
 import { isEmpty } from "lodash";
+import { makeUrlFriendly } from "./makeUrlFriendly";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
 const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);
@@ -25,7 +26,7 @@ export const appDataInitialiser = async () => {
   const category = {
     id: categoryId,
     userId: userIdTest,
-    name: "11 plus",
+    name: makeUrlFriendly("11 plus"),
     status: false,
     createdAt: Date.now() - 1000 * 3600 * 1000,
   };
@@ -47,7 +48,7 @@ export const appDataInitialiser = async () => {
       categoryId,
       title,
       body: "",
-      category: "11 plus",
+      category: makeUrlFriendly("11 plus"),
       box: wordsObject[i].box,
       createdAt: Date.now() - 1000 * 3600 * 1000,
       lastReview: timestamps[i],

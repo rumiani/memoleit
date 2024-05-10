@@ -1,5 +1,3 @@
-import { makeUrlFriendly } from "./makeUrlFriendly";
-
-export const getCategoryUrl = (categoryName: string, categoryId: string) => {
-  return "/box/categories/" + categoryId + "/" + makeUrlFriendly(categoryName);
+export const getCategoryUrl = ({categoryName, categoryId}:{categoryName:string,categoryId:string}) => {
+  return "/box/categories/" + categoryId + "/" + categoryName;
 };
