@@ -36,10 +36,6 @@ export default function NewItemForm() {
 
   const submitHandler = (item: FormValues) => {
     saveNewItemToLocal(item);
-    const existedCategories = getAppDataHandler().categories;
-    if (!isEmpty(existedCategories)) {
-      dispatch(categoriesReducer(existedCategories));
-    }
   };
 
   if (isSubmitSuccessful) {

@@ -6,6 +6,8 @@ import { userIdTest } from "@/src/services/userId";
 import { randomIdGenerator } from "@/src/handlers/newHandlers/randomID";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
+  console.log({ title, body, category });
+  
   db.categories
     .where("name")
     .equals(category)

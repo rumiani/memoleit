@@ -1,9 +1,9 @@
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { FormValues } from "@/src/types/interface";
 import { isEmpty } from "lodash";
-import React, { useEffect } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 export default function ChooseTopic({
@@ -17,9 +17,12 @@ export default function ChooseTopic({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const existedCategories = getAppDataHandler().categories;
-    if (isEmpty(categories) && !isEmpty(existedCategories))
-      dispatch(categoriesReducer(existedCategories));
+    getCategoriesHandler()
+      .then((existedCategories) => {
+        if (isEmpty(categories) && !isEmpty(existedCategories))
+          dispatch(categoriesReducer(existedCategories));
+      })
+      .catch(() => console.log("error"));
   }, [categories, dispatch]);
 
   return (

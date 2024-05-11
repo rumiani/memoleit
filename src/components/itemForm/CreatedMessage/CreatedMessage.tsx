@@ -1,10 +1,9 @@
-import { useAppSelector } from "@/src/app/hooks";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
+import React from "react";
+import Link from "next/link";
+import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { resetStateReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
-import Link from "next/link";
-import React from "react";
 import { useDispatch } from "react-redux";
 
 const CreatedMessage = ({
@@ -12,21 +11,26 @@ const CreatedMessage = ({
 }: {
   createdMsgHandler: Function;
 }) => {
-  const { categories } = useAppSelector((state) => state.categoryState);
   const dispatch = useDispatch();
   const resetHandler = () => {
     dispatch(resetStateReducer());
   };
   const newItemHandler = () => {
-    const existedCategories = getAppDataHandler().categories;
-    if (!isEmpty(existedCategories))
-      dispatch(categoriesReducer(existedCategories));
+    getCategoriesHandler()
+      .then((existedCategories) => {
+        if (!isEmpty(existedCategories))
+          dispatch(categoriesReducer(existedCategories));
+      })
+      .catch(() => console.log("error"));
     createdMsgHandler();
   };
   return (
     <div className="text-center flex flex-col gap-10 items-center w-full p-4">
       <div className="flex flex-row gap-4 max-w-xs">
-        <Link href="/dashboard/review" className="text-blue-500 hover:underline">
+        <Link
+          href="/dashboard/review"
+          className="text-blue-500 hover:underline"
+        >
           <button className="primaryBtn" onClick={resetHandler}>
             Dashboard
           </button>
