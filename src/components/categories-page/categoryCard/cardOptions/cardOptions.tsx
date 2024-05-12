@@ -8,7 +8,6 @@ import {
   categoriesReducer,
   categoryEditNameReducer,
 } from "@/src/redux/slices/categoryStateSlice";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { toast } from "react-toastify";
 import deleteCategoryHandler from "../../handlers/deleteCategoryHandler";
 
@@ -41,17 +40,23 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
   };
 
   const deleteHandler = () => {
-    // setShowOptions(false);
-    // const deleteResult = deleteCategoryHandler(category.id);
-    // if (deleteResult) {
-    //   const { categories } = getAppDataHandler();
-    //   if (categories) dispatch(categoriesReducer(categories));
-    //   toast.success(category.name + " category was successfully deleted.", {
-    //     autoClose: 2000,
-    //   });
-    // } else {
-    //   toast.error(category.name + " category was not found");
-    // }
+    setShowOptions(false);
+    deleteCategoryHandler(category.id)
+      .then((categories) => {
+        console.log(categories);
+        
+        dispatch(categoriesReducer(categories));
+        toast.success(category.name + " category was successfully deleted.", {
+          autoClose: 2000,
+        });
+      })
+      .catch((error) => {
+        if (error.name === "404") {
+          toast.error(category.name + " was not found");
+        } else {
+          toast.error("Something went wrong.");
+        }
+      });
   };
 
   return (
@@ -65,7 +70,7 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
       </button>
       {showOptions && (
         <div
-          ref={modelRef} 
+          ref={modelRef}
           className="absolute w-52 right-0 flex flex-col top-0 h-32 pt-8 rounded-lg shadow-gray-400 shadow-lg bg-white"
         >
           <button

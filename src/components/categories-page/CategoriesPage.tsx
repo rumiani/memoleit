@@ -19,6 +19,8 @@ export default function CategoriesPage() {
       .then((newCategories:CategoryTypes[]) => {
         console.log(newCategories);
         if (isEmpty(categories) && !isEmpty(newCategories)) {
+          console.log(newCategories);
+          
           dispatch(categoriesReducer(newCategories));
           setIsLoading(false);
         } else {

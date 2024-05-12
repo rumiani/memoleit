@@ -4,7 +4,6 @@ import Link from "next/link";
 import CategoryInput from "./CategoryInput/CategoryInput";
 import { useAppSelector } from "@/src/app/hooks";
 import { capitalize } from "lodash";
-import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
 
 export default function CategoryName({
   category,

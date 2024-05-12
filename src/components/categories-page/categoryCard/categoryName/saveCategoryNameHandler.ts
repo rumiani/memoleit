@@ -1,30 +1,40 @@
-import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
-import { getAppDataHandler } from "../../../../handlers/getAppDataHandler";
-import { CategoryTypes, ItemTypes } from "../../../../types/interface";
+import { ItemTypes } from "../../../../types/interface";
+import { db } from "@/src/services/db";
+import { toast } from "react-toastify";
 
 export default function saveCategoryNameHandler({
-  id,
-  categoryValue,
+  categoryId,
+  newCategoryName,
 }: {
-  id: string;
-  categoryValue: string;
+  categoryId: string;
+  newCategoryName: string;
 }) {
-  let appData = getAppDataHandler();
-  const { categories, itemsData } = appData;
-  const foundCategory = categories.find(
-    (item: CategoryTypes) => item.id === id
-  );
-
-  if (!foundCategory) {
-    return false;
-  } else {
-    itemsData.forEach((item: ItemTypes) => {
-      if (item.category === foundCategory.name) {
-        item.category = categoryValue;
+  return db.categories
+    .get(categoryId)
+    .then((category) => {
+      if (category) {
+        category!.name = newCategoryName;
+        db.categories.put(category!).then((result) => {
+          console.log(result);
+        });
+        db.items
+          .where("categoryId")
+          .equals(categoryId)
+          .toArray()
+          .then((items: ItemTypes[]) => {
+            const updatedItems = items.map((item) => {
+              item.category = newCategoryName;
+              return item;
+            });
+            db.items.bulkPut(updatedItems).then((result) => {
+              console.log(result);
+            });
+          });
+      } else {
+        toast.error("Category not found.");
       }
+    })
+    .catch(() => {
+      console.log("Opps! Something went wrong.");
     });
-    foundCategory.name = categoryValue;
-    saveAppDataHandler(appData)
-    return true;
-  }
 }

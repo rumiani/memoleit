@@ -1,24 +1,28 @@
-import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
-import { getAppDataHandler } from "../../../handlers/getAppDataHandler";
-import { CategoryTypes, ItemTypes } from "../../../types/interface";
-import { capitalize } from "lodash";
+import { db } from "@/src/services/db";
+import notFoundError from "@/src/handlers/newHandlers/notFoundError";
 
 export default function deleteCategoryHandler(categoryId: string) {
-  let appData = getAppDataHandler();
-  const { categories, itemsData } = appData;
-  // const foundCategory = categories.find(
-  //   (item: CategoryTypes) => item. === categoryId
-  // );
-  // if (!foundCategory) {
-  //   return false;
-  // } else {
-  //   appData.categories = categories.filter(
-  //     (item: CategoryTypes) => capitalize(item.name) !== capitalize(category)
-  //   );
-  //   appData.itemsData = itemsData.filter(
-  //     (item: ItemTypes) => capitalize(item.categoryId) !== capitalize(category)
-  //   );
-  //   saveAppDataHandler(appData)
-  //   return true;
-  // }
+  return db.categories
+    .get(categoryId)
+    .then((category) => {
+      if (!category) throw notFoundError("404");
+      db.categories
+        .delete(categoryId)
+        .then(() => {
+          return db.items.where("categoryId").equals(categoryId).toArray();
+        })
+        .then((itemsToDelete) => {
+          return Promise.all(
+            itemsToDelete.map((item) => db.items.delete(item.id))
+          );
+        })
+        .then(() => {
+          db.categories.toArray().then((categories) => {
+            return categories;
+          });
+        });
+    })
+    .catch((error) => {
+      return error;
+    });
 }

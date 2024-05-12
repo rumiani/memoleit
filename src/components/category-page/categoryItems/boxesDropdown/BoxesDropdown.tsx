@@ -1,8 +1,6 @@
 import { useAppDispatch } from "@/src/app/hooks";
 import { boxItemsFilterHandler } from "@/src/handlers/boxItemsFilterHandler";
-import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
-import { isEmpty } from "lodash";
 import React from "react";
 interface BoxType {
   number: number;

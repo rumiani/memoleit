@@ -1,43 +1,51 @@
 import { useAppDispatch } from "@/src/app/hooks";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { categoriesReducer, categoryEditNameReducer } from "@/src/redux/slices/categoryStateSlice";
+import {
+  categoriesReducer,
+  categoryEditNameReducer,
+} from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import React, { useRef, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 import saveCategoryNameHandler from "../saveCategoryNameHandler";
+import { db } from "@/src/services/db";
 
 export default function CategoryInput({
   category,
 }: {
   category: CategoryTypes;
 }) {
-  const [categoryValue, setCategoryValue] = useState<string>(category.name);
+  const [newCategoryName, setNewCategoryName] = useState<string>(category.name);
   const inputElement = useRef(null);
   const dispatch = useAppDispatch();
 
   const changeCategoryNameHandler = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
-    setCategoryValue(e.target.value);
+    setNewCategoryName(e.target.value);
   };
 
   const saveCategoryHandler = () => {
-    const saveTheCategory = saveCategoryNameHandler({
-      id: category.id,
-      categoryValue,
-    });
-    if (saveTheCategory) {
-      toast.success("category name was saved successfully.", {
-        autoClose: 2000,
-      });
+    saveCategoryNameHandler({
+      categoryId: category.id,
+      newCategoryName,
+    })
+      .then((result) => {
+        console.log(result);
 
-      const { categories } = getAppDataHandler();
-      dispatch(categoriesReducer(categories));
-      dispatch(categoryEditNameReducer(""));
-    } else {
-      toast.error("Item was not found");
-    }
+        db.categories.toArray().then((storedCategories) => {
+          dispatch(categoriesReducer(storedCategories));
+          dispatch(categoryEditNameReducer(""));
+        });
+        toast.success("category name was saved successfully.", {
+          autoClose: 2000,
+        });
+      })
+      .catch(() => {
+        console.log("Error");
+        //   toast.error("Item was not found");
+      });
   };
 
   return (
@@ -51,10 +59,10 @@ export default function CategoryInput({
           autoComplete="off"
           type="text"
           required
-          value={categoryValue}
+          value={newCategoryName}
           onChange={changeCategoryNameHandler}
         />
-        {categoryValue.length < 3 && (
+        {newCategoryName.length < 3 && (
           <p className="text-red-500 text-xs font-bold p-1">
             The input must be ≥ 3 letters
           </p>
