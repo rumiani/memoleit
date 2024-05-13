@@ -1,6 +1,4 @@
-import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHandler";
-import { capitalize } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 interface checkBoxProps {
   value: string;
   status:boolean;

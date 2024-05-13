@@ -25,6 +25,7 @@ export interface ReviewTypes {
 }
 export interface SettingTypes {
   id: string;
+  name:string;
   userId: string;
   isReviewSoundOn: boolean;
   rightAnswerSoundSrc: string;

@@ -18,7 +18,7 @@ export class MySubClassedDexie extends Dexie {
       reviews: "++id,userId, itemId, status, createdAt",
       categories: "++id,userId, name, status, createdAt",
       setting:
-        "++id, userId, isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, isDictionaryOn, isTourOn",
+        "++id, name, userId, isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, isDictionaryOn, isTourOn",
     });
   }
 }

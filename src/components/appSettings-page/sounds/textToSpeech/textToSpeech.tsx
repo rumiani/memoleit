@@ -1,44 +1,38 @@
 import React, { useEffect } from "react";
 import CheckboxInput from "../../../general/checkBoxInput/input";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { textToSpeechReducer } from "@/src/redux/slices/settingStateSlice";
-import { SettingTypes } from "@/src/types/interface";
+import { useAppSelector } from "@/src/app/hooks";
 import { toast } from "react-toastify";
-import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
+import { textToSpeechReducer } from "@/src/redux/slices/settingStateSlice";
+import { useAppDispatch } from "@/src/app/hooks";
+import { db } from "@/src/services/db";
 
 export default function TextToSpeech() {
-  const { setting } = useAppSelector((state) => state.settingState);
+  const { isTextToSpeechOn } = useAppSelector((state) => state.settingState);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const { settings } = getAppDataHandler();
-    dispatch(textToSpeechReducer(settings.isTextToSpeechOn));
-  },[dispatch]);
-
   const handleInputChange = () => {
-    const appData = getAppDataHandler();
-    if (appData.settings) {
-      appData.settings = {
-        ...appData.settings,
-        isTextToSpeechOn: !setting.isTextToSpeechOn,
-      };
-      saveAppDataHandler(appData)
-    }
-    dispatch(textToSpeechReducer(!setting.isTextToSpeechOn));
+    db.setting
+      .where("name")
+      .equals("setting")
+      .modify({ isTextToSpeechOn: !isTextToSpeechOn })
+      .then(() => {
+        dispatch(textToSpeechReducer());
 
-    if (setting.isTextToSpeechOn) {
-      toast.success("Pronunciation turned off");
-    } else {
-      toast.success("Pronunciation turned on");
-    }
+        if (isTextToSpeechOn) {
+          toast.success("Pronunciation turned off");
+        } else {
+          toast.success("Pronunciation turned on");
+        }
+      });
   };
-
+  useEffect(() => {
+    console.log(isTextToSpeechOn);
+  }, [isTextToSpeechOn]);
   return (
     <>
       <CheckboxInput
         value="Activate Pronunciation"
-        status={setting.isTextToSpeechOn}
+        status={isTextToSpeechOn}
         handleInputChange={handleInputChange}
       />
     </>

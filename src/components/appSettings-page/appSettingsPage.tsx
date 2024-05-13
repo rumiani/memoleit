@@ -1,22 +1,25 @@
 import React, { useEffect } from "react";
 import Sounds from "./sounds/sounds";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import AppSounds from "./sounds/reviewSounds/reviewSounds";
-import { saveAppDataHandler } from "@/src/handlers/saveAppDataHandler";
+import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
+import { db } from "@/src/services/db";
+import { useAppDispatch } from "@/src/app/hooks";
 
 export default function AppSettingsPage() {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    const appData = getAppDataHandler();
-    if (!appData.settings) {
-      appData.settings = {
-        isSoundOn: false,
-        isTextToSpeechOn: false,
-        isDictionaryOn: false,
-        isTourOn: true,
-      };
-    }
-    saveAppDataHandler(appData)
-  }, []);
+    db.setting
+      .where("name")
+      .equals("setting")
+      .first()
+      .then((storedSetting) => {
+        console.log("Init", storedSetting);
+        if (storedSetting) dispatch(storedSettingReducer(storedSetting!));
+      })
+      .catch(() => {
+        console.log("Error");
+      });
+  }, [dispatch]);
 
   return (
     <div className="w-full p-4 border border-gray-300 h-fit">

@@ -66,6 +66,7 @@ export const appDataInitialiser = async () => {
 
   const settings = {
     id: randomIdGenerator(8),
+    name:'setting',
     userId: userIdTest,
     isReviewSoundOn: false,
     rightAnswerSoundSrc: reviewSounds.right[0].src,

@@ -1,40 +1,56 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { initialSettingTypes } from "../interfaces";
 import { SettingTypes } from "@/src/types/interface";
 
-const initialCategoryState: initialSettingTypes = {
-  setting: {
-    reviewSounds:{
-      isSoundOn:false,
-      right:0,
-      wrong:0
-    } ,
-    isTextToSpeechOn:false,
-    isDictionaryOn: false,
-    isTourOn: false,
-  },
+const initialCategoryState: SettingTypes = {
+  id: "",
+  name: "setting",
+  userId: "",
+  isReviewSoundOn: false,
+  rightAnswerSoundSrc: "",
+  wrongAnswerSoundSrc: "",
+  isTextToSpeechOn: false,
+  isDictionaryOn: false,
+  isTourOn: false,
 };
 
 export const SettingStateSlice = createSlice({
   name: "settingState",
   initialState: initialCategoryState,
   reducers: {
-    reviewSoundsReducer: (state, action: PayloadAction<any>) => {            
-      state.setting.reviewSounds = {...action.payload}
+    storedSettingReducer: (state, action: PayloadAction<SettingTypes>) => {
+      return { ...state, ...action.payload };
     },
-    textToSpeechReducer: (state, action: PayloadAction<boolean>) => {
-      state.setting.isTextToSpeechOn = action.payload
+    textToSpeechReducer: (state) => {
+      state.isTextToSpeechOn = !state.isTextToSpeechOn;
+    },
+    reviewSoundsReducer: (state) => {
+      console.log("ddddddddd");
+
+      state.isReviewSoundOn = !state.isReviewSoundOn;
+    },
+    rightAnswerSoundSrcReducer: (state, action: PayloadAction<string>) => {
+      state.rightAnswerSoundSrc = action.payload;
+    },
+    wrongAnswerSoundSrcReducer: (state, action: PayloadAction<string>) => {
+      state.wrongAnswerSoundSrc = action.payload;
     },
     dictionaryReducer: (state) => {
-      state.setting.isDictionaryOn = !state.setting.isDictionaryOn;
+      state.isDictionaryOn = !state.isDictionaryOn;
     },
     tourReducer: (state) => {
-      state.setting.isDictionaryOn = !state.setting.isTourOn;
+      state.isTourOn = !state.isTourOn;
     },
   },
 });
 
-export const { reviewSoundsReducer,textToSpeechReducer, dictionaryReducer, tourReducer } =
-  SettingStateSlice.actions;
+export const {
+  storedSettingReducer,
+  textToSpeechReducer,
+  reviewSoundsReducer,
+  rightAnswerSoundSrcReducer,
+  wrongAnswerSoundSrcReducer,
+  dictionaryReducer,
+  tourReducer,
+} = SettingStateSlice.actions;
 
 export default SettingStateSlice.reducer;
