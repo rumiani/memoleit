@@ -3,12 +3,10 @@ import { ItemTypes } from "../types/interface";
 import { isTimeToReviewHandler } from "./isTimeToReviewHandler";
 
 export const itemsToReviewHandler = () => {
-  db.categories
-    .where("status")
-    .equals(1)
+  return db.categories
+    .where({ status: 1 })
     .primaryKeys()
     .then((categoryIDs) => {
-      console.log(categoryIDs);
       return db.items
         .filter((item) => categoryIDs.includes(item.categoryId))
         .toArray();
@@ -16,7 +14,7 @@ export const itemsToReviewHandler = () => {
     .then((items) => {
       return items.filter((item: ItemTypes) => isTimeToReviewHandler(item));
     })
-    .catch(() => {
+    .catch((error) => {
       console.log("Error");
     });
 };

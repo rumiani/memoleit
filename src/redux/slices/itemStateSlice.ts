@@ -5,15 +5,14 @@ import { ItemTypes } from "../../types/interface";
 const initialState: initialItemStateTypes = {
   item: {
     id: "",
+    userId: "",
+    categoryId: "",
     title: "",
     body: "",
     category: "",
+    box: 1,
     createdAt: 0,
-    reviews: {
-      box: 0,
-      review: 0,
-      lastReviewDate: 0,
-    },
+    lastReview: 0,
   },
   items: [],
 };
@@ -37,6 +36,6 @@ export const itemStateSlice = createSlice({
 });
 
 export const { itemReducer, allItemsReducer, resetStateReducer } =
-itemStateSlice.actions;
+  itemStateSlice.actions;
 
 export default itemStateSlice.reducer;

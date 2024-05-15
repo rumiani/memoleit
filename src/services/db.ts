@@ -5,6 +5,7 @@ import {
   ReviewTypes,
   SettingTypes,
 } from "../types/interface";
+import { appDataInitialiser } from "../handlers/newHandlers/appDataInitialiser";
 
 export class MySubClassedDexie extends Dexie {
   items!: Table<ItemTypes>;
@@ -15,7 +16,7 @@ export class MySubClassedDexie extends Dexie {
     super("memoLeitDatabase");
     this.version(1).stores({
       items: "++id, userId, categoryId, title, body, category , box, createdAt, lastReview",
-      reviews: "++id,userId, itemId, status, createdAt",
+      reviews: "++id,userId, itemId, answer, createdAt",
       categories: "++id,userId, name, status, createdAt",
       setting:
         "++id, name, userId, isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, isDictionaryOn, isTourOn",

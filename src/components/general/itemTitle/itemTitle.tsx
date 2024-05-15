@@ -4,11 +4,11 @@ import { capitalize } from "lodash";
 import { useAppSelector } from "@/src/app/hooks";
 
 export default function ItemTitle({ title }: { title: string }) {
-  const { setting } = useAppSelector((state) => state.settingState);
+  const { isTextToSpeechOn } = useAppSelector((state) => state.settingState);
 
   return (
     <div className=" relative my-2 ">
-      {setting.isTextToSpeechOn && (
+      {isTextToSpeechOn && (
         <span className="absolute">
           <Speaker text={title} />
         </span>

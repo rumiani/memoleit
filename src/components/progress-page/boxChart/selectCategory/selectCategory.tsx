@@ -6,7 +6,7 @@ import {
   categoryNameReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function SelectCategory({
   handleChange,
@@ -16,29 +16,30 @@ export default function SelectCategory({
   const { categories, category } = useAppSelector(
     (state) => state.categoryState
   );
+  const[input,setInput] = useState('')
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getCategoriesHandler().then(storedCategories =>{
-      console.log(storedCategories);
-      
-      dispatch(categoriesReducer(storedCategories));
-    }).catch(error => console.log('error')
-    )
+    getCategoriesHandler()
+      .then((storedCategories) => {
+        dispatch(categoriesReducer(storedCategories));
+      })
+      .catch((error) => console.log("error"));
   }, [dispatch]);
 
   const dropdownChangeHnadler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const inputVal = event.target.value;
+    setInput(inputVal)
     dispatch(categoryNameReducer(inputVal));
-    handleChange(inputVal)
+    handleChange(inputVal);
   };
   return (
     <div className="w-52 flex flex-col justify-center items-start m-4">
       <select
         className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 bg-gray-100 text-gray-800"
-        value={category.name}
+        value={input}
         onChange={dropdownChangeHnadler}
       >
         <option value="">All</option>

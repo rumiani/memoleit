@@ -9,30 +9,45 @@ import { useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
-import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
+import {
+  allItemsReducer,
+  itemReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/newHandlers/itemsCategoryIdFilterHandler";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
-  const params = useParams<{ category: string }>();
-  
-  const removeBtnFunction = () => {
+  const category = useParams<{ id: string; category: string }>();
+
+  const removeBtnFunction = async () => {
     setShowOptions(false);
-    const isItemRemoved = removeHandler(item.id);
-    if (isItemRemoved) {
+    try {
+      await removeHandler(item.id);
+      if (category.id) {
+        const filteredItemsData = await itemsCategoryIdFilterHandler(
+          category.id
+        );
+        dispatch(allItemsReducer(filteredItemsData));
+      } else {
+        const itemsToReview = await itemsToReviewHandler();
+        if (itemsToReview) {
+          const randomItem = randomItemHandler(itemsToReview!);
+          dispatch(itemReducer(randomItem));
+        }
+      }
       toast.success("The item was removed.");
-      const filteredItemsData = itemsCategoryIdFilterHandler(params.category);
-      dispatch(allItemsReducer(filteredItemsData));
-    } else {
-      toast.error("Item was not found.");
+    } catch (error: any) {
+      if ((error.name = "404")) toast.error("Item was not found");
     }
   };
   const editBtnFunction = () => {
     setShowOptions(false);
     // saveEditedItemHandler(item.id);
   };
-  
+
   const modelRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {

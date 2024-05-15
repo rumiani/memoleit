@@ -5,13 +5,13 @@ import { CategoryTypes } from "../../types/interface";
 const initialCategoryState: initialCategoryStateTypes = {
   category: {
     id: "",
-    userId:'',
+    userId: "",
     name: "",
-    status: false,
+    status: 0,
     createdAt: 0,
   },
   categories: [],
-  categoryNameEditable: '',
+  categoryNameEditable: "",
 };
 
 export const categoryStateSlice = createSlice({
@@ -22,22 +22,18 @@ export const categoryStateSlice = createSlice({
       state.categories = action.payload;
     },
     categoryNameReducer: (state, action: PayloadAction<string>) => {
-      state.category = { ...state.category, name:action.payload}
+      state.category.name = action.payload;
     },
-    categoryReducer: (state, action: PayloadAction<string>) => {
-      state.categories = state.categories.map((category: CategoryTypes) =>
-        category.name === action.payload
-          ? { ...category, status: !category.status }
-          : category
-      );
-    },
-    categoryEditNameReducer: (state,action: PayloadAction<string>) => {      
+    categoryEditNameReducer: (state, action: PayloadAction<string>) => {
       state.categoryNameEditable = action.payload;
     },
   },
 });
 
-export const { categoryReducer, categoriesReducer, categoryEditNameReducer,categoryNameReducer } =
-  categoryStateSlice.actions;
+export const {
+  categoriesReducer,
+  categoryEditNameReducer,
+  categoryNameReducer,
+} = categoryStateSlice.actions;
 
 export default categoryStateSlice.reducer;

@@ -1,4 +1,4 @@
-import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHandler";
+import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler copy";
 import React, { useEffect, useState } from "react";
 interface DataType {
   name: string;
@@ -7,10 +7,10 @@ interface DataType {
 }
 export default function TotalData({
   data,
-  category,
+  categoryId,
 }: {
   data: DataType[] | undefined;
-  category: string;
+  categoryId: string;
 }) {
   const [reviewedNumber, setReviewedNumber] = useState<number>(0);
   const [pendingNumber, setPendingNumber] = useState<number>(0);
@@ -32,11 +32,12 @@ export default function TotalData({
       setPendingNumber(pending);
     }
 
-    const categoryData = categoryItemsCountHandler(category);
-    if (categoryData) {
-      setCategoryInfo(categoryData);
-    }
-  }, [data, category]);
+    console.log(categoryId);
+    categoryItemsCountHandler(categoryId).then((categoryData) => {
+      
+      setCategoryInfo(categoryData!);
+    });
+  }, [data, categoryId]);
 
   return (
     <div className=" flex flex-wrap gap-1 w-full justify-start cursor-default">

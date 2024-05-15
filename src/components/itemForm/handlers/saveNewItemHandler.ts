@@ -53,7 +53,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       id: randomIdGenerator(8),
       userId: userIdTest,
       name: category.trim(),
-      status: false,
+      status: 0,
       createdAt: Date.now(),
     };
     db.categories

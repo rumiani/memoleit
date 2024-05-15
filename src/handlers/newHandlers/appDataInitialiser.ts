@@ -6,7 +6,6 @@ import { db } from "../../services/db";
 import { userIdTest } from "../../services/userId";
 import { randomIdGenerator } from "./randomID";
 import { reviewSounds } from "../../data/reviewSounds";
-import { isEmpty } from "lodash";
 import { makeUrlFriendly } from "./makeUrlFriendly";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
@@ -16,9 +15,9 @@ const wordsObject = words.map((word, i) => {
 });
 
 export const appDataInitialiser = async () => {
-  const isFirstTime = await db.categories
-    .toArray()
-    .then((categoriesArray) => isEmpty(categoriesArray))
+  const isFirstTime = await db.setting
+    .count()
+    .then((number) => number < 1)
     .catch(() => console.log("error"));
   if (!isFirstTime) return;
 
@@ -27,7 +26,7 @@ export const appDataInitialiser = async () => {
     id: categoryId,
     userId: userIdTest,
     name: makeUrlFriendly("11 plus"),
-    status: false,
+    status: 1,
     createdAt: Date.now() - 1000 * 3600 * 1000,
   };
 
@@ -66,7 +65,7 @@ export const appDataInitialiser = async () => {
 
   const settings = {
     id: randomIdGenerator(8),
-    name:'setting',
+    name: "setting",
     userId: userIdTest,
     isReviewSoundOn: false,
     rightAnswerSoundSrc: reviewSounds.right[0].src,

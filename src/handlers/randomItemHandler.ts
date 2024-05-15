@@ -1,10 +1,6 @@
-import { isEmpty } from "lodash";
-import { itemsToReviewHandler } from "./itemsToReviewHandler";
+import { ItemTypes } from "../types/interface";
 
-export const randomItemHandler = () => {
-  const toReveiwItems = itemsToReviewHandler();
-  if (!isEmpty(toReveiwItems)) {
-    const randomIndex = Math.floor(Math.random() * toReveiwItems.length);
-    return toReveiwItems[randomIndex];
-  }
+export const randomItemHandler = (items: ItemTypes[]) => {
+  const randomIndex = Math.floor(Math.random() * items.length);
+  return items[randomIndex];
 };

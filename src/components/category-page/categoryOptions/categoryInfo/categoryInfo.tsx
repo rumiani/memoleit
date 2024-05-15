@@ -1,4 +1,4 @@
-import { categoryItemsCountHandler } from "@/src/handlers/categoryItemsCountHandler";
+import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler copy";
 import React, { useEffect, useState } from "react";
 
 export default function CategoryInfo({ categoryId }: { categoryId: string }) {
@@ -9,10 +9,9 @@ export default function CategoryInfo({ categoryId }: { categoryId: string }) {
   }>({ allItemsCount: 0, learnedCount: 0, unLearnedCount: 0 });
 
   useEffect(() => {
-    const info = categoryItemsCountHandler(categoryId);
-    if(info){
-      setItemInfo(info);
-    }
+    categoryItemsCountHandler(categoryId).then((info) => {
+      setItemInfo(info!);
+    });
   }, [categoryId]);
   return (
     <div>

@@ -25,9 +25,7 @@ export default function TextToSpeech() {
         }
       });
   };
-  useEffect(() => {
-    console.log(isTextToSpeechOn);
-  }, [isTextToSpeechOn]);
+
   return (
     <>
       <CheckboxInput

@@ -4,7 +4,7 @@ export interface ItemTypes {
   categoryId: string;
   title: string;
   body: string;
-  category:string;
+  category: string;
   box: number;
   createdAt: number;
   lastReview: number;
@@ -13,19 +13,19 @@ export interface CategoryTypes {
   id: string;
   userId: string;
   name: string;
-  status: boolean;
+  status: number;
   createdAt: number;
 }
 export interface ReviewTypes {
   id: string;
   userId: string;
   itemId: string;
-  status: boolean;
+  answer: number;
   createdAt: number;
 }
 export interface SettingTypes {
   id: string;
-  name:string;
+  name: string;
   userId: string;
   isReviewSoundOn: boolean;
   rightAnswerSoundSrc: string;

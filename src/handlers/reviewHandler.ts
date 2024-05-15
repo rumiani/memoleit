@@ -1,26 +1,36 @@
 import { ItemTypes } from "@/src/types/interface";
-import { getAppDataHandler } from "./getAppDataHandler";
 import { saveAppDataHandler } from "./saveAppDataHandler";
+import { db } from "../services/db";
+import { v4 as uuidv4 } from "uuid";
+import { userIdTest } from "../services/userId";
+import { toast } from "react-toastify";
+import notFoundError from "./newHandlers/notFoundError";
 
-export function reviewHandler(
+export async function reviewHandler(
   currentItem: ItemTypes | undefined,
-  status: boolean
+  answer: number
 ) {
-  const appData = getAppDataHandler();
-  const foundItem = appData.itemsData.find(
-    (item: ItemTypes) => item.id === currentItem?.id
-  );
-  if (foundItem) {
-    foundItem.reviews.lastReviewDate = Date.now();
-    foundItem.reviews.review += 1;
-    if (status) {
-      foundItem.reviews.box += 1;
-      saveAppDataHandler(appData)
+  try {
+    const foundItem = await db.items.get(currentItem?.id);
+    if (!foundItem) throw notFoundError("404");
+
+    const newReview = {
+      id: uuidv4(),
+      userId: userIdTest,
+      itemId: foundItem.id,
+      answer,
+      createdAt: Date.now(),
+    };
+    await db.reviews.add(newReview);
+
+    foundItem.lastReview = Date.now();
+    foundItem.box += answer;
+    const savedItem = await db.items.put(foundItem);
+    if (savedItem) {
       return true;
-    } else {
-      foundItem.reviews.box = 1;
-      saveAppDataHandler(appData)
-      return false;
     }
+    
+  } catch (error) {
+    console.log("Error");
   }
 }

@@ -5,34 +5,56 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import ReviewItemCard from "./reviewItem/reviewItemCard";
 import LoadingPulse from "../../loading-comps/loadingPulse/loadingPulse";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
-import { ItemTypes } from "@/src/types/interface";
-import { itemReducer } from "@/src/redux/slices/itemStateSlice";
+import {
+  allItemsReducer,
+  itemReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
 export default function Review() {
-  const { item } = useAppSelector((state) => state.itemState);
-  const [foundItem, setFoundItem] = useState<boolean>(false);
+  const { item, items } = useAppSelector((state) => state.itemState);
+  const [foundItem, setFoundItem] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
-    const newRandomItem = randomItemHandler();
-    if (newRandomItem) dispatch(itemReducer(newRandomItem!));
-    setFoundItem(true);
+    itemsToReviewHandler()
+      .then((items) => {
+        console.log(items);
+
+        if (items && items.length > 0) {
+          const newRandomItem = randomItemHandler(items);
+          dispatch(itemReducer(newRandomItem));
+          dispatch(allItemsReducer(items));
+
+          setLoading(false);
+          setFoundItem(true);
+        } else {
+          setLoading(false);
+          setFoundItem(false);
+        }
+      })
+      .catch(() => {
+        console.log("Error");
+      });
   }, [dispatch]);
-  return (
-    <div className="my-4">
-      {foundItem ? (
-        item.id !== "" ? (
-          <div>
-            <p>Items to review: {itemsToReviewHandler().length}</p>
-            <ReviewItemCard item={item} />
-          </div>
-        ) : (
-          <NoResult />
-        )
-      ) : (
+  if (loading)
+    return (
+      <>
         <div className="w-full">
           <LoadingPulse />
         </div>
+      </>
+    );
+  return (
+    <div className="my-4">
+      {foundItem ? (
+        <div>
+          <p>Items to review: {items.length}</p>
+          <ReviewItemCard item={item} />
+        </div>
+      ) : (
+        <NoResult />
       )}
     </div>
   );
