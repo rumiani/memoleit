@@ -13,18 +13,18 @@ export const closestItemToReview = () => {
     if (itemsData.length > 0) {
       itemsData.forEach((item: ItemTypes, i: number) => {
         const daysSinceReviewed = timeToNowHandler(
-          item.reviews.lastReviewDate
+          item.lastReview
         ).days;
-        const isInTheBox = item.reviews.box < 6;
+        const isInTheBox = item.box < 6;
         const notTimeToReview =
-          daysSinceReviewed < reviewBoxes[item.reviews.box];
+          daysSinceReviewed < reviewBoxes[item.box];
         if (
           !timeToReview ||
           (isInTheBox &&
             notTimeToReview &&
-            timeToReview < item.reviews.lastReviewDate)
+            timeToReview < item.lastReview)
         )
-          timeToReview = item.reviews.lastReviewDate;
+          timeToReview = item.lastReview;
       });
     }
     return timeToReview!;

@@ -4,6 +4,7 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { useAppDispatch } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 
 type DialogElement = HTMLDialogElement | null;
 
@@ -13,8 +14,9 @@ export default function Filters() {
 
   const filterHnadler = () => {
     (dialogElement.current as DialogElement)?.showModal();
-    const { categories } = getAppDataHandler();
-    dispatch(categoriesReducer(categories));
+    getCategoriesHandler().then(categories =>{
+      dispatch(categoriesReducer(categories));
+    })
   };
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function Filters() {
       </button>
       <dialog
         ref={dialogElement}
-        className="cursor-default rounded-md w-full sm:w-96 h-80"
+        className=" cursor-default rounded-md w-full sm:w-96 h-fit"
       >
         <Form />
       </dialog>

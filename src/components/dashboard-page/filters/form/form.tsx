@@ -9,48 +9,24 @@ import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
 
-  const dispatch = useAppDispatch();
-
-  const handleInputChange = (name: string) => {
-    dispatch(categoryReducer(name));
-  };
-
-  const applyFiltersHandler = () => {
-    saveTopicsToLocal(categories);
-    const randomItem = randomItemHandler();
-    if (randomItem) {
-      dispatch(itemReducer(randomItem));
-    }else{
-      dispatch(itemReducer())
-    }
-  };
-
   return (
     <>
       <form
         method="dialog"
         className="h-full text-lg flex flex-col justify-center p-1 w-full mx-auto max-w-96"
       >
-        <p className="text-center w-full">Choose your category to review:</p>
-        <div className="my-2 h-40 overflow-y-auto bg-gray-200">
+        <p className="text-center w-full my-2">Choose your category to review</p>
+        <div className="h-40 overflow-y-auto bg-gray-200">
           {categories.map((category, i) => {
             return (
               <div key={i}>
                 <CheckboxInput
-                  category={category.name}
-                  status={category.status}
-                  handleInputChange={() => handleInputChange(category.name)}
+                  category={category}
                 />
               </div>
             );
           })}
         </div>
-        <button
-          onClick={() => applyFiltersHandler()}
-          className="disabledBtn rounded-md mx-auto my-2 py-1 px-2 w-24 bg-blue-300 hover:text-white hover:bg-blue-500"
-        >
-          Apply
-        </button>
       </form>
     </>
   );
