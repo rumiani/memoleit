@@ -14,19 +14,22 @@ const boxes: BoxType[] = [
   { number: 6 },
 ];
 
-export default function BoxesDropdown({
-  categoryId,
-}: {
-  categoryId: string;
-}) {
+export default function BoxesDropdown({ categoryId }: { categoryId: string }) {
   const dispatch = useAppDispatch();
 
-  const dropdownChangeHnadler = (
+  const dropdownChangeHnadler = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const boxNumber = +event.target.value;
-    const filteredItemsData = boxItemsFilterHandler(categoryId, boxNumber);
-    dispatch(allItemsReducer(filteredItemsData));
+    try {
+      const boxNumber = +event.target.value;
+      const filteredItemsData = await boxItemsFilterHandler(
+        categoryId,
+        boxNumber
+      );
+      dispatch(allItemsReducer(filteredItemsData!));
+    } catch (error) {
+      console.log("Error");
+    }
   };
   return (
     <div className="w-32 flex flex-col justify-center items-start mb-4">

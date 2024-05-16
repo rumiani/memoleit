@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { ItemTypes } from "@/src/types/interface";
+import { CategoryTypes, ItemTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryItem from "../../categoryitem/categoryitem";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import BoxesDropdown from "./boxesDropdown/BoxesDropdown";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/newHandlers/itemsCategoryIdFilterHandler";
+import { db } from "@/src/services/db";
 
 export default function CategoryItems({ categoryId }: { categoryId: string }) {
   const { items } = useAppSelector((state) => state.itemState);
@@ -14,6 +15,8 @@ export default function CategoryItems({ categoryId }: { categoryId: string }) {
   useEffect(() => {
     itemsCategoryIdFilterHandler(categoryId)
       .then((filteredItemsData: any) => {
+        console.log(filteredItemsData);
+
         console.log(filteredItemsData);
         if (!isEmpty(filteredItemsData))
           dispatch(allItemsReducer(filteredItemsData));

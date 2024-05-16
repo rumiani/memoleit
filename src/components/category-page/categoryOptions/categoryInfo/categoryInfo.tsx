@@ -1,4 +1,5 @@
-import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler copy";
+import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function CategoryInfo({ categoryId }: { categoryId: string }) {

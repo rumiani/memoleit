@@ -1,8 +1,6 @@
 import { useAppDispatch } from "@/src/app/hooks";
 import { boxItemsFilterHandler } from "@/src/handlers/boxItemsFilterHandler";
-import { categoryFilterHandler } from "@/src/handlers/categoryFilterHandler";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
-import { isEmpty } from "lodash";
 import React from "react";
 interface BoxType {
   number: number;
@@ -23,12 +21,19 @@ export default function BoxesDropdown({
 }) {
   const dispatch = useAppDispatch();
 
-  const dropdownChangeHnadler = (
+  const dropdownChangeHnadler = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const boxNumber = +event.target.value;
-    const filteredItemsData = boxItemsFilterHandler(categoryName, boxNumber);
-    dispatch(allItemsReducer(filteredItemsData));
+    try {
+      const boxNumber = +event.target.value;
+      const filteredItemsData = await boxItemsFilterHandler(
+        categoryName,
+        boxNumber
+      );
+      dispatch(allItemsReducer(filteredItemsData!));
+    } catch (error) {
+      console.log("Error");
+    }
   };
   return (
     <div className="w-32 flex flex-col justify-center items-start mb-4">

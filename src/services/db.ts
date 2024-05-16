@@ -5,7 +5,6 @@ import {
   ReviewTypes,
   SettingTypes,
 } from "../types/interface";
-import { appDataInitialiser } from "../handlers/newHandlers/appDataInitialiser";
 
 export class MySubClassedDexie extends Dexie {
   items!: Table<ItemTypes>;

@@ -48,14 +48,7 @@ export default function Review() {
     );
   return (
     <div className="my-4">
-      {foundItem ? (
-        <div>
-          <p>Items to review: {items.length}</p>
-          <ReviewItemCard item={item} />
-        </div>
-      ) : (
-        <NoResult />
-      )}
+      {item.id === "" ? <NoResult /> : <ReviewItemCard item={item} />}
     </div>
   );
 }

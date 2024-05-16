@@ -6,14 +6,18 @@ import CategoryItems from "./categoryItems/categoryItems";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { capitalize } from "lodash";
 import { findCategoryById } from "@/src/handlers/newHandlers/findCategoryById";
+import { usePathname } from "next/navigation";
 
 export default function CategoryPage({ categoryId }: { categoryId: string }) {
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const pathName = usePathname()
 
   useEffect(() => {        
     findCategoryById(categoryId)
       .then((category) => {        
+        console.log(category);
+        
         category ? setIsCategory(true) : setIsCategory(false);
         setIsLoading(false);
       })
@@ -39,7 +43,7 @@ export default function CategoryPage({ categoryId }: { categoryId: string }) {
         </div>
       ) : (
         <div>
-          <h3 className="font-bold">{capitalize(categoryId)}</h3>
+          <h3 className="font-bold">{capitalize(pathName.split('/').pop())}</h3>
           <CategoryOptions categoryId={categoryId} />
           <CategoryItems categoryId={categoryId} />
         </div>

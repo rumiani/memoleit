@@ -1,32 +1,30 @@
 import { ItemTypes } from "../../../types/interface";
 import { getAppDataHandler } from "../../../handlers/getAppDataHandler";
+import { db } from "@/src/services/db";
 
-export const searchItemHandler = (
+export const searchItemHandler = async (
   searchTerm: string,
   boxNumber: number | undefined
 ) => {
-    
-  const { itemsData } = getAppDataHandler();
-  const filteredItems = itemsData.filter((item: ItemTypes) => {
+  try {
+    let rerultItems: ItemTypes[];
     if (boxNumber) {
-      return (
-        item.reviews.box === boxNumber &&
-        (searchInText(item.title, searchTerm) ||
-          searchInText(item.title, searchTerm))
-      );
+      rerultItems = await db.items
+        .filter(
+          (item) =>
+            item.box === boxNumber &&
+            item.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .toArray();
     } else {
-      return (
-        searchInText(item.title, searchTerm) ||
-        searchInText(item.title, searchTerm)
-      );
+      rerultItems = await db.items
+        .filter((item) =>
+          item.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .toArray();
     }
-  });
-  return filteredItems;
-};
-
-const searchInText = (text: string, searchTerm: string) => {
-  return (
-    text.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    return rerultItems;
+  } catch (error) {
+    console.log("Error");
+  }
 };

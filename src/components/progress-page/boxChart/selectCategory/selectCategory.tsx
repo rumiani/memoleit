@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
 import {
   categoriesReducer,
@@ -13,7 +12,7 @@ export default function SelectCategory({
 }: {
   handleChange: Function;
 }) {
-  const { categories, category } = useAppSelector(
+  const { categories } = useAppSelector(
     (state) => state.categoryState
   );
   const[input,setInput] = useState('')

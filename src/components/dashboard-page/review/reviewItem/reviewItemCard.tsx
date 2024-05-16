@@ -52,10 +52,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={getCategoryUrl({
-              categoryName: item.category,
-              categoryId: item.id,
-            })}
+            href={getCategoryUrl(item.category, item.id)}
             title={"category: " + capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
           >

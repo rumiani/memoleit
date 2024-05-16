@@ -1,6 +1,6 @@
 import React from "react";
-import { toast } from "react-toastify";
 import { CiExport } from "react-icons/ci";
+import { db } from "@/src/services/db";
 export default function ExportComponent() {
   const downloadJsonFile = (
     content: string,
@@ -14,12 +14,21 @@ export default function ExportComponent() {
     a.click();
   };
 
-  const downloadLocalStorageData = () => {
-    const appDataJson: string | null = localStorage.getItem("appData");
-    if (appDataJson) {
+  const downloadLocalStorageData = async () => {
+    try {
+      const items = await db.items.toArray();
+      const categories = await db.categories.toArray();
+      const reviews = await db.reviews.toArray();
+      const setting = await db.setting.toArray();
+      const appDataJson = JSON.stringify({
+        items,
+        categories,
+        reviews,
+        setting,
+      });
       downloadJsonFile(appDataJson, "memoleit-data.txt", "text/plain");
-    } else {
-      toast.error("There is no data to export");
+    } catch (error) {
+      console.log("Error");
     }
   };
   return (

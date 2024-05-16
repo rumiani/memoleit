@@ -1,4 +1,4 @@
-import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler copy";
+import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
 import React, { useEffect, useState } from "react";
 interface DataType {
   name: string;
@@ -31,8 +31,6 @@ export default function TotalData({
       setReviewedNumber(reviewed);
       setPendingNumber(pending);
     }
-
-    console.log(categoryId);
     categoryItemsCountHandler(categoryId).then((categoryData) => {
       
       setCategoryInfo(categoryData!);

@@ -8,17 +8,17 @@ import { ItemTypes } from "@/src/types/interface";
 import { searchItemHandler } from "./handlers/searchItemHandler";
 
 export default function SearchPage() {
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState<ItemTypes[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [boxNumber, setboxNumber] = useState<number | undefined>(undefined);
 
-  const handleSearch = (searchTerm: string) => {
+  const handleSearch = async (searchTerm: string) => {
     setIsSearching(true);
-    const filteredItems = searchItemHandler(searchTerm, boxNumber);
-    if (filteredItems) {
-      setFilteredItems(filteredItems);
+    try {
+      const filteredItems = await searchItemHandler(searchTerm, boxNumber);
+      setFilteredItems(filteredItems!);
       setIsSearching(false);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -36,7 +36,7 @@ export default function SearchPage() {
               <CategoryItem key={item.id} item={item} />
             ))
           ) : (
-            <p className="text-red-500 text-center mx-8 my-16">
+            <p className="text-red-500 mx-auto px-4 my-16">
               No items found with this search term.
             </p>
           )}

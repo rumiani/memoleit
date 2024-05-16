@@ -22,7 +22,8 @@ export default function ItemProgress({
             )}
             <span
               className={`${
-                boxNumber === itemBoxNumber && "bg-green-700 text-white"
+                (itemBoxNumber > 5 || boxNumber === itemBoxNumber) &&
+                "bg-green-700 text-white"
               } w-full h-6 border border-gray-300 border-collapse text-center rounded-md`}
             >
               {boxNumber}

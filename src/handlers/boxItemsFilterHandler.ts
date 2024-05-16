@@ -1,21 +1,17 @@
+import { db } from "../services/db";
 import { ItemTypes } from "../types/interface";
-import { getAppDataHandler } from "./getAppDataHandler";
-import { makeUrlFriendly } from "./newHandlers/makeUrlFriendly";
-
-export const boxItemsFilterHandler = (
-  categoryName: string,
+export const boxItemsFilterHandler = async (
+  categoryId: string,
   boxNumber?: number
 ) => {
-  let { itemsData } = getAppDataHandler();
-  itemsData = itemsData.filter((item: ItemTypes) => {
-    const isInCategory =
-      makeUrlFriendly(item.category) === makeUrlFriendly(categoryName);
-    const isInTheBox = item.reviews.box === boxNumber;
-    if (boxNumber) {
-      return isInCategory && isInTheBox;
-    } else {
-      return isInCategory;
-    }
-  });
-  return itemsData;
+  try {
+    const items = await db.items
+      .where("categoryId")
+      .equals(categoryId)
+      .toArray();
+    const filteredItems = items.filter((item: ItemTypes) => {
+      return boxNumber ? items && item.box === boxNumber : items;
+    });
+    return filteredItems;
+  } catch (error) {}
 };

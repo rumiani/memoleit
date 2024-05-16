@@ -1,4 +1,9 @@
-import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler copy";
+import { useAppDispatch } from "@/src/app/hooks";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
+import notFoundError from "@/src/handlers/newHandlers/notFoundError";
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import { CategoryTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
@@ -14,31 +19,34 @@ export default function CheckboxInput({
 }: {
   category: CategoryTypes;
 }) {
-  const [isChecked, setIsChecked] = useState<boolean>(category.status);
+  const defaultStatus = category.status === 1 ? true : false;
+  const [isChecked, setIsChecked] = useState<boolean>(defaultStatus);
   const [itemsInfo, setItemsInfo] = useState<ItemsInfoTypes>({
     allItemsCount: 0,
     learnedCount: 0,
     unLearnedCount: 0,
   });
+  const dispatch = useAppDispatch();
 
-  const inputChangeHandler = () => {
-    setIsChecked(!isChecked);
-    db.categories
-      .get(category.id)
-      .then((storedCategory) => {
-        if (storedCategory) {
-          storedCategory.status = !isChecked;
-          console.log(storedCategory);
-          db.categories.put(storedCategory!).then((result) => {
-            isChecked
-              ? toast.success("Category items removed from review list.")
-              : toast.success("Category items added to review list.");
-          });
-        }
-      })
-      .catch(() => {
-        console.log("Error");
-      });
+  const inputChangeHandler = async () => {
+    try {
+      const storedCategory = await db.categories.get(category.id);      
+      if (!storedCategory) throw notFoundError("404");
+      setIsChecked(!isChecked);
+      storedCategory.status = isChecked ? 0 : 1;
+      const editedCategory = await db.categories.put(storedCategory!);
+      isChecked
+        ? toast.success("Category items removed from review list.")
+        : toast.success("Category items added to review list.");
+      const itemsToReview = await itemsToReviewHandler();
+      const randomItem = randomItemHandler(itemsToReview!);      
+      dispatch(itemReducer(randomItem));
+    } catch (error: any) {
+      if ((error.name = "404")) {
+        toast.error("Category not found.");
+      }
+      console.log("Error");
+    }
   };
 
   useEffect(() => {
@@ -47,7 +55,7 @@ export default function CheckboxInput({
         if (itemsInfo) setItemsInfo(itemsInfo);
       })
       .catch(() => {
-        console.log(console.log("Error"));
+        console.log("Error");
       });
   }, [category]);
 

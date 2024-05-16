@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { useAppDispatch } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
@@ -9,14 +9,21 @@ import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHa
 type DialogElement = HTMLDialogElement | null;
 
 export default function Filters() {
+  const { item, items } = useAppSelector((state) => state.itemState);
+
   const dispatch = useAppDispatch();
   const dialogElement = useRef(null);
 
-  const filterHnadler = () => {
-    (dialogElement.current as DialogElement)?.showModal();
-    getCategoriesHandler().then(categories =>{
-      dispatch(categoriesReducer(categories));
-    })
+  const filterHnadler = async () => {
+    try {
+      (dialogElement.current as DialogElement)?.showModal();
+      const storedCategories = await getCategoriesHandler();
+      console.log(storedCategories);
+
+      dispatch(categoriesReducer(storedCategories));
+    } catch (error) {
+      console.log("Error");
+    }
   };
 
   useEffect(() => {

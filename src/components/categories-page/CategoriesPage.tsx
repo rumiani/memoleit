@@ -16,11 +16,8 @@ export default function CategoriesPage() {
   useEffect(() => {
     setIsLoading(true);
     getCategoriesHandler()
-      .then((newCategories:CategoryTypes[]) => {
-        console.log(newCategories);
-        if (isEmpty(categories) && !isEmpty(newCategories)) {
-          console.log(newCategories);
-          
+      .then((newCategories: CategoryTypes[]) => {
+        if (!isEmpty(newCategories)) {
           dispatch(categoriesReducer(newCategories));
           setIsLoading(false);
         } else {
@@ -28,7 +25,7 @@ export default function CategoriesPage() {
         }
       })
       .catch(() => console.log("error"));
-  }, [categories, dispatch]);
+  }, [dispatch]);
 
   if (isLoading) {
     return <LoadingPulses />;

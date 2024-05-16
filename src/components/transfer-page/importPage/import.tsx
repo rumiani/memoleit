@@ -3,6 +3,9 @@ import React, { useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { saveNewDataToLocalHandler } from "./handlers/saveNewDataToLocalHandler";
+import { db } from "@/src/services/db";
+import { useAppDispatch } from "@/src/app/hooks";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 
 type InputElement = HTMLInputElement | null;
 
@@ -10,6 +13,7 @@ export default function ImportComponent() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const inputElement = useRef<InputElement>(null);
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const importData = () => {
     const fileReader = new FileReader();
     fileReader.onload = function () {
@@ -30,19 +34,26 @@ export default function ImportComponent() {
     }
   };
 
-  function saveDataFunction(newAppData: any) {
+  const saveDataFunction = async (newAppData: any) => {
     setIsDisabled(true);
-    const saveResult = saveNewDataToLocalHandler(newAppData);
-    if (saveResult) {
-      toast.success("The imported data has been saved");
-      toast.info("Redirecting to categories page");
-      setTimeout(() => {
-        router.push("/box/categories");
-      }, 5000);
-    } else {
-      toast.error("Wrong data format");
+    try {
+      const saveResult = await saveNewDataToLocalHandler(newAppData);
+      console.log(saveResult);
+      
+      if (saveResult!) {
+        toast.success("The imported data has been saved");
+        toast.info("Redirecting to categories page");
+
+        setTimeout(() => {
+          router.push("/box/categories");
+        }, 5000);
+      } else {
+        toast.error("Wrong data format");
+      }
+    } catch (error) {
+      console.log("Error");
     }
-  }
+  };
 
   return (
     <div className="flex flex-col w-fit mx-auto justify-center gap-4">
