@@ -13,7 +13,7 @@ export default function ImportComponent() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const inputElement = useRef<InputElement>(null);
   const router = useRouter();
-  const dispatch = useAppDispatch();
+
   const importData = () => {
     const fileReader = new FileReader();
     fileReader.onload = function () {
@@ -36,23 +36,19 @@ export default function ImportComponent() {
 
   const saveDataFunction = async (newAppData: any) => {
     setIsDisabled(true);
-    try {
-      const saveResult = await saveNewDataToLocalHandler(newAppData);
-      console.log(saveResult);
-      
-      if (saveResult!) {
+    saveNewDataToLocalHandler(newAppData)
+      .then(() => {
+        console.log(2);
+        
         toast.success("The imported data has been saved");
         toast.info("Redirecting to categories page");
-
         setTimeout(() => {
           router.push("/box/categories");
         }, 5000);
-      } else {
-        toast.error("Wrong data format");
-      }
-    } catch (error) {
-      console.log("Error");
-    }
+      })
+      .catch(() => {
+        console.log("Error uploading");
+      });
   };
 
   return (

@@ -5,6 +5,7 @@ import { CategoryTypes, ItemTypes } from "../../../../types/interface";
 import { randomIdGenerator } from "@/src/handlers/newHandlers/randomID";
 import { userIdTest } from "@/src/services/userId";
 import { makeUrlFriendly } from "@/src/handlers/newHandlers/makeUrlFriendly";
+import { isEmpty } from "lodash";
 
 export const saveNewDataToLocalHandler = async (newAppData: any) => {
   try {
@@ -30,7 +31,7 @@ export const saveNewDataToLocalHandler = async (newAppData: any) => {
       };
       newCategories.push(newCategory);
     });
-    const categoriesResponse = await db.categories.bulkAdd(newCategories);
+    await db.categories.bulkAdd(newCategories);
 
     const existingItems = await db.items
       .where("id")
@@ -40,28 +41,28 @@ export const saveNewDataToLocalHandler = async (newAppData: any) => {
       (item: any) =>
         !existingItems.some((existingItem) => existingItem.id === item.id)
     );
-
-    uniqueItems.forEach(async (importedItem: any) => {
-      const existedCategory = await db.categories
-        .where("name")
-        .equals(importedItem.category)
-        .first();
-      const newItem: ItemTypes = {
-        id: importedItem.id,
-        userId: userIdTest,
-        categoryId: existedCategory!.id,
-        title: importedItem.title,
-        body: importedItem.body,
-        category: importedItem.category,
-        box: importedItem.reviews.box,
-        createdAt: importedItem.createdAt,
-        lastReview: importedItem.reviews.lastReviewDate,
-      };
-      newItems.push(newItem);
-    });
-    const itemsResponse = await db.items.bulkAdd(uniqueItems);
-
-    if (itemsResponse && categoriesResponse) return true;
+    for (const importedItem of uniqueItems) {
+      const existedCategory = await db.categories.get({
+        name: makeUrlFriendly(importedItem.category),
+      });
+      if (existedCategory) {
+        const newItem: ItemTypes = {
+          id: importedItem.id,
+          userId: userIdTest,
+          categoryId: existedCategory!.id,
+          title: importedItem.title,
+          body: importedItem.body,
+          category: importedItem.category,
+          box: importedItem.reviews.box,
+          createdAt: importedItem.createdAt,
+          lastReview: importedItem.reviews.lastReviewDate,
+        };
+        newItems.push(newItem);
+      }
+    }
+    if (!isEmpty(newItems)) {
+      await db.items.bulkAdd(newItems);
+    }
   } catch (error) {
     console.log("Error");
   }
