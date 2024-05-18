@@ -13,8 +13,8 @@ export default function ProgressPage() {
   useEffect(() => {
     setIsLoading(true);
     getCategoriesHandler()
-      .then((newCategories:CategoryTypes[]) => {
-        dispatch(categoriesReducer(newCategories));
+      .then((newCategories?:CategoryTypes[]) => {
+        dispatch(categoriesReducer(newCategories!));
         setIsLoading(false);
       })
       .catch(() => console.log("error"));
