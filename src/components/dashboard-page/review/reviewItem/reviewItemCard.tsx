@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import ItemOptions from "@/src/components/general/itemOptions/itemOptions";
 import ItemBody from "@/src/components/general/itemBody/itemBody";
 import ItemProgress from "@/src/components/general/itemProgress/itemProgress";
-import { capitalize } from "lodash";
+import { capitalize, random, sample } from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
@@ -12,18 +12,26 @@ import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import { reviewSounds } from "@/src/data/reviewSounds";
 import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
+const randomBGcolor =[
+    "bg-red-100",
+    "bg-blue-100",
+    "bg-green-100",
+    "bg-yellow-100",
+    "bg-gray-100",
+    "bg-orange-100",
+  ]
 export default function ReviewItemCard({ item }: { item: ItemTypes }) {
   const { rightAnswerSoundSrc, wrongAnswerSoundSrc } = useAppSelector(
     (state) => state.settingState
   );
+  const [isdisabled, setIsdisabled] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const goToNextItem = async (item: ItemTypes, answer: number) => {
+    setIsdisabled(true);
     try {
       const reviewResult = await reviewHandler(item, answer);
       if (reviewResult) {
@@ -39,6 +47,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       if (itemsToReview) {
         const newRandomItem = randomItemHandler(itemsToReview);
         dispatch(itemReducer(newRandomItem));
+        setTimeout(() => setIsdisabled(false), 1000);
       }
     } catch (error: any) {
       if (error.name === "404") {
@@ -48,7 +57,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
     }
   };
   return (
-    <div className="animate-merge word-box border border-gray-300 rounded-lg p-4 my-8 sm:my-16 flex flex-col justify-between w-full max-w-80 h-fit max-h-96 overflow-y-auto mx-auto">
+    <div className={`${sample(randomBGcolor)} animate-merge word-box border border-gray-300 rounded-lg p-4 my-8 sm:my-16 flex flex-col justify-between w-full max-w-80 h-fit max-h-96 overflow-y-auto mx-auto`}>
       <div>
         <div className="relative flex justify-between">
           <Link
@@ -65,13 +74,15 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       <div className="buttons flex justify-around w-full mt-4 gap-2">
         <button
           onClick={() => goToNextItem(item, 0)}
-          className="primaryBtn !px-0 !w-42 !bg-red-500"
+          disabled={isdisabled}
+          className="primaryBtn !px-0 !w-42 !bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           I don&apos;t know
         </button>
         <button
           onClick={() => goToNextItem(item, 1)}
-          className="primaryBtn !bg-green-500"
+          disabled={isdisabled}
+          className="primaryBtn !bg-green-500  disabled:cursor-not-allowed disabled:opacity-50"
         >
           I know
         </button>

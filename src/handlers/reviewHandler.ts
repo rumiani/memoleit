@@ -20,14 +20,10 @@ export async function reviewHandler(
       createdAt: Date.now(),
     };
     await db.reviews.add(newReview);
-
     foundItem.lastReview = Date.now();
     foundItem.box += answer;
-    const savedItem = await db.items.put(foundItem);
-    if (savedItem) {
-      return true;
-    }
-    
+    await db.items.put(foundItem);
+    return answer ? true : false;
   } catch (error) {
     console.log("Error");
   }

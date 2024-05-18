@@ -45,7 +45,6 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   };
   const editBtnFunction = () => {
     setShowOptions(false);
-    // saveEditedItemHandler(item.id);
   };
 
   const modelRef = useRef<HTMLDivElement>(null);
@@ -66,7 +65,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
     };
   }, [showOptions]);
   return (
-    <div className="bg-white z-10">
+    <div className="z-10">
       <button onClick={() => setShowOptions(true)} className="icon">
         <BsThreeDotsVertical />
       </button>
