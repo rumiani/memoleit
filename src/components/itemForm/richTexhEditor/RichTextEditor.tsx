@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import {
+  ContentState,
+  EditorState,
+  convertFromRaw,
+  convertToRaw,
+} from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 import { toolbar } from "./toolbar";
-import {
-  UseFormRegister,
-  UseFormSetValue,
-} from "react-hook-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
 
 const Editor = dynamic(
@@ -32,7 +34,12 @@ const RichTextEditor = ({
 
   useEffect(() => {
     if (defaultValue && !bodyLoaded) {
-      const contentState = convertFromRaw(JSON.parse(defaultValue));
+      let contentState;
+      try {
+        contentState = convertFromRaw(JSON.parse(defaultValue));
+      } catch (error) {
+        contentState = ContentState.createFromText(defaultValue);
+      }
       const newEditorState = EditorState.createWithContent(contentState);
       const content = editorState.getCurrentContent().getPlainText("");
       setEditorContent(content);

@@ -15,7 +15,7 @@ export default function CategoryItem({ item }: { item: ItemTypes }) {
       <div>
         <div className="relative flex justify-between">
           <Link
-            href={getCategoryUrl(item.category,item.categoryId)}
+            href={getCategoryUrl(item.categoryId, item.category)}
             title={"category: " + capitalize(item.category)}
             className="text-blue-700 hover:text-blue-400 text-md font-bold "
           >

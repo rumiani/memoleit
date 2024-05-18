@@ -14,13 +14,21 @@ export default function About() {
           </h1>
           <div className="flex flex-row">
             <p className="text-lg md:text-xl mt-4 text-slate-600 max-w-2xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aspernatur error soluta sed excepturi odit consectetur hic ab ipsa
-              mollitia! Laudantium dolorum officia quis officiis provident
-              commodi accusantium consequatur quidem maiores. 
+              Welcome to MemoLeit, the ultimate app designed to help you
+              master any subject using the proven Leitner system. At
+              MemoLeit, we believe that effective learning should be both fun
+              and efficient. Our app offers a personalized learning experience
+              with interactive charts that track your progress and ensure you
+              focus on the material that needs the most attention. 
               <span className={`${seeMore ? "inline" : "hidden"}`}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum corrupti delectus, sapiente quam placeat debitis eum cumque atque sequi a rem vitae blanditiis modi ducimus aliquid officia fugiat provident ipsam!
-                {" "}
+              Receive
+              timely notifications to keep you on track and never miss a study
+              session. Our intuitive interface allows you to add pictures to
+              your flashcards, enhancing your ability to remember complex
+              information. Whether you&apos;re studying for exams, learning a new
+              language, or just looking to expand your knowledge, MemoLeit is
+              your go-to tool for making memorization easier and more enjoyable.
+              Join us today and start your journey to becoming a memory master!{" "}
               </span>
               <button
                 onClick={() => setSeeMore(!seeMore)}

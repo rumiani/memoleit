@@ -1,3 +1,3 @@
-export const getCategoryUrl = (categoryName:string,categoryId:string) => {
+export const getCategoryUrl = (categoryId:string,categoryName:string) => {
   return "/box/categories/" + categoryId + "/" + categoryName;
 };

@@ -46,7 +46,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   const editBtnFunction = () => {
     setShowOptions(false);
   };
-
+ 
   const modelRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
