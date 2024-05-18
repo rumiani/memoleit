@@ -48,7 +48,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
     }
   };
   return (
-    <div className="animate-merge word-box border border-gray-300 rounded-lg p-4 my-8 sm:my-16 flex flex-col justify-between w-full max-w-80 h-72 overflow-y-auto mx-auto">
+    <div className="animate-merge word-box border border-gray-300 rounded-lg p-4 my-8 sm:my-16 flex flex-col justify-between w-full max-w-80 h-fit max-h-96 overflow-y-auto mx-auto">
       <div>
         <div className="relative flex justify-between">
           <Link

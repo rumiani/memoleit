@@ -69,8 +69,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
         <SpeedInsights />
         <NextAuthProvider>
-          <ToastContainer limit={3} />
-          <ToastContainer limit={3} />
+          <ToastContainer limit={3} autoClose={3000} closeOnClick />
           <Notification />
           <ReduxProvider>
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
@@ -83,7 +82,6 @@ export default function RootLayout({
               </div>
             </div>
           </ReduxProvider>
-          <ToastContainer />
         </NextAuthProvider>
       </body>
     </html>
