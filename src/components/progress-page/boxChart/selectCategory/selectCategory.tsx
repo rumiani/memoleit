@@ -12,16 +12,14 @@ export default function SelectCategory({
 }: {
   handleChange: Function;
 }) {
-  const { categories } = useAppSelector(
-    (state) => state.categoryState
-  );
-  const[input,setInput] = useState('')
+  const { categories } = useAppSelector((state) => state.categoryState);
+  const [input, setInput] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     getCategoriesHandler()
       .then((storedCategories) => {
-        dispatch(categoriesReducer(storedCategories));
+        if (storedCategories) dispatch(categoriesReducer(storedCategories));
       })
       .catch((error) => console.log("error"));
   }, [dispatch]);
@@ -30,7 +28,7 @@ export default function SelectCategory({
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const inputVal = event.target.value;
-    setInput(inputVal)
+    setInput(inputVal);
     dispatch(categoryNameReducer(inputVal));
     handleChange(inputVal);
   };

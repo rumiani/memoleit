@@ -19,7 +19,7 @@ export default function ChooseTopic({
   useEffect(() => {
     getCategoriesHandler()
       .then((existedCategories) => {
-        if (isEmpty(categories) && !isEmpty(existedCategories))
+        if (isEmpty(categories) && existedCategories)
           dispatch(categoriesReducer(existedCategories));
       })
       .catch(() => console.log("error"));

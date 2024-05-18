@@ -18,7 +18,7 @@ const CreatedMessage = ({
   const newItemHandler = () => {
     getCategoriesHandler()
       .then((existedCategories) => {
-        if (!isEmpty(existedCategories))
+        if (existedCategories)
           dispatch(categoriesReducer(existedCategories));
       })
       .catch(() => console.log("error"));
