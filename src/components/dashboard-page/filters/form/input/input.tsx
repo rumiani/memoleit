@@ -51,7 +51,8 @@ export default function CheckboxInput({
 
   useEffect(() => {
     categoryItemsCountHandler(category.id)
-      .then((itemsInfo) => {
+    
+    .then((itemsInfo) => {
         if (itemsInfo) setItemsInfo(itemsInfo);
       })
       .catch(() => {

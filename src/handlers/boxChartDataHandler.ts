@@ -1,7 +1,7 @@
 import { db } from "../services/db";
-import { CategoryTypes, ItemTypes } from "../types/interface";
-import { getAppDataHandler } from "./getAppDataHandler";
+import { ItemTypes } from "../types/interface";
 import { isTimeToReviewHandler } from "./isTimeToReviewHandler";
+import { makeUrlFriendly } from "./newHandlers/makeUrlFriendly";
 
 interface InitialDataType {
   name: string;
@@ -12,7 +12,9 @@ interface InitialDataType {
 export const boxChartDataHandler = async (data: InitialDataType[], id?: string) => {
   const itemsData = await db.items.toArray()
   const foundCategory = await db.categories.get(id)
+console.log(id);
 
+console.log('itemsData',itemsData,id);
   if (id === "") {
     itemsData.forEach((item: ItemTypes) => {
       if (isTimeToReviewHandler(item)) {
@@ -26,7 +28,7 @@ export const boxChartDataHandler = async (data: InitialDataType[], id?: string) 
   } else {
 
     itemsData.forEach((item: ItemTypes) => {
-      if (item.category === foundCategory?.name) {
+      if (makeUrlFriendly(item.category) === makeUrlFriendly(foundCategory!.name)) {
         if (isTimeToReviewHandler(item)) {
           data[item.box - 1].Pending += 1;
         } else {
@@ -36,6 +38,6 @@ export const boxChartDataHandler = async (data: InitialDataType[], id?: string) 
         }
       }
     });
-  }
+  }  
   return data;
 };

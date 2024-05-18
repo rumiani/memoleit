@@ -15,7 +15,7 @@ const Form = () => {
         <p className="text-center w-full my-2">
           Choose your category to review
         </p>
-        <div className="h-40 overflow-y-auto bg-gray-200">
+        <div className="h-64 overflow-y-auto bg-gray-200">
           {isEmpty(categories) ? (
             <div className="text-red-500 text-center my-16">No categories.</div>
           ) : (

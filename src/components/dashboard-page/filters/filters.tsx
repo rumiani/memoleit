@@ -18,9 +18,7 @@ export default function Filters() {
     try {
       (dialogElement.current as DialogElement)?.showModal();
       const storedCategories = await getCategoriesHandler();
-      console.log(storedCategories);
-
-      dispatch(categoriesReducer(storedCategories));
+      if (storedCategories) dispatch(categoriesReducer(storedCategories));
     } catch (error) {
       console.log("Error");
     }
