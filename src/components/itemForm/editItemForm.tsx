@@ -7,11 +7,11 @@ import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { isEmpty } from "lodash";
 import { useAppDispatch } from "@/src/app/hooks";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
+import { db } from "@/src/services/db";
 
 export default function EditItemForm({
   itemDefaultValues,
@@ -52,13 +52,15 @@ export default function EditItemForm({
   const submitHandler = (item: FormValues) => {
     saveEditedItemHandler(item, id);
   };
-
   if (isSubmitSuccessful) {
     setCreatedMessage(true);
     reset();
-    const existedCategories = getAppDataHandler().categories;
-    if (!isEmpty(existedCategories)) {
-      dispatch(categoriesReducer(existedCategories));
+    try {
+      db.categories.toArray().then((existedCategories) => {
+        dispatch(categoriesReducer(existedCategories));
+      });
+    } catch (error) {
+      console.log("Error");
     }
   }
   return (

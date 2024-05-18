@@ -10,7 +10,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   
   db.categories
     .where("name")
-    .equals(category)
+    .equals(category.toLowerCase())
     .first()
     .then((storedCategory) => {
       if (storedCategory) {

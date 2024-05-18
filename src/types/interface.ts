@@ -50,4 +50,5 @@ export interface FormValues {
   title: string;
   body: string;
   category: string;
+  categoryId:string;
 }

@@ -39,24 +39,24 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
     dispatch(categoryEditNameReducer(category.name));
   };
 
-  const deleteHandler = () => {
+  const deleteHandler = async () => {
     setShowOptions(false);
-    deleteCategoryHandler(category.id)
-      .then((categories) => {
-        console.log(categories);
-        
-        dispatch(categoriesReducer(categories));
-        toast.success(category.name + " category was successfully deleted.", {
-          autoClose: 2000,
-        });
-      })
-      .catch((error) => {
-        if (error.name === "404") {
-          toast.error(category.name + " was not found");
-        } else {
-          toast.error("Something went wrong.");
-        }
-      });
+    try {
+      const remaindCategories = await  deleteCategoryHandler(category.id)
+      if(remaindCategories){
+        dispatch(categoriesReducer(remaindCategories));
+      }
+      toast.success(category.name + " category was successfully deleted.",{
+            autoClose: 2000,
+          });
+    } catch (error:any) {
+      
+      if (error.name === "404") {
+        toast.error(category.name + " was not found");
+      } else {
+        toast.error("Something went wrong.");
+      }
+    }
   };
 
   return (

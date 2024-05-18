@@ -1,28 +1,22 @@
 import { db } from "@/src/services/db";
 import notFoundError from "@/src/handlers/newHandlers/notFoundError";
 
-export default function deleteCategoryHandler(categoryId: string) {
-  return db.categories
-    .get(categoryId)
-    .then((category) => {
-      if (!category) throw notFoundError("404");
-      db.categories
-        .delete(categoryId)
-        .then(() => {
-          return db.items.where("categoryId").equals(categoryId).toArray();
-        })
-        .then((itemsToDelete) => {
-          return Promise.all(
-            itemsToDelete.map((item) => db.items.delete(item.id))
-          );
-        })
-        .then(() => {
-          db.categories.toArray().then((categories) => {
-            return categories;
-          });
-        });
-    })
-    .catch((error) => {
-      return error;
-    });
+export default async function deleteCategoryHandler(categoryId: string) {
+  try {
+    const category = await db.categories.get(categoryId);
+    if (!category) throw notFoundError("404");
+    await db.categories.delete(categoryId);
+    const itemsToDelete = await db.items
+      .where("categoryId")
+      .equals(categoryId)
+      .toArray();
+    for (const item of itemsToDelete) {
+      await db.items.delete(item.id);
+    }
+    const categories = await db.categories
+      .where("id")
+      .notEqual(categoryId)
+      .toArray();
+    return categories;
+  } catch (error) {}
 }
