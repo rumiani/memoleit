@@ -39,9 +39,9 @@ export default function CategoryDelete({
       </button>
       <dialog
         ref={dialogElement}
-        className="bg-gray-300 cursor-default rounded-md w-full sm:w-96"
+        className="bg-gray-300  shadow-lg shadow-red-500 border border-red-500 cursor-default rounded-md w-full sm:w-96"
       >
-        <div className="bg-red-100 p-4 w-full h-full">
+        <div className="bg-gray-200 p-4 w-full h-full">
           Please write down <strong>{category.name}</strong> then click on the
           delete button.
           <input
@@ -57,10 +57,13 @@ export default function CategoryDelete({
           <button
             disabled={inputValue !== category.name}
             onClick={() => confirmDeleteCategory()}
-            className="icon !px-2 disabled:bg-gray-400 bg-red-400 !w-fit"
+            className="disabled:cursor-not-allowed hover:bg-red-500 icon !mx-auto !px-4 disabled:bg-red-200 bg-red-400 !w-fit"
           >
             Delete
           </button>
+          <p className="text-red-500 my-2 text-sm">
+            * All the items within this category will be removed too.
+          </p>
         </div>
       </dialog>
     </>
