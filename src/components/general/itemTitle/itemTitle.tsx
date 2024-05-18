@@ -13,7 +13,7 @@ export default function ItemTitle({ title }: { title: string }) {
           <Speaker text={title} />
         </span>
       )}
-      <h3 id="title" className="pl-6 text-2xl font-bold  text-center">
+      <h3 id="title" className="text-2xl font-bold  text-center">
         {capitalize(title)}
       </h3>
     </div>

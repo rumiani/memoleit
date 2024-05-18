@@ -1,19 +1,15 @@
 import { useAppDispatch } from "@/src/app/hooks";
+import ItemsInfo from "@/src/components/general/intemsInfo/itemsInfo";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
 import notFoundError from "@/src/handlers/newHandlers/notFoundError";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
-import { CategoryTypes } from "@/src/types/interface";
+import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-interface ItemsInfoTypes {
-  allItemsCount: number;
-  learnedCount: number;
-  unLearnedCount: number;
-}
 export default function CheckboxInput({
   category,
 }: {
@@ -51,7 +47,6 @@ export default function CheckboxInput({
 
   useEffect(() => {
     categoryItemsCountHandler(category.id)
-    
     .then((itemsInfo) => {
         if (itemsInfo) setItemsInfo(itemsInfo);
       })
@@ -61,7 +56,7 @@ export default function CheckboxInput({
   }, [category]);
 
   return (
-    <div className=" p-2 rounded-lg transition-all duration-300">
+    <div className="border-y border-gray-300 p-2 rounded-lg transition-all duration-300 my-2">
       <div className="flex relative ">
         <input
           checked={isChecked}
@@ -96,11 +91,7 @@ pointer-events-none"
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
-      <div className="pr-4 w-full text-left flex justify-between">
-        <span>All:{itemsInfo.allItemsCount}</span>
-        <span className="text-green-600">Learned:{itemsInfo.learnedCount}</span>
-        <span className="text-yellow-500">Left:{itemsInfo.unLearnedCount}</span>
-      </div>
+      <ItemsInfo itemsInfo={itemsInfo}/>
     </div>
   );
 }

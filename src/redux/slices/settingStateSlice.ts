@@ -24,8 +24,6 @@ export const SettingStateSlice = createSlice({
       state.isTextToSpeechOn = !state.isTextToSpeechOn;
     },
     reviewSoundsReducer: (state) => {
-      console.log("ddddddddd");
-
       state.isReviewSoundOn = !state.isReviewSoundOn;
     },
     rightAnswerSoundSrcReducer: (state, action: PayloadAction<string>) => {

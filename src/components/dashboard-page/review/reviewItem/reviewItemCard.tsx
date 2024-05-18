@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ItemOptions from "@/src/components/general/itemOptions/itemOptions";
 import ItemBody from "@/src/components/general/itemBody/itemBody";
 import ItemProgress from "@/src/components/general/itemProgress/itemProgress";
-import { capitalize, random, sample } from "lodash";
+import { capitalize, sample } from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";

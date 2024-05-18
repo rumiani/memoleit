@@ -11,13 +11,13 @@ import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
 
 export default function CategoryItem({ item }: { item: ItemTypes }) {
   return (
-    <div className=" animate-merge word-box h-64 overflow-y-auto border border-gray-300 rounded-lg p-6 flex flex-col justify-between w-60 sm:w-72 mx-auto my-4">
+    <div className=" animate-merge word-box h-64 overflow-y-auto border border-gray-300 rounded-lg p-2 flex flex-col justify-between w-60 sm:w-72 mx-auto my-4">
       <div>
         <div className="relative flex justify-between">
           <Link
             href={getCategoryUrl(item.category,item.categoryId)}
             title={"category: " + capitalize(item.category)}
-            className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
+            className="text-blue-700 hover:text-blue-400 text-md font-bold "
           >
             <h2>{capitalize(item.category)}</h2>
           </Link>

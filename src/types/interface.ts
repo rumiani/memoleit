@@ -52,3 +52,9 @@ export interface FormValues {
   category: string;
   categoryId:string;
 }
+
+export interface ItemsInfoTypes {
+  allItemsCount: number;
+  learnedCount: number;
+  unLearnedCount: number;
+}
