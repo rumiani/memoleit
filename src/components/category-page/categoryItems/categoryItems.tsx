@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryItem from "../../categoryitem/categoryitem";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import BoxesDropdown from "./boxesDropdown/BoxesDropdown";
-import { itemsCategoryIdFilterHandler } from "@/src/handlers/newHandlers/itemsCategoryIdFilterHandler";
+import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
 import { db } from "@/src/services/db";
 
 export default function CategoryItems({ categoryId }: { categoryId: string }) {

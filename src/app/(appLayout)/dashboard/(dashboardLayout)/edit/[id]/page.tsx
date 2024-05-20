@@ -1,7 +1,7 @@
 "use client";
 import EditItemForm from "@/src/components/itemForm/editItemForm";
 import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
-import notFoundError from "@/src/handlers/newHandlers/notFoundError";
+import notFoundError from "@/src/handlers/notFoundError";
 import { db } from "@/src/services/db";
 import { FormValues, ItemTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";

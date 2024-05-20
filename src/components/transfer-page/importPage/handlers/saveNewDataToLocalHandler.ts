@@ -2,9 +2,9 @@
 
 import { db } from "@/src/services/db";
 import { CategoryTypes, ItemTypes } from "../../../../types/interface";
-import { randomIdGenerator } from "@/src/handlers/newHandlers/randomID";
+import { randomIdGenerator } from "@/src/handlers/randomID";
 import { userIdTest } from "@/src/services/userId";
-import { makeUrlFriendly } from "@/src/handlers/newHandlers/makeUrlFriendly";
+import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import { isEmpty } from "lodash";
 
 export const saveNewDataToLocalHandler = async (newAppData: any) => {

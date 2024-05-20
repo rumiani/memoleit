@@ -1,5 +1,5 @@
 import { db } from "@/src/services/db";
-import notFoundError from "@/src/handlers/newHandlers/notFoundError";
+import notFoundError from "@/src/handlers/notFoundError";
 
 export default async function deleteCategoryHandler(categoryId: string) {
   try {

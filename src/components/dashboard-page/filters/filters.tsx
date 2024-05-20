@@ -4,7 +4,7 @@ import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
 type DialogElement = HTMLDialogElement | null;
 

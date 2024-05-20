@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import {
   categoriesReducer,
   categoryNameReducer,

@@ -1,5 +1,5 @@
 import { db } from "../services/db";
-import notFoundError from "./newHandlers/notFoundError";
+import notFoundError from "./notFoundError";
 
 export const removeHandler = async (id: string) => {
   try {

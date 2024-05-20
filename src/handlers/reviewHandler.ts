@@ -2,7 +2,7 @@ import { ItemTypes } from "@/src/types/interface";
 import { db } from "../services/db";
 import { v4 as uuidv4 } from "uuid";
 import { userIdTest } from "../services/userId";
-import notFoundError from "./newHandlers/notFoundError";
+import notFoundError from "./notFoundError";
 
 export async function reviewHandler(
   currentItem: ItemTypes | undefined,

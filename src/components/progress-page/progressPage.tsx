@@ -4,7 +4,7 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { CategoryTypes } from "@/src/types/interface";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
 export default function ProgressPage() {
   const [isLoading, setIsLoading] = useState(true);

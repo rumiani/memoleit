@@ -13,7 +13,7 @@ import {
   allItemsReducer,
   itemReducer,
 } from "@/src/redux/slices/itemStateSlice";
-import { itemsCategoryIdFilterHandler } from "@/src/handlers/newHandlers/itemsCategoryIdFilterHandler";
+import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 

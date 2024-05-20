@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { FormValues } from "@/src/types/interface";
 import { isEmpty } from "lodash";

@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/src/app/hooks";
 import ItemsInfo from "@/src/components/general/intemsInfo/itemsInfo";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
-import notFoundError from "@/src/handlers/newHandlers/notFoundError";
+import notFoundError from "@/src/handlers/notFoundError";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";

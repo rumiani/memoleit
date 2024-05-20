@@ -1,4 +1,4 @@
-import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
+import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import React, { useEffect, useState } from "react";
 interface DataType {
   name: string;

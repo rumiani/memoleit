@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryCard from "./categoryCard/categoryCard";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import LoadingPulses from "../loading-comps/loadingPulses/loadingPulses";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
 export default function CategoriesPage() {
   const { categories } = useAppSelector((state) => state.categoryState);

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { FormValues, CategoryTypes, ItemTypes } from "../../../types/interface";
 import { db } from "@/src/services/db";
 import { userIdTest } from "@/src/services/userId";
-import { randomIdGenerator } from "@/src/handlers/newHandlers/randomID";
+import { randomIdGenerator } from "@/src/handlers/randomID";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   console.log({ title, body, category });

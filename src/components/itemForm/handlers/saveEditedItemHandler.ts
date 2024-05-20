@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues, CategoryTypes } from "../../../types/interface";
-import { makeUrlFriendly } from "../../../handlers/newHandlers/makeUrlFriendly";
+import { makeUrlFriendly } from "../../../handlers/makeUrlFriendly";
 import { db } from "@/src/services/db";
-import notFoundError from "@/src/handlers/newHandlers/notFoundError";
-import { randomIdGenerator } from "@/src/handlers/newHandlers/randomID";
+import notFoundError from "@/src/handlers/notFoundError";
+import { randomIdGenerator } from "@/src/handlers/randomID";
 import { userIdTest } from "@/src/services/userId";
 
 export const saveEditedItemHandler = async (

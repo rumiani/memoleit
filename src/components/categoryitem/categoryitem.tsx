@@ -7,7 +7,7 @@ import { capitalize } from "lodash";
 import ItemProgress from "../general/itemProgress/itemProgress";
 import ItemOptions from "../general/itemOptions/itemOptions";
 import ItemTitle from "../general/itemTitle/itemTitle";
-import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
+import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 
 export default function CategoryItem({ item }: { item: ItemTypes }) {
   return (

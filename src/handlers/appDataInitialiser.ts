@@ -1,11 +1,11 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
-import { ItemTypes } from "../../types/interface";
+import { ItemTypes } from "../types/interface";
 import words from "@/src/data/initialData.json";
-import { db } from "../../services/db";
-import { userIdTest } from "../../services/userId";
+import { db } from "../services/db";
+import { userIdTest } from "../services/userId";
+import { reviewSounds } from "../data/reviewSounds";
 import { randomIdGenerator } from "./randomID";
-import { reviewSounds } from "../../data/reviewSounds";
 import { makeUrlFriendly } from "./makeUrlFriendly";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];

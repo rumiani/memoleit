@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
-import { getCategoryUrl } from "@/src/handlers/newHandlers/getCategoryUrl";
+import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { getCategoriesHandler } from "@/src/handlers/newHandlers/getCategoriesHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { resetStateReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";

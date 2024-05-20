@@ -5,7 +5,7 @@ import CategoryOptions from "./categoryOptions/categoryOptions";
 import CategoryItems from "./categoryItems/categoryItems";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { capitalize } from "lodash";
-import { findCategoryById } from "@/src/handlers/newHandlers/findCategoryById";
+import { findCategoryById } from "@/src/handlers/findCategoryById";
 import { usePathname } from "next/navigation";
 
 export default function CategoryPage({ categoryId }: { categoryId: string }) {
