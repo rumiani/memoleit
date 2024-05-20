@@ -1,4 +1,4 @@
-import { db } from "../../../services/db";
+import { db } from "@/src/services/db";
 import itemsCountHandler from "./itemsCountHandler";
 
 export const allItemsCountHandler = (categoryId: string) => {

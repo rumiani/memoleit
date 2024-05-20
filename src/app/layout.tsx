@@ -8,7 +8,6 @@ import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/layouts/generalLayout/footer/footer";
 import Header from "../components/layouts/generalLayout/header/header";
-import Notification from "../components/notification/notification";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,7 +69,6 @@ export default function RootLayout({
         <SpeedInsights />
         <NextAuthProvider>
           <ToastContainer limit={3} autoClose={3000} closeOnClick />
-          <Notification />
           <ReduxProvider>
             <div className="relative min-h-screen mx-auto max-w-screen-2xl">
               <Header />

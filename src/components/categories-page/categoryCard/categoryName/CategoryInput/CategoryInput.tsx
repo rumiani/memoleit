@@ -1,5 +1,4 @@
 import { useAppDispatch } from "@/src/app/hooks";
-import { getAppDataHandler } from "@/src/handlers/getAppDataHandler";
 import {
   categoriesReducer,
   categoryEditNameReducer,

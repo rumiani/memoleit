@@ -3,8 +3,8 @@ import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import CardOptions from "./cardOptions/cardOptions";
 import CategoryName from "./categoryName/categoryName";
-import { categoryItemsCountHandler } from "@/src/handlers/newHandlers/itemsCounter/categoryItemsCountHandler";
 import ItemsInfo from "../../general/intemsInfo/itemsInfo";
+import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 
 export default function CategoryCard({
   category,

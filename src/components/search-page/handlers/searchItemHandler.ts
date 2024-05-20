@@ -1,5 +1,4 @@
 import { ItemTypes } from "../../../types/interface";
-import { getAppDataHandler } from "../../../handlers/getAppDataHandler";
 import { db } from "@/src/services/db";
 
 export const searchItemHandler = async (

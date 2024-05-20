@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import categoryExistHandler from "@/src/handlers/categoryExistHandler";
 import Link from "next/link";
 import CategoryOptions from "./categoryOptions/categoryOptions";
 import CategoryItems from "./categoryItems/categoryItems";

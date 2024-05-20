@@ -1,6 +1,6 @@
 import { ItemTypes } from "@/src/types/interface";
-import { db } from "../../../services/db";
 import itemsCountHandler from "./itemsCountHandler";
+import { db } from "@/src/services/db";
 
 export const categoryItemsCountHandler = async (categoryId?: string) => {
   try {    
