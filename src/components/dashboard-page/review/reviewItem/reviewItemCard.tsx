@@ -17,9 +17,8 @@ import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
 
 export default function ReviewItemCard({ item }: { item: ItemTypes }) {
-  const { rightAnswerSoundSrc, wrongAnswerSoundSrc } = useAppSelector(
-    (state) => state.settingState
-  );
+  const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =
+    useAppSelector((state) => state.settingState);
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -28,12 +27,10 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
     try {
       const reviewResult = await reviewHandler(item, answer);
       if (reviewResult) {
-        const audio = new Audio(rightAnswerSoundSrc);
-        audio.play();
+        if (isReviewSoundOn) new Audio(rightAnswerSoundSrc).play();
         toast.success(`The item has been moved to the box ${item.box + 1}`);
       } else {
-        const audio = new Audio(wrongAnswerSoundSrc);
-        audio.play();
+        if (isReviewSoundOn) new Audio(wrongAnswerSoundSrc).play();
         toast.success("Item moved to the box 1 and can be reviewed tomorrow");
       }
       const itemsToReview = await itemsToReviewHandler();
