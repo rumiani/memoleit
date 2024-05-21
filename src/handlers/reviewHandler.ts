@@ -21,9 +21,15 @@ export async function reviewHandler(
     };
     await db.reviews.add(newReview);
     foundItem.lastReview = Date.now();
-    foundItem.box += answer;
-    await db.items.put(foundItem);
-    return answer ? true : false;
+    if (answer) {
+      foundItem.box += answer;
+      await db.items.put(foundItem);
+      return true;
+    } else {
+      await db.items.put(foundItem);
+      foundItem.box = 1;
+      return false;
+    }
   } catch (error) {
     console.log("Error");
   }

@@ -1,6 +1,5 @@
 import _ from "lodash";
-import { db } from "../services/db";
-import { ItemTypes, ReviewTypes } from "../types/interface";
+import { ItemTypes } from "../types/interface";
 import { timeToNowHandler } from "./home/general/timeToNowHandler";
 
 type ReviewBoxesType = {
