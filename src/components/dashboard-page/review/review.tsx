@@ -12,7 +12,7 @@ import {
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
 export default function Review() {
-  const { item, items } = useAppSelector((state) => state.itemState);
+  const { item } = useAppSelector((state) => state.itemState);
   const [loading, setLoading] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ export default function Review() {
   if (loading)
     return (
       <>
-        <div className="w-full">
+        <div className="w-full my-24">
           <LoadingPulse />
         </div>
       </>
