@@ -9,14 +9,14 @@ import { db } from "@/src/services/db";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
 export default function CheckboxInput({
   category,
 }: {
   category: CategoryTypes;
 }) {
-  const defaultStatus = category.status === 1 ? true : false;
-  const [isChecked, setIsChecked] = useState<boolean>(defaultStatus);
   const [itemsInfo, setItemsInfo] = useState<ItemsInfoTypes>({
     allItemsCount: 0,
     learnedCount: 0,
@@ -26,16 +26,17 @@ export default function CheckboxInput({
 
   const inputChangeHandler = async () => {
     try {
-      const storedCategory = await db.categories.get(category.id);      
+      const storedCategory = await db.categories.get(category.id);
       if (!storedCategory) throw notFoundError("404");
-      setIsChecked(!isChecked);
-      storedCategory.status = isChecked ? 0 : 1;
-      const editedCategory = await db.categories.put(storedCategory!);
-      isChecked
+      storedCategory.status = storedCategory.status ? 0 : 1;
+      await db.categories.put(storedCategory!);
+      storedCategory.status
         ? toast.success("Category items removed from review list.")
         : toast.success("Category items added to review list.");
+      const newStoredCategories = await getCategoriesHandler();
+      dispatch(categoriesReducer(newStoredCategories!));
       const itemsToReview = await itemsToReviewHandler();
-      const randomItem = randomItemHandler(itemsToReview!);      
+      const randomItem = randomItemHandler(itemsToReview!);
       dispatch(itemReducer(randomItem));
     } catch (error: any) {
       if ((error.name = "404")) {
@@ -47,7 +48,7 @@ export default function CheckboxInput({
 
   useEffect(() => {
     categoryItemsCountHandler(category.id)
-    .then((itemsInfo) => {
+      .then((itemsInfo) => {
         if (itemsInfo) setItemsInfo(itemsInfo);
       })
       .catch(() => {
@@ -59,7 +60,7 @@ export default function CheckboxInput({
     <div className="border-y border-gray-300 p-2 rounded-lg transition-all duration-300 my-2">
       <div className="flex relative ">
         <input
-          checked={isChecked}
+          checked={category.status ? true : false}
           onChange={inputChangeHandler}
           type="checkbox"
           id={category.id}
@@ -91,7 +92,7 @@ pointer-events-none"
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
-      <ItemsInfo itemsInfo={itemsInfo}/>
+      <ItemsInfo itemsInfo={itemsInfo} />
     </div>
   );
 }

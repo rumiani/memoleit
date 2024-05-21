@@ -18,7 +18,7 @@ export const categoryStateSlice = createSlice({
   name: "categoryState",
   initialState: initialCategoryState,
   reducers: {
-    categoriesReducer: (state, action: PayloadAction<CategoryTypes[]>) => {
+    categoriesReducer: (state, action: PayloadAction<CategoryTypes[]>) => {      
       state.categories = action.payload;
     },
     categoryNameReducer: (state, action: PayloadAction<string>) => {

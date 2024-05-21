@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Form from "./form/form";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
@@ -8,7 +8,6 @@ import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 type DialogElement = HTMLDialogElement | null;
 
 export default function Filters() {
-  const { item, items } = useAppSelector((state) => state.itemState);
 
   const dispatch = useAppDispatch();
   const dialogElement = useRef(null);

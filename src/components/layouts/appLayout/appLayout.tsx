@@ -74,7 +74,6 @@ export default function ItemsNav() {
       .equals("setting")
       .first()
       .then((storedSetting) => {
-        console.log("Init", storedSetting);
         if (storedSetting) dispatch(storedSettingReducer(storedSetting!));
       })
       .catch(() => {

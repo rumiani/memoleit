@@ -27,6 +27,7 @@ export interface SettingTypes {
   id: string;
   name: string;
   userId: string;
+  selectAllCategories:boolean;
   isReviewSoundOn: boolean;
   rightAnswerSoundSrc: string;
   wrongAnswerSoundSrc: string;

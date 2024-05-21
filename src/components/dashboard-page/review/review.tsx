@@ -13,25 +13,19 @@ import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 
 export default function Review() {
   const { item, items } = useAppSelector((state) => state.itemState);
-  const [foundItem, setFoundItem] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     itemsToReviewHandler()
       .then((items) => {
-        console.log(items);
-
         if (items && items.length > 0) {
           const newRandomItem = randomItemHandler(items);
           dispatch(itemReducer(newRandomItem));
           dispatch(allItemsReducer(items));
-
           setLoading(false);
-          setFoundItem(true);
         } else {
           setLoading(false);
-          setFoundItem(false);
         }
       })
       .catch(() => {

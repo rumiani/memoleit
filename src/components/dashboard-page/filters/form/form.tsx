@@ -1,11 +1,40 @@
 import React from "react";
 import CheckboxInput from "./input/input";
-import { useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { isEmpty } from "lodash";
+import CheckBoxInput from "./CheckBoxInput/CheckBoxInput";
+import { selectAllCategoriesReducer } from "@/src/redux/slices/settingStateSlice";
+import { db } from "@/src/services/db";
+import { toast } from "react-toastify";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
 
+  const { selectAllCategories } = useAppSelector((state) => state.settingState);
+  const dispatch = useAppDispatch();
+
+  const selectAllHandler = async () => {
+    try {
+      const storedSetting = await db.setting.where({ name: "setting" }).first();
+      storedSetting!.selectAllCategories = !selectAllCategories;
+      await db.setting.put(storedSetting!);
+      dispatch(selectAllCategoriesReducer());
+
+      const allCategories = await getCategoriesHandler();
+      if (selectAllCategories) {
+        allCategories!.forEach((category) => (category.status = 0));
+        toast.success("Removed all the categories");
+      } else {
+        allCategories!.forEach((category) => (category.status = 1));
+        toast.success("Selected all the categories");
+      }
+      await db.categories.bulkPut(allCategories!);
+      const newCategoriesInfo = await getCategoriesHandler();
+      dispatch(categoriesReducer(newCategoriesInfo!));
+    } catch (error) {}
+  };
   return (
     <>
       <form
@@ -27,6 +56,14 @@ const Form = () => {
               );
             })
           )}
+        </div>
+        <div className="p-4">
+          <CheckBoxInput
+            isChecked={selectAllCategories}
+            id="all"
+            name="All"
+            inputChangeHandler={selectAllHandler}
+          />
         </div>
       </form>
     </>
