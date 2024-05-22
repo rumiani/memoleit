@@ -28,7 +28,7 @@ export default function CategoryPage({ categoryId }: { categoryId: string }) {
     return <LoadingPulse />;
   }
   return (
-    <div>
+    <div >
       {!isCategory ? (
         <div className="card_message">
           There&apos;s no catagory with this name.

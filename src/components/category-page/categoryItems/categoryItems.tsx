@@ -26,21 +26,19 @@ export default function CategoryItems({ categoryId }: { categoryId: string }) {
       });
   }, [dispatch, categoryId]);
   return (
-    <div className="flex flex-col justify-around mt-8 gap-2">
+    <div className="flex flex-col justify-around mt-4 gap-2">
       <BoxesDropdown categoryId={categoryId} />
       {isEmpty(items) ? (
         <div className="card_message">No item has been found.</div>
       ) : (
-        <div>
-          <div className="flex flex-wrap justify-around gap-4 mb-16">
-            {items.map((item: ItemTypes) => {
-              return (
-                <div key={item.id}>
-                  <CategoryItem item={item} />{" "}
-                </div>
-              );
-            })}
-          </div>
+        <div className="flex flex-wrap justify-around gap-4 mb-24">
+          {items.map((item: ItemTypes) => {
+            return (
+              <div key={item.id}>
+                <CategoryItem item={item} />{" "}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

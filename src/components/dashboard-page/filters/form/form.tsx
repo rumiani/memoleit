@@ -8,6 +8,9 @@ import { db } from "@/src/services/db";
 import { toast } from "react-toastify";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -33,6 +36,10 @@ const Form = () => {
       await db.categories.bulkPut(allCategories!);
       const newCategoriesInfo = await getCategoriesHandler();
       dispatch(categoriesReducer(newCategoriesInfo!));
+
+      const itemsToReview = await itemsToReviewHandler();
+      const randomItem = randomItemHandler(itemsToReview!);
+      dispatch(itemReducer(randomItem));
     } catch (error) {}
   };
   return (
