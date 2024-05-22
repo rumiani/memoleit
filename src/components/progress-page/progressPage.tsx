@@ -21,5 +21,5 @@ export default function ProgressPage() {
       
   }, [dispatch]);
 
-  return <>{isLoading ? <LoadingPulse /> : <BoxChart />}</>;
+  return <div className="w-full h-screen">{isLoading ? <LoadingPulse /> : <BoxChart />}</div>;
 }

@@ -26,10 +26,10 @@ export default function ItemBody({ body }: { body: string }) {
   }, [body, bodyValue]);
 
   return (
-    <div>
+    <div className="w-full min-h-40 overflow-y-auto">
       <button
         onClick={() => setShowBody(!showBody)}
-        className="text-blue-500 w-fit mx-auto block text-center"
+        className="text-blue-500  mx-auto block text-center"
       >
         {showBody ? "Hide" : "See"} Answer
       </button>

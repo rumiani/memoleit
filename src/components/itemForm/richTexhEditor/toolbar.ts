@@ -1,5 +1,5 @@
 export const toolbar = {
-  options: ["inline", "blockType", "list", "textAlign", "colorPicker", "link","image"],
+  options: ["inline", "blockType", "list", "textAlign", "colorPicker", "link"],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -56,36 +56,5 @@ export const toolbar = {
     defaultTargetOption: "_self",
     options: ["link"],
     linkCallback: undefined,
-  },
-
-  // image: {
-  //   uploadCallback: (file:any) => {
-  //     return new Promise((resolve, reject) => {
-  //       const reader = new FileReader();
-  //       reader.onloadend = () => {
-  //         resolve({ data: { link: reader.result } });
-  //       };
-  //       reader.onerror = reject;
-  //       reader.readAsDataURL(file);
-  //     });
-  //   },
-  //   previewImage: true,
-  //   alt: { present: true, mandatory: false },
-  // },
-  image: {
-    className: undefined,
-    component: undefined,
-    popupClassName: undefined,
-    urlEnabled: false,
-    uploadEnabled: true,
-    alignmentEnabled: true,
-    uploadCallback: undefined,
-    previewImage: false,
-    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
-    alt: { present: false, mandatory: false },
-    defaultSize: {
-      height: 'auto',
-      width: 'auto',
-    },
   },
 };

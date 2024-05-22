@@ -12,9 +12,6 @@ interface InitialDataType {
 export const boxChartDataHandler = async (data: InitialDataType[], id?: string) => {
   const itemsData = await db.items.toArray()
   const foundCategory = await db.categories.get(id)
-console.log(id);
-
-console.log('itemsData',itemsData,id);
   if (id === "") {
     itemsData.forEach((item: ItemTypes) => {
       if (isTimeToReviewHandler(item)) {

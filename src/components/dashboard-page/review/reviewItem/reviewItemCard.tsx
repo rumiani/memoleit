@@ -45,7 +45,6 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       if (error.name === "404") {
         toast.error("Item was not found.");
       }
-      console.log();
     }
   };
   if (loading) {
@@ -57,7 +56,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
   }
   return (
     <div
-      className={`animate-merge word-box border border-gray-300 rounded-lg p-4 my-8 sm:my-16 flex flex-col justify-between w-full max-w-80 h-fit max-h-96 overflow-y-auto mx-auto`}
+      className={`animate-merge word-box border border-gray-300 rounded-lg p-4 my-24 sm:my-16 flex flex-col justify-between w-full max-w-80 h-3/4 overflow-y-auto mx-auto`}
     >
       <div>
         <div className="relative flex justify-between">
@@ -72,22 +71,22 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
         </div>
         <ItemTitle title={item.title} />
       </div>
-      <div className="buttons flex justify-around w-full mt-4 gap-2">
-        <button
-          onClick={() => goToNextItem(item, 0)}
-          className="primaryBtn !px-0 !w-42 !bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          I don&apos;t know
-        </button>
-        <button
-          onClick={() => goToNextItem(item, 1)}
-          className="primaryBtn !bg-green-500  disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          I know
-        </button>
-      </div>
-      <div className="mt-8">
-        <ItemBody body={item.body} />
+      <ItemBody body={item.body} />
+      <div>
+        <div className="buttons flex justify-around w-full gap-2">
+          <button
+            onClick={() => goToNextItem(item, 0)}
+            className="primaryBtn !px-0 !w-42 !bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            I don&apos;t know
+          </button>
+          <button
+            onClick={() => goToNextItem(item, 1)}
+            className="primaryBtn !bg-green-500  disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            I know
+          </button>
+        </div>
         <ItemProgress itemBoxNumber={item.box} />
       </div>
     </div>

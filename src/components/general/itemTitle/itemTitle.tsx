@@ -7,7 +7,7 @@ export default function ItemTitle({ title }: { title: string }) {
   const { isTextToSpeechOn } = useAppSelector((state) => state.settingState);
 
   return (
-    <div className=" relative my-2 ">
+    <div className=" relative my-8">
       {isTextToSpeechOn && (
         <span className="absolute">
           <Speaker text={title} />

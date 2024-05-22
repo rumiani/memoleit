@@ -2,10 +2,7 @@ import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
-import { saveNewDataToLocalHandler } from "./handlers/saveNewDataToLocalHandler";
-import { db } from "@/src/services/db";
-import { useAppDispatch } from "@/src/app/hooks";
-import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
+import { saveNewImportedDataHandler } from "./handlers/saveNewImportedDataHandler";
 
 type InputElement = HTMLInputElement | null;
 
@@ -36,17 +33,18 @@ export default function ImportComponent() {
 
   const saveDataFunction = async (newAppData: any) => {
     setIsDisabled(true);
-    saveNewDataToLocalHandler(newAppData)
-      .then(() => {
-        toast.success("The imported data has been saved");
-        toast.info("Redirecting to categories page");
-        setTimeout(() => {
-          router.push("/box/categories");
-        }, 5000);
-      })
-      .catch(() => {
-        console.log("Error uploading");
-      });
+    try {
+      await saveNewImportedDataHandler(newAppData);
+      toast.success("The imported data has been saved");
+      toast.info("Redirecting to categories page");
+      setTimeout(() => {
+        router.push("/box/categories");
+      }, 5000);
+    } catch (error: any) {
+      console.log(error.name);
+      if (error.name === "ZodError") toast.error("Invalid data");
+      console.log("Error uploading");
+    }
   };
 
   return (
