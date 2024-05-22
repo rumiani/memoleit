@@ -11,7 +11,7 @@ import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 
 export default function CategoryItem({ item }: { item: ItemTypes }) {
   return (
-    <div className=" animate-merge word-box h-64 overflow-y-auto border border-gray-300 rounded-lg p-2 flex flex-col justify-between w-60 sm:w-72 mx-auto my-4">
+    <div className=" animate-merge word-box h-fit overflow-y-auto border border-gray-300 rounded-lg p-2 flex flex-col justify-between w-60 sm:w-72 mx-auto my-4">
       <div>
         <div className="relative flex justify-between">
           <Link
