@@ -38,8 +38,6 @@ export default function ImportComponent() {
     setIsDisabled(true);
     saveNewDataToLocalHandler(newAppData)
       .then(() => {
-        console.log(2);
-        
         toast.success("The imported data has been saved");
         toast.info("Redirecting to categories page");
         setTimeout(() => {

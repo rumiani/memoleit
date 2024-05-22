@@ -23,10 +23,10 @@ export const saveNewDataToLocalHandler = async (newAppData: any) => {
     );
     uniqueCategories.forEach((importedCategory: CategoryTypes) => {
       const newCategory = {
-        id: randomIdGenerator(8),
+        id: importedCategory.id,
         userId: userIdTest,
         name: makeUrlFriendly(importedCategory.name),
-        status: 1,
+        status: importedCategory.status,
         createdAt: importedCategory.createdAt,
       };
       newCategories.push(newCategory);
@@ -35,9 +35,9 @@ export const saveNewDataToLocalHandler = async (newAppData: any) => {
 
     const existingItems = await db.items
       .where("id")
-      .anyOf(newAppData.itemsData.map((item: any) => item.id))
+      .anyOf(newAppData.items.map((item: any) => item.id))
       .toArray();
-    const uniqueItems = newAppData.itemsData.filter(
+    const uniqueItems = newAppData.items.filter(
       (item: any) =>
         !existingItems.some((existingItem) => existingItem.id === item.id)
     );
@@ -53,9 +53,9 @@ export const saveNewDataToLocalHandler = async (newAppData: any) => {
           title: importedItem.title,
           body: importedItem.body,
           category: importedItem.category,
-          box: importedItem.reviews.box,
+          box: importedItem.box,
           createdAt: importedItem.createdAt,
-          lastReview: importedItem.reviews.lastReviewDate,
+          lastReview: importedItem.lastReviewDate,
         };
         newItems.push(newItem);
       }
