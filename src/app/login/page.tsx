@@ -1,19 +1,19 @@
 'use client'
 import React from "react";
 import Head from "next/head";
-import Login from "../../components/logIn/login";
+import Login from "../../components/auth/logIn/login";
 
 const Index = () => {
   return (
     <>
       <Head>
         <link rel="icon" href="/assets/favicon.ico" />
-        <title>Skillpath</title>
+        <title>MemoLeit</title>
         <meta name="author" content="Maziar Rumiani" />
-        <meta name="keywords" content="skill, skillpath" />
+        <meta name="keywords" content="MemoLeit, memory, learn, learn english" />
         <meta
           name="description"
-          content="Write about your skill path here ..."
+          content="Memorise everything in an efficent way ..."
         />
       </Head>
       <section>
@@ -26,3 +26,4 @@ const Index = () => {
 };
 
 export default Index;
+

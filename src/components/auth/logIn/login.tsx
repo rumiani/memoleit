@@ -4,22 +4,22 @@ import React, { useEffect } from "react";
 import loginPic from "@/public/assets/images/login/login.svg";
 import ImgHoverZoom from "@/src/components/imgHoverZoom/imgHoverZoom";
 import googleLogo from "@/public/assets/images/login/googleLogo.png";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { redirect } from 'next/navigation'
 
 export default function Login() {
   const { data: session } = useSession();
 
-  useEffect(() => {
-    if (session) {
-      console.log("signed In");
-      setTimeout(() => {
-        redirect("/dashboard");
-      }, 10000);
-    } else {
-      console.log("signed Out");
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("signed In");
+  //     setTimeout(() => {
+  //       redirect("/dashboard");
+  //     }, 10000);
+  //   } else {
+  //     console.log("signed Out");
+  //   }
+  // }, [session]);
 
   return (
     <section className="my-12 flex flex-col-reverse sm:flex-row ">
