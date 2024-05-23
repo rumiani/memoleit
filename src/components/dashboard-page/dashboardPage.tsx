@@ -27,16 +27,16 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-row justify-center">
       <Filters />
-      <div className="mt-16 sm:mb-24 ">
+      <div className="mt-6 sm:mb-24 ">
         {items.length === 0 ? (
-          <div>
+          <div className="my-16">
             <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36 mx-auto" />
             <span className="text-green-600">
               You have reviewed all the items.
             </span>
           </div>
         ) : (
-          <div>
+          <div className="">
             <div className="text-red-600">
               Items to review:
               <span className="font-bold px-1">{items.length}</span>

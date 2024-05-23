@@ -19,7 +19,7 @@ const SearchInput = ({ onSearch }: { onSearch: Function }) => {
       placeholder="Search items..."
       value={searchTerm}
       onChange={handleChange}
-      className="mx-auto p-2 w-4/5 max-w-5xl border-b border-gray-200"
+      className="mx-auto p-2 w-4/5 max-w-xl border-b border-gray-200"
     />
   );
 };

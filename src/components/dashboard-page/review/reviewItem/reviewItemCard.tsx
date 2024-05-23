@@ -69,7 +69,7 @@ export default function ReviewItemCard() {
   }
   return (
     <div
-      className={`animate-merge word-box border border-gray-300 rounded-lg p-4 my-16 flex flex-col justify-between w-full max-w-80 h-4/5 overflow-y-auto mx-auto`}
+      className='animate-merge word-box border border-gray-300 rounded-lg p-4 my-2 flex flex-col justify-between w-full max-w-80 h-4/5 overflow-y-auto mx-auto'
     >
       <div className="relative flex justify-between">
         <Link
