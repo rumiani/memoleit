@@ -1,7 +1,6 @@
 import { db } from "../services/db";
 import { ItemTypes } from "../types/interface";
-import { isTimeToReviewHandler } from "./itemsToReviewHandler";
-import { makeUrlFriendly } from "./makeUrlFriendly";
+import { itemsToReviewHandler } from "./itemsToReviewHandler";
 
 interface InitialDataType {
   name: string;
@@ -9,32 +8,27 @@ interface InitialDataType {
   Pending: number;
 }
 
-export const boxChartDataHandler = async (data: InitialDataType[], id?: string) => {
-  const itemsData = await db.items.toArray()
-  const foundCategory = await db.categories.get(id)
-  if (id === "") {
-    itemsData.forEach((item: ItemTypes) => {
-      if (isTimeToReviewHandler(item)) {
-        data[item.box - 1].Pending += 1;
-      } else {
-        if (item.box < 6) {
-          data[item.box - 1].Reviewed += 1;
-        }
+export const boxChartDataHandler = async (
+  data: InitialDataType[],
+  id?: string
+) => {
+  try {
+    let itemsData =
+      id === ""
+        ? await db.items.toArray()
+        : await db.items.where({ categoryId: id }).toArray();
+    const itemsToReview = itemsToReviewHandler(itemsData);
+    const itemsPending = itemsData.filter(
+      (item) => !itemsToReview.includes(item)
+    );
+    itemsToReview.forEach((item: ItemTypes) => {
+      data[item.box - 1].Pending += 1;
+    });
+    itemsPending.forEach((item: ItemTypes) => {
+      if (item.box < 6) {
+        data[item.box - 1].Reviewed += 1;
       }
     });
-  } else {
-
-    itemsData.forEach((item: ItemTypes) => {
-      if (makeUrlFriendly(item.category) === makeUrlFriendly(foundCategory!.name)) {
-        if (isTimeToReviewHandler(item)) {
-          data[item.box - 1].Pending += 1;
-        } else {
-          if (item.box < 6) {
-            data[item.box - 1].Reviewed += 1;
-          }
-        }
-      }
-    });
-  }  
-  return data;
+    return data;
+  } catch (error) {}
 };

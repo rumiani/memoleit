@@ -14,8 +14,8 @@ import {
   itemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -32,7 +32,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
         );
         dispatch(allItemsReducer(filteredItemsData));
       } else {
-        const itemsToReview = await itemsToReviewHandler();
+        const itemsToReview = await selectedItemsToReviewHandler();
         if (itemsToReview) {
           const randomItem = randomItemHandler(itemsToReview!);
           dispatch(itemReducer(randomItem));
