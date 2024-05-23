@@ -10,6 +10,7 @@ const initialCategoryState: SettingTypes = {
   rightAnswerSoundSrc: "",
   wrongAnswerSoundSrc: "",
   isTextToSpeechOn: false,
+  textToSpeechLang:'',
   isDictionaryOn: false,
   isTourOn: false,
 };
@@ -26,6 +27,9 @@ export const SettingStateSlice = createSlice({
     },
     textToSpeechReducer: (state) => {
       state.isTextToSpeechOn = !state.isTextToSpeechOn;
+    },
+    textToSpeechLangReducer: (state, action: PayloadAction<string>) => {
+      state.textToSpeechLang = action.payload;
     },
     reviewSoundsReducer: (state) => {
       state.isReviewSoundOn = !state.isReviewSoundOn;
@@ -49,6 +53,7 @@ export const {
   storedSettingReducer,
   selectAllCategoriesReducer,
   textToSpeechReducer,
+  textToSpeechLangReducer,
   reviewSoundsReducer,
   rightAnswerSoundSrcReducer,
   wrongAnswerSoundSrcReducer,

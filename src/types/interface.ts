@@ -32,6 +32,7 @@ export interface SettingTypes {
   rightAnswerSoundSrc: string;
   wrongAnswerSoundSrc: string;
   isTextToSpeechOn: boolean;
+  textToSpeechLang:string;
   isDictionaryOn: boolean;
   isTourOn: boolean;
 }
@@ -58,4 +59,8 @@ export interface ItemsInfoTypes {
   allItemsCount: number;
   learnedCount: number;
   unLearnedCount: number;
+}
+export interface LanguagesTypes {
+  name: string;
+  code: string;
 }

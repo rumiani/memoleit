@@ -1,5 +1,5 @@
 import React from "react";
-import Speaker from "../speaker/speaker";
+import Speaker from "../textToSpeech/textToSpeech";
 import { capitalize } from "lodash";
 import { useAppSelector } from "@/src/app/hooks";
 

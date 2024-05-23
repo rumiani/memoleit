@@ -63,7 +63,7 @@ export default function ReviewSounds() {
   };
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-wrap">
       <CheckboxInput
         value="Review Sounds"
         status={isReviewSoundOn}

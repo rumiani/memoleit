@@ -72,6 +72,7 @@ export const appDataInitialiser = async () => {
     rightAnswerSoundSrc: reviewSounds.right[0].src,
     wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
     isTextToSpeechOn: false,
+    textToSpeechLang: "en-US",
     isDictionaryOn: false,
     isTourOn: false,
   };

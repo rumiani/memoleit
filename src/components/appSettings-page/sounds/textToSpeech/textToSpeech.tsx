@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { textToSpeechReducer } from "@/src/redux/slices/settingStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
+import LangDropdown from "./langDropDown/langDropDown";
 
 export default function TextToSpeech() {
   const { isTextToSpeechOn } = useAppSelector((state) => state.settingState);
@@ -27,12 +28,13 @@ export default function TextToSpeech() {
   };
 
   return (
-    <>
+    <div className="w-full flex flex-wrap gap-4">
       <CheckboxInput
         value="Activate Pronunciation"
         status={isTextToSpeechOn}
         handleInputChange={handleInputChange}
       />
-    </>
+      <LangDropdown/>
+    </div>
   );
 }
