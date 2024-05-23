@@ -28,7 +28,7 @@ export default function TextToSpeech() {
   };
 
   return (
-    <div className="w-full flex flex-wrap gap-4">
+    <div className="w-full flex flex-wrap gap-x-4 justify-between">
       <CheckboxInput
         value="Activate Pronunciation"
         status={isTextToSpeechOn}

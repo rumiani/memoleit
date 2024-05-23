@@ -63,14 +63,14 @@ export default function ReviewSounds() {
   };
 
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="w-full flex flex-wrap gap-x-4  justify-between">
       <CheckboxInput
         value="Review Sounds"
         status={isReviewSoundOn}
         handleInputChange={handleInputChange}
       />
       <div className="flex flex-row justify-center">
-        <div className="ml-10">
+        <div className="">
           <p className="text-center text-sm text-red-500 font-bold">
             I Do&apos;nt Know
           </p>

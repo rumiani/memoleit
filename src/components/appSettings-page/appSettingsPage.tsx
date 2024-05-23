@@ -4,7 +4,7 @@ export default function AppSettingsPage() {
 
 
   return (
-    <div className="w-full my-4 sm:my-8 p-4 border border-gray-300 h-fit">
+    <div className="w-full max-w-xl mx-auto my-4 sm:my-8 p-4 border border-gray-300 h-fit">
       <Sounds />
     </div>
   );
