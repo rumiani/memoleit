@@ -10,11 +10,16 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
-import { itemReducer } from "@/src/redux/slices/itemStateSlice";
+import {
+  allItemsReducer,
+  itemReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
 import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
+import { db } from "@/src/services/db";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
 export default function ReviewItemCard() {
   const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =
@@ -43,6 +48,11 @@ export default function ReviewItemCard() {
           setLoading(false);
         }, 500);
       }
+
+      const allItems = await db.items.toArray();
+      const allItemsToReview = itemsToReviewHandler(allItems);
+      dispatch(allItemsReducer(allItemsToReview));
+
     } catch (error: any) {
       if (error.name === "404") {
         toast.error("Item was not found.");
