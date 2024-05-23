@@ -41,7 +41,9 @@ button {
 .recharts-surface{
   @apply w-full;
 }
-
+.rdw-text-align-dropdown, .rdw-dropdown-selectedtext{
+  @apply -z-10
+}
 
 /*
 

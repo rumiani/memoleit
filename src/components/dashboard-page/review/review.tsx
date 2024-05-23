@@ -4,25 +4,23 @@ import NoResult from "./noResult/noResult";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import ReviewItemCard from "./reviewItem/reviewItemCard";
 import LoadingPulse from "../../loading-comps/loadingPulse/loadingPulse";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import {
-  allItemsReducer,
   itemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
+import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
 
 export default function Review() {
-  const { item } = useAppSelector((state) => state.itemState);
+  const { item, items } = useAppSelector((state) => state.itemState);
   const [loading, setLoading] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    itemsToReviewHandler()
+    selectedItemsToReviewHandler()
       .then((items) => {
         if (items && items.length > 0) {
           const newRandomItem = randomItemHandler(items);
           dispatch(itemReducer(newRandomItem));
-          dispatch(allItemsReducer(items));
           setLoading(false);
         } else {
           setLoading(false);
@@ -42,7 +40,13 @@ export default function Review() {
     );
   return (
     <div className="my-4">
-      {item.id === "" ? <NoResult /> : <ReviewItemCard item={item} />}
+      {item.id === "" ? (
+        <div>
+          <NoResult />
+        </div>
+      ) : (
+        <ReviewItemCard />
+      )}
     </div>
   );
 }

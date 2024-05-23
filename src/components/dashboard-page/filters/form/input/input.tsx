@@ -1,6 +1,5 @@
 import { useAppDispatch } from "@/src/app/hooks";
 import ItemsInfo from "@/src/components/general/intemsInfo/itemsInfo";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import notFoundError from "@/src/handlers/notFoundError";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
@@ -11,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
+import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
 
 export default function CheckboxInput({
   category,
@@ -35,7 +35,7 @@ export default function CheckboxInput({
         : toast.success("Category items added to review list.");
       const newStoredCategories = await getCategoriesHandler();
       dispatch(categoriesReducer(newStoredCategories!));
-      const itemsToReview = await itemsToReviewHandler();
+      const itemsToReview = await selectedItemsToReviewHandler();
       const randomItem = randomItemHandler(itemsToReview!);
       dispatch(itemReducer(randomItem));
     } catch (error: any) {

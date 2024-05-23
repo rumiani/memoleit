@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ItemOptions from "@/src/components/general/itemOptions/itemOptions";
 import ItemBody from "@/src/components/general/itemBody/itemBody";
 import ItemProgress from "@/src/components/general/itemProgress/itemProgress";
-import { capitalize, sample } from "lodash";
+import { capitalize } from "lodash";
 import Link from "next/link";
 import { reviewHandler } from "@/src/handlers/reviewHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
@@ -13,13 +13,15 @@ import { ItemTypes } from "@/src/types/interface";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
+import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
 
-export default function ReviewItemCard({ item }: { item: ItemTypes }) {
+export default function ReviewItemCard() {
   const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =
     useAppSelector((state) => state.settingState);
   const [loading, setLoading] = useState<boolean>(false);
+  const { item } = useAppSelector((state) => state.itemState);
+
   const dispatch = useAppDispatch();
 
   const goToNextItem = async (item: ItemTypes, answer: number) => {
@@ -33,7 +35,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
         if (isReviewSoundOn) new Audio(wrongAnswerSoundSrc).play();
         toast.success("Item moved to the box 1 and can be reviewed tomorrow");
       }
-      const itemsToReview = await itemsToReviewHandler();
+      const itemsToReview = await selectedItemsToReviewHandler();
       if (itemsToReview) {
         const newRandomItem = randomItemHandler(itemsToReview);
         setTimeout(() => {
@@ -47,6 +49,7 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
       }
     }
   };
+
   if (loading) {
     return (
       <div className="my-24">
@@ -58,17 +61,17 @@ export default function ReviewItemCard({ item }: { item: ItemTypes }) {
     <div
       className={`animate-merge word-box border border-gray-300 rounded-lg p-4 my-16 flex flex-col justify-between w-full max-w-80 h-4/5 overflow-y-auto mx-auto`}
     >
-        <div className="relative flex justify-between">
-          <Link
-            href={getCategoryUrl(item.categoryId, item.category)}
-            title={"category: " + capitalize(item.category)}
-            className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
-          >
-            <h2>{capitalize(item.category)}</h2>
-          </Link>
-          <ItemOptions item={item} />
-        </div>
-        <ItemTitle title={item.title} />
+      <div className="relative flex justify-between">
+        <Link
+          href={getCategoryUrl(item.categoryId, item.category)}
+          title={"category: " + capitalize(item.category)}
+          className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
+        >
+          <h2>{capitalize(item.category)}</h2>
+        </Link>
+        <ItemOptions item={item} />
+      </div>
+      <ItemTitle title={item.title} />
       <div className="h-52 overflow-y-auto">
         <ItemBody body={item.body} />
       </div>

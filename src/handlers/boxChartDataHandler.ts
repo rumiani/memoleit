@@ -1,6 +1,6 @@
 import { db } from "../services/db";
 import { ItemTypes } from "../types/interface";
-import { isTimeToReviewHandler } from "./isTimeToReviewHandler";
+import { isTimeToReviewHandler } from "./itemsToReviewHandler";
 import { makeUrlFriendly } from "./makeUrlFriendly";
 
 interface InitialDataType {
