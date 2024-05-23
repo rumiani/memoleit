@@ -26,7 +26,7 @@ export default function ItemBody({ body }: { body: string }) {
   }, [body, bodyValue]);
 
   return (
-    <div className="w-ful">
+    <div className="my-4">
       <button
         onClick={() => setShowBody(!showBody)}
         className="text-blue-500  mx-auto block text-center"

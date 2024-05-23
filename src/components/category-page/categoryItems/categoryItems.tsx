@@ -1,33 +1,30 @@
 import React, { useEffect } from "react";
-import { CategoryTypes, ItemTypes } from "@/src/types/interface";
+import { ItemTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CategoryItem from "../../categoryitem/categoryitem";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import BoxesDropdown from "./boxesDropdown/BoxesDropdown";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
-import { db } from "@/src/services/db";
 
-export default function CategoryItems({ categoryId }: { categoryId: string }) {
+export default function CategoryItems() {
+  const{category} = useAppSelector(state => state.categoryState)
   const { items } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    itemsCategoryIdFilterHandler(categoryId)
+    itemsCategoryIdFilterHandler(category.id)
       .then((filteredItemsData: any) => {
-        console.log(filteredItemsData);
-
-        console.log(filteredItemsData);
         if (!isEmpty(filteredItemsData))
           dispatch(allItemsReducer(filteredItemsData));
       })
       .catch(() => {
         console.log("error");
       });
-  }, [dispatch, categoryId]);
+  }, [dispatch, category]);
   return (
     <div className="flex flex-col justify-around mt-4 gap-2">
-      <BoxesDropdown categoryId={categoryId} />
+      <BoxesDropdown categoryId={category.id} />
       {isEmpty(items) ? (
         <div className="card_message">No item has been found.</div>
       ) : (

@@ -5,7 +5,7 @@ import React from "react";
 
 export default function AppSettingsIndex () {
   return (
-    <div>
+    <div className="h-screen">
       <AppSettingsPage/>
     </div>
   );

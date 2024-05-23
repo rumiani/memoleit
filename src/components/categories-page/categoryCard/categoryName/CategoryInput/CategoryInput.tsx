@@ -1,14 +1,11 @@
 import { useAppDispatch } from "@/src/app/hooks";
-import {
-  categoriesReducer,
-  categoryEditNameReducer,
-} from "@/src/redux/slices/categoryStateSlice";
+import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import React, { useRef, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 import saveCategoryNameHandler from "../saveCategoryNameHandler";
-import { db } from "@/src/services/db";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
 export default function CategoryInput({
   category,
@@ -25,26 +22,20 @@ export default function CategoryInput({
     setNewCategoryName(e.target.value);
   };
 
-  const saveCategoryHandler = () => {
-    saveCategoryNameHandler({
-      categoryId: category.id,
-      newCategoryName,
-    })
-      .then((result) => {
-        console.log(result);
-
-        db.categories.toArray().then((storedCategories) => {
-          dispatch(categoriesReducer(storedCategories));
-          dispatch(categoryEditNameReducer(""));
-        });
-        toast.success("category name was saved successfully.", {
-          autoClose: 2000,
-        });
-      })
-      .catch(() => {
-        console.log("Error");
-        //   toast.error("Item was not found");
+  const saveCategoryHandler = async () => {
+    try {
+      await saveCategoryNameHandler({
+        categoryId: category.id,
+        newCategoryName,
       });
+
+      const storedCategories = await getCategoriesHandler();
+      dispatch(categoriesReducer(storedCategories!));
+      toast.success("category name was saved successfully.");
+    } catch (error: any) {
+      if (error.name === "404") toast.error("Category not found.");
+      console.log("Error");
+    }
   };
 
   return (

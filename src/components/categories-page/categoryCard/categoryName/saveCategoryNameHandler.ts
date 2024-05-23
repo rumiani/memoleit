@@ -1,40 +1,25 @@
-import { ItemTypes } from "../../../../types/interface";
+import notFoundError from "@/src/handlers/notFoundError";
 import { db } from "@/src/services/db";
-import { toast } from "react-toastify";
 
-export default function saveCategoryNameHandler({
+export default async function saveCategoryNameHandler({
   categoryId,
   newCategoryName,
 }: {
   categoryId: string;
   newCategoryName: string;
 }) {
-  return db.categories
-    .get(categoryId)
-    .then((category) => {
-      if (category) {
-        category!.name = newCategoryName;
-        db.categories.put(category!).then((result) => {
-          console.log(result);
-        });
-        db.items
-          .where("categoryId")
-          .equals(categoryId)
-          .toArray()
-          .then((items: ItemTypes[]) => {
-            const updatedItems = items.map((item) => {
-              item.category = newCategoryName;
-              return item;
-            });
-            db.items.bulkPut(updatedItems).then((result) => {
-              console.log(result);
-            });
-          });
-      } else {
-        toast.error("Category not found.");
-      }
-    })
-    .catch(() => {
-      console.log("Opps! Something went wrong.");
-    });
+  try {
+    const category = await db.categories.get(categoryId);
+    if (!category) throw notFoundError("404");
+    category.name = newCategoryName;
+    await db.categories.put(category);
+    const items = await db.items
+      .where("categoryId")
+      .equals(categoryId)
+      .toArray();
+    for (const item of items) item.category = newCategoryName;
+    await db.items.bulkPut(items);
+  } catch (error) {
+    console.log("Error");
+  }
 }

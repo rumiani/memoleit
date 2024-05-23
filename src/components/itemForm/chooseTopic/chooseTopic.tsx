@@ -41,11 +41,11 @@ export default function ChooseTopic({
           },
           minLength: {
             value: 3,
-            message: "Input must be 1 - 20 character long.",
+            message: "Input must be 3 - 20 character long.",
           },
           maxLength: {
             value: 20,
-            message: "Input must be 1 - 20 characters long.",
+            message: "Input must be 3 - 20 characters long.",
           },
         })}
       />

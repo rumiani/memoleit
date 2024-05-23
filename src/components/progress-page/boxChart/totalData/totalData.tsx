@@ -38,20 +38,24 @@ export default function TotalData({
   }, [data, categoryId]);
 
   return (
-    <div className="flex flex-wrap gap-2 my-4 w-full justify-start cursor-default">
-      <span className="text-blue-600 w-fit h-6 ">
+    <div className="px-6 mb-4 w-full justify-start cursor-default">
+      <span className="text-blue-600 w-32 h-6 ">
         All: {categoryInfo?.allItemsCount}
       </span>
-      <span className="text-green-800 w-fit h-6">
+      <div className="flex flex-wrap gap-4">
+      <span className="text-green-800 w-32 h-6">
         Learned: {categoryInfo?.learnedCount}
       </span>
-      <span className="text-orange-500 w-fit h-6">
+      <span className="text-orange-500 w-32 h-6">
         In The Box: {categoryInfo?.unLearnedCount}
       </span>
-      <span className="text-green-500 w-fit h-6">
+      </div>
+      <div className="flex flex-wrap gap-4">
+      <span className="text-green-500 w-32 h-6">
         Reviewed: {reviewedNumber}
       </span>
-      <span className="text-red-500 w-fit h-6">Pending: {pendingNumber}</span>
+      <span className="text-red-500 w-32 h-6">Pending: {pendingNumber}</span>
+      </div>
     </div>
   );
 }

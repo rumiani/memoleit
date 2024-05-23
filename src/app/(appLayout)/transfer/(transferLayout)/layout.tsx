@@ -21,7 +21,7 @@ export default function TransferLayout({
         {" "}
         <SuperPageLayout links={links} />
       </nav>
-      <div className="my-16">{children}</div>
+      <div className="my-16 h-screen">{children}</div>
     </section>
   );
 }

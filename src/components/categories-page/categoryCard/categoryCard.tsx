@@ -32,9 +32,9 @@ export default function CategoryCard({
         >
           {daysHoursAgo}
         </span>
-        <CardOptions category={category} />
+        <CardOptions category={category}/>
       </div>
-      <CategoryName category={category} />
+      <CategoryName categoryOnEdit = {category}/>
       <ItemsInfo itemsInfo={itemsInfo}/>
     </div>
   );

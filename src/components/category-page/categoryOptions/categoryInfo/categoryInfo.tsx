@@ -1,7 +1,10 @@
+import { useAppSelector } from "@/src/app/hooks";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import React, { useEffect, useState } from "react";
 
-export default function CategoryInfo({ categoryId }: { categoryId: string }) {
+export default function CategoryInfo() {
+  const{category} = useAppSelector(state => state.categoryState)
+
   const [itemInfo, setItemInfo] = useState<{
     allItemsCount: number;
     learnedCount: number;
@@ -9,10 +12,10 @@ export default function CategoryInfo({ categoryId }: { categoryId: string }) {
   }>({ allItemsCount: 0, learnedCount: 0, unLearnedCount: 0 });
 
   useEffect(() => {
-    categoryItemsCountHandler(categoryId).then((info) => {
+    categoryItemsCountHandler(category.id).then((info) => {
       setItemInfo(info!);
     });
-  }, [categoryId]);
+  }, [category]);
   return (
     <div>
       <div className="pr-4 w-full text-left flex justify-between">

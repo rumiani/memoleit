@@ -14,5 +14,4 @@ export interface initialItemStateTypes {
 export interface initialCategoryStateTypes {
   category: CategoryTypes;
   categories: CategoryTypes[];
-  categoryNameEditable: string;
 }

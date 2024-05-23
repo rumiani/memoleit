@@ -6,24 +6,32 @@ import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import { capitalize } from "lodash";
 import { findCategoryById } from "@/src/handlers/findCategoryById";
 import { usePathname } from "next/navigation";
+import { useAppDispatch } from "@/src/app/hooks";
+import { categoryReducer } from "@/src/redux/slices/categoryStateSlice";
 
 export default function CategoryPage({ categoryId }: { categoryId: string }) {
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const pathName = usePathname()
-
+ const dispatch = useAppDispatch()
   useEffect(() => {        
     findCategoryById(categoryId)
-      .then((category) => {        
-        console.log(category);
-        
-        category ? setIsCategory(true) : setIsCategory(false);
+      .then((category) => {                
+        if(category){
+
+          setIsCategory(true) 
+          dispatch(categoryReducer(category))
+        } 
+         else{
+
+           setIsCategory(false);
+         }
         setIsLoading(false);
       })
       .catch((error) => {
         console.log("error");
       });
-  }, [categoryId]);
+  }, [categoryId,dispatch]);
   if (isLoading) {
     return <LoadingPulse />;
   }
@@ -43,8 +51,8 @@ export default function CategoryPage({ categoryId }: { categoryId: string }) {
       ) : (
         <div>
           <h3 className="font-bold">{capitalize(pathName.split('/').pop())}</h3>
-          <CategoryOptions categoryId={categoryId} />
-          <CategoryItems categoryId={categoryId} />
+          <CategoryOptions />
+          <CategoryItems/>
         </div>
       )}
     </div>

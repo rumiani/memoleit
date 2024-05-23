@@ -70,9 +70,9 @@ export default function RootLayout({
         <NextAuthProvider>
           <ToastContainer limit={3} autoClose={3000} closeOnClick />
           <ReduxProvider>
-            <div className=" relative mx-auto max-w-screen-2xl">
+            <div className="mx-auto max-w-screen-2xl">
               <Header />
-              <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-2xl h-screen break-words">
+              <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 mx-auto lg:px-8 w-full max-w-screen-2xl break-words">
                 {children}
               </main>
               <Footer />

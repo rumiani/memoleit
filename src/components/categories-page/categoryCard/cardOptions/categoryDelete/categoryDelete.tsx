@@ -1,15 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useAppSelector } from "@/src/app/hooks";
 import { CategoryTypes } from "@/src/types/interface";
+import React, { useEffect, useRef, useState } from "react";
 type DialogElement = HTMLDialogElement | null;
 
-export default function CategoryDelete({
-  category,
-  deleteHandler,
-}: {
-  category: CategoryTypes;
-  deleteHandler: Function;
-}) {
+export default function CategoryDelete({category, deleteHandler}: {category:CategoryTypes ,deleteHandler: Function;}) {
   const [inputValue, setInputValue] = useState<string>("");
   const dialogElement = useRef(null);
 

@@ -11,29 +11,22 @@ const initialCategoryState: initialCategoryStateTypes = {
     createdAt: 0,
   },
   categories: [],
-  categoryNameEditable: "",
 };
 
 export const categoryStateSlice = createSlice({
   name: "categoryState",
   initialState: initialCategoryState,
   reducers: {
-    categoriesReducer: (state, action: PayloadAction<CategoryTypes[]>) => {      
+    categoryReducer: (state, action: PayloadAction<CategoryTypes>) => {
+      state.category = action.payload;
+    },
+    categoriesReducer: (state, action: PayloadAction<CategoryTypes[]>) => {
       state.categories = action.payload;
-    },
-    categoryNameReducer: (state, action: PayloadAction<string>) => {
-      state.category.name = action.payload;
-    },
-    categoryEditNameReducer: (state, action: PayloadAction<string>) => {
-      state.categoryNameEditable = action.payload;
     },
   },
 });
 
-export const {
-  categoriesReducer,
-  categoryEditNameReducer,
-  categoryNameReducer,
-} = categoryStateSlice.actions;
+export const { categoriesReducer, categoryReducer } =
+  categoryStateSlice.actions;
 
 export default categoryStateSlice.reducer;

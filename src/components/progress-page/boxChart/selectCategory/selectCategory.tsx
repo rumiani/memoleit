@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import {
   categoriesReducer,
-  categoryNameReducer,
+  categoryReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ export default function SelectCategory({
 }: {
   handleChange: Function;
 }) {
-  const { categories } = useAppSelector((state) => state.categoryState);
+  const { category,categories } = useAppSelector((state) => state.categoryState);
   const [input, setInput] = useState("");
   const dispatch = useAppDispatch();
 
@@ -29,7 +29,7 @@ export default function SelectCategory({
   ) => {
     const inputVal = event.target.value;
     setInput(inputVal);
-    dispatch(categoryNameReducer(inputVal));
+    dispatch(categoryReducer({...category,name:inputVal}));
     handleChange(inputVal);
   };
   return (

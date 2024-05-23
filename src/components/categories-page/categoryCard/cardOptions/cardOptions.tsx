@@ -6,12 +6,12 @@ import CategoryDelete from "./categoryDelete/categoryDelete";
 import { useAppDispatch } from "@/src/app/hooks";
 import {
   categoriesReducer,
-  categoryEditNameReducer,
+  categoryReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { toast } from "react-toastify";
 import deleteCategoryHandler from "../../handlers/deleteCategoryHandler";
 
-export default function CardOptions({ category }: { category: CategoryTypes }) {
+export default function CardOptions({category}:{category:CategoryTypes}) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -36,7 +36,7 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
 
   const editHandler = () => {
     setShowOptions(false);
-    dispatch(categoryEditNameReducer(category.name));
+    dispatch(categoryReducer(category));
   };
 
   const deleteHandler = async () => {

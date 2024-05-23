@@ -46,13 +46,12 @@ export default function ReviewItemCard() {
         setTimeout(() => {
           dispatch(itemReducer(newRandomItem));
           setLoading(false);
-        }, 500);
+        }, 300);
       }
 
       const allItems = await db.items.toArray();
       const allItemsToReview = itemsToReviewHandler(allItems);
       dispatch(allItemsReducer(allItemsToReview));
-
     } catch (error: any) {
       if (error.name === "404") {
         toast.error("Item was not found.");
@@ -68,9 +67,7 @@ export default function ReviewItemCard() {
     );
   }
   return (
-    <div
-      className='animate-merge word-box border border-gray-300 rounded-lg p-4 my-2 flex flex-col justify-between w-full max-w-80 h-4/5 overflow-y-auto mx-auto'
-    >
+    <div className=" word-box border border-gray-300 rounded-lg p-4 mb-24 sm:mb-1 flex flex-col justify-between w-full max-w-80 mx-auto">
       <div className="relative flex justify-between">
         <Link
           href={getCategoryUrl(item.categoryId, item.category)}
@@ -82,9 +79,7 @@ export default function ReviewItemCard() {
         <ItemOptions item={item} />
       </div>
       <ItemTitle title={item.title} />
-      <div className="h-52 overflow-y-auto">
-        <ItemBody body={item.body} />
-      </div>
+      <ItemBody body={item.body} />
       <div>
         <div className="buttons flex justify-around w-full gap-2">
           <button

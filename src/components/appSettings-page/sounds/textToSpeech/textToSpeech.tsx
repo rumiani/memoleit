@@ -16,7 +16,7 @@ export default function TextToSpeech() {
       .where("name")
       .equals("setting")
       .modify({ isTextToSpeechOn: !isTextToSpeechOn })
-      .then(() => {
+      .then(() => {        
         dispatch(textToSpeechReducer());
 
         if (isTextToSpeechOn) {

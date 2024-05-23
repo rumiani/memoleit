@@ -5,8 +5,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   appDataInitialiser()
 
   return (
-    <section>
-      <nav>
+    <section className="relative">
+      <nav className="w-full h-full bg-red-500">
         {" "}
         <ItemsNav />
       </nav>
