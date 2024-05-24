@@ -11,6 +11,7 @@ const initialCategoryState: initialCategoryStateTypes = {
     createdAt: 0,
   },
   categories: [],
+  categoryOnEdit: "",
 };
 
 export const categoryStateSlice = createSlice({
@@ -23,10 +24,13 @@ export const categoryStateSlice = createSlice({
     categoriesReducer: (state, action: PayloadAction<CategoryTypes[]>) => {
       state.categories = action.payload;
     },
+    categoryOnEditReducer: (state, action: PayloadAction<string>) => {
+      state.categoryOnEdit = action.payload;
+    },
   },
 });
 
-export const { categoriesReducer, categoryReducer } =
+export const { categoriesReducer, categoryReducer, categoryOnEditReducer } =
   categoryStateSlice.actions;
 
 export default categoryStateSlice.reducer;

@@ -34,7 +34,7 @@ export default function CategoryCard({
         </span>
         <CardOptions category={category}/>
       </div>
-      <CategoryName categoryOnEdit = {category}/>
+      <CategoryName category= {category}/>
       <ItemsInfo itemsInfo={itemsInfo}/>
     </div>
   );

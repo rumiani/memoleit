@@ -14,4 +14,5 @@ export interface initialItemStateTypes {
 export interface initialCategoryStateTypes {
   category: CategoryTypes;
   categories: CategoryTypes[];
+  categoryOnEdit:string;
 }
