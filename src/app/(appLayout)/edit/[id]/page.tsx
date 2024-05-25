@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 export default function Item({ params }: { params: { id: string } }) {
   const [formData, setFormData] = useState<FormValues | undefined>(undefined);
   useEffect(() => {
-    console.log(params.id);
+    console.log(params);
     db.items
       .get(params.id)
       .then((item) => {

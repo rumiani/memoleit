@@ -7,12 +7,16 @@ export default function TransferLayout({
 }) {
   const links = [
     {
-      url: "/transfer/export",
-      title: "export",
+      url: "/options/settings",
+      title: "Settings",
     },
     {
-      url: "/transfer/import",
-      title: "import",
+      url: "/options/export",
+      title: "Export",
+    },
+    {
+      url: "/options/import",
+      title: "Import",
     },
   ];
   return (

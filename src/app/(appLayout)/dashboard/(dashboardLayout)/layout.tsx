@@ -1,4 +1,5 @@
 "use client";
+import JoyrideComponent from "@/src/components/joyride/joyride";
 import SuperPageLayout from "@/src/components/layouts/superPageLayout/superPageLayout";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const links = [
@@ -7,16 +8,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       title: "Review",
     },
     {
-      url: "/dashboard/settings",
-      title: "App Settings",
-    },
-    {
       url: "/dashboard/new",
       title: "New Item",
     },
   ];
   return (
     <section>
+                        <JoyrideComponent />
+
       <nav>
         {" "}
         <SuperPageLayout links={links} />

@@ -7,7 +7,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <section className="relative">
-      <JoyrideComponent />
+
       <nav className="w-full h-full bg-red-500">
         {" "}
         <ItemsNav />

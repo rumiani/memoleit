@@ -15,7 +15,7 @@ export default function PageLinks({ links }: { links: LinksType[] }) {
             key={i}
             href={link.url}
             title={link.title}
-            className="w-full p-2 text-lg hover:bg-gray-200 items-center"
+            className="w-full px-4 text-lg hover:bg-gray-200 items-center"
           >
             {capitalize(link.title)}
           </Link>

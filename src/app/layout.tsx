@@ -65,12 +65,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <SpeedInsights />
-        <NextAuthProvider>
-          <ToastContainer limit={3} autoClose={3000} closeOnClick />
-          <ReduxProvider>
+      <NextAuthProvider>
+        <ReduxProvider>
+          <body className={inter.className}>
+            <SpeedInsights />
+            <ToastContainer limit={3} autoClose={3000} closeOnClick />
+            <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
             <div className="mx-auto max-w-screen-2xl">
               <Header />
               <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 sm:min-h-screen mx-auto lg:px-8 w-full max-w-screen-2xl break-words">
@@ -78,9 +78,9 @@ export default function RootLayout({
               </main>
               <Footer />
             </div>
-          </ReduxProvider>
-        </NextAuthProvider>
-      </body>
+          </body>
+        </ReduxProvider>
+      </NextAuthProvider>
     </html>
   );
 }

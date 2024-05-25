@@ -3,32 +3,27 @@
 import React, { ReactElement, useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
-import { TbTransferVertical } from "react-icons/tb";
-
-import SuperPage from "./superPage/superPage";
+import { GrDocumentConfig } from "react-icons/gr";import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
 
 interface SuperPageTypes {
-  name:string;
-  icon:ReactElement;
-  links:{url:string;title:string}[]
+  name: string;
+  icon: ReactElement;
+  links: { url: string; title: string }[];
 }
 
 const superPages: SuperPageTypes[] = [
   {
-    name: "dashboard",
+    name: "Dashboard",
     icon: <MdDashboard />,
     links: [
       {
         url: "/dashboard/review",
         title: "Review",
       },
-      {
-        url: "/dashboard/settings",
-        title: "App Settings",
-      },
+
       {
         url: "/dashboard/new",
         title: "New Item",
@@ -36,7 +31,7 @@ const superPages: SuperPageTypes[] = [
     ],
   },
   {
-    name: "box",
+    name: "Box",
     icon: <FaBoxOpen />,
     links: [
       {
@@ -54,16 +49,20 @@ const superPages: SuperPageTypes[] = [
     ],
   },
   {
-    name: "transfer",
-    icon: <TbTransferVertical />,
+    name: "Options",
+    icon: <GrDocumentConfig />,
     links: [
       {
-        url: "/transfer/export",
-        title: "export",
+        url: "/options/settings",
+        title: "Settings",
       },
       {
-        url: "/transfer/import",
-        title: "import",
+        url: "/options/export",
+        title: "Export",
+      },
+      {
+        url: "/options/import",
+        title: "Import",
       },
     ],
   },

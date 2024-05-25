@@ -23,7 +23,7 @@ export default function ReviewSounds() {
       .modify({ isReviewSoundOn: !isReviewSoundOn })
       .then((res) => {
         console.log(res);
-        dispatch(reviewSoundsReducer());
+        dispatch(reviewSoundsReducer(!isReviewSoundOn));
       })
       .catch(() => {
         console.log("error");

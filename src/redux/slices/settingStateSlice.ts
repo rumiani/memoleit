@@ -5,14 +5,14 @@ const initialCategoryState: SettingTypes = {
   id: "",
   name: "setting",
   userId: "",
-  selectAllCategories:false,
+  selectAllCategories: false,
   isReviewSoundOn: false,
   rightAnswerSoundSrc: "",
   wrongAnswerSoundSrc: "",
   isTextToSpeechOn: false,
-  textToSpeechLang:'',
+  textToSpeechLang: "",
   isDictionaryOn: false,
-  isTourOn: false,
+  isTourOn: true,
 };
 
 export const SettingStateSlice = createSlice({
@@ -31,8 +31,8 @@ export const SettingStateSlice = createSlice({
     textToSpeechLangReducer: (state, action: PayloadAction<string>) => {
       state.textToSpeechLang = action.payload;
     },
-    reviewSoundsReducer: (state) => {
-      state.isReviewSoundOn = !state.isReviewSoundOn;
+    reviewSoundsReducer: (state, action: PayloadAction<boolean>) => {
+      state.isReviewSoundOn = action.payload;
     },
     rightAnswerSoundSrcReducer: (state, action: PayloadAction<string>) => {
       state.rightAnswerSoundSrc = action.payload;
@@ -40,11 +40,11 @@ export const SettingStateSlice = createSlice({
     wrongAnswerSoundSrcReducer: (state, action: PayloadAction<string>) => {
       state.wrongAnswerSoundSrc = action.payload;
     },
-    dictionaryReducer: (state) => {
-      state.isDictionaryOn = !state.isDictionaryOn;
+    dictionaryReducer: (state, action: PayloadAction<boolean>) => {
+      state.isDictionaryOn = action.payload;
     },
-    tourReducer: (state) => {
-      state.isTourOn = !state.isTourOn;
+    isTourOnReducer: (state, action: PayloadAction<boolean>) => {
+      state.isTourOn = action.payload;
     },
   },
 });
@@ -58,7 +58,7 @@ export const {
   rightAnswerSoundSrcReducer,
   wrongAnswerSoundSrcReducer,
   dictionaryReducer,
-  tourReducer,
+  isTourOnReducer,
 } = SettingStateSlice.actions;
 
 export default SettingStateSlice.reducer;

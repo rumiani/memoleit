@@ -8,9 +8,8 @@ import { useEffect } from "react";
 export default function Home() {
   const { data: session } = useSession();
   useEffect(()=>{
-    console.log('WWWWWWait');
     
-    console.log(process.env);
+    // console.log(process.env);
 
   },[])
   return (

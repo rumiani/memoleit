@@ -67,14 +67,14 @@ export const appDataInitialiser = async () => {
     id: randomIdGenerator(8),
     name: "setting",
     userId: userIdTest,
-    selectAllCategories: false,
-    isReviewSoundOn: false,
+    selectAllCategories: true,
+    isReviewSoundOn: true,
     rightAnswerSoundSrc: reviewSounds.right[0].src,
     wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
-    isTextToSpeechOn: false,
+    isTextToSpeechOn: true,
     textToSpeechLang: "en-US",
-    isDictionaryOn: false,
-    isTourOn: false,
+    isDictionaryOn: true,
+    isTourOn: true,
   };
   db.setting
     .add(settings)

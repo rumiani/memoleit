@@ -9,7 +9,7 @@ export default function ItemTitle({ title }: { title: string }) {
   return (
     <div className=" relative my-8">
       {isTextToSpeechOn && (
-        <span className="absolute">
+        <span className="absolute second-element">
           <Speaker text={title} />
         </span>
       )}
