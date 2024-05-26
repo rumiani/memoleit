@@ -8,7 +8,8 @@ import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/layouts/generalLayout/footer/footer";
 import Header from "../components/layouts/generalLayout/header/header";
-import JoyrideComponent from "../components/joyride/joyride";
+import { SessionProvider } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,29 +59,30 @@ export const viewport: Viewport = {
   themeColor: "#FFFFFF",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession()
+  console.log(session);
+  
   return (
     <html lang="en">
-      <NextAuthProvider>
-        <ReduxProvider>
-          <body className={inter.className}>
+      <body className={`${inter.className} mx-auto max-w-screen-2xl`}>
+        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+        <NextAuthProvider session={session}>
+          <ReduxProvider>
             <SpeedInsights />
             <ToastContainer limit={3} autoClose={3000} closeOnClick />
-            <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-            <div className="mx-auto max-w-screen-2xl">
-              <Header />
-              <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 sm:min-h-screen mx-auto lg:px-8 w-full max-w-screen-2xl break-words">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </body>
-        </ReduxProvider>
-      </NextAuthProvider>
+            <Header />
+            <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 sm:min-h-screen mx-auto lg:px-8 w-full max-w-screen-2xl break-words">
+              {children}
+            </main>
+            <Footer />
+          </ReduxProvider>
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }

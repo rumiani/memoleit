@@ -70,7 +70,7 @@ const RichTextEditor = ({
   };
 
   return (
-    <div>
+    <div className="second-element">
       <Editor
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}

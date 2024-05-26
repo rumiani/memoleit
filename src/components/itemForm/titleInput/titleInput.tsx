@@ -8,10 +8,10 @@ interface TitleProps {
 const TitleInput = ({register, error}:TitleProps) => {
 
   return (
-    <div className="w-full mx-auto my-2">
+    <div className=" w-full mx-auto my-4">
         <input
           id='inputTitle'
-          className="w-full p-1 focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 "
+          className="first-element w-full p-1 focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 "
           placeholder="Write a title here..."
           autoComplete="off"
           type='text'

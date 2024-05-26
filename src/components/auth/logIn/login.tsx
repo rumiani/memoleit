@@ -10,16 +10,16 @@ import { redirect } from 'next/navigation'
 export default function Login() {
   const { data: session } = useSession();
 
-  // useEffect(() => {
-  //   if (session) {
-  //     console.log("signed In");
-  //     setTimeout(() => {
-  //       redirect("/dashboard");
-  //     }, 10000);
-  //   } else {
-  //     console.log("signed Out");
-  //   }
-  // }, [session]);
+  useEffect(() => {
+    if (session) {
+      console.log("signed In");
+      setTimeout(() => {
+        redirect("/dashboard");
+      }, 10000);
+    } else {
+      console.log("signed Out");
+    }
+  }, [session]);
 
   return (
     <section className="my-12 flex flex-col-reverse sm:flex-row ">

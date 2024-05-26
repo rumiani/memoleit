@@ -12,7 +12,7 @@ const initialCategoryState: SettingTypes = {
   isTextToSpeechOn: false,
   textToSpeechLang: "",
   isDictionaryOn: false,
-  isTourOn: true,
+  tour: { reviewTour: false, newItemTour: false, boxTour: false },
 };
 
 export const SettingStateSlice = createSlice({
@@ -43,8 +43,8 @@ export const SettingStateSlice = createSlice({
     dictionaryReducer: (state, action: PayloadAction<boolean>) => {
       state.isDictionaryOn = action.payload;
     },
-    isTourOnReducer: (state, action: PayloadAction<boolean>) => {
-      state.isTourOn = action.payload;
+    tourReducer: (state, action: PayloadAction<any>) => {
+      state.tour = {...state.tour,...action.payload};
     },
   },
 });
@@ -58,7 +58,7 @@ export const {
   rightAnswerSoundSrcReducer,
   wrongAnswerSoundSrcReducer,
   dictionaryReducer,
-  isTourOnReducer,
+  tourReducer,
 } = SettingStateSlice.actions;
 
 export default SettingStateSlice.reducer;

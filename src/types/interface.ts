@@ -34,7 +34,7 @@ export interface SettingTypes {
   isTextToSpeechOn: boolean;
   textToSpeechLang:string;
   isDictionaryOn: boolean;
-  isTourOn: boolean;
+  tour: {reviewTour:boolean,newItemTour:boolean,boxTour: boolean};
 }
 export interface UserTypes {
   id: string;
