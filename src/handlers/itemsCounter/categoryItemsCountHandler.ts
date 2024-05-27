@@ -3,6 +3,8 @@ import itemsCountHandler from "./itemsCountHandler";
 import { db } from "@/src/services/db";
 
 export const categoryItemsCountHandler = async (categoryId?: string) => {
+  console.log(categoryId);
+  
   try {
     let items: ItemTypes[];
     if (categoryId === "") {

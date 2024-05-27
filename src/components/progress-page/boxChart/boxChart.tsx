@@ -51,6 +51,8 @@ const initialData = [
 const BoxChart: React.FC = () => {
   const { category } = useAppSelector((state) => state.categoryState);
   const [data, setData] = useState<DataType[] | undefined>(undefined);
+  const [categoryId, setCategoryId] = useState<string>('');
+
   useEffect(() => {
     if (!data) {
       boxChartDataHandler(_.cloneDeep(initialData), category.id).then(
@@ -64,6 +66,7 @@ const BoxChart: React.FC = () => {
   const handleChange = (id: string) => {
     boxChartDataHandler(_.cloneDeep(initialData), id).then((chartData) => {
       setData(chartData);
+      setCategoryId(id)
     });
   };
 
@@ -71,7 +74,7 @@ const BoxChart: React.FC = () => {
     <div className="max-w-2xl mx-auto">
       <div className="flex flex-wrap justify-around items-center">
         <SelectCategory handleChange={handleChange} />
-        <TotalData categoryId={category.id} data={data} />
+        <TotalData categoryId={categoryId} data={data} />
       </div>
       <div className="w-full h-[400px]">
         <ResponsiveContainer>
