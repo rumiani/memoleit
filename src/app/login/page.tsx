@@ -7,8 +7,9 @@ import LogoutButton from "@/src/components/auth/signOut/signOut";
 export default function Page() {
   const { data: session } = useSession();
   useEffect(() => {
-    // console.log(process.env);
-  }, []);
+    console.log(session);
+    
+  }, [session]);
   return (
     <>
       <Head>
