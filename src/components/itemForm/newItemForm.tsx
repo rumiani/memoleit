@@ -11,7 +11,6 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
 
 export default function NewItemForm() {
-  const dispatch = useAppDispatch();
   const [createdMessage, setCreatedMessage] = useState(false);
   const form = useForm<FormValues>({
     defaultValues: { title: "", body: "", category: "" },

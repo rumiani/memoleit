@@ -5,7 +5,7 @@ import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { FormValues } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import { UseFormRegister } from "react-hook-form";
-
+import { useLiveQuery } from "dexie-react-hooks";
 export default function ChooseTopic({
   register,
   error,
@@ -15,15 +15,12 @@ export default function ChooseTopic({
 }) {
   const { categories } = useAppSelector((state) => state.categoryState);
   const dispatch = useAppDispatch();
+  const storedCategories = useLiveQuery(() => getCategoriesHandler());
 
   useEffect(() => {
-    getCategoriesHandler()
-      .then((existedCategories) => {
-        if (isEmpty(categories) && existedCategories)
-          dispatch(categoriesReducer(existedCategories));
-      })
-      .catch(() => console.log("error"));
-  }, [categories, dispatch]);
+    if (isEmpty(categories) && storedCategories)
+      dispatch(categoriesReducer(storedCategories));
+  }, [dispatch, storedCategories, categories]);
 
   return (
     <div className=" min-w-64 max-w-80 my-4 flex flex-col">
