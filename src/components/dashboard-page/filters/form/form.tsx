@@ -64,14 +64,16 @@ const Form = () => {
             })
           )}
         </div>
-        <div className="p-4">
-          <CheckBoxInput
-            isChecked={selectAllCategories}
-            id="all"
-            name="All"
-            inputChangeHandler={selectAllHandler}
-          />
-        </div>
+        {categories.length > 1 && (
+          <div className="p-4">
+            <CheckBoxInput
+              isChecked={selectAllCategories}
+              id="all"
+              name="All"
+              inputChangeHandler={selectAllHandler}
+            />
+          </div>
+        )}
       </form>
     </>
   );
