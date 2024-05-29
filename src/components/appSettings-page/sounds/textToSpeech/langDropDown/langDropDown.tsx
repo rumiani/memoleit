@@ -16,7 +16,7 @@ export default function LangDropdown() {
   ) => {
     try {
       const langCode: string = event.target.value;
-      
+
       await db.setting
         .where("name")
         .equals("setting")

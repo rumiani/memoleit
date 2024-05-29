@@ -11,6 +11,7 @@ import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
+import { CategoryTypes } from "@/src/types/interface";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -27,10 +28,10 @@ const Form = () => {
 
       const allCategories = await getCategoriesHandler();
       if (selectAllCategories) {
-        allCategories!.forEach((category) => (category.status = 0));
+        allCategories!.forEach((category:CategoryTypes) => (category.status = 0));
         toast.success("Removed all the categories");
       } else {
-        allCategories!.forEach((category) => (category.status = 1));
+        allCategories!.forEach((category:CategoryTypes) => (category.status = 1));
         toast.success("Selected all the categories");
       }
       await db.categories.bulkPut(allCategories!);
