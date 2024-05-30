@@ -5,7 +5,8 @@ import {
   ReviewTypes,
   SettingTypes,
 } from "../types/interface";
-
+if (typeof window !== 'undefined') {
+}
 export class MySubClassedDexie extends Dexie {
   items!: Table<ItemTypes>;
   categories!: Table<CategoryTypes>;
@@ -22,4 +23,5 @@ export class MySubClassedDexie extends Dexie {
     });
   }
 }
-export const db = typeof window !== 'undefined' ? new MySubClassedDexie() : null;
+
+export const db = new MySubClassedDexie();
