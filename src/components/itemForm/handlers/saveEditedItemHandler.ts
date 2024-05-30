@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import { FormValues, CategoryTypes } from "../../../types/interface";
+import { FormValues } from "../../../types/interface";
 import { makeUrlFriendly } from "../../../handlers/makeUrlFriendly";
 import { db } from "@/src/services/db";
 import notFoundError from "@/src/handlers/notFoundError";
@@ -29,7 +29,7 @@ export const saveEditedItemHandler = async (
       item = { ...item, body, title, category, categoryId: createNewCategory };
       await db.items.put(item);
     } else {
-      item = { ...item, body, title, category: categoryObject!.id };
+      item = { ...item, body, title };
       await db.items.put(item);
     }
     toast.success("The new item has been saved.");

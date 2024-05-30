@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import Review from "./review/review";
 import Filters from "./filters/filters";
 import { db } from "@/src/services/db";
-import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
+import {
+  allItemsReducer,
+  itemReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
+import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 export default function DashboardPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const { items } = useAppSelector((state) => state.itemState);
@@ -18,6 +22,8 @@ export default function DashboardPage() {
         if (items) {
           const itemsToReview = itemsToReviewHandler(items);
           dispatch(allItemsReducer(itemsToReview));
+          const newRandomItem = randomItemHandler(itemsToReview);
+          dispatch(itemReducer(newRandomItem));
           setLoading(false);
         }
       })
