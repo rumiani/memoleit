@@ -6,30 +6,24 @@ import notFoundError from "./notFoundError";
 
 export async function reviewHandler(
   currentItem: ItemTypes | undefined,
-  answer: number
+  answer: boolean
 ) {
   try {
     const foundItem = await db.items.get(currentItem?.id);
     if (!foundItem) throw notFoundError("404");
 
+    foundItem.lastReview = Date.now();
+    foundItem.box = answer ? foundItem.box + 1 : 1;
+    await db.items.put(foundItem);
+
     const newReview = {
       id: uuidv4(),
       userId: userIdTest,
       itemId: foundItem.id,
-      answer,
+      answer: answer ? 1 : 0,
       createdAt: Date.now(),
     };
     await db.reviews.add(newReview);
-    foundItem.lastReview = Date.now();
-    if (answer) {
-      foundItem.box += answer;
-      await db.items.put(foundItem);
-      return true;
-    } else {
-      await db.items.put(foundItem);
-      foundItem.box = 1;
-      return false;
-    }
   } catch (error) {
     console.log("Error");
   }

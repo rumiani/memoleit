@@ -29,15 +29,15 @@ export default function ReviewItemCard() {
 
   const dispatch = useAppDispatch();
 
-  const goToNextItem = async (item: ItemTypes, answer: number) => {
+  const goToNextItem = async (item: ItemTypes, answer: boolean) => {
     setLoading(true);
     try {
-      const reviewResult = await reviewHandler(item, answer);
-      if (reviewResult) {
-        if (isReviewSoundOn) new Audio(rightAnswerSoundSrc).play();
+      await reviewHandler(item, answer);
+      if (answer) {
+        isReviewSoundOn && new Audio(rightAnswerSoundSrc).play();
         toast.success(`The item has been moved to the box ${item.box + 1}`);
       } else {
-        if (isReviewSoundOn) new Audio(wrongAnswerSoundSrc).play();
+        isReviewSoundOn && new Audio(wrongAnswerSoundSrc).play();
         toast.success("Item moved to the box 1 and can be reviewed tomorrow");
       }
       const itemsToReview = await selectedItemsToReviewHandler();
@@ -83,13 +83,13 @@ export default function ReviewItemCard() {
       <div>
         <div className="buttons flex justify-around w-full gap-2">
           <button
-            onClick={() => goToNextItem(item, 0)}
+            onClick={() => goToNextItem(item, false)}
             className="third-element primaryBtn !px-0 !w-42 !bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
           >
             I don&apos;t know
           </button>
           <button
-            onClick={() => goToNextItem(item, 1)}
+            onClick={() => goToNextItem(item, true)}
             className="fourth-element primaryBtn !bg-green-500  disabled:cursor-not-allowed disabled:opacity-50"
           >
             I know

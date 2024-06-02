@@ -7,7 +7,6 @@ import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
-import { useAppDispatch } from "@/src/app/hooks";
 import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
 
 export default function NewItemForm() {

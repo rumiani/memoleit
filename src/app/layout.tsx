@@ -8,14 +8,13 @@ import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/layouts/generalLayout/footer/footer";
 import Header from "../components/layouts/generalLayout/header/header";
-import { SessionProvider } from "next-auth/react";
 import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const APP_NAME = "Memoleit";
-const APP_DEFAULT_TITLE = "Memoleit";
-const APP_TITLE_TEMPLATE = "%s - Memoleit";
+const APP_NAME = "MemoLeit";
+const APP_DEFAULT_TITLE = "MemoLeit";
+const APP_TITLE_TEMPLATE = "%s - MemoLeit";
 const APP_DESCRIPTION = "Memorise anything faster";
 export const metadata: Metadata = {
   icons: {
@@ -74,7 +73,7 @@ export default async function RootLayout({
         <NextAuthProvider session={session}>
           <ReduxProvider>
             <SpeedInsights />
-            <ToastContainer limit={3} autoClose={3000} closeOnClick />
+            <ToastContainer limit={3} autoClose={3000} closeOnClick/>
             <Header />
             <main className="mt-24 mb-4 pt-0 px-4 sm:px-6 sm:min-h-screen mx-auto lg:px-8 w-full max-w-screen-2xl break-words">
               {children}

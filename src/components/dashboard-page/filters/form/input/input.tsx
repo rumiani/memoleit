@@ -57,7 +57,7 @@ export default function CheckboxInput({
   }, [category]);
 
   return (
-    <div className="border-y border-gray-300 p-2 rounded-lg transition-all duration-300 my-2">
+    <div className="border-b border-gray-300 p-2 transition-all duration-300 my-2">
       <div className="flex relative ">
         <input
           checked={category.status ? true : false}

@@ -6,6 +6,8 @@ export const selectedItemsToReviewHandler = async () => {
     const activeCategoriesIDs = await db.categories
       .where({ status: 1 })
       .primaryKeys();
+      console.log(activeCategoriesIDs);
+      
     const items = await db.items
       .filter((item) => activeCategoriesIDs.includes(item.categoryId))
       .toArray();

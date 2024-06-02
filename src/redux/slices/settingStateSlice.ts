@@ -5,7 +5,6 @@ const initialCategoryState: SettingTypes = {
   id: "",
   name: "setting",
   userId: "",
-  selectAllCategories: false,
   isReviewSoundOn: false,
   rightAnswerSoundSrc: "",
   wrongAnswerSoundSrc: "",
@@ -21,9 +20,6 @@ export const SettingStateSlice = createSlice({
   reducers: {
     storedSettingReducer: (state, action: PayloadAction<SettingTypes>) => {
       return { ...state, ...action.payload };
-    },
-    selectAllCategoriesReducer: (state) => {
-      state.selectAllCategories = !state.selectAllCategories;
     },
     textToSpeechReducer: (state) => {
       state.isTextToSpeechOn = !state.isTextToSpeechOn;
@@ -51,7 +47,6 @@ export const SettingStateSlice = createSlice({
 
 export const {
   storedSettingReducer,
-  selectAllCategoriesReducer,
   textToSpeechReducer,
   textToSpeechLangReducer,
   reviewSoundsReducer,

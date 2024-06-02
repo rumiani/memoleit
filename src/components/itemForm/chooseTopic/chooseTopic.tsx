@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import React from "react";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
-import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { FormValues } from "@/src/types/interface";
-import { isEmpty } from "lodash";
 import { UseFormRegister } from "react-hook-form";
 import { useLiveQuery } from "dexie-react-hooks";
 export default function ChooseTopic({
@@ -13,14 +10,7 @@ export default function ChooseTopic({
   register: UseFormRegister<FormValues>;
   error: string | undefined;
 }) {
-  const { categories } = useAppSelector((state) => state.categoryState);
-  const dispatch = useAppDispatch();
-  const storedCategories = useLiveQuery(() => getCategoriesHandler());
-
-  useEffect(() => {
-    if (isEmpty(categories) && storedCategories)
-      dispatch(categoriesReducer(storedCategories));
-  }, [dispatch, storedCategories, categories]);
+  const categories = useLiveQuery(() => getCategoriesHandler(), [], []);
 
   return (
     <div className=" min-w-64 max-w-80 my-4 flex flex-col">
@@ -46,11 +36,13 @@ export default function ChooseTopic({
           },
         })}
       />
-      <datalist id="categories">
-        {categories.map((category) => {
-          return <option key={category.name} value={category.name} />;
-        })}
-      </datalist>
+      {categories && categories?.length > 0 && (
+        <datalist id="categories">
+          {categories.map((category) => {
+            return <option key={category.name} value={category.name} />;
+          })}
+        </datalist>
+      )}
       <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
   );

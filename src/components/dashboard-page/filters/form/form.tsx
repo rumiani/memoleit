@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import CheckboxInput from "./input/input";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { isEmpty } from "lodash";
 import CheckBoxInput from "./CheckBoxInput/CheckBoxInput";
-import { selectAllCategoriesReducer } from "@/src/redux/slices/settingStateSlice";
 import { db } from "@/src/services/db";
 import { toast } from "react-toastify";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
@@ -15,25 +14,24 @@ import { CategoryTypes } from "@/src/types/interface";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
-
-  const { selectAllCategories } = useAppSelector((state) => state.settingState);
+  const [selectAll, setSelectAll] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const selectAllHandler = async () => {
     try {
-      const storedSetting = await db.setting.where({ name: "setting" }).first();
-      storedSetting!.selectAllCategories = !selectAllCategories;
-      await db.setting.put(storedSetting!);
-      dispatch(selectAllCategoriesReducer());
-
       const allCategories = await getCategoriesHandler();
-      if (selectAllCategories) {
-        allCategories!.forEach((category:CategoryTypes) => (category.status = 0));
+      if (selectAll) {
+        allCategories!.forEach(
+          (category: CategoryTypes) => (category.status = 0)
+        );
         toast.success("Removed all the categories");
       } else {
-        allCategories!.forEach((category:CategoryTypes) => (category.status = 1));
+        allCategories!.forEach(
+          (category: CategoryTypes) => (category.status = 1)
+        );
         toast.success("Selected all the categories");
       }
+      setSelectAll(!selectAll);
       await db.categories.bulkPut(allCategories!);
       const newCategoriesInfo = await getCategoriesHandler();
       dispatch(categoriesReducer(newCategoriesInfo!));
@@ -52,7 +50,7 @@ const Form = () => {
         <p className="text-center w-full my-2">
           Choose your category to review
         </p>
-        <div className="h-64 overflow-y-auto bg-gray-200">
+        <div className="h-64 overflow-y-auto">
           {isEmpty(categories) ? (
             <div className="text-red-500 text-center my-16">No categories.</div>
           ) : (
@@ -68,7 +66,7 @@ const Form = () => {
         {categories.length > 1 && (
           <div className="p-4">
             <CheckBoxInput
-              isChecked={selectAllCategories}
+              isChecked={selectAll}
               id="all"
               name="All"
               inputChangeHandler={selectAllHandler}
