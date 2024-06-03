@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Review from "./review/review";
 import Filters from "./filters/filters";
-import { db } from "@/src/services/db";
 import {
   allItemsReducer,
   itemReducer,
@@ -16,20 +15,20 @@ export default function DashboardPage() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    db.items
-      .toArray()
-      .then((items) => {
-        if (items) {
-          const itemsToReview = itemsToReviewHandler(items);
+    const fetchItems = async () => {
+      try {
+        const itemsToReview = await itemsToReviewHandler();
+        if (itemsToReview) {
           dispatch(allItemsReducer(itemsToReview));
           const newRandomItem = randomItemHandler(itemsToReview);
           dispatch(itemReducer(newRandomItem));
           setLoading(false);
         }
-      })
-      .catch(() => {
+      } catch (error) {
         console.log("Error");
-      });
+      }
+    };
+    fetchItems();
   }, [dispatch]);
   return (
     <div className="flex flex-row justify-center">

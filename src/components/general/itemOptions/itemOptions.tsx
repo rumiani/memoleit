@@ -15,7 +15,7 @@ import {
 } from "@/src/redux/slices/itemStateSlice";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
-import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -32,12 +32,12 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
         );
         dispatch(allItemsReducer(filteredItemsData));
       } else {
-        const itemsToReview = await selectedItemsToReviewHandler();
+        const itemsToReview = await itemsToReviewHandler();
         if (itemsToReview) {
-          const randomItem = randomItemHandler(itemsToReview!);
-          dispatch(itemReducer(randomItem));
-        }
-      }
+          dispatch(allItemsReducer(itemsToReview));
+          const newRandomItem = randomItemHandler(itemsToReview);
+          dispatch(itemReducer(newRandomItem));
+        }}
       toast.success("The item was removed.");
     } catch (error: any) {
       if ((error.name = "404")) toast.error("Item was not found");

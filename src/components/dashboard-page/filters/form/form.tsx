@@ -8,9 +8,12 @@ import { toast } from "react-toastify";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
-import { itemReducer } from "@/src/redux/slices/itemStateSlice";
-import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
+import {
+  allItemsReducer,
+  itemReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -36,9 +39,12 @@ const Form = () => {
       const newCategoriesInfo = await getCategoriesHandler();
       dispatch(categoriesReducer(newCategoriesInfo!));
 
-      const itemsToReview = await selectedItemsToReviewHandler();
-      const randomItem = randomItemHandler(itemsToReview!);
-      dispatch(itemReducer(randomItem));
+      const itemsToReview = await itemsToReviewHandler();
+      if (itemsToReview) {
+        dispatch(allItemsReducer(itemsToReview));
+        const newRandomItem = randomItemHandler(itemsToReview);
+        dispatch(itemReducer(newRandomItem));
+      }
     } catch (error) {}
   };
   return (

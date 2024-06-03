@@ -3,14 +3,14 @@ import ItemsInfo from "@/src/components/general/intemsInfo/itemsInfo";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import notFoundError from "@/src/handlers/notFoundError";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
-import { itemReducer } from "@/src/redux/slices/itemStateSlice";
+import { allItemsReducer, itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
-import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
+import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
 export default function CheckboxInput({
   category,
@@ -35,9 +35,14 @@ export default function CheckboxInput({
         : toast.success("Category items added to review list.");
       const newStoredCategories = await getCategoriesHandler();
       dispatch(categoriesReducer(newStoredCategories!));
-      const itemsToReview = await selectedItemsToReviewHandler();
-      const randomItem = randomItemHandler(itemsToReview!);
-      dispatch(itemReducer(randomItem));
+
+
+      const itemsToReview = await itemsToReviewHandler();
+      if (itemsToReview) {
+        dispatch(allItemsReducer(itemsToReview));
+        const newRandomItem = randomItemHandler(itemsToReview);
+        dispatch(itemReducer(newRandomItem));
+      }
     } catch (error: any) {
       if ((error.name = "404")) {
         toast.error("Category not found.");

@@ -17,7 +17,6 @@ import {
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
-import { selectedItemsToReviewHandler } from "@/src/handlers/selectedItemsToReviewHandler";
 import { db } from "@/src/services/db";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
@@ -40,18 +39,16 @@ export default function ReviewItemCard() {
         isReviewSoundOn && new Audio(wrongAnswerSoundSrc).play();
         toast.success("Item moved to the box 1 and can be reviewed tomorrow");
       }
-      const itemsToReview = await selectedItemsToReviewHandler();
+
+      const itemsToReview = await itemsToReviewHandler();
       if (itemsToReview) {
+        dispatch(allItemsReducer(itemsToReview));
         const newRandomItem = randomItemHandler(itemsToReview);
         setTimeout(() => {
           dispatch(itemReducer(newRandomItem));
           setLoading(false);
         }, 300);
       }
-
-      const allItems = await db.items.toArray();
-      const allItemsToReview = itemsToReviewHandler(allItems);
-      dispatch(allItemsReducer(allItemsToReview));
     } catch (error: any) {
       if (error.name === "404") {
         toast.error("Item was not found.");
