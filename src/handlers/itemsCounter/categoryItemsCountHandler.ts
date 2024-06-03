@@ -2,9 +2,7 @@ import { ItemTypes } from "@/src/types/interface";
 import itemsCountHandler from "./itemsCountHandler";
 import { db } from "@/src/services/db";
 
-export const categoryItemsCountHandler = async (categoryId?: string) => {
-  console.log(categoryId);
-  
+export const categoryItemsCountHandler = async (categoryId?: string) => {  
   try {
     let items: ItemTypes[];
     if (categoryId === "") {

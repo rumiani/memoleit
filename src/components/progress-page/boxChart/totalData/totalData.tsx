@@ -20,7 +20,7 @@ export default function TotalData({
     unLearnedCount: number;
   } | null>(null);
 
-  useEffect(() => {
+  useEffect(() => {    
     if (data) {
       let reviewed = 0;
       let pending = 0;

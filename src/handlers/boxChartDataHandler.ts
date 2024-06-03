@@ -20,7 +20,7 @@ export const boxChartDataHandler = async (
     const itemsToReview = await itemsToReviewHandler();
     if (itemsToReview) {
       const itemsPending = itemsData.filter(
-        (item) => !itemsToReview.includes(item)
+        (aItem) => !itemsToReview.some((bItem) => bItem.id === aItem.id)
       );
       itemsToReview.forEach((item: ItemTypes) => {
         data[item.box - 1].Pending += 1;
