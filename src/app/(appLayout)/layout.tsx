@@ -1,12 +1,14 @@
 "use client";
 import ItemsNav from "@/src/components/layouts/appLayout/appLayout";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
+import { useEffect } from "react";
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  appDataInitialiser();
+  useEffect(() => {
+    appDataInitialiser();
+  }, []);
 
   return (
     <section className="relative">
-
       <nav className="w-full h-full bg-red-500">
         {" "}
         <ItemsNav />
