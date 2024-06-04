@@ -11,6 +11,7 @@ import {
 } from "@/src/redux/slices/categoryStateSlice";
 import { toast } from "react-toastify";
 import deleteCategoryHandler from "../../handlers/deleteCategoryHandler";
+import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
 export default function CardOptions({category}:{category:CategoryTypes}) {
   const [showOptions, setShowOptions] = useState(false);
@@ -43,9 +44,10 @@ export default function CardOptions({category}:{category:CategoryTypes}) {
   const deleteHandler = async () => {
     setShowOptions(false);
     try {
-      const remaindCategories = await  deleteCategoryHandler(category.id)
-      if(remaindCategories){
-        dispatch(categoriesReducer(remaindCategories));
+      await  deleteCategoryHandler(category.id)
+      const categories = await getCategoriesHandler()
+      if(categories){
+        dispatch(categoriesReducer(categories));
       }
       toast.success(category.name + " category was successfully deleted.",{
             autoClose: 2000,

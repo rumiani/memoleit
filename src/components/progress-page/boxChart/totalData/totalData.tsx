@@ -39,8 +39,8 @@ export default function TotalData({
 
   return (
     <div className="px-6 mb-4 w-full justify-start cursor-default">
-      <span className="text-blue-600 w-32 h-6 ">
-        All: {categoryInfo?.allItemsCount}
+      <span className="text-blue-600 w-32 h-6">
+        All Items: {categoryInfo?.allItemsCount}
       </span>
       <div className="flex flex-wrap gap-4">
       <span className="text-green-800 w-32 h-6">

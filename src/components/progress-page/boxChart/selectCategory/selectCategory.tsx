@@ -39,7 +39,7 @@ export default function SelectCategory({
         value={input}
         onChange={dropdownChangeHnadler}
       >
-        <option value="">All</option>
+        <option value="">All Categories</option>
         {categories.map((category: CategoryTypes) => (
           <option key={category.id} value={category.id}>
             {category.name}
