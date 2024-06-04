@@ -1,5 +1,5 @@
-import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { saveNewImportedDataHandler } from "./handlers/saveNewImportedDataHandler";
@@ -10,6 +10,7 @@ export default function ImportComponent() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const inputElement = useRef<InputElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   const importData = () => {
     const fileReader = new FileReader();
@@ -36,10 +37,8 @@ export default function ImportComponent() {
     try {
       await saveNewImportedDataHandler(newAppData);
       toast.success("The imported data has been saved");
-      toast.info("Redirecting to categories page");
-      setTimeout(() => {
-        router.push("/box/categories");
-      }, 5000);
+      toast.info("You have benn redirected to categories page");
+      router.push("/box/categories")
     } catch (error: any) {
       console.log(error.name);
       if (error.name === "ZodError") toast.error("Invalid data");

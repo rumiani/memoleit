@@ -9,8 +9,6 @@ import { dataSchema } from "../validation/validation";
 export const saveNewImportedDataHandler = async (newJsonData: string) => {
   try {
     const validatedData = dataSchema.parse(newJsonData);
-    console.log(validatedData);
-
     const existingCategories = await db.categories
       .where("name")
       .anyOf(validatedData.categories.map((category: any) => category.name))
