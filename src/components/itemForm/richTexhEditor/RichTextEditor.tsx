@@ -10,6 +10,8 @@ import dynamic from "next/dynamic";
 import { toolbar } from "./toolbar";
 import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { FormValues } from "@/src/types/interface";
+import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import { useAppDispatch } from "@/src/app/hooks";
 
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -31,8 +33,11 @@ const RichTextEditor = ({
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [editorContent, setEditorContent] = useState("");
   const [bodyLoaded, setBodyLoaded] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log(defaultValue);
+
     if (defaultValue && !bodyLoaded) {
       let contentState;
       try {
@@ -57,6 +62,7 @@ const RichTextEditor = ({
       convertToRaw(editorState.getCurrentContent())
     );
     setValue("body", jsonContent);
+    dispatch(formDataReducer({ body: jsonContent }));
 
     register("body", {
       validate: {

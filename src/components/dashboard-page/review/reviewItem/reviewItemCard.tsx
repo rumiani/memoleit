@@ -19,6 +19,8 @@ import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
 import { db } from "@/src/services/db";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { IoInformationCircleOutline } from "react-icons/io5";
+import ItemInfo from "@/src/components/general/itemInfo/itemInfo";
 
 export default function ReviewItemCard() {
   const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =
@@ -64,17 +66,21 @@ export default function ReviewItemCard() {
     );
   }
   return (
-    <div className=" word-box border border-gray-300 rounded-lg p-4 mb-24 sm:mb-1 flex flex-col justify-between w-full max-w-80 mx-auto">
-      <div className="relative flex justify-between">
-        <Link
-          href={getCategoryUrl(item.categoryId, item.category)}
-          title={"category: " + capitalize(item.category)}
-          className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
-        >
-          <h2>{capitalize(item.category)}</h2>
-        </Link>
-        <ItemOptions item={item} />
+    <div className=" word-box border border-gray-300 rounded-lg pt-0 p-4 mb-24 sm:mb-1 flex flex-col justify-between w-full max-w-80 mx-auto">
+      <div className="flex flex-row">
+        <ItemInfo item={item} />
+        <div className="relative w-full flex justify-between">
+          <Link
+            href={getCategoryUrl(item.categoryId, item.category)}
+            title={"category: " + capitalize(item.category)}
+            className="text-blue-700 hover:text-blue-400 text-md font-bold pt-3"
+          >
+            <h2>{capitalize(item.category)}</h2>
+          </Link>
+          <ItemOptions item={item} />
+        </div>
       </div>
+      <ItemProgress itemBoxNumber={item.box} />
       <ItemTitle title={item.title} />
       <ItemBody body={item.body} />
       <div>
@@ -92,7 +98,6 @@ export default function ReviewItemCard() {
             I know
           </button>
         </div>
-        <ItemProgress itemBoxNumber={item.box} />
       </div>
     </div>
   );

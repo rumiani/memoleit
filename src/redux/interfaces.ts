@@ -1,5 +1,6 @@
 import {
   CategoryTypes,
+  FormDataTypes,
   ItemTypes,
   UserTypes,
 } from "../types/interface";
@@ -9,10 +10,11 @@ export interface initialUserStateTypes {
 }
 export interface initialItemStateTypes {
   item: ItemTypes;
+  formData: FormDataTypes;
   items: ItemTypes[];
 }
 export interface initialCategoryStateTypes {
   category: CategoryTypes;
   categories: CategoryTypes[];
-  categoryOnEdit:string;
+  categoryOnEdit: string;
 }

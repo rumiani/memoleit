@@ -3,6 +3,8 @@ import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { useLiveQuery } from "dexie-react-hooks";
+import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import { useAppDispatch } from "@/src/app/hooks";
 export default function ChooseTopic({
   register,
   error,
@@ -11,7 +13,11 @@ export default function ChooseTopic({
   error: string | undefined;
 }) {
   const categories = useLiveQuery(() => getCategoriesHandler(), [], []);
-
+  const dispatch = useAppDispatch();
+  const handleInputChange = (event: { target: { name: any; value: any } }) => {
+    const { name, value } = event.target;
+    dispatch(formDataReducer({ [name]: value }));
+  };
   return (
     <div className=" min-w-64 max-w-80 my-4 flex flex-col">
       <input
@@ -21,6 +27,7 @@ export default function ChooseTopic({
         className="third-element outline-none p-1 focus:bg-gray-100 transition-all duration-300"
         placeholder="Add a category or Choose one from the list ..."
         {...register("category", {
+          onChange:handleInputChange,
           required: "Category is required",
           pattern: {
             value: /^[a-zA-Z0-9\s\-]+$/,

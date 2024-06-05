@@ -1,39 +1,52 @@
-import React from 'react'
-import { FormValues } from '@/src/types/interface'
-import { UseFormRegister } from 'react-hook-form'
+import React from "react";
+import { FormValues } from "@/src/types/interface";
+import { UseFormRegister } from "react-hook-form";
+import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import { useAppDispatch } from "@/src/app/hooks";
+import { db } from "@/src/services/db";
 interface TitleProps {
-  register: UseFormRegister<FormValues>,
-  error:string | undefined,
+  register: UseFormRegister<FormValues>;
+  error: string | undefined;
 }
-const TitleInput = ({register, error}:TitleProps) => {
+const TitleInput = ({ register, error }: TitleProps) => {
+  const dispatch = useAppDispatch();
+  const handleInputChange = (event: { target: { name: any; value: any } }) => {
+    const { name, value } = event.target;
+    dispatch(formDataReducer({ [name]: value }));
+  };
 
   return (
     <div className=" w-full mx-auto my-4">
-        <input
-          id='inputTitle'
-          className="first-element w-full p-1 focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 "
-          placeholder="Write a title here..."
-          autoComplete="off"
-          type='text'
-          {...register('title',{
-            required:'Title is required',
-            pattern:{
-              value: /^(?!\s*$).{1,100}$/,
-              message:'Title must be 1-100 character'
-            },
-            minLength: {
-              value: 1,
-              message: 'Input must be 1 - 100 character long'
-            },
-            maxLength: {
-              value: 100,
-              message: 'Input must be 1 - 100 characters long'
-            }
-          })}
-        />
-        <p className='text-red-500 text-sm pl-4'>{error}</p>
+      <input
+        id="inputTitle"
+        className="first-element w-full p-1 focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 "
+        placeholder="Write a title here..."
+        autoComplete="off"
+        type="text"
+        {...register("title", {
+          onChange: handleInputChange,
+          required: "Title is required",
+          validate: async (title: string) => {
+            const count = await db.items.where({ title: title }).count();
+            return count > 0 ? "Title already exists." : true;
+          },
+          pattern: {
+            value: /^(?!\s*$).{1,100}$/,
+            message: "Title must be 1-100 character",
+          },
+          minLength: {
+            value: 1,
+            message: "Input must be 1 - 100 character long",
+          },
+          maxLength: {
+            value: 100,
+            message: "Input must be 1 - 100 characters long",
+          },
+        })}
+      />
+      <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
-  )
-}
+  );
+};
 
-export default TitleInput
+export default TitleInput;

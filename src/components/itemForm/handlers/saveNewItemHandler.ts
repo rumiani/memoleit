@@ -5,9 +5,7 @@ import { db } from "@/src/services/db";
 import { userIdTest } from "@/src/services/userId";
 import { randomIdGenerator } from "@/src/handlers/randomID";
 
-export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
-  console.log({ title, body, category });
-  
+export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {  
   db.categories
     .where("name")
     .equals(category.toLowerCase())
@@ -15,14 +13,12 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
     .then((storedCategory) => {
       if (storedCategory) {
         createNewItemHandler(storedCategory.id);
-        console.log("Retrieved category:", category);
       } else {
         createNewCategoryHandler(category);
-        console.log(`Catecategory with name ${category} not found.`);
       }
     })
     .catch((error) => {
-      console.error("Error retrieving category:", error);
+      console.log("Error retrieving category:", error);
     });
 
   const createNewItemHandler = (categoryId: string) => {
@@ -41,10 +37,9 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       .add(itemObject)
       .then((id) => {
         toast.success("The new item has been saved.");
-        console.log(`Item was added with ID: ${id}`);
       })
       .catch((error) => {
-        console.error(`error adding item`, error);
+        console.log(`error adding item`, error);
       });
   };
 
@@ -60,10 +55,9 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       .add(categoryObject)
       .then((id) => {
         createNewItemHandler(id);
-        console.log(`Category was added with ID: ${id}`);
       })
       .catch((error) => {
-        console.error(`error adding item`, error);
+        console.log(`error adding item`, error);
       });
   };
 };

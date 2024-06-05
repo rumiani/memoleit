@@ -50,7 +50,6 @@ export default function CategoryPage({ categoryId }: { categoryId: string }) {
         </div>
       ) : (
         <div>
-          <h3 className="font-bold">{capitalize(pathName.split('/').pop())}</h3>
           <CategoryOptions />
           <CategoryItems/>
         </div>

@@ -8,14 +8,17 @@ import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
 import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
+import { useAppSelector } from "@/src/app/hooks";
 
 export default function NewItemForm() {
+  const { title, body, category } = useAppSelector(
+    (state) => state.itemState.formData
+  );
   const [createdMessage, setCreatedMessage] = useState(false);
   const form = useForm<FormValues>({
-    defaultValues: { title: "", body: "", category: "" },
+    defaultValues: { title, body, category },
     mode: "onBlur",
   });
-
   const {
     register,
     control,
@@ -53,6 +56,7 @@ export default function NewItemForm() {
               error={errors.body?.message}
               register={register}
               setValue={setValue}
+              body={body}
             />
             <ChooseTopic register={register} error={errors.category?.message} />
             <button className="primaryBtn mx-auto">Save</button>

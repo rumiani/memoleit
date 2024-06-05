@@ -9,6 +9,18 @@ export interface ItemTypes {
   createdAt: number;
   lastReview: number;
 }
+export interface FormDataTypes {
+  id: string;
+  userId: string;
+  categoryId: string;
+  title: string;
+  body: string;
+  category: string;
+  box: number;
+  createdAt: number;
+  lastReview: number;
+}
+
 export interface CategoryTypes {
   id: string;
   userId: string;
@@ -31,9 +43,9 @@ export interface SettingTypes {
   rightAnswerSoundSrc: string;
   wrongAnswerSoundSrc: string;
   isTextToSpeechOn: boolean;
-  textToSpeechLang:string;
+  textToSpeechLang: string;
   isDictionaryOn: boolean;
-  tour: {reviewTour:boolean,newItemTour:boolean,boxTour: boolean};
+  tour: { reviewTour: boolean; newItemTour: boolean; boxTour: boolean };
 }
 export interface UserTypes {
   id: string;
@@ -51,7 +63,7 @@ export interface FormValues {
   title: string;
   body: string;
   category: string;
-  categoryId:string;
+  categoryId: string;
 }
 
 export interface ItemsInfoTypes {

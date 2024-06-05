@@ -7,25 +7,19 @@ import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
-import { isEmpty } from "lodash";
-import { useAppDispatch } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { db } from "@/src/services/db";
 
-export default function EditItemForm({
-  itemDefaultValues,
-  id,
-}: {
-  itemDefaultValues: FormValues | undefined;
-  id: string;
-}) {
+export default function EditItemForm({ id }: { id: string }) {
+  const { formData } = useAppSelector((state) => state.itemState);
   const [createdMessage, setCreatedMessage] = useState(false);
 
   const dispatch = useAppDispatch();
 
   const form = useForm<FormValues>({
-    defaultValues: itemDefaultValues,
+    defaultValues: formData,
     mode: "onBlur",
   });
 
@@ -40,12 +34,12 @@ export default function EditItemForm({
     reset,
   } = form;
   useEffect(() => {
-    if (itemDefaultValues) {
-      setValue("title", itemDefaultValues!.title);
-      setValue("body", itemDefaultValues!.body);
-      setValue("category", itemDefaultValues!.category);
+    if (formData) {
+      setValue("title", formData!.title);
+      setValue("body", formData!.body);
+      setValue("category", formData!.category);
     }
-  }, [formState, setValue, itemDefaultValues, getValues]);
+  }, [formState, setValue, formData, getValues]);
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
@@ -79,7 +73,7 @@ export default function EditItemForm({
               error={errors.body?.message}
               register={register}
               setValue={setValue}
-              defaultValue={itemDefaultValues?.body}
+              defaultValue={formData?.body}
             />
             <ChooseTopic register={register} error={errors.category?.message} />
             <button className="primaryBtn mx-auto">Save Edit</button>

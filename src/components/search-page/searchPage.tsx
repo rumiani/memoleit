@@ -20,8 +20,6 @@ export default function SearchPage() {
         .toArray();
       setResultItems(resultItems!);
       setIsSearching(false);
-      console.log(searchTerm);
-      
     } catch (error) {
       console.log("Error");
     }
@@ -35,14 +33,23 @@ export default function SearchPage() {
           <LoadingPulse />
         </div>
       ) : (
-        <div className="flex flex-wrap gap-2 my-16">
+        <div>
           {resultItems &&
             (resultItems!.length > 0 ? (
-              resultItems!.map((item: ItemTypes) => (
-                <CategoryItem key={item.id} item={item} />
-              ))
+              <div>
+                <div className="m-4 w-24">
+                  Results:{" "}
+                  <p className="font-bold inline">{resultItems?.length}</p>
+                </div>
+                <div></div>
+                <div className="flex flex-wrap gap-2 my-16">
+                  {resultItems!.map((item: ItemTypes) => (
+                    <CategoryItem key={item.id} item={item} />
+                  ))}
+                </div>
+              </div>
             ) : (
-              <p className="text-red-500 mx-auto px-4 my-16">
+              <p className="text-red-500 text-center px-4 my-16">
                 No items found with this search term.
               </p>
             ))}

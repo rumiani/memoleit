@@ -1,7 +1,5 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
-import { removeHandler } from "@/src/handlers/removeHandler";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
@@ -16,6 +14,8 @@ import {
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { db } from "@/src/services/db";
+import notFoundError from "@/src/handlers/notFoundError";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -25,7 +25,9 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   const removeBtnFunction = async () => {
     setShowOptions(false);
     try {
-      await removeHandler(item.id);
+      const foundItem = await db.items.get(category.id);
+      if (!foundItem) throw notFoundError("404");
+      await db.items.delete(category.id);
       if (category.id) {
         const filteredItemsData = await itemsCategoryIdFilterHandler(
           category.id
@@ -37,16 +39,18 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           dispatch(allItemsReducer(itemsToReview));
           const newRandomItem = randomItemHandler(itemsToReview);
           dispatch(itemReducer(newRandomItem));
-        }}
+        }
+      }
       toast.success("The item was removed.");
     } catch (error: any) {
+      console.log("Error");
       if ((error.name = "404")) toast.error("Item was not found");
     }
   };
   const editBtnFunction = () => {
     setShowOptions(false);
   };
- 
+
   const modelRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
