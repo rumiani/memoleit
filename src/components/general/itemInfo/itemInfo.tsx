@@ -35,15 +35,30 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
           <strong>{item.category}</strong>, is in the box{" "}
           <strong>{item.box}</strong> and it needs to be reviewed{" "}
           <strong>{6 - item.box}</strong> more times.
+          <br />
+          - If you know the item,{" "}
+          {item.box === 5 ? (
+            " the learning proccess will complete and the word will be archived."
+          ) : (
+            <>
+              move to the box <strong>{item.box + 1}</strong> &nbsp;
+            </>
+          )}
+          <br />
+          - If you don&apos;t know it, it will move to the box <strong>1</strong>.
         </div>
         <div className="relative w-72 h-40 bg-slate-400 max-w-lg my-8 mx-auto overflow-hidden">
-          <div
-            className='absolute z-10 flex flex-wrap top-[30%] w-full h-20'
-          >
+          <div className="absolute z-10 flex flex-wrap top-[30%] w-full h-20">
             {[1, 2, 3, 4, 5].map((box) => {
               return (
-                <div key={box} className={`w-1/5 h-14 ${item.box !== box? 'bg-gray-500 opacity-50':'border-b-2 border-green-500'}`}>
-                </div>
+                <div
+                  key={box}
+                  className={`w-1/5 h-14 ${
+                    item.box !== box
+                      ? "bg-gray-500 opacity-50"
+                      : "border-b-2 border-green-500"
+                  }`}
+                ></div>
               );
             })}
           </div>
