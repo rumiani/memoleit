@@ -4,11 +4,11 @@ import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
-interface TitleProps {
+interface BodyProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
 }
-const TitleInput = ({ register, error }: TitleProps) => {
+const BodyInput = ({ register, error }: BodyProps) => {
   const dispatch = useAppDispatch();
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -16,24 +16,20 @@ const TitleInput = ({ register, error }: TitleProps) => {
   };
 
   return (
-    <div className=" w-full mx-auto my-4">
-      <input
+    <div className=" w-full mx-auto my-4 second-element">
+      <textarea
+        rows={6}
         dir="auto"
-        id="inputTitle"
-        className="first-element w-full p-1 focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 "
-        placeholder="Write a title here..."
+        className="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none first-element focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 resize-none"
+        id="inputBody"
+        placeholder="Write a description here..."
         autoComplete="off"
-        type="text"
-        {...register("title", {
+        {...register("body", {
           onChange: handleInputChange,
-          required: "Title is required",
-          validate: async (title: string) => {
-            const count = await db.items.where({ title: title }).count();
-            return count > 0 ? "Title already exists." : true;
-          },
+          required: "Body is required",
           pattern: {
             value: /^(?!\s*$).{1,100}$/,
-            message: "Title must be 1-100 character",
+            message: "Body must be 1-100 character",
           },
           minLength: {
             value: 1,
@@ -45,9 +41,10 @@ const TitleInput = ({ register, error }: TitleProps) => {
           },
         })}
       />
+      {/* <p>{body.length + "/1000"}</p> */}
       <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
   );
 };
 
-export default TitleInput;
+export default BodyInput;

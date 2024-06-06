@@ -2,8 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
-import { resetStateReducer } from "@/src/redux/slices/itemStateSlice";
-import { isEmpty } from "lodash";
 import { useDispatch } from "react-redux";
 
 const CreatedMessage = ({
@@ -12,14 +10,11 @@ const CreatedMessage = ({
   createdMsgHandler: Function;
 }) => {
   const dispatch = useDispatch();
-  const resetHandler = () => {
-    dispatch(resetStateReducer());
-  };
+  
   const newItemHandler = () => {
     getCategoriesHandler()
       .then((existedCategories) => {
-        if (existedCategories)
-          dispatch(categoriesReducer(existedCategories));
+        if (existedCategories) dispatch(categoriesReducer(existedCategories));
       })
       .catch(() => console.log("error"));
     createdMsgHandler();
@@ -28,12 +23,10 @@ const CreatedMessage = ({
     <div className="text-center flex flex-col gap-10 items-center w-full p-4">
       <div className="flex flex-row gap-4 max-w-xs">
         <Link
-          href="/dashboard/review"
+          href="/box/categories"
           className="text-blue-500 hover:underline"
         >
-          <button className="primaryBtn" onClick={resetHandler}>
-            Dashboard
-          </button>
+          <button className="primaryBtn">Categories</button>
         </Link>
         <Link href="/dashboard/new">
           <button className="primaryBtn" onClick={() => newItemHandler()}>

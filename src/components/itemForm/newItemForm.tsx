@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import TitleInput from "./titleInput/titleInput";
 import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";
-import RichTextEditor from "./richTexhEditor/RichTextEditor";
 import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
 import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
-import { useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import BodyInput from "./bodyInput/bodyInput";
+import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 
 export default function NewItemForm() {
   const { title, body, category } = useAppSelector(
@@ -19,6 +20,7 @@ export default function NewItemForm() {
     defaultValues: { title, body, category },
     mode: "onBlur",
   });
+  const dispatch = useAppDispatch()
   const {
     register,
     control,
@@ -34,6 +36,7 @@ export default function NewItemForm() {
 
   const submitHandler = (item: FormValues) => {
     saveNewItemToLocal(item);
+    dispatch(formDataReducer({body:'',title:'',category:''}))
   };
 
   if (isSubmitSuccessful) {
@@ -52,17 +55,12 @@ export default function NewItemForm() {
             onSubmit={handleSubmit(submitHandler)}
           >
             <TitleInput register={register} error={errors.title?.message} />
-            <RichTextEditor
-              error={errors.body?.message}
-              register={register}
-              setValue={setValue}
-              body={body}
-            />
+            <BodyInput error={errors.body?.message} register={register} />
             <ChooseTopic register={register} error={errors.category?.message} />
             <button className="primaryBtn mx-auto">Save</button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>
-          <Preview getValues={getValues} />
+          <Preview/>
         </div>
       )}
     </>

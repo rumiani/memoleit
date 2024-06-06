@@ -62,7 +62,7 @@ const RichTextEditor = ({
       convertToRaw(editorState.getCurrentContent())
     );
     setValue("body", jsonContent);
-    dispatch(formDataReducer({ body: jsonContent }));
+    dispatch(formDataReducer({ body: editorState }));
 
     register("body", {
       validate: {
