@@ -1,5 +1,6 @@
 "use client";
-import { useAppDispatch } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import NotFoundComp from "@/src/components/general/notFoundComp/notFoundComp";
 import NewItemForm from "@/src/components/itemForm/newItemForm";
 import LoadingPulses from "@/src/components/loading-comps/loadingPulses/loadingPulses";
 import notFoundError from "@/src/handlers/notFoundError";
@@ -9,13 +10,18 @@ import React, { useEffect, useState } from "react";
 
 export default function Item({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(true);
   const dispatch = useAppDispatch();
   useEffect(() => {
+    setNotFound(false);
     setLoading(true);
     db.items
       .get(params.id)
       .then((item) => {
-        if (!item) throw notFoundError("404");
+        if (!item) {
+          setNotFound(true);
+          throw notFoundError("404");
+        }
         dispatch(
           formDataReducer({
             title: item.title,
@@ -25,11 +31,17 @@ export default function Item({ params }: { params: { id: string } }) {
         );
         setTimeout(() => {
           setLoading(false);
-        }, 500);
+        }, 1000);
       })
       .catch(() => {
-        console.log(Error);
+        console.log("Error");
+        setTimeout(() => {
+          setLoading(false);
+          setLoading(false);
+        }, 1000);
       });
   }, [params, dispatch]);
-  return <div>{loading ? <LoadingPulses /> : <NewItemForm />}</div>;
+  if (loading) return <LoadingPulses />;
+
+  return <>{notFound ? <NotFoundComp /> : <NewItemForm />}</>;
 }
