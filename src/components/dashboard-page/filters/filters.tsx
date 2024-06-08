@@ -1,34 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "./form/form";
 import { useAppDispatch } from "@/src/app/hooks";
 import { MdFilterListAlt } from "react-icons/md";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
-
-type DialogElement = HTMLDialogElement | null;
+import Dialog from "../../general/dialog/dialog";
 
 export default function Filters() {
-
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const openDialog = () => setDialogOpen(true);
+  const closeDialog = () => setDialogOpen(false);
   const dispatch = useAppDispatch();
-  const dialogElement = useRef(null);
 
   const filterHnadler = async () => {
     try {
-      (dialogElement.current as DialogElement)?.showModal();
+      openDialog();
       const storedCategories = await getCategoriesHandler();
       if (storedCategories) dispatch(categoriesReducer(storedCategories));
     } catch (error) {
       console.log("Error");
     }
   };
-
-  useEffect(() => {
-    onclick = (event) => {
-      if (event.target === dialogElement.current!) {
-        (dialogElement.current as DialogElement)?.close();
-      }
-    };
-  }, []);
 
   return (
     <div>
@@ -40,12 +32,9 @@ export default function Filters() {
         <MdFilterListAlt className="text-3xl" />
         <span className="mx-2 hidden sm:block">Filters</span>
       </button>
-      <dialog
-        ref={dialogElement}
-        className=" cursor-default rounded-md w-full sm:w-96 h-fit"
-      >
+      <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
         <Form />
-      </dialog>
+      </Dialog>
     </div>
   );
 }
