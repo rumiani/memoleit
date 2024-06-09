@@ -20,10 +20,6 @@ interface DataType {
   Reviewed: number;
   Pending: number;
 }
-interface DataPoint {
-  name: string;
-  value: number;
-}
 
 interface lableTypes {
   payload: string;
@@ -72,7 +68,7 @@ const BoxChart: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="flex flex-wrap justify-around items-center">
+      <div className="flex flex-wrap justify-around items-center -mb-8">
         <SelectCategory handleChange={handleChange} />
         <TotalData categoryId={categoryId} data={data} />
       </div>
@@ -95,19 +91,19 @@ const BoxChart: React.FC = () => {
               // label={renderCustomBarLabel}
               dataKey="Reviewed"
               fill="lightgreen"
-              barSize={50}
+              // barSize={50}
               stackId="i"
             />
             <Bar
               label={renderCustomBarLabel}
               dataKey="Pending"
               fill="red"
-              barSize={50}
+              // barSize={50}
               stackId="i"
             />
             <XAxis dataKey="name" stroke="#8884d8" />
             <YAxis />
-            <Legend />
+            {/* <Legend/> */}
           </BarChart>
         </ResponsiveContainer>
       </div>

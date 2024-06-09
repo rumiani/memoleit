@@ -29,7 +29,7 @@ export default function SelectCategory({
   ) => {
     const inputVal = event.target.value;
     setInput(inputVal);
-    dispatch(categoryReducer({...category,name:inputVal}));
+    dispatch(categoryReducer({...category,name:event.target.name,id:inputVal}));
     handleChange(inputVal);
   };
   return (

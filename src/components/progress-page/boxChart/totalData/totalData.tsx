@@ -20,7 +20,7 @@ export default function TotalData({
     unLearnedCount: number;
   } | null>(null);
 
-  useEffect(() => {    
+  useEffect(() => {
     if (data) {
       let reviewed = 0;
       let pending = 0;
@@ -32,29 +32,26 @@ export default function TotalData({
       setPendingNumber(pending);
     }
     categoryItemsCountHandler(categoryId).then((categoryData) => {
-      
       setCategoryInfo(categoryData!);
     });
   }, [data, categoryId]);
 
   return (
     <div className="px-6 mb-4 w-full justify-start cursor-default">
-      <span className="text-blue-600 w-32 h-6">
-        All Items: {categoryInfo?.allItemsCount}
-      </span>
-      <div className="flex flex-wrap gap-4">
-      <span className="text-green-800 w-32 h-6">
-        Learned: {categoryInfo?.learnedCount}
-      </span>
-      <span className="text-orange-500 w-32 h-6">
-        In The Box: {categoryInfo?.unLearnedCount}
-      </span>
+      <div className="flex flex-wrap justify-around gap-4">
+        <span>All Items: {categoryInfo?.allItemsCount}</span>
+        <span>Learned: {categoryInfo?.learnedCount}</span>
+        <span>In The Box: {categoryInfo?.unLearnedCount}</span>
       </div>
-      <div className="flex flex-wrap gap-4">
-      <span className="text-green-500 w-32 h-6">
-        Reviewed: {reviewedNumber}
-      </span>
-      <span className="text-red-500 w-32 h-6">Pending: {pendingNumber}</span>
+      <div className="flex flex-wrap gap-4 justify-center mt-4">
+        <div className="text-green-500 flex flex-row items-center justify-center gap-2">
+          <span className="block w-4 h-3 bg-green-300"></span>
+          <h3>Reviewed: {reviewedNumber}</h3>
+        </div>
+        <div className="text-red-500 flex flex-row items-center justify-center gap-2">
+          <span className="block w-4 h-3 bg-red-500"></span>
+          <h3>Pending: {pendingNumber}</h3>
+        </div>
       </div>
     </div>
   );
