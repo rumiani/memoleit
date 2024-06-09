@@ -38,10 +38,10 @@ export default function TotalData({
 
   return (
     <div className="px-6 mb-4 w-full justify-start cursor-default">
-      <div className="flex flex-wrap justify-around gap-4">
-        <span>All Items: {categoryInfo?.allItemsCount}</span>
+      <div className="flex flex-row justify-around gap-4">
+        <span>Items: {categoryInfo?.allItemsCount}</span>
         <span>Learned: {categoryInfo?.learnedCount}</span>
-        <span>In The Box: {categoryInfo?.unLearnedCount}</span>
+        <span>Learning: {categoryInfo?.unLearnedCount}</span>
       </div>
       <div className="flex flex-wrap gap-4 justify-center mt-4">
         <div className="text-green-500 flex flex-row items-center justify-center gap-2">

@@ -67,7 +67,7 @@ const BoxChart: React.FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto bg-red-50">
       <div className="flex flex-wrap justify-around items-center -mb-8">
         <SelectCategory handleChange={handleChange} />
         <TotalData categoryId={categoryId} data={data} />

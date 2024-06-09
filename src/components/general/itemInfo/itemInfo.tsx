@@ -17,17 +17,25 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
       <button
         onClick={openDialog}
         title="This is the progress bar"
-        className="mr-1 mt-5 text-xs text-gray-600 h-3 hover:text-gray-900 rounded-full"
+        className="mr-2 mt-5 text-md text-gray-600 h-3 hover:text-gray-900 rounded-full"
       >
         <IoInformationCircleOutline />
       </button>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
         <div>
-          The item <strong>{item.title}</strong> under the category of{" "}
-          <strong>{item.category}</strong>, is in the box{" "}
-          <strong>{item.box}</strong> and it needs to be reviewed{" "}
-          <strong>{6 - item.box}</strong> more times.
+          <div>
+            Item: <strong>{item.title}</strong>{" "}
+          </div>
+          <div>
+            Category:<strong>{item.category}</strong>
+            <div>
+              Item is in the box: <strong>{item.box}</strong>
+            </div>
+            <div>
+              Remained reviews: <strong>{6 - item.box}</strong>
+            </div>
+          </div>
           <p className="text-green-500">
             - If you know the item,{" "}
             {item.box === 5 ? (
@@ -52,7 +60,7 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
                   className={`w-1/5 h-14 ${
                     item.box !== box
                       ? "bg-gray-500 opacity-50"
-                      : "border-b-2 border-green-500"
+                      : "border-2 border-green-500"
                   }`}
                 ></div>
               );
