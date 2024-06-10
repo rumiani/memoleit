@@ -13,7 +13,7 @@ import {
   itemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -39,7 +39,7 @@ const Form = () => {
       const newCategoriesInfo = await getCategoriesHandler();
       dispatch(categoriesReducer(newCategoriesInfo!));
 
-      const itemsToReview = await itemsToReviewHandler();
+      const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
       if (itemsToReview) {
         dispatch(allItemsReducer(itemsToReview));
         const newRandomItem = randomItemHandler(itemsToReview);

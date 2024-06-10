@@ -1,7 +1,7 @@
 import { db } from "../services/db";
 import { ItemTypes } from "../types/interface";
 import { categoryItemsToReviewHandler } from "./categoryItemsToReviewHandler";
-import { itemsToReviewHandler } from "./itemsToReviewHandler";
+import { itemsToReviewWithActiveCategoryHandler } from "./itemsToReviewWithActiveCategoryHandler";
 
 interface InitialDataType {
   name: string;
@@ -18,7 +18,7 @@ export const boxChartDataHandler = async (
     let itemsToReview;
     if (id === "") {
       items = await db.items.toArray();
-      itemsToReview = await itemsToReviewHandler();
+      itemsToReview = await itemsToReviewWithActiveCategoryHandler();
     } else {
       items = await db.items.where({ categoryId: id }).toArray();
       itemsToReview = await categoryItemsToReviewHandler(id);

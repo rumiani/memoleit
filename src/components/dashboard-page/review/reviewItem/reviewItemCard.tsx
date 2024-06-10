@@ -13,14 +13,15 @@ import { ItemTypes } from "@/src/types/interface";
 import {
   allItemsReducer,
   itemReducer,
+  numberOfItemsToReviewReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
 import { db } from "@/src/services/db";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
-import { IoInformationCircleOutline } from "react-icons/io5";
 import ItemInfo from "@/src/components/general/itemInfo/itemInfo";
+import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
+import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
 export default function ReviewItemCard() {
   const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =
@@ -41,8 +42,10 @@ export default function ReviewItemCard() {
         isReviewSoundOn && new Audio(wrongAnswerSoundSrc).play();
         toast.success("Item moved to the box 1 and can be reviewed tomorrow");
       }
-
-      const itemsToReview = await itemsToReviewHandler();
+      const numberOfItemsToReview = await numberOfItemsToReviewHandler();
+      if (numberOfItemsToReview)
+        dispatch(numberOfItemsToReviewReducer(numberOfItemsToReview));
+      const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
       if (itemsToReview) {
         dispatch(allItemsReducer(itemsToReview));
         const newRandomItem = randomItemHandler(itemsToReview);

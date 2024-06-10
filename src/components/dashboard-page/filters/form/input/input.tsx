@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 
 export default function CheckboxInput({
   category,
@@ -37,7 +37,7 @@ export default function CheckboxInput({
       dispatch(categoriesReducer(newStoredCategories!));
 
 
-      const itemsToReview = await itemsToReviewHandler();
+      const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
       if (itemsToReview) {
         dispatch(allItemsReducer(itemsToReview));
         const newRandomItem = randomItemHandler(itemsToReview);

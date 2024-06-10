@@ -10,39 +10,51 @@ import { ItemTypes } from "@/src/types/interface";
 import {
   allItemsReducer,
   itemReducer,
+  numberOfItemsToReviewReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
-import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { db } from "@/src/services/db";
 import notFoundError from "@/src/handlers/notFoundError";
 import { useRouter } from "next/navigation";
+import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
+import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
   const category = useParams<{ id: string; category: string }>();
   const router = useRouter();
+  const path = usePathname();
+
   const removeBtnFunction = async () => {
     setShowOptions(false);
+    const pageName = path.split("/")[2];
+    console.log(pageName);
+
     try {
       const foundItem = await db.items.get(item.id);
       if (!foundItem) throw notFoundError("404");
       await db.items.delete(item.id);
-      if (item.id) {
-        const filteredItemsData = await itemsCategoryIdFilterHandler(
-          category.id
-        );
-        dispatch(allItemsReducer(filteredItemsData));
-      } else {
-        const itemsToReview = await itemsToReviewHandler();
+
+      if (pageName === "review") {
+        const numberOfItems = await numberOfItemsToReviewHandler();
+        if (numberOfItems)
+          dispatch(numberOfItemsToReviewReducer(numberOfItems));
+        const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
         if (itemsToReview) {
           dispatch(allItemsReducer(itemsToReview));
           const newRandomItem = randomItemHandler(itemsToReview);
           dispatch(itemReducer(newRandomItem));
         }
       }
-      router.push(`/box/category/${item.categoryId}/${item.category}`);
+      if (pageName === "category") {
+        const filteredItemsData = await itemsCategoryIdFilterHandler(
+          category.id
+        );
+        dispatch(allItemsReducer(filteredItemsData));
+        router.push(`/box/category/${item.categoryId}/${item.category}`);
+      }
       toast.success("The item was removed.");
     } catch (error: any) {
       console.log("Error");
