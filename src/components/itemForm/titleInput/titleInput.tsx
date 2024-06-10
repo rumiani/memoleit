@@ -4,16 +4,19 @@ import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
+import { usePathname } from "next/navigation";
 interface TitleProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
 }
 const TitleInput = ({ register, error }: TitleProps) => {
+  const path = usePathname();
   const dispatch = useAppDispatch();
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
     dispatch(formDataReducer({ [name]: value }));
   };
+  console.log(path.split("/")[1] === "new");
 
   return (
     <div className=" w-full mx-auto my-4">
@@ -28,8 +31,10 @@ const TitleInput = ({ register, error }: TitleProps) => {
           onChange: handleInputChange,
           required: "Title is required",
           validate: async (title: string) => {
-            const count = await db.items.where({ title: title }).count();
-            return count > 0 ? "Title already exists." : true;
+            if (path.split("/")[1] === "new") {
+              const count = await db.items.where({ title: title }).count();
+              return count > 0 ? "Title already exists." : true;
+            }
           },
           pattern: {
             value: /^(?!\s*$).{1,100}$/,

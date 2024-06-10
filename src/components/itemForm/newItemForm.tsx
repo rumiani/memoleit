@@ -10,8 +10,11 @@ import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import BodyInput from "./bodyInput/bodyInput";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
+import { usePathname } from "next/navigation";
 
 export default function NewItemForm() {
+  const path = usePathname();
   const { title, body, category } = useAppSelector(
     (state) => state.itemState.formData
   );
@@ -35,7 +38,12 @@ export default function NewItemForm() {
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = (item: FormValues) => {
-    saveNewItemToLocal(item);
+    if(path.split("/")[1] === "new"){
+
+      saveNewItemToLocal(item);
+    }else{
+      saveEditedItemHandler(item, path.split('/')[2])
+    }
     dispatch(formDataReducer({body:'',title:'',category:''}))
   };
 

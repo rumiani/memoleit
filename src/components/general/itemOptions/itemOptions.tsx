@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import {
@@ -21,14 +21,17 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
   const category = useParams<{ id: string; category: string }>();
+  const path = usePathname();
 
   const removeBtnFunction = async () => {
     setShowOptions(false);
     try {
-      const foundItem = await db.items.get(category.id);
+      console.log();
+      
+      const foundItem = await db.items.get(item.id);
       if (!foundItem) throw notFoundError("404");
-      await db.items.delete(category.id);
-      if (category.id) {
+      await db.items.delete(item.id);
+      if (item.id) {
         const filteredItemsData = await itemsCategoryIdFilterHandler(
           category.id
         );
