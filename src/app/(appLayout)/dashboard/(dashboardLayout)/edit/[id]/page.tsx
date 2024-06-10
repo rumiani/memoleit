@@ -1,8 +1,8 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
 import NotFoundComp from "@/src/components/general/notFoundComp/notFoundComp";
 import NewItemForm from "@/src/components/itemForm/newItemForm";
-import LoadingPulses from "@/src/components/loading-comps/loadingPulses/loadingPulses";
+import LoadingPulse from "@/src/components/loading-comps/loadingPulse/loadingPulse";
 import notFoundError from "@/src/handlers/notFoundError";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
@@ -10,10 +10,9 @@ import React, { useEffect, useState } from "react";
 
 export default function Item({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);
-  const [notFound, setNotFound] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    setNotFound(false);
     setLoading(true);
     db.items
       .get(params.id)
@@ -41,7 +40,7 @@ export default function Item({ params }: { params: { id: string } }) {
         }, 1000);
       });
   }, [params, dispatch]);
-  if (loading) return <LoadingPulses />;
+  if (loading) return <LoadingPulse />;
 
   return <>{notFound ? <NotFoundComp /> : <NewItemForm />}</>;
 }

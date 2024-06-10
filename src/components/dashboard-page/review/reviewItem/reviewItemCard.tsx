@@ -81,7 +81,7 @@ export default function ReviewItemCard() {
         </div>
       </div>
       <ItemProgress itemBoxNumber={item.box} />
-      <ItemTitle title={item.title} />
+      <ItemTitle item={item} />
       <ItemBody body={item.body} />
       <div>
         <div className="buttons flex justify-around w-full gap-2">

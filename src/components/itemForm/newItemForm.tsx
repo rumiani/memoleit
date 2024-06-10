@@ -12,6 +12,7 @@ import BodyInput from "./bodyInput/bodyInput";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function NewItemForm() {
   const path = usePathname();
@@ -19,11 +20,16 @@ export default function NewItemForm() {
     (state) => state.itemState.formData
   );
   const [createdMessage, setCreatedMessage] = useState(false);
+
   const form = useForm<FormValues>({
-    defaultValues: { title, body, category },
+    defaultValues:
+      path.split("/")[2] === "new"
+        ? { title: "", body: "", category: "" }
+        : { title, body, category },
     mode: "onBlur",
   });
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const {
     register,
     control,
@@ -37,14 +43,17 @@ export default function NewItemForm() {
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
-  const submitHandler = (item: FormValues) => {
-    if(path.split("/")[1] === "new"){
-
-      saveNewItemToLocal(item);
-    }else{
-      saveEditedItemHandler(item, path.split('/')[2])
-    }
-    dispatch(formDataReducer({body:'',title:'',category:''}))
+  const submitHandler = async (item: FormValues) => {
+    try {
+      if (path.split("/")[2] === "new") {
+        saveNewItemToLocal(item);
+      }
+      if (path.split("/")[2] === "edit") {
+        await saveEditedItemHandler(item, path.split("/")[3]);
+        router.push("/box/item/" + path.split("/")[3]);
+      }
+      dispatch(formDataReducer({ body: "", title: "", category: "" }));
+    } catch (error) {}
   };
 
   if (isSubmitSuccessful) {
@@ -56,19 +65,32 @@ export default function NewItemForm() {
       {createdMessage ? (
         <CreatedMessage createdMsgHandler={() => setCreatedMessage(false)} />
       ) : (
-        <div>
+        <div className="relative max-w-2xl mx-auto flex flex-col gap-2 my-4">
           <form
-            className="bg-white rounded-xl p-2 md:p-4 flex flex-col justify-center"
+            className="flex flex-col justify-center"
             noValidate
             onSubmit={handleSubmit(submitHandler)}
           >
-            <TitleInput register={register} error={errors.title?.message} />
-            <BodyInput error={errors.body?.message} register={register} />
-            <ChooseTopic register={register} error={errors.category?.message} />
-            <button className="primaryBtn mx-auto">Save</button>
+            <div
+              className={`${
+                path.split("/")[2] === "new" ? "bg-green-300" : "bg-blue-300"
+              } flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl  `}
+            >
+              <TitleInput register={register} error={errors.title?.message} />
+              <BodyInput error={errors.body?.message} register={register} />
+              <ChooseTopic
+                register={register}
+                error={errors.category?.message}
+              />
+            </div>
+            <button className="primaryBtn mx-auto">
+              {path.split("/")[2] === "new" ? "Save" : "Update"}
+            </button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>
-          <Preview/>
+          <span className="absolute bottom-1 left-4">
+            <Preview />
+          </span>
         </div>
       )}
     </>

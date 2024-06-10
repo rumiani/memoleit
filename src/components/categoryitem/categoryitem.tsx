@@ -23,7 +23,7 @@ export default function CategoryItem({ item }: { item: ItemTypes }) {
           </Link>
           <ItemOptions item={item} />
         </div>
-        <ItemTitle title={item.title} />
+        <ItemTitle item={item}/>
       </div>
       <ItemBody body={item.body} />
       <ItemProgress itemBoxNumber={item.box} />

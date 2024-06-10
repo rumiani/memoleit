@@ -10,7 +10,6 @@ const CreatedMessage = ({
   createdMsgHandler: Function;
 }) => {
   const dispatch = useDispatch();
-  
   const newItemHandler = () => {
     getCategoriesHandler()
       .then((existedCategories) => {

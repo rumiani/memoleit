@@ -2,13 +2,16 @@ import React from "react";
 import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
-import { useAppDispatch } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 interface BodyProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
 }
 const BodyInput = ({ register, error }: BodyProps) => {
+  const { body } = useAppSelector(
+    (state) => state.itemState.formData
+  );
   const dispatch = useAppDispatch();
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -16,11 +19,11 @@ const BodyInput = ({ register, error }: BodyProps) => {
   };
 
   return (
-    <div className=" w-full mx-auto my-4 second-element">
+    <div className=" w-full second-element">
       <textarea
         rows={6}
         dir="auto"
-        className="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none first-element focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 resize-none"
+        className="primaryInput"
         id="inputBody"
         placeholder="Write a description here..."
         autoComplete="off"
@@ -41,7 +44,7 @@ const BodyInput = ({ register, error }: BodyProps) => {
           },
         })}
       />
-      {/* <p>{body.length + "/1000"}</p> */}
+      <p>{body.length + "/1000"}</p>
       <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
   );

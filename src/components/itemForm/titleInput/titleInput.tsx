@@ -16,14 +16,13 @@ const TitleInput = ({ register, error }: TitleProps) => {
     const { name, value } = event.target;
     dispatch(formDataReducer({ [name]: value }));
   };
-  console.log(path.split("/")[1] === "new");
 
   return (
-    <div className=" w-full mx-auto my-4">
+    <div className="w-full">
       <input
         dir="auto"
         id="inputTitle"
-        className="first-element w-full p-1 focus:bg-gray-100 text-xl outline outline-0 transition-all border-none   focus:outline-0 "
+        className="first-element primaryInput"
         placeholder="Write a title here..."
         autoComplete="off"
         type="text"

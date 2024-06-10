@@ -17,7 +17,6 @@ export default function ItemBody({ body }: { body: string }) {
         convertFromRaw(JSON.parse(body))
       );
       setEditorState(ConvertedEditorState);
-
       const convertedFromRaw = convertFromRaw(JSON.parse(body)).getPlainText();
       setBodyValue(convertedFromRaw);
     } catch (error) {
@@ -38,17 +37,7 @@ export default function ItemBody({ body }: { body: string }) {
           {bodyValue === "" ? (
             "There is no description for this item."
           ) : (
-            <div>
-              {editorState ? (
-                <Editor
-                  toolbarHidden={true}
-                  editorState={editorState}
-                  readOnly={true}
-                />
-              ) : (
-                <p>{bodyValue}</p>
-              )}
-            </div>
+            <p>{bodyValue}</p>
           )}
         </div>
       )}

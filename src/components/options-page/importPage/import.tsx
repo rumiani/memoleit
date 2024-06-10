@@ -1,5 +1,5 @@
-import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { saveNewImportedDataHandler } from "./handlers/saveNewImportedDataHandler";
@@ -10,7 +10,6 @@ export default function ImportComponent() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const inputElement = useRef<InputElement>(null);
   const router = useRouter();
-  const pathname = usePathname();
 
   const importData = () => {
     const fileReader = new FileReader();

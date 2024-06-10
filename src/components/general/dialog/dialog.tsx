@@ -33,7 +33,7 @@ const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, children }) => {
         className="fixed inset-0 bg-black opacity-50"
         onClick={onClose}
       ></div>
-      <div className="bg-white rounded-lg shadow-lg z-10 p-4 max-w-lg w-full">
+      <div className="bg-white rounded-lg shadow-lg z-10 p-4 max-w-lg w-fit">
         {children}
       </div>
     </div>

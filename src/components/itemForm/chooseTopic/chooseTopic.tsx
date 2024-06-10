@@ -19,13 +19,13 @@ export default function ChooseTopic({
     dispatch(formDataReducer({ [name]: value }));
   };
   return (
-    <div className=" min-w-64 max-w-80 my-4 flex flex-col">
+    <div className=" w-fit flex flex-col">
       <input
         list="categories"
         id="category"
         autoComplete="off"
-        className="third-element outline-none p-1 focus:bg-gray-100 transition-all duration-300"
-        placeholder="Add a category or Choose one from the list ..."
+        className="third-element primaryInput !p-1"
+        placeholder="Add or Choose a category"
         {...register("category", {
           onChange:handleInputChange,
           required: "Category is required",

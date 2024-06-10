@@ -16,18 +16,16 @@ import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { db } from "@/src/services/db";
 import notFoundError from "@/src/handlers/notFoundError";
+import { useRouter } from "next/navigation";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
   const category = useParams<{ id: string; category: string }>();
-  const path = usePathname();
-
+  const router = useRouter();
   const removeBtnFunction = async () => {
     setShowOptions(false);
     try {
-      console.log();
-      
       const foundItem = await db.items.get(item.id);
       if (!foundItem) throw notFoundError("404");
       await db.items.delete(item.id);
@@ -44,6 +42,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           dispatch(itemReducer(newRandomItem));
         }
       }
+      router.push(`/box/category/${item.categoryId}/${item.category}`);
       toast.success("The item was removed.");
     } catch (error: any) {
       console.log("Error");
@@ -88,7 +87,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
             <IoClose />
           </button>
           <Link
-            href={`/edit/${item.id}`}
+            href={`/dashboard/edit/${item.id}`}
             className="mt-8 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-500 hover:text-yellow-700"
           >
             <button

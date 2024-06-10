@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FormValues } from "../../../types/interface";
 import { makeUrlFriendly } from "../../../handlers/makeUrlFriendly";
@@ -14,6 +13,7 @@ export const saveEditedItemHandler = async (
   try {
     let item = await db.items.get(id);
     if (!item) throw notFoundError("404");
+
     const categoryObject = await db.categories
       .where("name")
       .equals(category)
@@ -32,8 +32,11 @@ export const saveEditedItemHandler = async (
       item = { ...item, body, title };
       await db.items.put(item);
     }
-    toast.success("The new item has been saved.");
-  } catch (error) {
-    console.log("Error");
+    toast.success("The Item has been updated.");
+  } catch (error: any) {
+    if (error.name === "404") {
+      toast.error("Item was not found");
+    }
+    console.log("Error", error);
   }
 };
