@@ -18,7 +18,6 @@ import {
 import ItemTitle from "@/src/components/general/itemTitle/itemTitle";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 import Spinner from "@/src/components/loading-comps/spinner/spinner";
-import { db } from "@/src/services/db";
 import ItemInfo from "@/src/components/general/itemInfo/itemInfo";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
@@ -28,7 +27,6 @@ export default function ReviewItemCard() {
     useAppSelector((state) => state.settingState);
   const [loading, setLoading] = useState<boolean>(false);
   const { item } = useAppSelector((state) => state.itemState);
-
   const dispatch = useAppDispatch();
 
   const goToNextItem = async (item: ItemTypes, answer: boolean) => {
@@ -37,14 +35,15 @@ export default function ReviewItemCard() {
       await reviewHandler(item, answer);
       if (answer) {
         isReviewSoundOn && new Audio(rightAnswerSoundSrc).play();
-        toast.success(`The item has been moved to the box ${item.box + 1}`);
+        toast.success(
+          item.box === 5
+            ? "Item has been archived."
+            : `The item has been moved to the box ${item.box + 1}.`
+        );
       } else {
         isReviewSoundOn && new Audio(wrongAnswerSoundSrc).play();
         toast.success("Item moved to the box 1 and can be reviewed tomorrow");
       }
-      const numberOfItemsToReview = await numberOfItemsToReviewHandler();
-      if (numberOfItemsToReview)
-        dispatch(numberOfItemsToReviewReducer(numberOfItemsToReview));
       const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
       if (itemsToReview) {
         dispatch(allItemsReducer(itemsToReview));
@@ -54,6 +53,8 @@ export default function ReviewItemCard() {
           setLoading(false);
         }, 300);
       }
+      const numberOfItemsToReview = await numberOfItemsToReviewHandler();
+      dispatch(numberOfItemsToReviewReducer(numberOfItemsToReview!));
     } catch (error: any) {
       if (error.name === "404") {
         toast.error("Item was not found.");

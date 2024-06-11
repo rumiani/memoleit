@@ -86,14 +86,14 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
     };
   }, [showOptions]);
   return (
-    <div className="z-10">
+    <div className="z-10 relative">
       <button onClick={() => setShowOptions(true)} className="icon">
         <BsThreeDotsVertical />
       </button>
       {showOptions && (
         <div
           ref={modelRef}
-          className="absolute left-0 flex flex-col top-0 w-full h-32 rounded-lg shadow-gray-400 shadow-lg bg-white"
+          className="absolute right-0 flex flex-col top-0 gap-2 p-4 w-52 h-fit rounded-lg shadow-gray-400 shadow-lg bg-white text-center"
         >
           <button
             onClick={() => setShowOptions(false)}
@@ -101,23 +101,27 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           >
             <IoClose />
           </button>
-          <Link
-            href={`/dashboard/edit/${item.id}`}
-            className="mt-8 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-500 hover:text-yellow-700"
-          >
+          <div className="mt-8 flex flex-col gap-2">
+            <Link href={`/dashboard/edit/${item.id}`}>
+              <button
+                onClick={() => editBtnFunction()}
+                className=" text-yellow-500 hover:text-yellow-700"
+              >
+                Edit
+              </button>
+            </Link>
             <button
-              onClick={() => editBtnFunction()}
-              className="text-center w-full pt-2"
+              onClick={() => removeBtnFunction()}
+              className="  text-red-400 hover:text-red-600"
             >
-              Edit
+              Remove
             </button>
-          </Link>
-          <button
-            onClick={() => removeBtnFunction()}
-            className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-red-400 hover:text-red-600"
-          >
-            Remove
-          </button>
+            <Link href={`/box/item/${item.id}`}>
+              <button className=" text-blue-400 hover:text-blue-600">
+                Open Item
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

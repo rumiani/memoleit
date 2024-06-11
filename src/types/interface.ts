@@ -70,6 +70,7 @@ export interface ItemsInfoTypes {
   allItemsCount: number;
   learnedCount: number;
   unLearnedCount: number;
+  pending: number;
 }
 export interface LanguagesTypes {
   name: string;

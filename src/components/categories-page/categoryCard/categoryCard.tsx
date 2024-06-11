@@ -3,7 +3,7 @@ import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import CardOptions from "./cardOptions/cardOptions";
 import CategoryName from "./categoryName/categoryName";
-import ItemsInfo from "../../general/intemsInfo/itemsInfo";
+import ItemsInfo from "../../general/itemsInfo/itemsInfo";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 
 export default function CategoryCard({
@@ -16,6 +16,7 @@ export default function CategoryCard({
     allItemsCount: 0,
     learnedCount: 0,
     unLearnedCount: 0,
+    pending:0
   });  useEffect(() => {
     categoryItemsCountHandler(category.id).then((categoryInfo) => {
       if (categoryInfo) {

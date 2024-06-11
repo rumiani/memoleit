@@ -15,73 +15,52 @@ const wordsObject = words.map((word, i) => {
 });
 
 export const appDataInitialiser = async () => {
-  const isFirstTime = await db.setting
-    .count()
-    .then((number) => number < 1)
-    .catch(() => console.log("error"));
-  if (!isFirstTime) return;
+  try {
+    const isFirstTime = await db.setting.count();
+    if (isFirstTime > 0) return;
 
-  const categoryId = randomIdGenerator(8);
-  const category = {
-    id: categoryId,
-    userId: userIdTest,
-    name: makeUrlFriendly("11 plus"),
-    status: 1,
-    createdAt: Date.now() - 1000 * 3600 * 1000,
-  };
-
-  db.categories
-    .add(category)
-    .then((id) => {
-      console.log(id);
-    })
-    .catch((error) => {
-      console.log("error");
-    });
-
-  const itemsData: ItemTypes[] = [];
-  words?.forEach((title, i) => {
-    itemsData!.push({
-      id: uuidv4(),
+    const categoryId = randomIdGenerator(8);
+    const category = {
+      id: categoryId,
       userId: userIdTest,
-      categoryId,
-      title,
-      body: "",
-      category: makeUrlFriendly("11 plus"),
-      box: wordsObject[i].box,
+      name: makeUrlFriendly("11 plus"),
+      status: 1,
       createdAt: Date.now() - 1000 * 3600 * 1000,
-      lastReview: timestamps[i],
-    });
-  });
+    };
+    await db.categories.add(category);
 
-  db.items
-    .bulkPut(itemsData)
-    .then((id) => {
-      console.log(`Item was added with ID: ${id}`);
-    })
-    .catch((error) => {
-      console.error(`error adding item`, error);
+    const itemsData: ItemTypes[] = [];
+    words?.forEach((title, i) => {
+      itemsData!.push({
+        id: uuidv4(),
+        userId: userIdTest,
+        categoryId,
+        title,
+        body: "",
+        category: makeUrlFriendly("11 plus"),
+        box: wordsObject[i].box,
+        createdAt: Date.now() - 1000 * 3600 * 1000,
+        lastReview: timestamps[i],
+      });
     });
 
-  const settings = {
-    id: randomIdGenerator(8),
-    name: "setting",
-    userId: userIdTest,
-    selectAllCategories: false,
-    isReviewSoundOn: false,
-    rightAnswerSoundSrc: reviewSounds.right[0].src,
-    wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
-    isTextToSpeechOn: false,
-    textToSpeechLang: "en-US",
-    isDictionaryOn: false,
-    tour: {reviewTour:false, newItemTour:false, boxTour:false},
-  };
-  db.setting
-    .add(settings)
-    .then((id) => {
-      console.log(`Item was added with ID: ${id}`);
-    })
-    .catch((error) => {
-      console.error(`error adding item`, error);
-    });
+    await db.items.bulkPut(itemsData);
+
+    const settings = {
+      id: randomIdGenerator(8),
+      name: "setting",
+      userId: userIdTest,
+      selectAllCategories: false,
+      isReviewSoundOn: false,
+      rightAnswerSoundSrc: reviewSounds.right[0].src,
+      wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
+      isTextToSpeechOn: false,
+      textToSpeechLang: "en-US",
+      isDictionaryOn: false,
+      tour: { reviewTour: false, newItemTour: false, boxTour: false },
+    };
+    await db.setting.add(settings);
+  } catch (error) {
+    console.log("error");
+  }
 };

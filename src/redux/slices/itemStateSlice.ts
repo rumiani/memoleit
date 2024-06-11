@@ -46,7 +46,7 @@ export const itemStateSlice = createSlice({
     ) => {
       state.formData = { ...state.formData, ...action.payload };
     },
-    numberOfItemsToReviewReducer: (state, action: PayloadAction<number>) => {      
+    numberOfItemsToReviewReducer: (state, action: PayloadAction<number>) => {            
       state.numberOfItemsToReview = action.payload;
     },
   },

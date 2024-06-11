@@ -15,10 +15,7 @@ import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandle
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState<boolean>(true);
-  const { items, numberOfItemsToReview } = useAppSelector(
-    (state) => state.itemState
-  );
-
+  const { numberOfItemsToReview } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -49,24 +46,24 @@ export default function DashboardPage() {
     );
   return (
     <div className="relative flex flex-col justify-center">
-          <Filters />
-      <div className="sm:mb-24">
+      <Filters />
+      <div className="flex justify-center text-center sm:mb-24">
         <div>
-          <div className="text-red-600 -mt-4 mb-2 text-center">
-            Items to review:
-            <span className="font-bold px-1">{numberOfItemsToReview}</span>
-          </div>
           {numberOfItemsToReview === 0 ? (
-            <div>
-              <div className="my-16">
-                <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36 mx-auto" />
-                <span className="text-green-600">
-                  You have reviewed all the items.
-                </span>
-              </div>
+            <div className="my-16 flex flex-col items-center">
+              <span className="text-green-600">
+                You have reviewed all the items.
+              </span>
+              <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
             </div>
           ) : (
-            <Review />
+            <div>
+              <div className="text-red-600 -mt-4 mb-2">
+                Items to review:
+                <span className="font-bold px-1">{numberOfItemsToReview}</span>
+              </div>
+              <Review />
+            </div>
           )}
         </div>
       </div>
