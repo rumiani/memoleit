@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
 import { GrDocumentConfig } from "react-icons/gr";
@@ -9,15 +9,25 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
 import { FaReadme } from "react-icons/fa6";
+import { object } from "zod";
 
-interface SuperPageTypes {
-  name: string;
-  icon: ReactElement;
-  links: { url: string; title: string }[];
+interface Link {
+  url: string;
+  title: string;
 }
 
-const superPages: SuperPageTypes[] = [
-  {
+interface Page {
+  name: string;
+  icon: ReactNode;
+  links: Link[];
+}
+
+interface SuperPageTypes {
+  [key: string]: Page;
+}
+
+export const superPages: SuperPageTypes = {
+  dashboard: {
     name: "Dashboard",
     icon: <MdDashboard />,
     links: [
@@ -35,8 +45,8 @@ const superPages: SuperPageTypes[] = [
       },
     ],
   },
-  {
-    name: "study",
+  study: {
+    name: "Study",
     icon: <FaReadme />,
     links: [
       {
@@ -53,7 +63,7 @@ const superPages: SuperPageTypes[] = [
       },
     ],
   },
-  {
+  box: {
     name: "Box",
     icon: <FaBoxOpen />,
     links: [
@@ -71,7 +81,7 @@ const superPages: SuperPageTypes[] = [
       },
     ],
   },
-  {
+  options: {
     name: "Options",
     icon: <GrDocumentConfig />,
     links: [
@@ -89,7 +99,7 @@ const superPages: SuperPageTypes[] = [
       },
     ],
   },
-];
+};
 
 export default function ItemsNav() {
   const dispatch = useAppDispatch();
@@ -108,7 +118,7 @@ export default function ItemsNav() {
   }, [dispatch]);
   return (
     <div className="group fixed left-0 bottom-0 sm:top-20 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
-      {superPages.map((superPage, i) => {
+      {Object.values(superPages).map((superPage, i) => {
         return <SuperPage key={i} superPage={superPage} />;
       })}
       <div></div>
