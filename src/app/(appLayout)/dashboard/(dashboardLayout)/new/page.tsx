@@ -4,7 +4,7 @@ import React from "react";
 import NewItemForm from "@/src/components/itemForm/newItemForm";
 import JoyrideNewItem from "@/src/components/joyrides/newItemJoyride";
 
-const Index = () => {
+const NewPage = () => {
   return (
     <div>
       <JoyrideNewItem/>
@@ -13,4 +13,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default NewPage;

@@ -3,10 +3,12 @@
 import React, { ReactElement, useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
-import { GrDocumentConfig } from "react-icons/gr";import SuperPage from "./superPage/superPage";
+import { GrDocumentConfig } from "react-icons/gr";
+import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
+import { FaReadme } from "react-icons/fa6";
 
 interface SuperPageTypes {
   name: string;
@@ -23,10 +25,31 @@ const superPages: SuperPageTypes[] = [
         url: "/dashboard/review",
         title: "Review",
       },
-
+      {
+        url: "/dashboard/read",
+        title: "Read",
+      },
       {
         url: "/dashboard/new",
         title: "New Item",
+      },
+    ],
+  },
+  {
+    name: "study",
+    icon: <FaReadme />,
+    links: [
+      {
+        url: "/study/reading",
+        title: "Reading",
+      },
+      {
+        url: "/study/books",
+        title: "Read",
+      },
+      {
+        url: "/study/new",
+        title: "New Pdf",
       },
     ],
   },

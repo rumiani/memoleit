@@ -48,10 +48,11 @@ export default function DashboardPage() {
       </div>
     );
   return (
-    <div className="relative flex flex-row justify-center">
-      <div className="mt-6 sm:mb-24 flex flex-row ">
+    <div className="relative flex flex-col justify-center">
+          <Filters />
+      <div className="sm:mb-24">
         <div>
-          <div className="text-red-600 my-2">
+          <div className="text-red-600 -mt-4 mb-2 text-center">
             Items to review:
             <span className="font-bold px-1">{numberOfItemsToReview}</span>
           </div>
@@ -68,7 +69,6 @@ export default function DashboardPage() {
             <Review />
           )}
         </div>
-        <Filters />
       </div>
     </div>
   );

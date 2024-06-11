@@ -75,3 +75,8 @@ export interface LanguagesTypes {
   name: string;
   code: string;
 }
+export interface PdfTypes {
+  id: string;
+  name: string;
+  file: Blob | null;
+}

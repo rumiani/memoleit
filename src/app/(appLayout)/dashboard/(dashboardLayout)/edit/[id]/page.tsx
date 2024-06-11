@@ -8,7 +8,7 @@ import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import React, { useEffect, useState } from "react";
 
-export default function Item({ params }: { params: { id: string } }) {
+export default function EditPage({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const dispatch = useAppDispatch();

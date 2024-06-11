@@ -25,7 +25,7 @@ export default function Filters() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex justify-end">
       <button
         onClick={filterHnadler}
         className="first-element top-10 right-10 icon text-xl !w-fit"
@@ -35,7 +35,7 @@ export default function Filters() {
         <span className="mx-2 hidden sm:block">Filters</span>
       </button>
       {items.length === 0 && numberOfItemsToReview >0 && (
-        <TbHandFinger className="absolute top-12 left-2  text-xl text-green-600 animate-bounce rotate-90" />
+        <TbHandFinger className="absolute top-12  right-2  text-xl text-green-600 animate-bounce rotate-90" />
       )}
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
         <Form />

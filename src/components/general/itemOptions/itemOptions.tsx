@@ -55,6 +55,9 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
         dispatch(allItemsReducer(filteredItemsData));
         router.push(`/box/category/${item.categoryId}/${item.category}`);
       }
+      if (pageName === "item") {
+        router.push(`/box/category/${item.categoryId}/${item.category}`);
+      }
       toast.success("The item was removed.");
     } catch (error: any) {
       console.log("Error");

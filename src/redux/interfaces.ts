@@ -2,6 +2,7 @@ import {
   CategoryTypes,
   FormDataTypes,
   ItemTypes,
+  PdfTypes,
   UserTypes,
 } from "../types/interface";
 
@@ -18,4 +19,8 @@ export interface initialCategoryStateTypes {
   category: CategoryTypes;
   categories: CategoryTypes[];
   categoryOnEdit: string;
+}
+export interface initialPdfStateTypes {
+  pdf:PdfTypes;
+  pdfs:PdfTypes[];
 }
