@@ -6,6 +6,7 @@ import LoadingPulse from "@/src/components/loading-comps/loadingPulse/loadingPul
 import notFoundError from "@/src/handlers/notFoundError";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
+import { convertFromRaw } from "draft-js";
 import React, { useEffect, useState } from "react";
 
 export default function EditPage({ params }: { params: { id: string } }) {
@@ -35,7 +36,6 @@ export default function EditPage({ params }: { params: { id: string } }) {
       .catch(() => {
         console.log("Error");
         setTimeout(() => {
-          setLoading(false);
           setLoading(false);
         }, 1000);
       });

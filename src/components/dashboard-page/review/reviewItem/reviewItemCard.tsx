@@ -21,6 +21,7 @@ import Spinner from "@/src/components/loading-comps/spinner/spinner";
 import ItemInfo from "@/src/components/general/itemInfo/itemInfo";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { convertFromRaw } from "draft-js";
 
 export default function ReviewItemCard() {
   const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =

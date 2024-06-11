@@ -3,7 +3,7 @@ import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { db } from "@/src/services/db";
+
 interface BodyProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;

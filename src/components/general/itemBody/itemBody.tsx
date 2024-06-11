@@ -7,22 +7,10 @@ const Editor = dynamic(
 );
 export default function ItemBody({ body }: { body: string }) {
   const [showBody, setShowBody] = useState<boolean>(false);
-  const [bodyValue, setBodyValue] = useState<string>("");
-  const [editorState, setEditorState] = useState<EditorState>();
 
   useEffect(() => {
     setShowBody(false);
-    try {
-      const ConvertedEditorState = EditorState.createWithContent(
-        convertFromRaw(JSON.parse(body))
-      );
-      setEditorState(ConvertedEditorState);
-      const convertedFromRaw = convertFromRaw(JSON.parse(body)).getPlainText();
-      setBodyValue(convertedFromRaw);
-    } catch (error) {
-      setBodyValue(body);
-    }
-  }, [body, bodyValue]);
+  }, []);
 
   return (
     <div className="my-4">
@@ -34,10 +22,10 @@ export default function ItemBody({ body }: { body: string }) {
       </button>
       {showBody && (
         <div dir="auto" className="text-gray-600">
-          {bodyValue === "" ? (
+          {body === "" ? (
             "There is no description for this item."
           ) : (
-            <p>{bodyValue}</p>
+            <p>{body}</p>
           )}
         </div>
       )}

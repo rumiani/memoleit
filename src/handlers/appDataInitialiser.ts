@@ -7,6 +7,7 @@ import { userIdTest } from "../services/userId";
 import { reviewSounds } from "../data/reviewSounds";
 import { randomIdGenerator } from "./randomID";
 import { makeUrlFriendly } from "./makeUrlFriendly";
+import { convertFromRaw } from "draft-js";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
 const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);
@@ -17,7 +18,16 @@ const wordsObject = words.map((word, i) => {
 export const appDataInitialiser = async () => {
   try {
     const isFirstTime = await db.setting.count();
-    if (isFirstTime > 0) return;
+    if (isFirstTime > 0) {
+      const items = await db.items.toArray();
+      for (const item of items) {
+        try {
+          item.body = convertFromRaw(JSON.parse(item.body)).getPlainText();
+        } catch (error) {}
+        await db.items.update(item.id, { body: item.body });
+      }
+      return;
+    }
 
     const categoryId = randomIdGenerator(8);
     const category = {
@@ -61,6 +71,6 @@ export const appDataInitialiser = async () => {
     };
     await db.setting.add(settings);
   } catch (error) {
-    console.log("error");
+    console.log("error", error);
   }
 };
