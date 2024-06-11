@@ -7,13 +7,13 @@ import { ItemTypes } from "@/src/types/interface";
 export default function ItemTitle({ item }: { item: ItemTypes }) {
   const { isTextToSpeechOn } = useAppSelector((state) => state.settingState);
   return (
-    <div className=" relative my-8">
+    <div className="flex flex-row relative my-8">
       {isTextToSpeechOn && (
-        <span className="absolute second-element">
+        <span className="absolute left-0 second-element">
           <Speaker text={item.title} />
         </span>
       )}
-      <h3 id="title" className="text-2xl font-bold  text-center">
+      <h3 id="title" className="text-xl w-2/3 overflow-scroll font-bold mx-auto text-center">
         {capitalize(item.title)}
       </h3>
     </div>

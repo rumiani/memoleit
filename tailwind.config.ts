@@ -20,7 +20,7 @@ const config: Config = {
           },
       },
       animation: {
-        merge: 'merge 2s ease-in',
+        merge: 'merge 0.3s ease-in',
       },
     },
   },
