@@ -36,10 +36,6 @@ export const superPages: SuperPageTypes = {
         title: "Review",
       },
       {
-        url: "/dashboard/read",
-        title: "Read",
-      },
-      {
         url: "/dashboard/new",
         title: "New Item",
       },
@@ -50,12 +46,8 @@ export const superPages: SuperPageTypes = {
     icon: <FaReadme />,
     links: [
       {
-        url: "/study/reading",
-        title: "Reading",
-      },
-      {
         url: "/study/books",
-        title: "Read",
+        title: "Books",
       },
       {
         url: "/study/new",

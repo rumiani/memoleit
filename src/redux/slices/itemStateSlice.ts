@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialItemStateTypes } from "../interfaces";
 import { ItemTypes } from "../../types/interface";
-import { EditorState } from "draft-js";
 
 const initialState: initialItemStateTypes = {
   item: {
@@ -42,7 +41,7 @@ export const itemStateSlice = createSlice({
     },
     formDataReducer: (
       state,
-      action: PayloadAction<{ [key: string]: string | EditorState }>
+      action: PayloadAction<{ [key: string]: string }>
     ) => {
       state.formData = { ...state.formData, ...action.payload };
     },

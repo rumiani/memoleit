@@ -30,7 +30,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
           onChange: handleInputChange,
           required: "Title is required",
           validate: async (title: string) => {
-            if (path.split("/")[1] === "new") {
+            if (path.split("/")[2] === "new") {
               const count = await db.items.where({ title: title }).count();
               return count > 0 ? "Title already exists." : true;
             }

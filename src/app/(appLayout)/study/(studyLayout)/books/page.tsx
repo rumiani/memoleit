@@ -1,9 +1,10 @@
 "use client";
+import BooksPage from "@/src/components/books-page/booksPage";
 import React from "react";
-export default function BooksPage() {
+export default function Page() {
   return (
     <div>
-      Books
+      <BooksPage/>
     </div>
   );
 }

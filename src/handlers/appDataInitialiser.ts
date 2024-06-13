@@ -7,7 +7,6 @@ import { userIdTest } from "../services/userId";
 import { reviewSounds } from "../data/reviewSounds";
 import { randomIdGenerator } from "./randomID";
 import { makeUrlFriendly } from "./makeUrlFriendly";
-import { convertFromRaw } from "draft-js";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
 const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);

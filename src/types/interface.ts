@@ -79,5 +79,12 @@ export interface LanguagesTypes {
 export interface PdfTypes {
   id: string;
   name: string;
-  file: Blob | null;
+  file: {
+    lastModified: number;
+    name: string;
+    size: number;
+    type: string;
+    webkitRelativePath: string;
+  };
+  createdAt:number
 }

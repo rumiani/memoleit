@@ -12,7 +12,7 @@ interface InitialDataType {
 export const boxChartDataHandler = async (
   data: InitialDataType[],
   id: string
-) => {
+): Promise<InitialDataType[] | undefined> => {
   try {
     let items;
     let itemsToReview;

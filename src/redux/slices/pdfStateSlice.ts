@@ -5,9 +5,16 @@ const initialState: initialPdfStateTypes = {
   pdf: {
     id: "",
     name: "",
-    file:null,
+    file: {
+      lastModified: 0,
+      name: "",
+      size: 0,
+      type: "",
+      webkitRelativePath: "",
+    },
+    createdAt: 0,
   },
-  pdfs:[]
+  pdfs: [],
 };
 
 export const userStateSlice = createSlice({
@@ -23,7 +30,6 @@ export const userStateSlice = createSlice({
   },
 });
 
-export const { pdfReducer, allPdfsReducer } =
-  userStateSlice.actions;
+export const { pdfReducer, allPdfsReducer } = userStateSlice.actions;
 
 export default userStateSlice.reducer;

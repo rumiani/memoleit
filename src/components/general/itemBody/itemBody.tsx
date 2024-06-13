@@ -1,10 +1,5 @@
-import { EditorState, convertFromRaw } from "draft-js";
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-const Editor = dynamic(
-  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
-  { ssr: false }
-);
+
 export default function ItemBody({ body }: { body: string }) {
   const [showBody, setShowBody] = useState<boolean>(false);
 
