@@ -52,7 +52,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
         })}
       />
       <p className="text-red-500 text-sm  pl-4">{error}</p>
-      {path === "/dashboard/new" && (
+      {path === "/dashboard/new" || path.split("/")[2] === "edit" && (
         <TranslateTitle/>
       )}
     </div>

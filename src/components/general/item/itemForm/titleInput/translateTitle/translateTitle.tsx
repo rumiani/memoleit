@@ -5,6 +5,8 @@ import Dialog from "../../../../dialog/dialog";
 import { FaRegCopy } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import TextToSpeechSpeaker from "@/src/components/general/textToSpeech/textToSpeech";
+import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 export default function TranslateTitle() {
   const { title } = useAppSelector((state) => state.itemState.formData);
   const { textToSpeechLang } = useAppSelector((state) => state.settingState);
@@ -52,6 +54,7 @@ export default function TranslateTitle() {
       {title.trim().length > 0 && (
         <div>
           <button
+            type="button"
             onClick={() => {
               lookUpHandler(title);
               setDialogOpen(true);
@@ -62,14 +65,25 @@ export default function TranslateTitle() {
           </button>
           <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
             <div className="p-4">
-              <p>{title}</p>
-              <div className="flex flex-row gap-4">
-                <p>{data}</p>
-                <FaRegCopy
-                  onClick={copyToClipboard}
-                  className="hover:scale-110 cursor-pointer"
-                />
-              </div>
+              <p className="font-bold">{title}</p>
+              {lookingUp ? (
+                <LoadingPulse />
+              ) : (
+                <div className="flex flex-row gap-4">
+                  {notFount ? (
+                    <p className="text-red-500"> Not Fount</p>
+                  ) : (
+                    <div className="flex flex-row gap-4">
+                      <TextToSpeechSpeaker text={title} />
+                      <span>{data}</span>
+                    </div>
+                  )}
+                  <FaRegCopy
+                    onClick={copyToClipboard}
+                    className="hover:scale-110 cursor-pointer"
+                  />
+                </div>
+              )}
             </div>
           </Dialog>
         </div>
