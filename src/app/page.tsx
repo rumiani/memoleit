@@ -1,7 +1,6 @@
 "use client";
-import MainPage from "../components/home/mainPage";
-export default function Home() {
-
+import MainPage from "../components/home-page/mainPage";
+export default function Page() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
       <MainPage />

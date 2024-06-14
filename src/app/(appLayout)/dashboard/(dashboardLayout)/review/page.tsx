@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import DashboardPage from "@/src/components/dashboard-page/dashboardPage";
-import ReviewJoyride from "@/src/components/joyrides/reviewJoyride";
+import ReviewJoyride from "@/src/components/general/joyrides/reviewJoyride";
+import ReviewPage from "@/src/components/dashboard-super-page/review-page/ReviewPage";
 
-export default function ReviewPage() {
+export default function Page() {
   return (
     <div>
       <ReviewJoyride />
-      <DashboardPage />
+      <ReviewPage />
     </div>
   );
 }

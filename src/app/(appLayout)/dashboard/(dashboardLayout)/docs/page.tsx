@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
-import NewPdfPage from "@/src/components/newpdf-page/newPdfPage";
-import BooksPage from "@/src/components/books-page/booksPage";
+import DocsPage from "@/src/components/dashboard-super-page/docs-page/docsPage";
 
 export default function Page() {
   return (
     <div>
-      <NewPdfPage />
-      <BooksPage />
+      <DocsPage />
     </div>
   );
 }

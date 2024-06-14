@@ -1,5 +1,5 @@
 "use client";
-import ExportComponent from "@/src/components/options-page/exportPage/export";
+import ExportComponent from "@/src/components/options-super-page/export-page/export";
 import React from "react";
 
 export default function Export() {

@@ -1,12 +1,12 @@
 "use client";
 import { useAppDispatch } from "@/src/app/hooks";
 import NotFoundComp from "@/src/components/general/notFoundComp/notFoundComp";
-import NewItemForm from "@/src/components/itemForm/newItemForm";
-import LoadingPulse from "@/src/components/loading-comps/loadingPulse/loadingPulse";
+import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 import notFoundError from "@/src/handlers/notFoundError";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import React, { useEffect, useState } from "react";
+import NewItemForm from "@/src/components/general/item/itemForm/newItemForm";
 
 export default function EditPage({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);

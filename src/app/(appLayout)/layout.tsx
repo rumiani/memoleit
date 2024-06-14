@@ -1,5 +1,5 @@
 "use client";
-import ItemsNav from "@/src/components/layouts/appLayout/appLayout";
+import ItemsNav from "@/src/components/general/layouts/appLayout/appLayout";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import { useEffect } from "react";
 export default function AppLayout({ children }: { children: React.ReactNode }) {

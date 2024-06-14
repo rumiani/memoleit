@@ -1,6 +1,6 @@
 "use client";
+import CategoriesPage from "@/src/components/box-super-page/categories-page/CategoriesPage";
 import React from "react";
-import CategoriesPage from "@/src/components/categories-page/CategoriesPage";
 
 export default function Categories() {
   return (

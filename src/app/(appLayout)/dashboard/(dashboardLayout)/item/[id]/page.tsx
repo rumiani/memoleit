@@ -1,12 +1,12 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
 import NotFoundComp from "@/src/components/general/notFoundComp/notFoundComp";
-import NewItemForm from "@/src/components/itemForm/newItemForm";
-import LoadingPulses from "@/src/components/loading-comps/loadingPulses/loadingPulses";
+import LoadingPulses from "@/src/components/general/loading-comps/loadingPulses/loadingPulses";
 import notFoundError from "@/src/handlers/notFoundError";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import React, { useEffect, useState } from "react";
+import NewItemForm from "@/src/components/general/item/itemForm/newItemForm";
 
 export default function Item({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);

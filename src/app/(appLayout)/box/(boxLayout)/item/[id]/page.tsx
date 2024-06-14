@@ -1,13 +1,13 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import CategoryItem from "@/src/components/categoryitem/categoryitem";
 import NotFoundComp from "@/src/components/general/notFoundComp/notFoundComp";
-import LoadingPulse from "@/src/components/loading-comps/loadingPulse/loadingPulse";
+import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 import notFoundError from "@/src/handlers/notFoundError";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
 
 export default function Item({ params }: { params: { id: string } }) {
   const { item } = useAppSelector((state) => state.itemState);
