@@ -1,16 +1,12 @@
 "use client";
 
-import React from "react";
 import NewItemForm from "@/src/components/itemForm/newItemForm";
-import JoyrideNewItem from "@/src/components/joyrides/newItemJoyride";
+import React from "react";
 
-const NewPage = () => {
+export default function Read() {
   return (
     <div>
-      <JoyrideNewItem/>
       <NewItemForm />
     </div>
   );
-};
-
-export default NewPage;
+}

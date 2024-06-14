@@ -21,17 +21,12 @@ const CreatedMessage = ({
   return (
     <div className="text-center flex flex-col gap-10 items-center w-full p-4">
       <div className="flex flex-row gap-4 max-w-xs">
-        <Link
-          href="/box/categories"
-          className="text-blue-500 hover:underline"
-        >
+        <Link href="/box/categories" className="text-blue-500 hover:underline">
           <button className="primaryBtn">Categories</button>
         </Link>
-        <Link href="/dashboard/new">
-          <button className="primaryBtn" onClick={() => newItemHandler()}>
-            New item
-          </button>
-        </Link>
+        <button className="primaryBtn" onClick={() => newItemHandler()}>
+          New item
+        </button>
       </div>
     </div>
   );

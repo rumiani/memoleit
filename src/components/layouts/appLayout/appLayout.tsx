@@ -9,7 +9,8 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
 import { FaReadme } from "react-icons/fa6";
-import { object } from "zod";
+import { pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdfWorker/pdf.worker.min.js';
 
 interface Link {
   url: string;
@@ -36,22 +37,12 @@ export const superPages: SuperPageTypes = {
         title: "Review",
       },
       {
+        url: "/dashboard/docs",
+        title: "Docs",
+      },
+      {
         url: "/dashboard/new",
         title: "New Item",
-      },
-    ],
-  },
-  study: {
-    name: "Study",
-    icon: <FaReadme />,
-    links: [
-      {
-        url: "/study/books",
-        title: "Books",
-      },
-      {
-        url: "/study/new",
-        title: "New Pdf",
       },
     ],
   },

@@ -76,15 +76,18 @@ export interface LanguagesTypes {
   name: string;
   code: string;
 }
-export interface PdfTypes {
+export interface PdfDBTypes {
   id: string;
   name: string;
-  file: {
-    lastModified: number;
-    name: string;
-    size: number;
-    type: string;
-    webkitRelativePath: string;
-  };
+  pdfName:string;
+  file?:Blob;
+  createdAt:number
+}
+export interface PdfStateTypes {
+  id: string;
+  name: string;
+  pdfName:string;
+  url:string;
+  size:number;
   createdAt:number
 }

@@ -1,38 +1,48 @@
 import { db } from "@/src/services/db";
-import { PdfTypes } from "@/src/types/interface";
-import { divide } from "lodash";
+import { PdfStateTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
-import LoadingPulse from "../loading-comps/loadingPulse/loadingPulse";
 import LoadingPulses from "../loading-comps/loadingPulses/loadingPulses";
 import Book from "./book/book";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { allPdfsReducer } from "@/src/redux/slices/pdfStateSlice";
 
 export default function BooksPage() {
-  const [books, setBooks] = useState<any>([]);
+  const { pdfs } = useAppSelector((state) => state.pdfState);
   const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    db.pdfs
-      .toArray()
-      .then((pdfs) => {
-        console.log(pdfs);
-        setBooks(pdfs);
+    const fetchPdfs = async () => {
+      try {
+        const pdfs = await db.pdfs.toArray();
+        const statePdfs: PdfStateTypes[] = [];
+        pdfs.forEach((pdf) => {
+          const { file, ...rest } = pdf;
+          const statePdf = {
+            ...rest,
+            url: URL.createObjectURL(pdf.file!),
+            size: pdf.file!.size,
+          };
+          statePdfs.push(statePdf);
+        });
+        dispatch(allPdfsReducer(statePdfs));
         setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+      } catch (error) {}
+    };
+    fetchPdfs();
+  }, [dispatch]);
   if (loading) return <LoadingPulses />;
   return (
-    <div className="p-4">
+    <div className="p-4 mb-24 sm:mb-16">
       <h2>List of the books:</h2>
       <div>
-        {books.length === 0 ? (
+        {pdfs.length === 0 ? (
           <div>There is no book to read.</div>
         ) : (
-          <div className="flex flex-wrap gap-2 justify-center">
-            {books.map((book: PdfTypes, i: number) => {
+          <div className="flex flex-wrap gap-2 justify-around">
+            {pdfs.map((book: PdfStateTypes, i: number) => {
               return (
-                <div key={i}>
+                <div key={book.id}>
                   <Book book={book} />
                 </div>
               );

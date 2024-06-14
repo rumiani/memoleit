@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialPdfStateTypes } from "../interfaces";
+import { PdfStateTypes } from "@/src/types/interface";
 
 const initialState: initialPdfStateTypes = {
   pdf: {
     id: "",
     name: "",
-    file: {
-      lastModified: 0,
-      name: "",
-      size: 0,
-      type: "",
-      webkitRelativePath: "",
-    },
+    pdfName:"",
+    url:"",
+    size:0,
     createdAt: 0,
   },
   pdfs: [],
@@ -21,11 +18,11 @@ export const userStateSlice = createSlice({
   name: "pdfState",
   initialState,
   reducers: {
-    pdfReducer: (state, action: PayloadAction<any>) => {
+    pdfReducer: (state, action: PayloadAction<PdfStateTypes>) => {
       state.pdf = { ...state.pdf, ...action.payload };
     },
-    allPdfsReducer: (state, action: PayloadAction<object>) => {
-      state.pdfs = { ...state.pdfs, ...action.payload };
+    allPdfsReducer: (state, action: PayloadAction<PdfStateTypes[]>) => {
+      state.pdfs = [...action.payload];
     },
   },
 });

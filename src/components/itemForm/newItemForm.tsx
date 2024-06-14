@@ -45,12 +45,11 @@ export default function NewItemForm() {
 
   const submitHandler = async (item: FormValues) => {
     try {
-      if (path.split("/")[2] === "new") {
-        saveNewItemToLocal(item);
-      }
       if (path.split("/")[2] === "edit") {
         await saveEditedItemHandler(item, path.split("/")[3]);
         router.push("/box/item/" + path.split("/")[3]);
+      } else {
+        saveNewItemToLocal(item);
       }
       dispatch(formDataReducer({ body: "", title: "", category: "" }));
     } catch (error) {}
@@ -77,14 +76,14 @@ export default function NewItemForm() {
               } flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl  `}
             >
               <TitleInput register={register} error={errors.title?.message} />
-              <BodyInput error={errors.body?.message} register={register} />
+              <BodyInput register={register} error={errors.body?.message} />
               <ChooseTopic
                 register={register}
                 error={errors.category?.message}
               />
             </div>
             <button className="primaryBtn mx-auto">
-              {path.split("/")[2] === "new" ? "Save" : "Update"}
+              {path.split("/")[2] === "edit" ? "Update" : "Save"}
             </button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>

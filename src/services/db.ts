@@ -2,7 +2,7 @@ import Dexie, { Table } from "dexie";
 import {
   CategoryTypes,
   ItemTypes,
-  PdfTypes,
+  PdfDBTypes,
   ReviewTypes,
   SettingTypes,
 } from "../types/interface";
@@ -13,7 +13,7 @@ export class MySubClassedDexie extends Dexie {
   categories!: Table<CategoryTypes>;
   reviews!: Table<ReviewTypes>;
   setting!: Table<SettingTypes>;
-  pdfs!: Table<PdfTypes>;
+  pdfs!: Table<PdfDBTypes>;
 
   constructor() {
     super("memoLeitDatabase");
@@ -24,7 +24,7 @@ export class MySubClassedDexie extends Dexie {
       categories: "++id,userId, name, status, createdAt",
       setting:
         "++id, name, userId , isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, textToSpeechLang, isDictionaryOn, tour",
-      pdfs: "++id, name, file, createdAt",
+      pdfs: "++id, name,pdfName, file, createdAt",
     });
   }
 }

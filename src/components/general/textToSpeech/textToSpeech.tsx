@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/src/app/hooks";
 import React, { useState } from "react";
 import { HiMiniSpeakerWave } from "react-icons/hi2";
-export default function TextToSpeech({ text }: { text: string }) {
+export default function TextToSpeechSpeaker({ text }: { text: string }) {
   const { textToSpeechLang } = useAppSelector((state) => state.settingState);
   const [playing, setPlaying] = useState<boolean>(false);
   const handleSpeak = () => {

@@ -9,8 +9,8 @@ interface BodyProps {
   error: string | undefined;
 }
 const BodyInput = ({ register, error }: BodyProps) => {
-  const { body } = useAppSelector(
-    (state) => state.itemState.formData
+  const { formData } = useAppSelector(
+    (state) => state.itemState
   );
   const dispatch = useAppDispatch();
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
@@ -30,21 +30,17 @@ const BodyInput = ({ register, error }: BodyProps) => {
         {...register("body", {
           onChange: handleInputChange,
           required: "Body is required",
-          pattern: {
-            value: /^(?!\s*$).{1,100}$/,
-            message: "Body must be 1-100 character",
-          },
           minLength: {
             value: 1,
-            message: "Input must be 1 - 100 character long",
+            message: "Input must be 1 - 1000 character long",
           },
           maxLength: {
-            value: 100,
-            message: "Input must be 1 - 100 characters long",
+            value: 1000,
+            message: "Input must be 1 - 1000 characters long",
           },
         })}
       />
-      <p>{body.length + "/1000"}</p>
+      <p>{formData.body.length + "/1000"}</p>
       <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
   );
