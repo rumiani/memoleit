@@ -82,7 +82,8 @@ export default function BookPage({ id }: { id: string }) {
               file={pdfUrl}
               onLoadSuccess={onDocumentLoadSuccess}
               onMouseUp={handleTextHighlight}
-              onTouchStart={handleTextHighlight}
+              // onTouchStart={handleTextHighlight}
+              onTouchEnd={handleTextHighlight}
             >
               {Array.from(new Array(numPages), (el, index) => (
                 <Page
