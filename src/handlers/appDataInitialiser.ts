@@ -63,9 +63,10 @@ export const appDataInitialiser = async () => {
       isReviewSoundOn: false,
       rightAnswerSoundSrc: reviewSounds.right[0].src,
       wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
-      isTextToSpeechOn: false,
+      isTextToSpeechOn: true,
       textToSpeechLang: "en-US",
       isDictionaryOn: false,
+      leitnerTextSelectionMode:true,
       tour: { reviewTour: false, newItemTour: false, boxTour: false },
     };
     await db.setting.add(settings);

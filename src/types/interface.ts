@@ -45,6 +45,7 @@ export interface SettingTypes {
   isTextToSpeechOn: boolean;
   textToSpeechLang: string;
   isDictionaryOn: boolean;
+  leitnerTextSelectionMode:boolean;
   tour: { reviewTour: boolean; newItemTour: boolean; boxTour: boolean };
 }
 export interface UserTypes {

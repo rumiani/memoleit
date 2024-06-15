@@ -11,6 +11,7 @@ const initialCategoryState: SettingTypes = {
   isTextToSpeechOn: false,
   textToSpeechLang: "",
   isDictionaryOn: false,
+  leitnerTextSelectionMode: false,
   tour: { reviewTour: false, newItemTour: false, boxTour: false },
 };
 
@@ -39,8 +40,14 @@ export const SettingStateSlice = createSlice({
     dictionaryReducer: (state, action: PayloadAction<boolean>) => {
       state.isDictionaryOn = action.payload;
     },
+    leitnerTextSelectionModeReducer: (
+      state,
+      action: PayloadAction<boolean>
+    ) => {
+      state.leitnerTextSelectionMode = action.payload;
+    },
     tourReducer: (state, action: PayloadAction<any>) => {
-      state.tour = {...state.tour,...action.payload};
+      state.tour = { ...state.tour, ...action.payload };
     },
   },
 });
@@ -53,6 +60,7 @@ export const {
   rightAnswerSoundSrcReducer,
   wrongAnswerSoundSrcReducer,
   dictionaryReducer,
+  leitnerTextSelectionModeReducer,
   tourReducer,
 } = SettingStateSlice.actions;
 

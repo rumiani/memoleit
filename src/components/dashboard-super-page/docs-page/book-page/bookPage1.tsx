@@ -1,21 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
 import { db } from "@/src/services/db";
+import React, { useEffect, useRef, useState } from "react";
 import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import SelectionModal from "./selectionModal/selectionModal1";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
-import Dialog from "@/src/components/general/dialog/dialog";
-import HilightedTextDialog from "./selectionModal/HilightedTextDialog/HilightedTextDialog";
 
 export default function BookPage({ id }: { id: string }) {
-
   const [numPages, setNumPages] = useState<number>();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const [highlightPosition, setHighlightPosition] = useState<{
+    top: number;
+    left: number;
+  } | null>(null);
   const dispatch = useAppDispatch();
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -32,20 +34,18 @@ export default function BookPage({ id }: { id: string }) {
       }
     });
   };
-  const handleTextHighlight = async () => {
-    const setting = await db.setting.where("name").equals("setting").first();    
-    if (!setting?.leitnerTextSelectionMode!) return;
-
+  const handleTextHighlight = () => {
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0) {
-      // const range = selection.getRangeAt(0);
-      // const rect = range.getBoundingClientRect();
-      if (selection.toString().trim().length > 0) {
-        dispatch(formDataReducer({ title: selection.toString() }));
-        setDialogOpen(true);
-      }
+      const range = selection.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+      setHighlightPosition({
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX,
+      });
+      dispatch(formDataReducer({ title: selection.toString() }));
     } else {
-      setDialogOpen(false);
+      setHighlightPosition(null);
     }
   };
 
@@ -67,7 +67,7 @@ export default function BookPage({ id }: { id: string }) {
   return (
     <div className="relative">
       <h1>PDF Viewer</h1>
-      <p>Page:{currentPage} of {numPages}</p>
+      <p>Page:{currentPage}</p>
       <div ref={containerRef} style={{ height: "70vh", overflowY: "scroll" }}>
         {pdfUrl && (
           <div className="w-full">
@@ -89,9 +89,8 @@ export default function BookPage({ id }: { id: string }) {
           </div>
         )}
       </div>
-      <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
-        <HilightedTextDialog />
-      </Dialog>
+      
+      <SelectionModal highlightPosition={highlightPosition} />
     </div>
   );
 }
