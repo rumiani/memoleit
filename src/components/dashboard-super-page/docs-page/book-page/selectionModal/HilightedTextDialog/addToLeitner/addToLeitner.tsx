@@ -1,4 +1,4 @@
-import NewItemForm from "@/src/components/general/item/itemForm/newItemForm";
+import NewItemForm from "@/src/components/general/itemForm/newItemForm";
 import React, { useState } from "react";
 
 export default function AddToLeitner() {

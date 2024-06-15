@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { MdOutlineTranslate } from "react-icons/md";
-import Dialog from "../../../../dialog/dialog";
+import Dialog from "../../../dialog/dialog";
 import { FaRegCopy } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";

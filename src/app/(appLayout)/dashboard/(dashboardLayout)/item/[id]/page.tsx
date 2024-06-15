@@ -6,7 +6,7 @@ import notFoundError from "@/src/handlers/notFoundError";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import React, { useEffect, useState } from "react";
-import NewItemForm from "@/src/components/general/item/itemForm/newItemForm";
+import NewItemForm from "@/src/components/general/itemForm/newItemForm";
 
 export default function Item({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);

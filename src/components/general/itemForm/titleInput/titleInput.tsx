@@ -5,7 +5,7 @@ import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
-import TranslateTitle from "@/src/components/general/item/itemForm/titleInput/translateTitle/translateTitle"
+import TranslateTitle from "./translateTitle/translateTitle";
 interface TitleProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
@@ -52,8 +52,9 @@ const TitleInput = ({ register, error }: TitleProps) => {
         })}
       />
       <p className="text-red-500 text-sm  pl-4">{error}</p>
+      <TranslateTitle/>
       {path === "/dashboard/new" || path.split("/")[2] === "edit" && (
-        <TranslateTitle/>
+      <p></p>
       )}
     </div>
   );
