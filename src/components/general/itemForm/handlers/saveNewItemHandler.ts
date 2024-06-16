@@ -4,11 +4,12 @@ import { db } from "@/src/services/db";
 import { userIdTest } from "@/src/services/userId";
 import { randomIdGenerator } from "@/src/handlers/randomID";
 import { FormValues, ItemTypes, CategoryTypes } from "@/src/types/interface";
+import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 
 export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
   db.categories
     .where("name")
-    .equals(category.toLowerCase())
+    .equals(makeUrlFriendly(category))
     .first()
     .then((storedCategory) => {
       if (storedCategory) {
@@ -26,9 +27,9 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
       id: uuidv4(),
       userId: userIdTest,
       categoryId,
-      title,
+      title:makeUrlFriendly(title),
       body,
-      category,
+      category:makeUrlFriendly(category),
       box: 1,
       createdAt: Date.now(),
       lastReview: Date.now(),
@@ -47,7 +48,7 @@ export const saveNewItemToLocal = ({ title, body, category }: FormValues) => {
     const categoryObject: CategoryTypes = {
       id: randomIdGenerator(8),
       userId: userIdTest,
-      name: category.trim(),
+      name: makeUrlFriendly(category),
       status: 0,
       createdAt: Date.now(),
     };

@@ -16,7 +16,7 @@ export const saveEditedItemHandler = async (
 
     const categoryObject = await db.categories
       .where("name")
-      .equals(category)
+      .equals(makeUrlFriendly(category))
       .first();
     if (!categoryObject) {
       const createNewCategory = await db.categories.add({
