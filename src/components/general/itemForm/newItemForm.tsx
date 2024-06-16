@@ -1,5 +1,5 @@
 import { DevTool } from "@hookform/devtools";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TitleInput from "./titleInput/titleInput";
 import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";
@@ -59,6 +59,9 @@ export default function NewItemForm() {
     setCreatedMessage(true);
     reset();
   }
+  useEffect(() => {
+    reset({ title, body, category });
+  }, [title, body, category, reset]);
   return (
     <>
       {createdMessage ? (

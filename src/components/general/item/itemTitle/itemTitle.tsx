@@ -13,7 +13,7 @@ export default function ItemTitle({ item }: { item: ItemTypes }) {
           <TextToSpeechSpeaker text={item.title} />
         </span>
       )}
-      <h3 id="title" className="text-xl w-2/3 overflow-scroll font-bold mx-auto text-center">
+      <h3 id="title" className="text-xl w-2/3 font-bold mx-auto text-center">
         {capitalize(item.title)}
       </h3>
     </div>

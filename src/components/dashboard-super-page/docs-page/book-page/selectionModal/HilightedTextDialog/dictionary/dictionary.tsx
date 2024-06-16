@@ -36,6 +36,7 @@ export default function Dictionary() {
       const definition = data[0].meanings[0].definitions[0].definition;
       dispatch(formDataReducer({ body: definition }));
       setLookingUp(false);
+      setNotFount(false)
     } catch (error: any) {
       console.log("error");
     }

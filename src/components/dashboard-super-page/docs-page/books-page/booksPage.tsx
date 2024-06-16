@@ -34,10 +34,9 @@ export default function BooksPage() {
   if (loading) return <LoadingPulses />;
   return (
     <div className="p-4 mb-24 sm:mb-16">
-      <h2>List of the books:</h2>
       <div>
         {pdfs.length === 0 ? (
-          <div>There is no book to read.</div>
+          <div className="text-center text-red-500 my-8">There is no books to read.</div>
         ) : (
           <div className="flex flex-wrap gap-2 justify-around">
             {pdfs.map((book: PdfStateTypes, i: number) => {
