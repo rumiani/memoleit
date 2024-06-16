@@ -26,9 +26,9 @@ export default function TextToSpeechSpeaker({ text }: { text: string }) {
         title={textToSpeechLang}
         className={`${
           playing && "animate-pulse"
-        } w-6 h-6 text-2xl disabled:cursor-not-allowed`}
+        } icon  text-2xl disabled:cursor-not-allowed`}
       >
-        <HiMiniSpeakerWave />
+        <HiMiniSpeakerWave className="icon"/>
       </button>
     </div>
   );

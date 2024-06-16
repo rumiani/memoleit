@@ -10,19 +10,16 @@ import { copyToClipboard } from "./handlers/copyToClipboard";
 
 export default function Dictionary() {
   const { title, body } = useAppSelector((state) => state.itemState.formData);
-  const { isTextToSpeechOn, textToSpeechLang } = useAppSelector(
-    (state) => state.settingState
-  );
+  const [lookUpResult, setLookUpResult] = useState<string>("");
   const [lookingUp, setLookingUp] = useState<boolean>(false);
   const [notFount, setNotFount] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const lookUpHandler = async () => {
     setLookingUp(true);
-    const lang = textToSpeechLang.split("-")[0];
     try {
       const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/${lang}/${title}`
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${title}`
       );
       if (response.status === 404) {
         setLookingUp(false);
@@ -34,20 +31,21 @@ export default function Dictionary() {
       }
       const data = await response.json();
       const definition = data[0].meanings[0].definitions[0].definition;
-      dispatch(formDataReducer({ body: definition }));
+      dispatch(formDataReducer({ body: body+' '+definition }));
+      setLookUpResult(definition);
       setLookingUp(false);
-      setNotFount(false)
+      setNotFount(false);
     } catch (error: any) {
       console.log("error");
     }
   };
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-row justify-between gap-2 items-center">
+      <div className="flex flex-col sm:flex-row justify-between gap-2 items-center">
         <input
           type="text"
           dir="auto"
-          className="first-element primaryInput !w-5/6 pr-8 !h-10"
+          className="first-element primaryInput w-full pr-8 !h-10"
           placeholder="Write a word here..."
           autoComplete="off"
           value={title}
@@ -55,27 +53,36 @@ export default function Dictionary() {
             dispatch(formDataReducer({ title: event.target.value }))
           }
         />
-        <FaRegCopy
-          onClick={() => copyToClipboard(title)}
-          className="icon !p-2"
-        />
-        <MdOutlineTranslate onClick={lookUpHandler} className="icon !p-2" />
+        {title.length > 0 && (
+          <div className="w-full sm:w-1/2 flex flex-row justify-between gap-1">
+            <FaRegCopy
+              onClick={() => copyToClipboard(title)}
+              className="icon !p-2"
+            />
+            <TextToSpeechSpeaker text={title} />
+            <MdOutlineTranslate onClick={lookUpHandler} className="icon !p-2" />
+          </div>
+        )}
       </div>
-      {lookingUp ? (
-        <LoadingPulse />
-      ) : (
+      {title.length > 0 && (
         <div>
-          {notFount ? (
-            <p className="text-red-500">Nothing found.</p>
+          {lookingUp ? (
+            <LoadingPulse />
           ) : (
             <div>
-              {body !== "" && (
-                <div className="flex flex-col gap-2 my-2">
-                  <div className="flex flex-row gap-4">
-                    {isTextToSpeechOn && <TextToSpeechSpeaker text={title} />}
-                    {title}
-                  </div>
-                  <span>{body}</span>
+              {notFount ? (
+                <p className="text-red-500">Nothing found.</p>
+              ) : (
+                <div>
+                  {lookUpResult !== "" && (
+                    <div className="w-full flex flex-row gap-1 items-center justify-between">
+                      <div>{lookUpResult}</div>
+                      <FaRegCopy
+                        onClick={() => copyToClipboard(lookUpResult)}
+                        className="icon !w-10 !p-2"
+                      />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
