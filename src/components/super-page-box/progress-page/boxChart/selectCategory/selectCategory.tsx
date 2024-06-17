@@ -5,6 +5,7 @@ import {
   categoryReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
+import { capitalize } from "lodash";
 import React, { useEffect, useState } from "react";
 
 export default function SelectCategory({
@@ -42,7 +43,7 @@ export default function SelectCategory({
         <option value="">All Categories</option>
         {categories.map((category: CategoryTypes) => (
           <option key={category.id} value={category.id}>
-            {category.name}
+            {capitalize(category.name)}
           </option>
         ))}
       </select>

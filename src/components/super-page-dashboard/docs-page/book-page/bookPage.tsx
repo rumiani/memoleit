@@ -8,15 +8,17 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import Dialog from "@/src/components/general/dialog/dialog";
 import HilightedTextDialog from "./selectionModal/HilightedTextDialog/HilightedTextDialog";
+import DocumentOptions from "./documentOptions/documentOptions";
 
 export default function BookPage({ id }: { id: string }) {
-
   const [numPages, setNumPages] = useState<number>();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDialogOpen, setDialogOpen] = useState(false);
+  const[isLandscape,setIsLandscape]=useState(false);
   const dispatch = useAppDispatch();
+  const documentElement = useRef<HTMLDivElement>(null);
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
@@ -33,7 +35,7 @@ export default function BookPage({ id }: { id: string }) {
     });
   };
   const handleTextHighlight = async () => {
-    const setting = await db.setting.where("name").equals("setting").first();    
+    const setting = await db.setting.where("name").equals("setting").first();
     if (!setting?.leitnerTextSelectionMode!) return;
 
     const selection = window.getSelection();
@@ -62,15 +64,22 @@ export default function BookPage({ id }: { id: string }) {
       container.addEventListener("scroll", handleScroll);
       return () => container.removeEventListener("scroll", handleScroll);
     }
+
+    setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
   }, [id, dispatch]);
 
   return (
     <div className="relative">
       <h1>PDF Viewer</h1>
-      <p>Page:{currentPage} of {numPages}</p>
-      <div ref={containerRef} style={{ height: "70vh", overflowY: "scroll" }}>
+      <p>
+        Page:{currentPage} of {numPages}
+      </p>
+      <div ref={containerRef} >
         {pdfUrl && (
-          <div className="w-full">
+          <div ref={documentElement} className={` group relative overflow-y-auto w-full h-96`}>
+            <div className="hidden group-hover:block fixed  transition-all duration-300 z-10">
+            <DocumentOptions openDialog={()=> setDialogOpen(true)} documentElement={documentElement.current!}/>
+            </div>
             <Document
               file={pdfUrl}
               onLoadSuccess={onDocumentLoadSuccess}

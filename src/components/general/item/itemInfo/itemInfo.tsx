@@ -22,19 +22,19 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
       </button>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-        <div>
-          <div>
-            Item: <strong>{item.title}</strong>{" "}
-          </div>
-          <div>
+        <div className="flex flex-col items-start">
+          <span>
+            Item: <strong>{item.title}</strong>
+          </span>
+          <span>
             Category:<strong>{item.category}</strong>
-            <div>
-              Item is in the box: <strong>{item.box}</strong>
-            </div>
-            <div>
-              Remained reviews: <strong>{6 - item.box}</strong>
-            </div>
-          </div>
+          </span>
+          <span>
+            Item is in the box: <strong>{item.box}</strong>
+          </span>
+          <span>
+            Remained reviews: <strong>{6 - item.box}</strong>
+          </span>
           <p className="text-green-500">
             - If you know the item,{" "}
             {item.box === 5 ? (

@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/src/app/hooks";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
+import { capitalize } from "lodash";
 import React, { useEffect, useState } from "react";
 
 export default function CategoryInfo() {
@@ -18,7 +19,7 @@ export default function CategoryInfo() {
   }, [category]);
   return (
     <div>
-      <h3 className="text-lg my-4 font-bold">{category.name}</h3>
+      <h3 className="text-lg my-4 font-bold">{capitalize(category.name)}</h3>
       <div className="pr-4 w-full text-left flex justify-between">
         <span>All:{itemInfo.allItemsCount}</span>
         <span className="text-green-600">Learned:{itemInfo.learnedCount}</span>
