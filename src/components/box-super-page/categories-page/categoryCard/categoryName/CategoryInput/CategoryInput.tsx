@@ -1,5 +1,8 @@
 import { useAppDispatch } from "@/src/app/hooks";
-import { categoriesReducer, categoryOnEditReducer } from "@/src/redux/slices/categoryStateSlice";
+import {
+  categoriesReducer,
+  categoryOnEditReducer,
+} from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import React, { useRef, useState } from "react";
 import { FaSave } from "react-icons/fa";
@@ -28,12 +31,9 @@ export default function CategoryInput({
         categoryId: category.id,
         newCategoryName,
       });
-
       const storedCategories = await getCategoriesHandler();
       dispatch(categoriesReducer(storedCategories!));
-      dispatch(categoryOnEditReducer(''));
-
-
+      dispatch(categoryOnEditReducer(""));
       toast.success("category name was saved successfully.");
     } catch (error: any) {
       if (error.name === "404") toast.error("Category not found.");

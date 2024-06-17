@@ -10,9 +10,7 @@ export default async function deleteCategoryHandler(categoryId: string) {
       .where("categoryId")
       .equals(categoryId)
       .toArray();
-    for (const item of itemsToDelete) {
-      await db.items.delete(item.id);
-    }
+    for (const item of itemsToDelete) await db.items.delete(item.id);
     const categories = await db.categories
       .where("id")
       .notEqual(categoryId)
