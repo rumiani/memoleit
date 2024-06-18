@@ -15,39 +15,15 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 import { fullScreenPlugin } from "@react-pdf-viewer/full-screen";
-
-// Import styles
 import "@react-pdf-viewer/full-screen/lib/styles/index.css";
 import { GlobalWorkerOptions } from "pdfjs-dist";
 GlobalWorkerOptions.workerSrc = "./pdfWorker/pdf.worker.min.js";
 
 export default function BookPage({ id }: { id: string }) {
-  const renderToolbar = (Toolbar: any) => (
-    <>
-      <DocumentOptions
-        openDialog={() => setDialogOpen(true)}
-        documentElement={documentElement.current!}
-      />
-      <Toolbar />
-      {/* <div
-        style={{
-          borderTop: "1px solid rgba(0, 0, 0, 0.1)",
-          marginTop: "4px",
-          padding: "4px",
-        }}
-      ></div> */}
-    </>
-  );
-
-  const defaultLayoutPluginInstance = defaultLayoutPlugin({
-    renderToolbar,
-  });
   const bookmarkPluginInstance = bookmarkPlugin();
-  // const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const fullScreenPluginInstance = fullScreenPlugin();
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-
-  const containerRef = useRef<HTMLDivElement>(null);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
   const documentElement = useRef<HTMLDivElement>(null);
@@ -68,7 +44,7 @@ export default function BookPage({ id }: { id: string }) {
   };
 
   useEffect(() => {
-    const container = containerRef.current;
+    // const container = containerRef.current;
     db.pdfs.get(id).then((book) => {
       if (book)
         dispatch(formDataReducer({ category: makeUrlFriendly(book.name) }));
@@ -81,11 +57,12 @@ export default function BookPage({ id }: { id: string }) {
   return (
     <div className="relative my-4">
       <h1 className="font-bold text-center">PDF Viewer</h1>
-      <div ref={containerRef}>
+      <div>
         {pdfUrl && (
           <div
+            className="group relative overflow-y-auto w-full h-full"
+            onMouseUp={handleTextHighlight}
             ref={documentElement}
-            className={` group relative overflow-y-auto w-full h-full`}
           >
             <div className="hidden group-hover:block fixed  transition-all duration-300 z-10">
               <DocumentOptions
@@ -93,26 +70,22 @@ export default function BookPage({ id }: { id: string }) {
                 documentElement={documentElement.current!}
               />
             </div>
-            <div onMouseUp={handleTextHighlight}>
-              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-                {/* <Worker workerUrl="./pdfWorker/pdf.worker.min.js.min.js"> */}
-
-                <Viewer
-                  fileUrl={pdfUrl}
-                  plugins={[
-                    defaultLayoutPluginInstance,
-                    bookmarkPluginInstance,
-                    fullScreenPluginInstance,
-                  ]}
-                  renderLoader={(percentages: number) => (
-                    <div className="w-full my-16">
-                      {Math.round(percentages)}
-                      <LoadingPulse />
-                    </div>
-                  )}
-                />
-              </Worker>
-            </div>
+            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+              <Viewer
+                fileUrl={pdfUrl}
+                plugins={[
+                  // defaultLayoutPluginInstance,
+                  bookmarkPluginInstance,
+                  fullScreenPluginInstance,
+                ]}
+                renderLoader={(percentages: number) => (
+                  <div className="w-full my-16">
+                    {Math.round(percentages)}
+                    <LoadingPulse />
+                  </div>
+                )}
+              />
+            </Worker>
           </div>
         )}
       </div>
