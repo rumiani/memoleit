@@ -11,7 +11,7 @@ export default function DocumentOptions({
 }) {
   const { title } = useAppSelector((state) => state.itemState.formData);
   return (
-    <div className="w-fit flex flex-col bg-gray-400 bg-opacity-30 rounded-lg p-2">
+    <div className="w-fit flex flex-col bg-gray-400 bg-opacity-30 rounded-lg p-1">
       {/* {title.length > 0 && ( */}
       <FullscreenBtn documentElement={documentElement} />
       <CiSquarePlus
