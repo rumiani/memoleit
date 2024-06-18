@@ -1,5 +1,10 @@
 import React, { ReactElement } from "react";
-import { Viewer, Worker, SpecialZoomLevel } from "@react-pdf-viewer/core";
+import {
+  Viewer,
+  Worker,
+  SpecialZoomLevel,
+  RotateDirection,
+} from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
@@ -12,14 +17,21 @@ import type { ToolbarSlot, ToolbarProps } from "@react-pdf-viewer/toolbar";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/toolbar/lib/styles/index.css";
 import { CiSquarePlus } from "react-icons/ci";
+import FullscreenBtn from "../documentOptions/fullscreenBtn/fullscreenBtn";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 
 export default function DocContainer({
   pdfUrl,
   openDialog,
+  documentElement,
 }: {
   pdfUrl: string;
   openDialog: Function;
+  documentElement: HTMLDivElement;
 }) {
+  const { title } = useAppSelector((state) => state.itemState.formData);
+  const dispatch = useAppDispatch();
   // const fullScreenPluginInstance = fullScreenPlugin(props?: FullScreenPluginProps);
 
   const toolbarPluginInstance = toolbarPlugin();
@@ -38,14 +50,20 @@ export default function DocContainer({
   const renderToolbar = (Toolbar: (props: ToolbarProps) => ReactElement) => (
     <Toolbar>
       {(slots: ToolbarSlot) => {
-        const { ZoomOut, ZoomIn, EnterFullScreen } = slots;
+        const { ZoomOut, ZoomIn, EnterFullScreen, Rotate } = slots;
         return (
           <div className="flex flex-row">
+            <Rotate direction={RotateDirection.Forward} />
             <ZoomOut />
             <ZoomIn />
             <EnterFullScreen />
+            <FullscreenBtn documentElement={documentElement} />
             <CiSquarePlus
-              className="icon text-green-600"
+              className={`icon ${
+                title.length > 0
+                  ? "text-green-600 font-bold animate-pulse"
+                  : "font-thin text-gray-500"
+              }`}
               onClick={() => openDialog()}
             />
           </div>
