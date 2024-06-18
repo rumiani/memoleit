@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { db } from "@/src/services/db";
-import { Document, Page } from "react-pdf";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
@@ -10,38 +7,57 @@ import Dialog from "@/src/components/general/dialog/dialog";
 import HilightedTextDialog from "./selectionModal/HilightedTextDialog/HilightedTextDialog";
 import DocumentOptions from "./documentOptions/documentOptions";
 
+import { Viewer, Worker } from "@react-pdf-viewer/core";
+
+import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+import { bookmarkPlugin } from "@react-pdf-viewer/bookmark";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
+import { fullScreenPlugin } from "@react-pdf-viewer/full-screen";
+
+// Import styles
+import "@react-pdf-viewer/full-screen/lib/styles/index.css";
+import { GlobalWorkerOptions } from "pdfjs-dist";
+GlobalWorkerOptions.workerSrc = "./pdfWorker/pdf.worker.min.js";
+
 export default function BookPage({ id }: { id: string }) {
-  const [numPages, setNumPages] = useState<number>();
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const renderToolbar = (Toolbar: any) => (
+    <>
+      <DocumentOptions
+        openDialog={() => setDialogOpen(true)}
+        documentElement={documentElement.current!}
+      />
+      <Toolbar />
+      {/* <div
+        style={{
+          borderTop: "1px solid rgba(0, 0, 0, 0.1)",
+          marginTop: "4px",
+          padding: "4px",
+        }}
+      ></div> */}
+    </>
+  );
+
+  const defaultLayoutPluginInstance = defaultLayoutPlugin({
+    renderToolbar,
+  });
+  const bookmarkPluginInstance = bookmarkPlugin();
+  // const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  const fullScreenPluginInstance = fullScreenPlugin();
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const[isLandscape,setIsLandscape]=useState(false);
   const dispatch = useAppDispatch();
   const documentElement = useRef<HTMLDivElement>(null);
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-  }
-  const handleScroll = () => {
-    const container = containerRef.current;
-    if (!container) return;
 
-    const pageElements = container.querySelectorAll(".react-pdf__Page");
-    pageElements.forEach((pageElement, index) => {
-      const { top, bottom } = pageElement.getBoundingClientRect();
-      if (top < window.innerHeight && bottom >= 0) {
-        setCurrentPage(index + 1);
-      }
-    });
-  };
   const handleTextHighlight = async () => {
     const setting = await db.setting.where("name").equals("setting").first();
     if (!setting?.leitnerTextSelectionMode!) return;
 
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0) {
-      // const range = selection.getRangeAt(0);
-      // const rect = range.getBoundingClientRect();
       if (selection.toString().trim().length > 0) {
         dispatch(formDataReducer({ title: selection.toString() }));
         setDialogOpen(true);
@@ -60,40 +76,43 @@ export default function BookPage({ id }: { id: string }) {
       const url = URL.createObjectURL(blob);
       setPdfUrl(url);
     });
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
-    }
-
-    setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
   }, [id, dispatch]);
 
   return (
-    <div className="relative">
-      <h1>PDF Viewer</h1>
-      <p>
-        Page:{currentPage} of {numPages}
-      </p>
-      <div ref={containerRef} >
+    <div className="relative my-4">
+      <h1 className="font-bold text-center">PDF Viewer</h1>
+      <div ref={containerRef}>
         {pdfUrl && (
-          <div ref={documentElement} className={` group relative overflow-y-auto w-full h-96`}>
+          <div
+            ref={documentElement}
+            className={` group relative overflow-y-auto w-full h-full`}
+          >
             <div className="hidden group-hover:block fixed  transition-all duration-300 z-10">
-            <DocumentOptions openDialog={()=> setDialogOpen(true)} documentElement={documentElement.current!}/>
+              <DocumentOptions
+                openDialog={() => setDialogOpen(true)}
+                documentElement={documentElement.current!}
+              />
             </div>
-            <Document
-              file={pdfUrl}
-              onLoadSuccess={onDocumentLoadSuccess}
-              onMouseUp={handleTextHighlight}
-              onTouchStart={handleTextHighlight}
-            >
-              {Array.from(new Array(numPages), (el, index) => (
-                <Page
-                  width={containerRef.current?.offsetWidth}
-                  key={`page_${index + 1}`}
-                  pageNumber={index + 1}
+            <div onMouseUp={handleTextHighlight}>
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                {/* <Worker workerUrl="./pdfWorker/pdf.worker.min.js.min.js"> */}
+
+                <Viewer
+                  fileUrl={pdfUrl}
+                  plugins={[
+                    defaultLayoutPluginInstance,
+                    bookmarkPluginInstance,
+                    fullScreenPluginInstance,
+                  ]}
+                  renderLoader={(percentages: number) => (
+                    <div className="w-full my-16">
+                      {Math.round(percentages)}
+                      <LoadingPulse />
+                    </div>
+                  )}
                 />
-              ))}
-            </Document>
+              </Worker>
+            </div>
           </div>
         )}
       </div>

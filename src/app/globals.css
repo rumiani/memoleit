@@ -46,3 +46,6 @@ button {
 .rdw-dropdown-wrapper {
   @apply !z-0;
 }
+/* .rpv-core__inner-pages {
+  @apply overflow-y-auto;
+} */

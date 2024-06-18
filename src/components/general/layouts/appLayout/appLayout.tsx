@@ -1,5 +1,4 @@
 "use client";
-
 import React, { ReactNode, useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
@@ -8,9 +7,6 @@ import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
-import { FaReadme } from "react-icons/fa6";
-import { pdfjs } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdfWorker/pdf.worker.min.js';
 
 interface Link {
   url: string;
