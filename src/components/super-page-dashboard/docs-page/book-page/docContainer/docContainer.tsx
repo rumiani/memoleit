@@ -19,7 +19,7 @@ import "@react-pdf-viewer/toolbar/lib/styles/index.css";
 import { CiSquarePlus } from "react-icons/ci";
 import FullscreenBtn from "../documentOptions/fullscreenBtn/fullscreenBtn";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import { toast } from "react-toastify";
 
 export default function DocContainer({
   pdfUrl,
@@ -31,9 +31,6 @@ export default function DocContainer({
   documentElement: HTMLDivElement;
 }) {
   const { title } = useAppSelector((state) => state.itemState.formData);
-  const dispatch = useAppDispatch();
-  // const fullScreenPluginInstance = fullScreenPlugin(props?: FullScreenPluginProps);
-
   const toolbarPluginInstance = toolbarPlugin();
   //   const { Toolbar } = toolbarPluginInstance;
   //   const transform: TransformToolbarSlot = (slot: ToolbarSlot) => ({
@@ -59,12 +56,12 @@ export default function DocContainer({
             <EnterFullScreen />
             <FullscreenBtn documentElement={documentElement} />
             <CiSquarePlus
-              className={`icon ${
+              className={`icon !w-8 !h-8 !p-0 flex self-center ${
                 title.length > 0
-                  ? "text-green-600 font-bold animate-pulse"
+                  ? "text-green-500 font-bold animate-pulse 0.5"
                   : "font-thin text-gray-500"
               }`}
-              onClick={() => openDialog()}
+              onClick={() => {title.length > 0 ? openDialog():toast.error('You have not hilighted any words.')}}
             />
           </div>
         );
@@ -78,7 +75,7 @@ export default function DocContainer({
   });
 
   return (
-    <>
+    <div className="h-96 overflow-y-auto mb-24 sm:mb-0">
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
         <Viewer
           fileUrl={pdfUrl}
@@ -91,6 +88,6 @@ export default function DocContainer({
           )}
         />
       </Worker>
-    </>
+    </div>
   );
 }

@@ -44,11 +44,7 @@ export default function BookPage({ id }: { id: string }) {
       <h1 className="font-bold text-center">PDF Viewer</h1>
       <div>
         {pdfUrl && (
-          <div
-            className="relative overflow-y-auto w-full h-full"
-            onMouseUp={handleTextHighlight}
-            ref={documentElement}
-          >
+          <div onMouseUp={handleTextHighlight} ref={documentElement}>
             <DocContainer
               pdfUrl={pdfUrl}
               openDialog={() => setDialogOpen(true)}
