@@ -35,7 +35,7 @@ export default function BookPage({ id }: { id: string }) {
       <h1 className="font-bold text-center">PDF Viewer</h1>
       <div>
         {pdfUrl && (
-          <div className="relative" onMouseUp={handleTextHighlight}>
+          <div className="relative" onMouseUp={handleTextHighlight} onTouchEnd={handleTextHighlight}>
             <DocContainer pdfUrl={pdfUrl} />
           </div>
         )}

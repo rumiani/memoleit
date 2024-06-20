@@ -34,7 +34,6 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
           ZoomOut,
           ZoomIn,
           Rotate,
-          CurrentScale,
           GoToFirstPage,
           NumberOfPages,
           ShowSearchPopover,
