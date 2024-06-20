@@ -18,8 +18,6 @@ export default function BookPage({ id }: { id: string }) {
     if (!setting?.leitnerTextSelectionMode!) return;
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0) {
-      console.log(selection.toString());
-
       if (selection.toString().trim().length > 0) {
         dispatch(formDataReducer({ title: selection.toString() }));
       }
