@@ -9,17 +9,6 @@ export default function BookPage({ id }: { id: string }) {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const dispatch = useAppDispatch();
 
-  const handleTextHighlight = async () => {
-    const setting = await db.setting.where("name").equals("setting").first();
-    if (!setting?.leitnerTextSelectionMode!) return;
-    const selection = window.getSelection();
-    if (selection && selection.rangeCount > 0) {
-      if (selection.toString().trim().length > 0) {
-        dispatch(formDataReducer({ title: selection.toString() }));
-      }
-    }
-  };
-
   useEffect(() => {
     db.pdfs.get(id).then((book) => {
       if (book)
@@ -28,6 +17,30 @@ export default function BookPage({ id }: { id: string }) {
       const url = URL.createObjectURL(blob);
       setPdfUrl(url);
     });
+
+    db.setting
+      .where("name")
+      .equals("setting")
+      .first()
+      .then((setting) => {
+        if (!setting?.leitnerTextSelectionMode!) return;
+        const handleSelectionChange = () => {
+          const selection = window.getSelection();
+          if (selection && selection.rangeCount > 0) {
+            const selectedText = selection.toString().trim();
+            if (selectedText.length > 0) {
+              dispatch(formDataReducer({ title: selectedText }));
+            }
+          }
+        };
+        document.addEventListener("selectionchange", handleSelectionChange);
+        return () => {
+          document.removeEventListener(
+            "selectionchange",
+            handleSelectionChange
+          );
+        };
+      });
   }, [id, dispatch]);
 
   return (
@@ -35,7 +48,7 @@ export default function BookPage({ id }: { id: string }) {
       <h1 className="font-bold text-center">PDF Viewer</h1>
       <div>
         {pdfUrl && (
-          <div className="relative" onMouseUp={handleTextHighlight} onTouchEnd={handleTextHighlight}>
+          <div className="relative">
             <DocContainer pdfUrl={pdfUrl} />
           </div>
         )}
