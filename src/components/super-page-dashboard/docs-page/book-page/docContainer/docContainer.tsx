@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import {
   Viewer,
   Worker,
@@ -20,48 +20,47 @@ import { CiSquarePlus } from "react-icons/ci";
 import FullscreenBtn from "../documentOptions/fullscreenBtn/fullscreenBtn";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { toast } from "react-toastify";
+import SelectedTextDialog from "./selectedTextDialog/selectedTextDialog";
 
-export default function DocContainer({
-  pdfUrl,
-  openDialog,
-  documentElement,
-}: {
-  pdfUrl: string;
-  openDialog: Function;
-  documentElement: HTMLDivElement;
-}) {
+export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
   const { title } = useAppSelector((state) => state.itemState.formData);
-  const toolbarPluginInstance = toolbarPlugin();
-  //   const { Toolbar } = toolbarPluginInstance;
-  //   const transform: TransformToolbarSlot = (slot: ToolbarSlot) => ({
-  //     ...slot,
-  //     Download: () => <></>,
-  //     SwitchTheme: () => <></>,
-  //     Print: () => <></>,
-  //     GoToNextPage: () => <></>,
-  //     GoToPreviousPage: () => <></>,
-  //     Open: () => <></>,
-  //     CurrentPageInput: () => <></>,
-  //   });
+  const documentElement = useRef<HTMLDivElement>(null);
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   const renderToolbar = (Toolbar: (props: ToolbarProps) => ReactElement) => (
     <Toolbar>
       {(slots: ToolbarSlot) => {
-        const { ZoomOut, ZoomIn, EnterFullScreen, Rotate } = slots;
+        const {
+          ZoomOut,
+          ZoomIn,
+          Rotate,
+          CurrentScale,
+          GoToFirstPage,
+          NumberOfPages,
+          ShowSearchPopover,
+          Zoom,
+        } = slots;
         return (
           <div className="flex flex-row">
             <Rotate direction={RotateDirection.Forward} />
             <ZoomOut />
+            <Zoom />
             <ZoomIn />
-            <EnterFullScreen />
-            <FullscreenBtn documentElement={documentElement} />
+            <GoToFirstPage />
+            <NumberOfPages />
+            <ShowSearchPopover />
+            <FullscreenBtn documentElement={documentElement.current!} />
             <CiSquarePlus
               className={`icon !w-8 !h-8 !p-0 flex self-center ${
                 title.length > 0
                   ? "text-green-500 font-bold animate-pulse 0.5"
                   : "font-thin text-gray-500"
               }`}
-              onClick={() => {title.length > 0 ? openDialog():toast.error('You have not hilighted any words.')}}
+              onClick={() => {
+                title.length > 0
+                  ? setDialogOpen(true)
+                  : toast.error("You have not hilighted any words.");
+              }}
             />
           </div>
         );
@@ -75,7 +74,7 @@ export default function DocContainer({
   });
 
   return (
-    <div className="h-96 overflow-y-auto mb-24 sm:mb-0">
+    <div ref={documentElement} className="h-96 overflow-y-auto mb-24 sm:mb-0">
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
         <Viewer
           fileUrl={pdfUrl}
@@ -88,6 +87,7 @@ export default function DocContainer({
           )}
         />
       </Worker>
+      <SelectedTextDialog isOpen={isDialogOpen} setDialogOpen={setDialogOpen} />
     </div>
   );
 }

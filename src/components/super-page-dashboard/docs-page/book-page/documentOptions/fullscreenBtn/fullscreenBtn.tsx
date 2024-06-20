@@ -18,9 +18,9 @@ export default function FullscreenBtn({
       className="icon"
     >
       {isFullscreen ? (
-        <MdFullscreenExit className="text-5xl" />
+        <MdFullscreenExit className="text-gray-500 text-2xl" />
       ) : (
-        <MdFullscreen className="text-5xl" />
+        <MdFullscreen className="text-gray-500 text-2xl" />
       )}
     </button>
   );
