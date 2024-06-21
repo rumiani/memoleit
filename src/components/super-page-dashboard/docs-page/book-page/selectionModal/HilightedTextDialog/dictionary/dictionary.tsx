@@ -31,7 +31,7 @@ export default function Dictionary() {
       }
       const data = await response.json();
       const definition = data[0].meanings[0].definitions[0].definition;
-      dispatch(formDataReducer({ body: body+' '+definition }));
+      dispatch(formDataReducer({ body: body + " " + definition }));
       setLookUpResult(definition);
       setLookingUp(false);
       setNotFount(false);
@@ -49,9 +49,11 @@ export default function Dictionary() {
           placeholder="Write a word here..."
           autoComplete="off"
           value={title}
-          onChange={(event) =>
-            dispatch(formDataReducer({ title: event.target.value }))
-          }
+          onChange={(event) => {
+            console.log(title.length);
+            dispatch(formDataReducer({ title: event.target.value }));
+            if (title === "") setLookUpResult("");
+          }}
         />
         {title.length > 0 && (
           <div className="w-full sm:w-1/2 flex flex-row justify-between gap-1">

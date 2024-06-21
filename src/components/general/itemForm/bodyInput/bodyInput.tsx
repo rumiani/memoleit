@@ -3,7 +3,8 @@ import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { FaWindowClose } from "react-icons/fa";interface BodyProps {
+import { FaWindowClose } from "react-icons/fa";
+interface BodyProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
 }
@@ -37,13 +38,15 @@ const BodyInput = ({ register, error }: BodyProps) => {
           },
         })}
       />
-      <div className="flex flex-row gap-2 items-center">
-        <FaWindowClose
-          onClick={() => dispatch(formDataReducer({ body: "" }))}
-          className="text-red-500 rounded-sm !p-0 hover:font-bold cursor-pointer"
-        />
-        <p>{formData.body.length + "/1000"}</p>
-      </div>
+      {formData.body !== "" && (
+        <div className="flex flex-row gap-2 items-center">
+          <FaWindowClose
+            onClick={() => dispatch(formDataReducer({ body: "" }))}
+            className="text-red-500 rounded-sm !p-0 hover:font-bold cursor-pointer"
+          />
+          <p>{formData.body.length + "/1000"}</p>
+        </div>
+      )}
       <p className="text-red-500 text-sm pl-4">{error}</p>
     </div>
   );
