@@ -16,8 +16,8 @@ export const saveNewImportedDataHandler = async (newJsonData: string) => {
     const uniqueCategories = validatedData.categories.filter(
       (category: any) =>
         !existingCategories.some(
-          (existingCategory) => existingCategory.name === category.name
-        )
+          (existingCategory) => existingCategory.name === category.name,
+        ),
     );
     if (!isEmpty(uniqueCategories))
       await db.categories.bulkAdd(uniqueCategories);
@@ -29,7 +29,7 @@ export const saveNewImportedDataHandler = async (newJsonData: string) => {
       .toArray();
     const uniqueItems = validatedData.items.filter(
       (item: any) =>
-        !existingItems.some((existingItem) => existingItem.id === item.id)
+        !existingItems.some((existingItem) => existingItem.id === item.id),
     );
     for (const importedItem of uniqueItems) {
       const existedCategory = await db.categories.get({
@@ -43,6 +43,6 @@ export const saveNewImportedDataHandler = async (newJsonData: string) => {
       await db.items.bulkAdd(newItems);
     }
   } catch (error) {
-    throw error
+    throw error;
   }
 };

@@ -8,7 +8,7 @@ import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilt
 import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
 
 export default function CategoryItems() {
-  const{category} = useAppSelector(state => state.categoryState)
+  const { category } = useAppSelector((state) => state.categoryState);
   const { items } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
 

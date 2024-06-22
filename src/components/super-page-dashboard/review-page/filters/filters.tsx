@@ -12,7 +12,9 @@ export default function Filters() {
   const openDialog = () => setDialogOpen(true);
   const closeDialog = () => setDialogOpen(false);
   const dispatch = useAppDispatch();
-  const { items,numberOfItemsToReview } = useAppSelector((state) => state.itemState);
+  const { items, numberOfItemsToReview } = useAppSelector(
+    (state) => state.itemState,
+  );
 
   const filterHnadler = async () => {
     try {
@@ -34,7 +36,7 @@ export default function Filters() {
         <MdFilterListAlt className="text-3xl" />
         <span className="mx-2 hidden sm:block">Filters</span>
       </button>
-      {items.length === 0 && numberOfItemsToReview >0 && (
+      {items.length === 0 && numberOfItemsToReview > 0 && (
         <TbHandFinger className="absolute top-12  right-2  text-xl text-green-600 animate-bounce rotate-90" />
       )}
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>

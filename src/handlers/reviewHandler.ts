@@ -6,7 +6,7 @@ import notFoundError from "./notFoundError";
 
 export async function reviewHandler(
   currentItem: ItemTypes | undefined,
-  answer: boolean
+  answer: boolean,
 ) {
   try {
     const foundItem = await db.items.get(currentItem?.id);

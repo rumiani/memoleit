@@ -13,7 +13,7 @@ export interface initialItemStateTypes {
   item: ItemTypes;
   formData: FormDataTypes;
   items: ItemTypes[];
-  numberOfItemsToReview:number;
+  numberOfItemsToReview: number;
 }
 export interface initialCategoryStateTypes {
   category: CategoryTypes;
@@ -21,6 +21,6 @@ export interface initialCategoryStateTypes {
   categoryOnEdit: string;
 }
 export interface initialPdfStateTypes {
-  pdf:PdfStateTypes;
-  pdfs:PdfStateTypes[];
+  pdf: PdfStateTypes;
+  pdfs: PdfStateTypes[];
 }

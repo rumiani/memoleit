@@ -6,9 +6,9 @@ const initialState: initialPdfStateTypes = {
   pdf: {
     id: "",
     name: "",
-    pdfName:"",
-    url:"",
-    size:0,
+    pdfName: "",
+    url: "",
+    size: 0,
     createdAt: 0,
   },
   pdfs: [],

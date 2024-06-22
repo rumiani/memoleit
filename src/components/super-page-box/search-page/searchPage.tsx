@@ -15,7 +15,7 @@ export default function SearchPage() {
     try {
       const resultItems = await db.items
         .filter((item) =>
-          item.title.toLowerCase().includes(searchTerm.toLowerCase())
+          item.title.toLowerCase().includes(searchTerm.toLowerCase()),
         )
         .toArray();
       setResultItems(resultItems!);

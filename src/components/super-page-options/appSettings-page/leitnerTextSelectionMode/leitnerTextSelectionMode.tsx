@@ -7,7 +7,7 @@ import { db } from "@/src/services/db";
 import CheckboxInput from "@/src/components/general/checkBoxInput/input";
 export default function LeitnerTextSelectionMode() {
   const { leitnerTextSelectionMode } = useAppSelector(
-    (state) => state.settingState
+    (state) => state.settingState,
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function LeitnerTextSelectionMode() {
       .first()
       .then((setting) => {
         dispatch(
-          leitnerTextSelectionModeReducer(setting?.leitnerTextSelectionMode!)
+          leitnerTextSelectionModeReducer(setting?.leitnerTextSelectionMode!),
         );
       });
   }, [leitnerTextSelectionMode, dispatch]);

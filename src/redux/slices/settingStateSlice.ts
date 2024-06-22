@@ -42,7 +42,7 @@ export const SettingStateSlice = createSlice({
     },
     leitnerTextSelectionModeReducer: (
       state,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.leitnerTextSelectionMode = action.payload;
     },

@@ -1,7 +1,6 @@
-import React, { FormEvent} from "react";
+import React, { FormEvent } from "react";
 
 export default function CategoryFilter({ category }: { category: string }) {
-
   const inputChangeHandler = (e: FormEvent) => {};
 
   return (
@@ -40,7 +39,6 @@ pointer-events-none"
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </div>
-      
     </div>
   );
 }

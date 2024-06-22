@@ -15,12 +15,12 @@ const config: Config = {
       },
       keyframes: {
         merge: {
-          from: {opacity:'0'},
-          to: {opacity:'1'}
-          },
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
       animation: {
-        merge: 'merge 0.3s ease-in',
+        merge: "merge 0.3s ease-in",
       },
     },
   },

@@ -37,7 +37,7 @@ export default function ImportComponent() {
       await saveNewImportedDataHandler(newAppData);
       toast.success("The imported data has been saved");
       toast.info("You have been redirected to categories page");
-      router.push("/box/categories")
+      router.push("/box/categories");
     } catch (error: any) {
       console.log(error.name);
       if (error.name === "ZodError") toast.error("Invalid data");

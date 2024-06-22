@@ -16,7 +16,7 @@ export default function TextToSpeech() {
       .where("name")
       .equals("setting")
       .modify({ isTextToSpeechOn: !isTextToSpeechOn })
-      .then(() => {        
+      .then(() => {
         dispatch(textToSpeechReducer());
 
         if (isTextToSpeechOn) {
@@ -34,7 +34,7 @@ export default function TextToSpeech() {
         status={isTextToSpeechOn}
         handleInputChange={handleInputChange}
       />
-      <LangDropdown/>
+      <LangDropdown />
     </div>
   );
 }

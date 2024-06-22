@@ -19,7 +19,7 @@ export default function Dictionary() {
     setLookingUp(true);
     try {
       const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${title}`
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${title}`,
       );
       if (response.status === 404) {
         setLookingUp(false);

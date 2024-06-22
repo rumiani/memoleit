@@ -5,7 +5,7 @@ export default function ExportComponent() {
   const downloadJsonFile = (
     content: string,
     fileName: string,
-    contentType: string
+    contentType: string,
   ) => {
     let a = document.createElement("a");
     let file = new Blob([content], { type: contentType });

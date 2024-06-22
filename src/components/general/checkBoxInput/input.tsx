@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 interface checkBoxProps {
   value: string;
-  status:boolean;
+  status: boolean;
   handleInputChange: Function;
 }
 export default function CheckboxInput({
@@ -9,17 +9,15 @@ export default function CheckboxInput({
   status,
   handleInputChange,
 }: checkBoxProps) {
-
-useEffect(()=>{
-console.log(status);
-
-},[status])
+  useEffect(() => {
+    console.log(status);
+  }, [status]);
   return (
     <div className=" p-2 rounded-lg transition-all duration-300">
       <div className="flex relative ">
         <input
           checked={status}
-          onChange={()=>handleInputChange()}
+          onChange={() => handleInputChange()}
           type="checkbox"
           id={value}
           name={value}

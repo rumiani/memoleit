@@ -14,11 +14,11 @@ export const itemsToReviewWithActiveCategoryHandler = async () => {
       .and(
         (item) =>
           categories.some((category) => category.id === item.categoryId) &&
-          timeToNowHandler(item.lastReview).days >= reviewBoxes[item.box]
+          timeToNowHandler(item.lastReview).days >= reviewBoxes[item.box],
       )
       .toArray();
     return items;
   } catch (error) {
-    console.log('Error');
+    console.log("Error");
   }
 };

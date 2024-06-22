@@ -13,13 +13,16 @@ export default function ProgressPage() {
   useEffect(() => {
     setIsLoading(true);
     getCategoriesHandler()
-      .then((newCategories?:CategoryTypes[]) => {
+      .then((newCategories?: CategoryTypes[]) => {
         dispatch(categoriesReducer(newCategories!));
         setIsLoading(false);
       })
       .catch(() => console.log("error"));
-      
   }, [dispatch]);
 
-  return <div className="w-full h-screen">{isLoading ? <LoadingPulse /> : <BoxChart />}</div>;
+  return (
+    <div className="w-full h-screen">
+      {isLoading ? <LoadingPulse /> : <BoxChart />}
+    </div>
+  );
 }

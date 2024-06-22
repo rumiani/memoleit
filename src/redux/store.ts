@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import categoryStateSlice from "./slices/categoryStateSlice";
 import settingStateSlice from "./slices/settingStateSlice";
-import itemStateSlice from './slices/itemStateSlice'
-import userStateSlice from './slices/userStateSlice'
+import itemStateSlice from "./slices/itemStateSlice";
+import userStateSlice from "./slices/userStateSlice";
 import pdfStateSlice from "./slices/pdfStateSlice";
 
 export const makeStore = () => {
@@ -12,7 +12,7 @@ export const makeStore = () => {
       itemState: itemStateSlice,
       categoryState: categoryStateSlice,
       settingState: settingStateSlice,
-      pdfState:pdfStateSlice,
+      pdfState: pdfStateSlice,
     },
   });
 };

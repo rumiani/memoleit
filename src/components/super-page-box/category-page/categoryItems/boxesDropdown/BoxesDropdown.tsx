@@ -18,13 +18,13 @@ export default function BoxesDropdown({ categoryId }: { categoryId: string }) {
   const dispatch = useAppDispatch();
 
   const dropdownChangeHnadler = async (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     try {
       const boxNumber = +event.target.value;
       const filteredItemsData = await boxItemsFilterHandler(
         categoryId,
-        boxNumber
+        boxNumber,
       );
       dispatch(allItemsReducer(filteredItemsData!));
     } catch (error) {

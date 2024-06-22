@@ -27,7 +27,7 @@ export default function Item({ params }: { params: { id: string } }) {
             title: item.title,
             body: item.body,
             category: item.category,
-          })
+          }),
         );
         setTimeout(() => {
           setLoading(false);

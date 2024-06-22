@@ -11,7 +11,7 @@ interface InitialDataType {
 
 export const boxChartDataHandler = async (
   data: InitialDataType[],
-  id: string
+  id: string,
 ): Promise<InitialDataType[] | undefined> => {
   try {
     let items;
@@ -26,7 +26,7 @@ export const boxChartDataHandler = async (
 
     if (itemsToReview && itemsToReview) {
       const itemsPending = items.filter(
-        (aItem) => !itemsToReview.some((bItem) => bItem.id === aItem.id)
+        (aItem) => !itemsToReview.some((bItem) => bItem.id === aItem.id),
       );
       itemsToReview.forEach((item: ItemTypes) => {
         data[item.box - 1].Pending += 1;

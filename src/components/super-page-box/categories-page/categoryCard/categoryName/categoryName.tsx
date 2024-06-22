@@ -6,7 +6,11 @@ import { useAppSelector } from "@/src/app/hooks";
 import { capitalize } from "lodash";
 import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
 
-export default function CategoryName({category}:{category:CategoryTypes}) {
+export default function CategoryName({
+  category,
+}: {
+  category: CategoryTypes;
+}) {
   const { categoryOnEdit } = useAppSelector((state) => state.categoryState);
 
   return (
@@ -17,7 +21,7 @@ export default function CategoryName({category}:{category:CategoryTypes}) {
         </div>
       ) : (
         <Link
-          href={getCategoryUrl(category.id,category.name)}
+          href={getCategoryUrl(category.id, category.name)}
           title="Open for more details"
           className="text-blue-500 my-4 text-xl hover:underline"
         >

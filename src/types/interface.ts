@@ -45,7 +45,7 @@ export interface SettingTypes {
   isTextToSpeechOn: boolean;
   textToSpeechLang: string;
   isDictionaryOn: boolean;
-  leitnerTextSelectionMode:boolean;
+  leitnerTextSelectionMode: boolean;
   tour: { reviewTour: boolean; newItemTour: boolean; boxTour: boolean };
 }
 export interface UserTypes {
@@ -80,15 +80,15 @@ export interface LanguagesTypes {
 export interface PdfDBTypes {
   id: string;
   name: string;
-  pdfName:string;
-  file?:Blob;
-  createdAt:number
+  pdfName: string;
+  file?: Blob;
+  createdAt: number;
 }
 export interface PdfStateTypes {
   id: string;
   name: string;
-  pdfName:string;
-  url:string;
-  size:number;
-  createdAt:number
+  pdfName: string;
+  url: string;
+  size: number;
+  createdAt: number;
 }

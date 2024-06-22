@@ -3,7 +3,7 @@ import UserMenu from "./userAvatarMenu/userAvatarMenu";
 import UserAvatar from "./userAvatar";
 import { useAppSelector } from "@/src/app/hooks";
 
-const UserProfileMenu = ({ mobileMenu }:{mobileMenu:boolean}) => {
+const UserProfileMenu = ({ mobileMenu }: { mobileMenu: boolean }) => {
   const { user } = useAppSelector((state) => state.userState);
   const [userMenu, setUserMenu] = useState(false);
   const userMenuElement = useRef<HTMLDivElement>(null);

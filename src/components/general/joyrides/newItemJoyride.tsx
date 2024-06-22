@@ -9,7 +9,7 @@ const JoyrideNewItem = () => {
   const { tour } = useAppSelector((state) => state.settingState);
   const [isClient, setIsClient] = useState(false);
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     db.setting
       .where("name")

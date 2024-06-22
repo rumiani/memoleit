@@ -11,31 +11,28 @@ import LoadingPulse from "../../general/loading-comps/loadingPulse/loadingPulse"
 export default function CategoryPage({ categoryId }: { categoryId: string }) {
   const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const pathName = usePathname()
- const dispatch = useAppDispatch()
-  useEffect(() => {        
+  const pathName = usePathname();
+  const dispatch = useAppDispatch();
+  useEffect(() => {
     findCategoryById(categoryId)
-      .then((category) => {                
-        if(category){
-
-          setIsCategory(true) 
-          dispatch(categoryReducer(category))
-        } 
-         else{
-
-           setIsCategory(false);
-         }
+      .then((category) => {
+        if (category) {
+          setIsCategory(true);
+          dispatch(categoryReducer(category));
+        } else {
+          setIsCategory(false);
+        }
         setIsLoading(false);
       })
       .catch((error) => {
         console.log("error");
       });
-  }, [categoryId,dispatch]);
+  }, [categoryId, dispatch]);
   if (isLoading) {
     return <LoadingPulse />;
   }
   return (
-    <div >
+    <div>
       {!isCategory ? (
         <div className="card_message">
           There&apos;s no catagory with this name.
@@ -50,7 +47,7 @@ export default function CategoryPage({ categoryId }: { categoryId: string }) {
       ) : (
         <div>
           <CategoryOptions />
-          <CategoryItems/>
+          <CategoryItems />
         </div>
       )}
     </div>

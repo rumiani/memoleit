@@ -2,7 +2,7 @@ import { db } from "../services/db";
 import { ItemTypes } from "../types/interface";
 export const boxItemsFilterHandler = async (
   categoryId: string,
-  boxNumber?: number
+  boxNumber?: number,
 ) => {
   try {
     const items = await db.items

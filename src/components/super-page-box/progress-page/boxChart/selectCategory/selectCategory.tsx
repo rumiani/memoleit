@@ -13,7 +13,9 @@ export default function SelectCategory({
 }: {
   handleChange: Function;
 }) {
-  const { category,categories } = useAppSelector((state) => state.categoryState);
+  const { category, categories } = useAppSelector(
+    (state) => state.categoryState,
+  );
   const [input, setInput] = useState("");
   const dispatch = useAppDispatch();
 
@@ -26,11 +28,13 @@ export default function SelectCategory({
   }, [dispatch]);
 
   const dropdownChangeHnadler = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const inputVal = event.target.value;
     setInput(inputVal);
-    dispatch(categoryReducer({...category,name:event.target.name,id:inputVal}));
+    dispatch(
+      categoryReducer({ ...category, name: event.target.name, id: inputVal }),
+    );
     handleChange(inputVal);
   };
   return (

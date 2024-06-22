@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 export default function NewItemForm() {
   const path = usePathname();
   const { title, body, category } = useAppSelector(
-    (state) => state.itemState.formData
+    (state) => state.itemState.formData,
   );
   const [createdMessage, setCreatedMessage] = useState(false);
 

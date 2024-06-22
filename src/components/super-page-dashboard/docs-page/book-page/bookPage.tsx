@@ -37,7 +37,7 @@ export default function BookPage({ id }: { id: string }) {
         return () => {
           document.removeEventListener(
             "selectionchange",
-            handleSelectionChange
+            handleSelectionChange,
           );
         };
       });

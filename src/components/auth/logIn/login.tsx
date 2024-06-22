@@ -5,7 +5,7 @@ import loginPic from "@/public/assets/images/login/login.svg";
 import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import googleLogo from "@/public/assets/images/login/googleLogo.png";
 import { signIn, useSession } from "next-auth/react";
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation";
 
 export default function Login() {
   const { data: session } = useSession();

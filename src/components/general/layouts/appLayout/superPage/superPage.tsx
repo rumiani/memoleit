@@ -26,7 +26,7 @@ export default function SuperPage({ superPage }: { superPage: any }) {
           onClick={() => setShowMenu(!showMenu)}
           className="flex flex-row cursor-pointer justify-between gap-2"
         >
-            <span>{superPage.icon}</span>
+          <span>{superPage.icon}</span>
           <div className="w-full flex justify-between">
             <span className="group-hover:block hidden text-xl font-bold">
               {capitalize(superPage.name)}

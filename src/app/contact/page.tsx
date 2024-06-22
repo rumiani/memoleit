@@ -24,28 +24,41 @@ const Index = () => {
   };
   return (
     <div className="w-full mx-auto max-w-xl">
-      <p>Get in touch with the developer if you have any suggestions or problems that need to be fixed:</p>
+      <p>
+        Get in touch with the developer if you have any suggestions or problems
+        that need to be fixed:
+      </p>
       <div className="flex flex-row max-w-xs mt-16 -mb-20 mx-auto gap-24 justify-center">
-      <Link href={"https://t.me/memoleitapp"}>
-        <button title="Telegram Channel" className="text-blue-500 text-3xl hover:scale-110"> <FaTelegram/></button>
-      </Link>
-      <Link href="mailto:maziar.rumiani@gmail.com">
-        <button title="Send Email" className="text-green-700 text-4xl hover:scale-110"><MdAlternateEmail/></button>
-      </Link>
-      
-    </div>
-    <svg
+        <Link href={"https://t.me/memoleitapp"}>
+          <button
+            title="Telegram Channel"
+            className="text-blue-500 text-3xl hover:scale-110"
+          >
+            {" "}
+            <FaTelegram />
+          </button>
+        </Link>
+        <Link href="mailto:maziar.rumiani@gmail.com">
+          <button
+            title="Send Email"
+            className="text-green-700 text-4xl hover:scale-110"
+          >
+            <MdAlternateEmail />
+          </button>
+        </Link>
+      </div>
+      <svg
         className="mx-auto w-72 h-72"
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
-    >
+      >
         <path
-            d="M0 50 Q40 90 90 50"
-            fill="none"
-            stroke="gray"
-            strokeWidth="0.5"
+          d="M0 50 Q40 90 90 50"
+          fill="none"
+          stroke="gray"
+          strokeWidth="0.5"
         />
-    </svg>
+      </svg>
     </div>
   );
   return (

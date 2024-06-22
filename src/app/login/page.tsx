@@ -8,7 +8,6 @@ export default function Page() {
   const { data: session } = useSession();
   useEffect(() => {
     console.log(session);
-    
   }, [session]);
   return (
     <>
@@ -34,7 +33,10 @@ export default function Page() {
             <Login />
           ) : (
             <div>
-              <p>Welcome, {session.user?.name}, this is your email: {session.user?.email}</p>
+              <p>
+                Welcome, {session.user?.name}, this is your email:{" "}
+                {session.user?.email}
+              </p>
               <LogoutButton />
             </div>
           )}

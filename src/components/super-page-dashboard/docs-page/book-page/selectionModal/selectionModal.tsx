@@ -13,14 +13,9 @@ interface SelectionTypes {
 }
 export default function SelectionModal({ highlightPosition }: SelectionTypes) {
   const { title: highlightedText } = useAppSelector(
-    (state) => state.itemState.formData
+    (state) => state.itemState.formData,
   );
-
 
   const position = getPosition(highlightPosition!);
-  return (
-    <div className="z-50">
-      
-    </div>
-  );
+  return <div className="z-50"></div>;
 }

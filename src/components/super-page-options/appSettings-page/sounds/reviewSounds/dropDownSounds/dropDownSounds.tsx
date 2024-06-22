@@ -22,7 +22,7 @@ export default function DropDownSounds({
         value={soundSrc}
       >
         {sounds.map((sound: { name: number; src: string }, i) => (
-          <option key={i} value={sound.src} >
+          <option key={i} value={sound.src}>
             Sound {sound.name}
           </option>
         ))}

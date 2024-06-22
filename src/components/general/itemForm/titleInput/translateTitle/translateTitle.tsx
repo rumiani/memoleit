@@ -34,7 +34,7 @@ export default function TranslateTitle() {
     const lang = textToSpeechLang.split("-")[0];
     try {
       const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/${lang}/${word}`
+        `https://api.dictionaryapi.dev/api/v2/entries/${lang}/${word}`,
       );
       if (response.status === 404) {
         setLookingUp(false);
@@ -94,7 +94,7 @@ export default function TranslateTitle() {
                             dispatch(
                               formDataReducer({
                                 body: body + " " + lookUpResult,
-                              })
+                              }),
                             );
                           }}
                           className="icon !p-2 hover:scale-110 cursor-pointer"

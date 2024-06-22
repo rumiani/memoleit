@@ -4,7 +4,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-let navLinks = [{ name: "Dashboard", href: "/dashboard/review" },{ name: "Login", href: "/api/auth/signin" }];
+let navLinks = [
+  { name: "Dashboard", href: "/dashboard/review" },
+  { name: "Login", href: "/api/auth/signin" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

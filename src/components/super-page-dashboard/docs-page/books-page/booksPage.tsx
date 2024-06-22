@@ -36,7 +36,9 @@ export default function BooksPage() {
     <div className="p-4 mb-24 sm:mb-16">
       <div>
         {pdfs.length === 0 ? (
-          <div className="text-center text-red-500 my-8">There is no books to read.</div>
+          <div className="text-center text-red-500 my-8">
+            There is no books to read.
+          </div>
         ) : (
           <div className="flex flex-wrap gap-2 justify-around">
             {pdfs.map((book: PdfStateTypes, i: number) => {

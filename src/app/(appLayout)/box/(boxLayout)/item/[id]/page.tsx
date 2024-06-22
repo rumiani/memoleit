@@ -40,23 +40,22 @@ export default function Item({ params }: { params: { id: string } }) {
   if (loading) return <LoadingPulse />;
 
   return (
-    <div>{notFound ? <NotFoundComp /> : <CategoryItem item={item} />}
-    
-    <div className="text-center flex flex-col gap-10 items-center w-full p-4">
-      <div className="flex flex-row gap-4 max-w-xs">
-        <Link
-          href="/dashboard/review"
-          className="text-blue-500 hover:underline"
-        >
-          <button className="primaryBtn">Review</button>
-        </Link>
-        <Link href="/dashboard/new">
-          <button className="primaryBtn">
-            New item
-          </button>
-        </Link>
+    <div>
+      {notFound ? <NotFoundComp /> : <CategoryItem item={item} />}
+
+      <div className="text-center flex flex-col gap-10 items-center w-full p-4">
+        <div className="flex flex-row gap-4 max-w-xs">
+          <Link
+            href="/dashboard/review"
+            className="text-blue-500 hover:underline"
+          >
+            <button className="primaryBtn">Review</button>
+          </Link>
+          <Link href="/dashboard/new">
+            <button className="primaryBtn">New item</button>
+          </Link>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

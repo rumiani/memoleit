@@ -28,7 +28,7 @@ export default function TextToSpeechSpeaker({ text }: { text: string }) {
           playing && "animate-pulse"
         } icon  text-2xl disabled:cursor-not-allowed`}
       >
-        <HiMiniSpeakerWave className="icon"/>
+        <HiMiniSpeakerWave className="icon" />
       </button>
     </div>
   );

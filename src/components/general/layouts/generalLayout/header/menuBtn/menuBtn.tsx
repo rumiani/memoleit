@@ -2,10 +2,10 @@ import React from "react";
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 interface menuProps {
-  mobileMenu: boolean,
-  setMobileMenu:Function
+  mobileMenu: boolean;
+  setMobileMenu: Function;
 }
-const MenuBtn = ({ mobileMenu, setMobileMenu }:menuProps) => {
+const MenuBtn = ({ mobileMenu, setMobileMenu }: menuProps) => {
   return (
     <div
       onClick={() => setMobileMenu(!mobileMenu)}

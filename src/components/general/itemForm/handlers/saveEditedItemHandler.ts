@@ -8,7 +8,7 @@ import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 
 export const saveEditedItemHandler = async (
   { title, body, category }: FormValues,
-  id: string
+  id: string,
 ) => {
   try {
     let item = await db.items.get(id);

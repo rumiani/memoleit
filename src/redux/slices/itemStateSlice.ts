@@ -41,11 +41,11 @@ export const itemStateSlice = createSlice({
     },
     formDataReducer: (
       state,
-      action: PayloadAction<{ [key: string]: string }>
-    ) => {      
+      action: PayloadAction<{ [key: string]: string }>,
+    ) => {
       state.formData = { ...state.formData, ...action.payload };
     },
-    numberOfItemsToReviewReducer: (state, action: PayloadAction<number>) => {            
+    numberOfItemsToReviewReducer: (state, action: PayloadAction<number>) => {
       state.numberOfItemsToReview = action.payload;
     },
   },

@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import deleteCategoryHandler from "../../handlers/deleteCategoryHandler";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 
-export default function CardOptions({category}:{category:CategoryTypes}) {
+export default function CardOptions({ category }: { category: CategoryTypes }) {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -44,16 +44,15 @@ export default function CardOptions({category}:{category:CategoryTypes}) {
   const deleteHandler = async () => {
     setShowOptions(false);
     try {
-      await  deleteCategoryHandler(category.id)
-      const categories = await getCategoriesHandler()
-      if(categories){
+      await deleteCategoryHandler(category.id);
+      const categories = await getCategoriesHandler();
+      if (categories) {
         dispatch(categoriesReducer(categories));
       }
-      toast.success(category.name + " category was successfully deleted.",{
-            autoClose: 2000,
-          });
-    } catch (error:any) {
-      
+      toast.success(category.name + " category was successfully deleted.", {
+        autoClose: 2000,
+      });
+    } catch (error: any) {
       if (error.name === "404") {
         toast.error(category.name + " was not found");
       } else {

@@ -37,7 +37,7 @@ export default function ReviewItemCard() {
         toast.success(
           item.box === 5
             ? "Item has been archived."
-            : `The item has been moved to the box ${item.box + 1}.`
+            : `The item has been moved to the box ${item.box + 1}.`,
         );
       } else {
         isReviewSoundOn && new Audio(wrongAnswerSoundSrc).play();
@@ -73,14 +73,14 @@ export default function ReviewItemCard() {
       <div className="flex flex-row">
         <ItemInfo item={item} />
         <div className="relative w-full flex justify-between">
-          <ItemCategory item={item}/>
+          <ItemCategory item={item} />
           <ItemOptions item={item} />
         </div>
       </div>
       <ItemProgress itemBoxNumber={item.box} />
       <ItemTitle item={item} />
       <ItemBody body={item.body} />
-      <Answer goToNextItem={goToNextItem} item={item}/>
+      <Answer goToNextItem={goToNextItem} item={item} />
     </div>
   );
 }

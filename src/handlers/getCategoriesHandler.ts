@@ -5,8 +5,8 @@ export const getCategoriesHandler = async () => {
   try {
     const categories = await db.categories.toArray();
     const sortedCategories = categories.sort(
-      (a: CategoryTypes, b: CategoryTypes) => +a.createdAt - b.createdAt
-    );    
+      (a: CategoryTypes, b: CategoryTypes) => +a.createdAt - b.createdAt,
+    );
     return sortedCategories;
   } catch (error) {
     console.log("Error");

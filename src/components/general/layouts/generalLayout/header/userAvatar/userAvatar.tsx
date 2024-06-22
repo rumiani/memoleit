@@ -1,15 +1,12 @@
 import React, { MouseEventHandler } from "react";
 import Image from "next/image";
 interface avatarProps {
-  userMenuHandler:MouseEventHandler<HTMLDivElement>,
-  url:string
+  userMenuHandler: MouseEventHandler<HTMLDivElement>;
+  url: string;
 }
-const UserAvatar = ({ userMenuHandler, url }:avatarProps) => {
+const UserAvatar = ({ userMenuHandler, url }: avatarProps) => {
   return (
-    <div
-      onClick={userMenuHandler}
-      className="w-7 h-7 md:cursor-pointer"
-    >
+    <div onClick={userMenuHandler} className="w-7 h-7 md:cursor-pointer">
       <Image
         width={42}
         height={42}

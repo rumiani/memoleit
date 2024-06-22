@@ -12,7 +12,7 @@ export default function LangDropdown() {
   const { textToSpeechLang } = useAppSelector((state) => state.settingState);
   const dispatch = useAppDispatch();
   const dropdownChangeHnadler = async (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     try {
       const langCode: string = event.target.value;

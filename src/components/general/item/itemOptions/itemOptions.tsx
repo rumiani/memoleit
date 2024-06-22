@@ -50,7 +50,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
       }
       if (pageName === "category") {
         const filteredItemsData = await itemsCategoryIdFilterHandler(
-          category.id
+          category.id,
         );
         dispatch(allItemsReducer(filteredItemsData));
         router.push(`/box/category/${item.categoryId}/${item.category}`);

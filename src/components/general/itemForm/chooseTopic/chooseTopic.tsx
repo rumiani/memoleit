@@ -27,7 +27,7 @@ export default function ChooseTopic({
         className="third-element primaryInput !p-1"
         placeholder="Add or Choose a category"
         {...register("category", {
-          onChange:handleInputChange,
+          onChange: handleInputChange,
           required: "Category is required",
           pattern: {
             value: /^[a-zA-Z0-9\s\-]+$/,
