@@ -6,15 +6,19 @@ import { toast } from "react-toastify";
 import { allPdfsReducer } from "@/src/redux/slices/pdfStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { PdfStateTypes } from "@/src/types/interface";
-
+import { CgAttachment } from "react-icons/cg";
+import { MdOutlineAddBox } from "react-icons/md";
 export default function NewPdfPage() {
-  const [displayedName, setDisplayedName] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [displayedName, setDisplayedName] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files && files.length > 0) setSelectedFile(files[0]);
+    if (files && files.length > 0) {
+      setSelectedFile(files[0]);
+      setDisplayedName(files[0].name);
+    }
   };
 
   const handleAddPdf = async () => {
@@ -44,6 +48,7 @@ export default function NewPdfPage() {
       });
       setSelectedFile(null);
       fileInputRef.current!.value = "";
+      setDisplayedName('')
       toast.success("The PDF file has been added.");
 
       const pdfs = await db.pdfs.toArray();
@@ -66,24 +71,26 @@ export default function NewPdfPage() {
   return (
     <div className="p-4 max-w-96 mx-auto flex flex-col gap-2 items-center">
       <h1 className="font-bold text-center">Add PDF Files</h1>
-      <input
-        className=" h-10 text-left"
-        type="file"
-        accept="application/pdf"
-        onChange={handleFileChange}
-        ref={fileInputRef}
-      />
-      <div className="mx-auto flex flex-row justify-center items-center">
+      <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
+        <div className="absolute left-0 w-8 h-10 py-2">
+          <CgAttachment className="absolute w-8 h-6" />
+          <input
+            className=" w-8 h-10 opacity-0 absolute cursor-pointer"
+            type="file"
+            accept="application/pdf"
+            onChange={handleFileChange}
+            ref={fileInputRef}
+          />
+        </div>
         <input
-          className="primaryInput scale-75"
+          className="primaryInput w-full h-10 !pl-8 !pr-10"
           type="text"
           value={displayedName}
           onChange={(e) => setDisplayedName(e.target.value)}
-          placeholder="PDF Displyed Name"
+          placeholder="PDF name"
         />
-        <button onClick={handleAddPdf} className="primaryBtn h-10 mx-auto">
-          Add PDF
-        </button>
+
+        <MdOutlineAddBox onClick={handleAddPdf} className="absolute right-0 text-green-600 icon" />
       </div>
     </div>
   );
