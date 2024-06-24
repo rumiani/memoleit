@@ -14,6 +14,7 @@ import {
 } from "@/src/redux/slices/itemStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
+import Link from "next/link";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
@@ -53,9 +54,22 @@ const Form = () => {
         method="dialog"
         className="h-full text-lg flex flex-col justify-center p-1 w-full mx-auto max-w-96"
       >
-        <p className="text-center w-full my-2">
-          Choose your category to review
-        </p>
+        {isEmpty(categories) ? (
+          <p className="text-center w-full my-2">
+            Go add a{" "}
+            <Link
+              href="/dashboard/new"
+              className="text-blue-500 hover:underline"
+            >
+              new item
+            </Link>{" "}
+            to learn.
+          </p>
+        ) : (
+          <p className="text-center w-full my-2">
+            Choose your category to review
+          </p>
+        )}
         <div className="h-64 overflow-y-auto">
           {isEmpty(categories) ? (
             <div className="text-red-500 text-center my-16">No categories.</div>

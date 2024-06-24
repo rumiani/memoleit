@@ -52,7 +52,7 @@ export default function ReviewPage() {
           {numberOfItemsToReview === 0 ? (
             <div className="my-16 flex flex-col items-center">
               <span className="text-green-600">
-                You have reviewed all the items.
+                There is no item to review.
               </span>
               <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
             </div>
