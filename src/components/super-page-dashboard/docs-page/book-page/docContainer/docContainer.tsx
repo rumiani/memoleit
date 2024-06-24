@@ -1,24 +1,18 @@
 import React, { ReactElement, useRef, useState } from "react";
-import {
-  Viewer,
-  Worker,
-  SpecialZoomLevel,
-  RotateDirection,
-} from "@react-pdf-viewer/core";
+import { Viewer, Worker, RotateDirection } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 import "@react-pdf-viewer/full-screen/lib/styles/index.css";
 import { GlobalWorkerOptions } from "pdfjs-dist";
-import { toolbarPlugin } from "@react-pdf-viewer/toolbar";
 GlobalWorkerOptions.workerSrc = "./pdfWorker/pdf.worker.min.js";
 import type { ToolbarSlot, ToolbarProps } from "@react-pdf-viewer/toolbar";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/toolbar/lib/styles/index.css";
 import { CiSquarePlus } from "react-icons/ci";
 import FullscreenBtn from "../documentOptions/fullscreenBtn/fullscreenBtn";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppSelector } from "@/src/app/hooks";
 import { toast } from "react-toastify";
 import SelectedTextDialog from "./selectedTextDialog/selectedTextDialog";
 
@@ -40,13 +34,17 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
           Zoom,
         } = slots;
         return (
-          <div className="flex flex-row">
+          <div className="flex flex-row items-center gap-2">
             <Rotate direction={RotateDirection.Forward} />
-            <ZoomOut />
+            {/* <ZoomOut />
+            <ZoomIn /> */}
             <Zoom />
-            <ZoomIn />
-            <GoToFirstPage />
-            <NumberOfPages />
+            <div className="absolute w-32 right-0">
+              <div className="flex flex-row justify-between items-center">
+                <p>Pages:</p> <NumberOfPages />
+                <GoToFirstPage />
+              </div>
+            </div>
             <ShowSearchPopover />
             <FullscreenBtn documentElement={documentElement.current!} />
             <CiSquarePlus
@@ -73,7 +71,10 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
   });
 
   return (
-    <div ref={documentElement} className="h-96 overflow-y-auto mb-24 sm:mb-0">
+    <div
+      ref={documentElement}
+      className="h-screen overflow-y-auto mb-24 sm:mb-0"
+    >
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
         <Viewer
           fileUrl={pdfUrl}
