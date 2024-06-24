@@ -23,4 +23,5 @@ export interface initialCategoryStateTypes {
 export interface initialPdfStateTypes {
   pdf: PdfStateTypes;
   pdfs: PdfStateTypes[];
+  pdfOnEdit:string;
 }

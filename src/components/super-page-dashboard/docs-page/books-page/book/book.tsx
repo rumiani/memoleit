@@ -2,11 +2,11 @@ import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
 import { PdfStateTypes } from "@/src/types/interface";
 import Link from "next/link";
 import React from "react";
+import BookOptions from "./bookOptions/bookOptions";
+import BookName from "./bookName/bookName";
 
 export default function Book({ book }: { book: PdfStateTypes }) {
-  console.log(book);
   function formatFileSize(sizeInBytes: number): string {
-    
     const sizeInKB = sizeInBytes / 1024;
     if (sizeInKB < 1024) {
       return `${sizeInKB.toFixed(0)} kB`;
@@ -16,18 +16,15 @@ export default function Book({ book }: { book: PdfStateTypes }) {
     }
   }
   return (
-    <div className="relative w-52 h-36 border border-gray-400 rounded-lg p-4 flex flex-col">
-      <span className="text-xs font-bold">
-        {timeToNowHandler(book.createdAt).daysHoursAgo}
-      </span>
-      <Link href={`/dashboard/docs/${book.id}`}>
-        <span
-          title={book.name}
-          className="text-blue-500 p-2 hover:text-blue-700"
-        >
-          {book.name}
+    <div className="relative w-72 h-52 border border-gray-400 rounded-lg p-4 flex flex-col">
+      <div className="flex flex-row justify-between mb-4">
+        <span className="text-xs font-bold">
+          {timeToNowHandler(book.createdAt).daysHoursAgo}
         </span>
-      </Link>
+        <BookOptions book={book} />
+      </div>
+
+      <BookName book={book}/>
       <span className="absolute bottom-4 left-4">
         Size: {formatFileSize(book.size!)}
       </span>

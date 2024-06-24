@@ -5,6 +5,7 @@ import LoadingPulses from "../../../general/loading-comps/loadingPulses/loadingP
 import Book from "./book/book";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { allPdfsReducer } from "@/src/redux/slices/pdfStateSlice";
+import { getPDFsHandler } from "../handlers/getPDFshandler";
 
 export default function BooksPage() {
   const { pdfs } = useAppSelector((state) => state.pdfState);
@@ -14,18 +15,8 @@ export default function BooksPage() {
   useEffect(() => {
     const fetchPdfs = async () => {
       try {
-        const pdfs = await db.pdfs.toArray();
-        const statePdfs: PdfStateTypes[] = [];
-        pdfs.forEach((pdf) => {
-          const { file, ...rest } = pdf;
-          const statePdf = {
-            ...rest,
-            url: URL.createObjectURL(pdf.file!),
-            size: pdf.file!.size,
-          };
-          statePdfs.push(statePdf);
-        });
-        dispatch(allPdfsReducer(statePdfs));
+        const pdfs = await getPDFsHandler();
+        if (pdfs) dispatch(allPdfsReducer(pdfs));
         setLoading(false);
       } catch (error) {}
     };
