@@ -10,12 +10,11 @@ GlobalWorkerOptions.workerSrc = "./pdfWorker/pdf.worker.min.js";
 import type { ToolbarSlot, ToolbarProps } from "@react-pdf-viewer/toolbar";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/toolbar/lib/styles/index.css";
-import { CiSquarePlus } from "react-icons/ci";
 import FullscreenBtn from "../documentOptions/fullscreenBtn/fullscreenBtn";
 import { useAppSelector } from "@/src/app/hooks";
 import { toast } from "react-toastify";
 import SelectedTextDialog from "./selectedTextDialog/selectedTextDialog";
-
+import { IoIosAddCircle } from "react-icons/io";
 export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
   const { title } = useAppSelector((state) => state.itemState.formData);
   const documentElement = useRef<HTMLDivElement>(null);
@@ -24,41 +23,30 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
   const renderToolbar = (Toolbar: (props: ToolbarProps) => ReactElement) => (
     <Toolbar>
       {(slots: ToolbarSlot) => {
-        const {
-          ZoomOut,
-          ZoomIn,
-          Rotate,
-          GoToFirstPage,
-          NumberOfPages,
-          ShowSearchPopover,
-          Zoom,
-        } = slots;
+        const { GoToFirstPage, NumberOfPages, ShowSearchPopover, Zoom } = slots;
         return (
-          <div className="flex flex-row items-center gap-2">
-            <Rotate direction={RotateDirection.Forward} />
-            {/* <ZoomOut />
-            <ZoomIn /> */}
-            <Zoom />
-            <div className="absolute w-32 right-0">
-              <div className="flex flex-row justify-between items-center">
-                <p>Pages:</p> <NumberOfPages />
-                <GoToFirstPage />
-              </div>
+          <div className="flex w-full flex-row justify-between">
+            <span className="flex flex-row items-center w-fit">
+              <ShowSearchPopover />
+              <IoIosAddCircle
+                className={` cursor-pointer !w-6 !h-6 !p-0 flex self-center ${
+                  title.length > 0
+                    ? "text-green-500 font-bold  animate-spin"
+                    : "font-thin text-gray-500"
+                }`}
+                onClick={() => {
+                  title.length > 0
+                    ? setDialogOpen(true)
+                    : toast.error("You have not hilighted any words.");
+                }}
+              />
+            </span>
+            <div className="flex flex-row w-fit justify-between items-center">
+              <FullscreenBtn documentElement={documentElement.current!} />
+              <Zoom />
+              <p>Pages:</p> <NumberOfPages />
+              <GoToFirstPage />
             </div>
-            <ShowSearchPopover />
-            <FullscreenBtn documentElement={documentElement.current!} />
-            <CiSquarePlus
-              className={`icon !w-8 !h-8 !p-0 flex self-center ${
-                title.length > 0
-                  ? "text-green-500 font-bold animate-pulse 0.5"
-                  : "font-thin text-gray-500"
-              }`}
-              onClick={() => {
-                title.length > 0
-                  ? setDialogOpen(true)
-                  : toast.error("You have not hilighted any words.");
-              }}
-            />
           </div>
         );
       }}
