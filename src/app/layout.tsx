@@ -9,7 +9,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "../components/general/layouts/generalLayout/footer/footer";
 import Header from "../components/general/layouts/generalLayout/header/header";
 import { getServerSession } from "next-auth";
-import usePushNotifications from "../components/hooks/usePushNotifications";
 
 const inter = Inter({ subsets: ["latin"] });
 
