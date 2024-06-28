@@ -6,8 +6,8 @@ import { ToastContainer } from "react-toastify";
 import ReduxProvider from "../redux/provider";
 import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "../components/general/layouts/generalLayout/footer/footer";
-import Header from "../components/general/layouts/generalLayout/header/header";
+import Footer from "@/src/components/general/layouts/generalLayout/footer/footer";
+import Header from "@/src/components/general/layouts/generalLayout/header/header";
 import { getServerSession } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: APP_TITLE_TEMPLATE,
   },
   description: APP_DESCRIPTION,
-  manifest: "./manifest.json",
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

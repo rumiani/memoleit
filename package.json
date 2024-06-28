@@ -31,7 +31,6 @@
     "react": "^18",
     "react-content-loader": "^7.0.0",
     "react-dom": "^18",
-    "react-draft-wysiwyg": "^1.15.0",
     "react-hook-form": "^7.51.1",
     "react-icons": "^5.0.1",
     "react-joyride": "^2.8.2",
@@ -40,9 +39,7 @@
     "recharts": "^2.12.4",
     "sharp": "^0.33.3",
     "ts-jest": "^29.1.2",
-    "uuid": "^9.0.1",
-    "web-push": "^3.6.7",
-    "zod": "^3.23.8"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
@@ -54,7 +51,6 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/uuid": "^9.0.8",
-    "@types/web-push": "^3.6.3",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.3",

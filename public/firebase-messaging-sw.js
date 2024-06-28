@@ -1,9 +1,9 @@
-importScripts('https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js');
-
-
+importScripts("https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js");
+// import { onBackgroundMessage } from "firebase/messaging/sw";
+const { onBackgroundMessage } = require('firebase/messaging/sw');
 firebase.initializeApp({
-  apiKey: "AIzaSyADvEFH9oGlRbDw4mTDS0SGHbAQJoq1SWU",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "memoleit.firebaseapp.com",
   projectId: "memoleit",
   storageBucket: "memoleit.appspot.com",
@@ -13,3 +13,19 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+
+onBackgroundMessage(messaging, (payload) => {
+  console.log(
+    "[firebase-messaging-sw.js] Received background message ",
+    payload,
+  );
+  // Customize notification here
+  console.log(payload.notification);
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: payload.notification.icon,
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});

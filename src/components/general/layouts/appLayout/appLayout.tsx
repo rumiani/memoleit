@@ -7,8 +7,8 @@ import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
-import firebase from '@/firebase';
-import 'firebase/messaging';
+import { generateToken } from "@/src/notifications/firebase";
+
 interface Link {
   url: string;
   title: string;
@@ -95,14 +95,7 @@ export default function ItemsNav() {
         console.log("Error");
       });
 
-
-      
-      
-      const registerMessagingService = async () => {
-        const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
-        firebase.messaging().useServiceWorker(registration);
-      };
-      registerMessagingService();
+      // generateToken()
   }, [dispatch]);
   return (
     <div className="group fixed left-0 bottom-0 sm:top-20 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
