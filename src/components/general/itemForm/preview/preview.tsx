@@ -1,6 +1,5 @@
 import { useAppSelector } from "@/src/app/hooks";
 import React, { useState } from "react";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MdPreview } from "react-icons/md";
 import Dialog from "../../dialog/dialog";
 import ItemBody from "../../item/itemBody/itemBody";
