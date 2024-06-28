@@ -16,7 +16,7 @@ export default function CategoryDelete({
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg font-bold text-red-400 hover:text-red-600"
+        className="optionsBtn text-red-400 hover:text-red-600"
       >
         Delete
       </button>

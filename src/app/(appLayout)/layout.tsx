@@ -9,7 +9,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <section className="relative">
-      <nav className="w-full h-full bg-red-500">
+      <nav>
         {" "}
         <ItemsNav />
       </nav>

@@ -153,7 +153,7 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
   return (
     <div
       ref={documentElement}
-      className="h-screen flex flex-row overflow-y-auto mb-24 sm:mb-0"
+      className="flex flex-col overflow-y-auto mb-24 sm:mb-0"
     >
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
         <Viewer

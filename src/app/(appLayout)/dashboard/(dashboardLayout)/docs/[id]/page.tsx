@@ -3,9 +3,5 @@ import BookPage from "@/src/components/super-page-dashboard/docs-page/book-page/
 import React from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
-  return (
-    <div>
-      <BookPage id={params.id} />
-    </div>
-  );
+  return <BookPage id={params.id} />;
 }

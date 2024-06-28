@@ -12,7 +12,7 @@ export default function BookPage({ id }: { id: string }) {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  useEffect(() => {    
     db.pdfs.get(id).then((book) => {
       if (!book) return toast.error("PDF was not found");
       dispatch(formDataReducer({ category: makeUrlFriendly(book.name) }));
@@ -21,33 +21,23 @@ export default function BookPage({ id }: { id: string }) {
       setPdfUrl(url);
     });
 
-    db.setting
-      .where("name")
-      .equals("setting")
-      .first()
-      .then((setting) => {
-        if (!setting?.leitnerTextSelectionMode!) return;
-        const handleSelectionChange = () => {
-          const selection = window.getSelection();
-          if (selection && selection.rangeCount > 0) {
-            const selectedText = selection.toString().trim();
-            if (selectedText.length > 0) {
-              dispatch(formDataReducer({ title: selectedText }));
-            }
-          }
-        };
-        document.addEventListener("selectionchange", handleSelectionChange);
-        return () => {
-          document.removeEventListener(
-            "selectionchange",
-            handleSelectionChange,
-          );
-        };
-      });
+    const handleSelectionChange = async () => {
+      const setting = await db.setting.where("name").equals("setting").first();
+      if (!setting?.leitnerTextSelectionMode!) return;
+      const selection = window.getSelection();
+      if (selection && selection.rangeCount > 0) {
+        const selectedText = selection.toString().trim();
+        if (selectedText.length > 0)
+          dispatch(formDataReducer({ title: selectedText }));
+      }
+    };
+    document.addEventListener("selectionchange", handleSelectionChange);
+    return () =>
+      document.removeEventListener("selectionchange", handleSelectionChange);
   }, [id, dispatch]);
 
   return (
-    <div className="relative my-4">
+    <div className="relative my-4 -mx-4">
       {pdfUrl && (
         <div className="relative">
           <h1 className="font-bold text-center">{capitalize(category)}</h1>

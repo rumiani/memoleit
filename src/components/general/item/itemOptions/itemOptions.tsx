@@ -65,22 +65,22 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   return (
     <div className="z-10 relative">
       <DialogOptions showOptions={showOptions} setShowOptions={setShowOptions}>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">
           <Link
             href={`/dashboard/edit/${item.id}`}
-            className=" text-yellow-500 hover:text-yellow-700"
+            className=" text-yellow-500 hover:text-yellow-700 optionsBtn"
           >
             Edit
           </Link>
           <Link
             href={`/box/item/${item.id}`}
-            className=" text-blue-400 hover:text-blue-600"
+            className=" text-blue-400 hover:text-blue-600 optionsBtn"
           >
             Open Item
           </Link>
           <button
             onClick={() => removeBtnFunction()}
-            className="  text-red-400 hover:text-red-600"
+            className="w-full  text-red-400 hover:text-red-600 optionsBtn "
           >
             Remove
           </button>

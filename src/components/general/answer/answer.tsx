@@ -10,13 +10,15 @@ export default function Answer({ goToNextItem, item }: AnswerTypes) {
       <div className="buttons flex justify-around w-full gap-2">
         <button
           onClick={() => goToNextItem(item, false)}
-          className="third-element primaryBtn !px-0 !w-42 !bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
+          className="third-element redBtn"
+          title="I don't remember"
         >
-          I don&apos;t know
+          Not sure
         </button>
         <button
           onClick={() => goToNextItem(item, true)}
-          className="fourth-element primaryBtn !bg-green-500  disabled:cursor-not-allowed disabled:opacity-50"
+          className="fourth-element greenBtn"
+          title="I know it"
         >
           I know
         </button>

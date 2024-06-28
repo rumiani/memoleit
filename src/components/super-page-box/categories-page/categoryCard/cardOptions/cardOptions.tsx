@@ -67,7 +67,7 @@ export default function CardOptions({ category }: { category: CategoryTypes }) {
       <DialogOptions setShowOptions={setShowOptions} showOptions={showOptions}>
         <button
           onClick={editHandler}
-          className="mt-2 h-8 w-32 mx-auto hover:shadow-md rounded-lg text-yellow-400 font-bold hover:text-yellow-600"
+          className="optionsBtn text-yellow-400 hover:text-yellow-600"
         >
           Edit
         </button>{" "}

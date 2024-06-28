@@ -5,9 +5,9 @@ import ReviewPage from "@/src/components/super-page-dashboard/review-page/Review
 
 export default function Page() {
   return (
-    <div>
+    <>
       <ReviewJoyride />
       <ReviewPage />
-    </div>
+    </>
   );
 }
