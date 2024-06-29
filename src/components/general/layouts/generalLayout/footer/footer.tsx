@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="sm:fixed bottom-0 w-full bg-gray-800 text-white p-2">
+    <footer className="fixed bottom-0 w-full bg-gray-800 text-white p-2">
       <div className="container mx-auto">
         <div className="text-center">
           <Link href="/faq" className="gen_link m-4">

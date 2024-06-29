@@ -33,7 +33,7 @@ export const appDataInitialiser = async () => {
       id: categoryId,
       userId: userIdTest,
       name: makeUrlFriendly("11 plus"),
-      status: 1,
+      status: 0,
       createdAt: Date.now() - 1000 * 3600 * 1000,
     };
     await db.categories.add(category);

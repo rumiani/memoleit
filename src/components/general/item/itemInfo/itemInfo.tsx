@@ -16,7 +16,7 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
       <button
         onClick={openDialog}
         title="This is the progress bar"
-        className="mr-2 mt-5 text-md text-gray-600 h-3 hover:text-gray-900 rounded-full"
+        className="mr-2 mt-4 text-md w-4 h-4 text-gray-600 hover:text-gray-900 rounded-full"
       >
         <IoInformationCircleOutline />
       </button>

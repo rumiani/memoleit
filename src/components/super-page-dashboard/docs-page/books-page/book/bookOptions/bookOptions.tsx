@@ -35,13 +35,13 @@ export default function BookOptions({ book }: { book: PdfStateTypes }) {
         <div className="flex flex-col gap-2">
           <button
             onClick={editHandler}
-            className=" text-yellow-500 hover:text-yellow-700"
+            className="optionsBtn text-yellow-500 hover:text-yellow-700 "
           >
             Edit Name
           </button>
           <button
             onClick={() => removeBtnFunction()}
-            className="  text-red-400 hover:text-red-600"
+            className="optionsBtn  text-red-400 hover:text-red-600"
           >
             Remove
           </button>

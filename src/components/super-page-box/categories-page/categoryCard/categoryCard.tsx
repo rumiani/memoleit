@@ -6,6 +6,7 @@ import CategoryName from "./categoryName/categoryName";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import ItemsInfo from "@/src/components/general/itemsInfo/itemsInfo";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import Image from "next/image";
 
 export default function CategoryCard({
   category,
@@ -26,7 +27,7 @@ export default function CategoryCard({
     });
   }, [category.id, categories]);
   return (
-    <div className="w-full max-w-72 p-4 rounded-lg border border-gray-300 shadow-sm shadow-gray-200">
+    <div className="bg-yellow-50 w-full max-w-72 p-4 rounded-lg border border-gray-300 shadow-sm shadow-gray-200">
       <div className=" flex flex-row justify-between mb-4">
         <span
           title={"Created At: " + startedDate}

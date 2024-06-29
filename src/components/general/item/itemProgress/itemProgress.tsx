@@ -19,8 +19,8 @@ export default function ItemProgress({
             <span
               className={`${
                 (itemBoxNumber > 5 || boxNumber <= itemBoxNumber) &&
-                "bg-green-700 text-white"
-              } bg-gray-200  w-full h-[2px] text-center rounded-d`}
+                "bg-green-800"
+              } bg-gray-300  w-full h-[2px] rounded-md`}
             ></span>
           </div>
         );

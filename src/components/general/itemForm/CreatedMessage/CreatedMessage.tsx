@@ -19,15 +19,13 @@ const CreatedMessage = ({
     createdMsgHandler();
   };
   return (
-    <div className="text-center flex flex-col gap-10 items-center w-full p-4">
-      <div className="flex flex-row gap-4 max-w-xs">
-        <Link href="/box/categories" className="text-blue-500 hover:underline">
-          <button className="primaryBtn">Categories</button>
-        </Link>
-        <button className="primaryBtn" onClick={() => newItemHandler()}>
-          New item
-        </button>
-      </div>
+    <div className="flex flex-row justify-center items-center gap-2 mx-auto my-12">
+      <Link href="/box/categories" className="text-blue-500 hover:underline">
+        <button className="primaryBtn !w-40">Categories</button>
+      </Link>
+      <button className="primaryBtn !w-40" onClick={() => newItemHandler()}>
+        New item
+      </button>
     </div>
   );
 };

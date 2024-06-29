@@ -31,30 +31,29 @@ export const DialogOptions: React.FC<DialogOptionsProps> = ({
   }, [showOptions, setShowOptions]);
   return (
     <div className="relative">
-      {showOptions ? (
+      {showOptions && (
         <div
           ref={modelRef}
-          className="absolute right-0 flex flex-col top-0 w-52 h-fit rounded-lg shadow-gray-400 shadow-md bg-white text-center"
+          className="absolute right-5 top-9 py-2 flex flex-col w-44 h-fit rounded-lg shadow-gray-400 shadow-md bg-white text-center"
         >
-          <button
-            onClick={() => setShowOptions(false)}
-            className="absolute right-2 top-2 flex justify-center items-center w-8 h-8 rounded-full p-1 text-xl text-red-500 hover:bg-red-200 "
-          >
-            <IoClose />
-          </button>
-          <div className="pt-10 flex flex-col ">
           {children}
-          </div>
         </div>
-      ) : (
-        <button
-          onClick={() => setShowOptions(true)}
-          className="icon absolute right-0"
-          title="Options"
-        >
-          <BsThreeDotsVertical />
-        </button>
       )}
+      <div className="icon h-10 w-10 p-1">
+
+      {showOptions ? (
+        <IoClose
+        onClick={() => setShowOptions(false)}
+        className="w-full h-full  p-1"
+        />
+      ) : (
+        <BsThreeDotsVertical
+        onClick={() => setShowOptions(true)}
+        className="w-full h-full p-2"
+        title="Options"
+        />
+      )}
+      </div>
     </div>
   );
 };

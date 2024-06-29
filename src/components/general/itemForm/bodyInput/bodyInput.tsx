@@ -1,9 +1,10 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { FaWindowClose } from "react-icons/fa";
+
 interface BodyProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
@@ -11,15 +12,17 @@ interface BodyProps {
 const BodyInput = ({ register, error }: BodyProps) => {
   const { formData } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
-  const handleInputChange = (event: { target: { name: any; value: any } }) => {
-    const { name, value } = event.target;
-    dispatch(formDataReducer({ [name]: value }));
+
+  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(formDataReducer({ body: event.target.value }));
+    event.target.style.height = "auto";
+    event.target.style.height = event.target.scrollHeight + "px";
   };
 
   return (
     <div className=" w-full second-element">
       <textarea
-        rows={6}
+        rows={5}
         dir="auto"
         className="primaryInput"
         id="inputBody"

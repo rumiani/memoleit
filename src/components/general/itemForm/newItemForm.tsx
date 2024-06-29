@@ -67,17 +67,17 @@ export default function NewItemForm() {
       {createdMessage ? (
         <CreatedMessage createdMsgHandler={() => setCreatedMessage(false)} />
       ) : (
-        <div className="relative max-w-2xl mx-auto flex flex-col gap-2 my-4">
+        <div
+          className={`${
+            path.split("/")[2] === "new" ? "bg-green-100" : "bg-blue-100"
+          } relative max-w-2xl mx-auto gap-2 max-h-96 overflow-y-auto`}
+        >
           <form
             className="flex flex-col justify-center"
             noValidate
             onSubmit={handleSubmit(submitHandler)}
           >
-            <div
-              className={`${
-                path.split("/")[2] === "new" ? "bg-green-300" : "bg-blue-300"
-              } flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl  `}
-            >
+            <div className="flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl">
               <TitleInput register={register} error={errors.title?.message} />
               <BodyInput register={register} error={errors.body?.message} />
               <ChooseTopic
@@ -85,14 +85,12 @@ export default function NewItemForm() {
                 error={errors.category?.message}
               />
             </div>
-            <button className="primaryBtn mx-auto">
+            <button className="primaryBtn !mx-auto">
               {path.split("/")[2] === "edit" ? "Update" : "Save"}
             </button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>
-          <span className="absolute bottom-1 left-4">
-            <Preview />
-          </span>
+          <Preview />
         </div>
       )}
     </>

@@ -46,7 +46,8 @@ export default function ChooseTopic({
       {categories && categories?.length > 0 && (
         <datalist id="categories">
           {categories.map((category) => {
-            return <option key={category.name} value={category.name} />;
+            return <option  className="bg-red-500"
+            key={category.name} value={category.name} />;
           })}
         </datalist>
       )}

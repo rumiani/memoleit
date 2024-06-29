@@ -7,7 +7,7 @@ import TextToSpeechSpeaker from "../../textToSpeech/textToSpeech";
 export default function ItemTitle({ item }: { item: ItemTypes }) {
   const { isTextToSpeechOn } = useAppSelector((state) => state.settingState);
   return (
-    <div className="flex flex-row relative my-8">
+    <div className="flex flex-row items-center relative my-8">
       {isTextToSpeechOn && (
         <span className="absolute left-0 second-element">
           <TextToSpeechSpeaker text={item.title} />
