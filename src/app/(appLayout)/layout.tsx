@@ -8,12 +8,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <section className="relative">
-      <nav>
-        {" "}
-        <ItemsNav />
-      </nav>
+    <div className="relative px-2 sm:px-6 lg:px-8">
+      <ItemsNav />
       <div className="sm:ml-14">{children}</div>
-    </section>
+    </div>
   );
 }

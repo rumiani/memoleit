@@ -98,11 +98,11 @@ export default function ItemsNav() {
       // generateToken()
   }, [dispatch]);
   return (
-    <div className="group fixed left-0 bottom-0 sm:top-20 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
+    <nav className="group fixed sm:absolute left-0 bottom-0 sm:bottom-0 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
       {Object.values(superPages).map((superPage, i) => {
         return <SuperPage key={i} superPage={superPage} />;
       })}
       <div></div>
-    </div>
+    </nav>
   );
 }

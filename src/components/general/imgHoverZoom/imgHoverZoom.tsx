@@ -13,8 +13,7 @@ export default function ImgHoverZoom({ src, alt, className }: props) {
         src={src}
         width={100}
         alt={alt}
-        loading="lazy"
-        className={`w-full transition-transform duration-1000 hover:scale-110 -z-10 ${className}`}
+        className={`w-full  h-full transition-transform duration-1000 hover:scale-110 -z-10 ${className}`}
       />
     </div>
   );

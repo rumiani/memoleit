@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <nav
       ref={targetRef}
-      className="z-50 h-20 top-0 fixed bg-gray-800 w-full px-4 py-2 flex flex-col sm:flex-row justify-between"
+      className="absolute z-50 w-full  h-20 top-0 bg-gray-800 px-4 py-2 flex flex-col sm:flex-row justify-between"
     >
       <div className="flex items-center justify-between w-full sm:w-auto">
         <Link href={"/"}>

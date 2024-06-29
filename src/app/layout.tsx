@@ -66,17 +66,21 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={`${inter.className} mx-auto max-w-screen-2xl h-screen`}>
+      <body>
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
         <NextAuthProvider session={session}>
           <ReduxProvider>
             <SpeedInsights />
             <ToastContainer limit={3} autoClose={3000} closeOnClick />
-            <Header />
-            <main className="pt-24 px-2 sm:px-6 lg:px-8 break-words">
-              {children}
-            </main>
-            <Footer />
+            <div
+              className={`relative ${inter.className} max-w-screen-2xl mx-auto`}
+            >
+              <Header />
+              <main className="pt-20 break-words">
+                {children}
+              </main>
+              <Footer />
+            </div>
           </ReduxProvider>
         </NextAuthProvider>
       </body>
