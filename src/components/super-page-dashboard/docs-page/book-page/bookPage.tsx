@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { db } from "@/src/services/db";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
@@ -11,7 +11,7 @@ export default function BookPage({ id }: { id: string }) {
   const { category } = useAppSelector((state) => state.itemState.formData);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const dispatch = useAppDispatch();
-
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
     db.pdfs.get(id).then((book) => {
       if (!book) return toast.error("PDF was not found");
@@ -31,19 +31,25 @@ export default function BookPage({ id }: { id: string }) {
       }
     };
 
-    const handleTouchEnd = () => {
-      setTimeout(handleSelectionChange, 100);
+    const debounceHandleSelectionChange = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(handleSelectionChange, 100);
     };
     document.addEventListener("selectionchange", handleSelectionChange);
     document.addEventListener("mouseup", handleSelectionChange);
     document.addEventListener("keyup", handleSelectionChange);
-    document.addEventListener("touchend", handleTouchEnd);
+    document.addEventListener("touchend", debounceHandleSelectionChange);
 
     return () => {
       document.removeEventListener("selectionchange", handleSelectionChange);
       document.removeEventListener("mouseup", handleSelectionChange);
       document.removeEventListener("keyup", handleSelectionChange);
-      document.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener("touchend", debounceHandleSelectionChange);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, [id, dispatch]);
 
