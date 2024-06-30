@@ -37,7 +37,7 @@ export default function BookPage({ id }: { id: string }) {
   }, [id, dispatch]);
 
   return (
-    <div className="relative my-4 -mx-4">
+    <div className="w-full h-screen my-4">
       {pdfUrl && (
         <div className="relative">
           <h1 className="font-bold text-center">{capitalize(category)}</h1>
