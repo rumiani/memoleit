@@ -1,7 +1,7 @@
+import React from "react";
 import { useAppDispatch } from "@/src/app/hooks";
 import Dialog from "@/src/components/general/dialog/dialog";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
-import React, { useState } from "react";
 import HilightedTextDialog from "../../selectionModal/HilightedTextDialog/HilightedTextDialog";
 
 export default function SelectedTextDialog({

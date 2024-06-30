@@ -12,7 +12,7 @@ export default function BookPage({ id }: { id: string }) {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {    
+  useEffect(() => {
     db.pdfs.get(id).then((book) => {
       if (!book) return toast.error("PDF was not found");
       dispatch(formDataReducer({ category: makeUrlFriendly(book.name) }));
@@ -24,16 +24,27 @@ export default function BookPage({ id }: { id: string }) {
     const handleSelectionChange = async () => {
       const setting = await db.setting.where("name").equals("setting").first();
       if (!setting?.leitnerTextSelectionMode!) return;
+
       const selection = window.getSelection();
-      if (selection && selection.rangeCount > 0) {
-        const selectedText = selection.toString().trim();
-        if (selectedText.length > 0)
-          dispatch(formDataReducer({ title: selectedText }));
+      if (selection && selection.toString().length > 0) {
+        dispatch(formDataReducer({ title: selection.toString() }));
       }
     };
+
+    const handleTouchEnd = () => {
+      setTimeout(handleSelectionChange, 100);
+    };
     document.addEventListener("selectionchange", handleSelectionChange);
-    return () =>
+    document.addEventListener("mouseup", handleSelectionChange);
+    document.addEventListener("keyup", handleSelectionChange);
+    document.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
       document.removeEventListener("selectionchange", handleSelectionChange);
+      document.removeEventListener("mouseup", handleSelectionChange);
+      document.removeEventListener("keyup", handleSelectionChange);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
   }, [id, dispatch]);
 
   return (
