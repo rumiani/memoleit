@@ -9,6 +9,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/src/components/general/layouts/generalLayout/footer/footer";
 import Header from "@/src/components/general/layouts/generalLayout/header/header";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import Login from "../components/auth/logIn/login";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -77,7 +79,7 @@ export default async function RootLayout({
             >
               <Header />
               <main className="pt-24 break-words">
-                {children}
+                {session ? children : <Login />}
               </main>
               <Footer />
             </div>

@@ -12,7 +12,7 @@ const Preview = () => {
   const { formData } = useAppSelector((state) => state.itemState);
 
   return (
-    <div className="relative bottom-10 left-2 w-8 h-8">
+    <div className="absolute bottom-3 left-2 w-8 h-8">
       {formData.title !== "" &&
         formData.body !== "" &&
         formData.category !== "" && (

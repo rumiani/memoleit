@@ -70,7 +70,7 @@ export default function NewItemForm() {
         <div
           className={`${
             path.split("/")[2] === "new" ? "bg-green-100" : "bg-blue-100"
-          } relative max-w-2xl mx-auto gap-2 max-h-96 overflow-y-auto`}
+          } relative max-w-2xl mx-auto gap-2`}
         >
           <form
             className="flex flex-col justify-center"

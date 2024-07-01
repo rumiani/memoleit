@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 
 export default function Login() {
   const { data: session } = useSession();
+  console.log(process.env.GOOGLE_CLIENT_ID);
 
   useEffect(() => {
     if (session) {
@@ -33,7 +34,7 @@ export default function Login() {
           title="Log in with Google"
           className="my-8 cursor-pointer text-gray-600 hover:text-gray-800 transition-all duration-300 hover:scale-105 shadow-lg shadow-gray-300 rounded-lg flex flex-row w-60 h-10 mx-auto text-center"
         >
-          <Image
+          <Image 
             alt="Google logo"
             src={googleLogo}
             width={32}

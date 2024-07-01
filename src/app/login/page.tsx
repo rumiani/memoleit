@@ -4,11 +4,14 @@ import Head from "next/head";
 import Login from "../../components/auth/logIn/login";
 import { useSession } from "next-auth/react";
 import LogoutButton from "@/src/components/auth/signOut/signOut";
+import { redirect } from "next/navigation";
+
 export default function Page() {
   const { data: session } = useSession();
   useEffect(() => {
     console.log(session);
   }, [session]);
+  // if (session) redirect("/dashboard/review");
   return (
     <>
       <Head>
@@ -25,9 +28,6 @@ export default function Page() {
         />
       </Head>
       <section>
-        {/* <div className="g-6 flex flex-row h-full items-center justify-center lg:justify-between">
-          <Login />
-        </div> */}
         <div>
           {!session ? (
             <Login />

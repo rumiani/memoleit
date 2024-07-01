@@ -7,7 +7,6 @@ GlobalWorkerOptions.workerSrc = "./pdfWorker/pdf.worker.min.js";
 import type { ToolbarSlot, ToolbarProps } from "@react-pdf-viewer/toolbar";
 import FullscreenBtn from "../documentOptions/fullscreenBtn/fullscreenBtn";
 import { useAppSelector } from "@/src/app/hooks";
-import { toast } from "react-toastify";
 import SelectedTextDialog from "./selectedTextDialog/selectedTextDialog";
 import { IoIosAddCircle } from "react-icons/io";
 import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
@@ -31,12 +30,12 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
           Zoom,
         } = slots;
         return (
-          <div className="flex w-full flex-row justify-between">
+          <div className="flex w-full flex-row justify-between px-2">
             <div className="flex flex-row items-center w-fit">
               <ShowSearchPopover />
               {title.length > 0 && (
                 <IoIosAddCircle
-                  className="cursor-pointer !w-6 !h-6 !p-0 flex self-center text-green-500 font-bold  animate-spin"
+                  className="cursor-pointer !w-6 !h-6 !p-0 flex self-center text-green-500 font-bold "
                   onClick={() => setDialogOpen(true)}
                 />
               )}
@@ -55,11 +54,7 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
     renderToolbar,
-    sidebarTabs: (defaultTabs) => [
-      defaultTabs[0], // Bookmarks tab
-      defaultTabs[1], // Thumbnails tab
-      // defaultTabs[2],
-    ],
+    sidebarTabs: () => [],
   });
   const onDocumentLoadSuccess = () => {
     // setCurrentPage(0);

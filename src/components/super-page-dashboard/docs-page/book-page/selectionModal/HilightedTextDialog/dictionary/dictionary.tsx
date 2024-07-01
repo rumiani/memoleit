@@ -31,7 +31,9 @@ export default function Dictionary() {
       }
       const data = await response.json();
       const definition = data[0].meanings[0].definitions[0].definition;
-      dispatch(formDataReducer({ body: body + " " + definition }));
+      const newBody =
+        body.length > 0 ? body + "\n------------\n" + definition : definition;
+      dispatch(formDataReducer({ body: newBody }));
       setLookUpResult(definition);
       setLookingUp(false);
       setNotFount(false);

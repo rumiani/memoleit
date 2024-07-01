@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
 import { generateToken } from "@/src/notifications/firebase";
+import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 
 interface Link {
   url: string;
@@ -84,6 +85,7 @@ export const superPages: SuperPageTypes = {
 export default function ItemsNav() {
   const dispatch = useAppDispatch();
   useEffect(() => {
+    appDataInitialiser();
     db.setting
       .where("name")
       .equals("setting")
@@ -94,8 +96,7 @@ export default function ItemsNav() {
       .catch(() => {
         console.log("Error");
       });
-
-      // generateToken()
+    // generateToken()
   }, [dispatch]);
   return (
     <nav className="group fixed sm:absolute left-0 bottom-0 sm:bottom-0 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
