@@ -4,7 +4,6 @@ import Head from "next/head";
 import Login from "../../components/auth/logIn/login";
 import { useSession } from "next-auth/react";
 import LogoutButton from "@/src/components/auth/signOut/signOut";
-import { redirect } from "next/navigation";
 
 export default function Page() {
   const { data: session } = useSession();

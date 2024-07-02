@@ -3,10 +3,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoMdClose } from "react-icons/io";
 let navLinks = [
   { name: "Dashboard", href: "/dashboard/review" },
-  { name: "Login", href: "/api/auth/signin" },
+  { name: "Home", href: "/" },
+  { name: "Login", href: "/login" },
 ];
 
 const Navbar = () => {
@@ -14,28 +16,6 @@ const Navbar = () => {
   const router = usePathname();
   const targetRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        targetRef.current &&
-        !targetRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-      // if (session) {
-      //   navLinks.push({ name: "Dashboard", href: "/dashboard" });
-      //   console.log("signed In");
-      // } else {
-      //   navLinks = navLinks.filter((link) => link.href !== "/dashboard");
-      //   console.log("signed Out");
-      // }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [session]);
 
   return (
     <nav
@@ -52,15 +32,15 @@ const Navbar = () => {
           className="block sm:hidden text-white font text-3xl focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? "X" : "☰"}
+          {isOpen ? <IoMdClose /> : <RxHamburgerMenu />}
         </button>
       </div>
       <div
         className={`bg-gray-900 sm:bg-transparent flex flex-col-reverse w-full p-4 sm:p-0 mt-2 rounded-lg sm:flex-row flex-grow justify-between items-center ${
           isOpen ? "block" : "hidden"
-        } sm:flex text-center `}
+        } sm:flex sm:justify-end text-center`}
       >
-        <ul className="sm:flex  w-full mx-auto max-w-96 justify-around">
+        <ul className="sm:flex sm:justify-end gap-4  w-full mx-auto max-w-96 justify-around">
           {navLinks.map((link) => {
             const isActive = router.endsWith(link.href);
             return (
@@ -81,11 +61,6 @@ const Navbar = () => {
             );
           })}
         </ul>
-        {/* {!router.endsWith("login") && (
-            <Link href="/login" className="btn_secondary text-blue-400">
-              Login
-            </Link>
-          )} */}
       </div>
     </nav>
   );
