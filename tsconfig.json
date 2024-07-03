@@ -26,12 +26,12 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/providers.js",
+    "src/app/providers.ts",
     "src/app/edit/[id]/page.tsx",
     "__jest__/Home.test.jsx",
     "src/app/(appLayout)/transfer/(transferLayout)/import",
     "src/components/super-page-options/import-page",
     "src/handlers/itemsToReviewHandler.tss"
-  ],
+, "src/components/providers/providers.js", "src/app/api/auth/[...nextauth].js"  ],
   "exclude": ["node_modules"]
 }

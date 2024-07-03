@@ -4,13 +4,13 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import ReduxProvider from "../redux/provider";
-import { NextAuthProvider } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/src/components/general/layouts/generalLayout/footer/footer";
 import Header from "@/src/components/general/layouts/generalLayout/header/header";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Login from "../components/auth/logIn/login";
+import NextAuthProvider from "../components/providers/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -65,12 +65,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
   return (
     <html lang="en">
       <body>
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <NextAuthProvider session={session}>
+        <NextAuthProvider>
           <ReduxProvider>
             <SpeedInsights />
             <ToastContainer limit={3} autoClose={3000} closeOnClick />

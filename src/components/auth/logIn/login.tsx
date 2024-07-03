@@ -6,6 +6,11 @@ import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import googleLogo from "@/public/assets/images/login/googleLogo.png";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "@/firebase/firebaseConfig";
+import { signInWithGoogle } from "@/firebase/firebaseAuth";
+import { saveUserData } from "@/firebase/firestore";
 
 export default function Login() {
   const { data: session } = useSession();
