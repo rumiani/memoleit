@@ -32,6 +32,6 @@
     "src/app/(appLayout)/transfer/(transferLayout)/import",
     "src/components/super-page-options/import-page",
     "src/handlers/itemsToReviewHandler.tss"
-, "src/components/providers/providers.js", "src/app/api/auth/[...nextauth].js"  ],
+, "src/components/providers/providers.js", "src/app/api/auth/route.js"  ],
   "exclude": ["node_modules"]
 }

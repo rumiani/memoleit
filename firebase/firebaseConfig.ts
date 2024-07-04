@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "memoleit.firebaseapp.com",
-  projectId: "memoleit",
-  storageBucket: "memoleit.appspot.com",
-  messagingSenderId: "1038679806776",
-  appId: "1:1038679806776:web:b0335b5029ed1cb61ae7cd",
-  measurementId: "G-9048Y80RY9",
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

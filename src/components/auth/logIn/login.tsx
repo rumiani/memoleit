@@ -11,7 +11,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebaseConfig";
 import { signInWithGoogle } from "@/firebase/firebaseAuth";
 import { saveUserData } from "@/firebase/firestore";
-
+import { createToken } from "@/lib/jwt";
 export default function Login() {
   const { data: session } = useSession();
 
@@ -25,6 +25,16 @@ export default function Login() {
       console.log("signed Out");
     }
   }, [session]);
+
+  const handleLogin = async () => {
+    console.log('handleLogin');
+    
+    const result = await signIn("google", { redirect: false });
+    if (result!.user) {
+      const token = createToken(result.user);
+      document.cookie = `token=${token}; path=/`;
+    }
+  };
 
   return (
     <section className="my-12 flex flex-col-reverse sm:flex-row ">

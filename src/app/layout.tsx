@@ -69,7 +69,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <NextAuthProvider>
+        <NextAuthProvider >
           <ReduxProvider>
             <SpeedInsights />
             <ToastContainer limit={3} autoClose={3000} closeOnClick />
