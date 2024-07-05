@@ -8,34 +8,34 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  // callbacks: {
-  //   async signIn(user, account, profile) {
-  //     if (account.provider === "google") {
-  //       const usersRef = firebase.firestore().collection("users");
-  //       const snapshot = await usersRef.doc(user.id).get();
+  callbacks: {
+    async signIn(user, account, profile) {
+      if (account.provider === "google") {
+        const usersRef = firebase.firestore().collection("users");
+        const snapshot = await usersRef.doc(user.id).get();
 
-  //       if (!snapshot.exists) {
-  //         await usersRef.doc(user.id).set({
-  //           name: user.name,
-  //           email: user.email,
-  //           image: user.image,
-  //           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-  //         });
-  //       }
-  //     }
-  //     return true;
-  //   },
-  //   async session(session, user) {
-  //     session.user.uid = user.uid;
-  //     return session;
-  //   },
-  //   async jwt(token, user) {
-  //     if (user) {
-  //       token.uid = user.id;
-  //     }
-  //     return token;
-  //   },
-  // },
+        if (!snapshot.exists) {
+          await usersRef.doc(user.id).set({
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+        }
+      }
+      return true;
+    },
+    async session(session, user) {
+      session.user.uid = user.uid;
+      return session;
+    },
+    async jwt(token, user) {
+      if (user) {
+        token.uid = user.id;
+      }
+      return token;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 });
 

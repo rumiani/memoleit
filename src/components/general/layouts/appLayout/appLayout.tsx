@@ -7,7 +7,6 @@ import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
-import { generateToken } from "@/src/notifications/firebase";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 
 interface Link {
