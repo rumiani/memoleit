@@ -7,9 +7,6 @@ import ReduxProvider from "../redux/provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/src/components/general/layouts/generalLayout/footer/footer";
 import Header from "@/src/components/general/layouts/generalLayout/header/header";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import Login from "../components/auth/logIn/login";
 import NextAuthProvider from "../components/providers/providers";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -26,16 +26,6 @@ export default function Login() {
     }
   }, [session]);
 
-  // const handleLogin = async () => {
-  //   console.log('handleLogin');
-    
-  //   const result = await signIn("google", { redirect: false });
-  //   if (result!.user) {
-  //     const token = createToken(result.user);
-  //     document.cookie = `token=${token}; path=/`;
-  //   }
-  // };
-
   return (
     <section className="my-12 flex flex-col-reverse sm:flex-row ">
       <div className="my-8 h-auto w-full lg:w-1/2">
