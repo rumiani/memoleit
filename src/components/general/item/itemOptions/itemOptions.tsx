@@ -18,6 +18,13 @@ import { useRouter } from "next/navigation";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { DialogOptions } from "../../dialogOptions/dialogOptions";
+import {
+  categoryPageUrl,
+  editPageUrl,
+  itemPageUrl,
+} from "@/src/data/links/pagesLinks";
+import { getItemUrl } from "@/src/handlers/getUrls/getItemUrl";
+import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -50,10 +57,10 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           category.id,
         );
         dispatch(allItemsReducer(filteredItemsData));
-        router.push(`/box/category/${item.categoryId}/${item.category}`);
+        router.push(getCategoryUrl(item.categoryId, item.category));
       }
       if (pageName === "item") {
-        router.push(`/box/category/${item.categoryId}/${item.category}`);
+        router.push(getItemUrl(item.categoryId, item.category));
       }
       toast.success("The item was removed.");
     } catch (error: any) {
@@ -67,13 +74,13 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
       <DialogOptions showOptions={showOptions} setShowOptions={setShowOptions}>
         <div className="flex flex-col">
           <Link
-            href={`/user/dashboard/edit/${item.id}`}
+            href={editPageUrl + item.id}
             className=" text-yellow-500 hover:text-yellow-700 optionsBtn"
           >
             Edit
           </Link>
           <Link
-            href={`/user/box/item/${item.id}`}
+            href={itemPageUrl + item.id}
             className=" text-blue-400 hover:text-blue-600 optionsBtn"
           >
             Open Item

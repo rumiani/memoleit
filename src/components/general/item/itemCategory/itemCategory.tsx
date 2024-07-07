@@ -1,4 +1,4 @@
-import { getCategoryUrl } from "@/src/handlers/getCategoryUrl";
+import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { ItemTypes } from "@/src/types/interface";
 import { capitalize } from "lodash";
 import Link from "next/link";

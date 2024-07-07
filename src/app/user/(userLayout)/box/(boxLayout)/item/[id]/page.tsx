@@ -8,6 +8,8 @@ import { db } from "@/src/services/db";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
+import { superPages } from "@/src/components/general/layouts/appLayout/appLayout";
+import { newPageUrl, reviewPageUrl } from "@/src/data/links/pagesLinks";
 
 export default function Item({ params }: { params: { id: string } }) {
   const { item } = useAppSelector((state) => state.itemState);
@@ -15,6 +17,8 @@ export default function Item({ params }: { params: { id: string } }) {
   const [notFound, setNotFound] = useState(false);
   const dispatch = useAppDispatch();
   useEffect(() => {
+    console.log(superPages);
+    
     setLoading(true);
     db.items
       .get(params.id)
@@ -46,12 +50,11 @@ export default function Item({ params }: { params: { id: string } }) {
       <div className="text-center flex flex-col gap-10 items-center w-full p-4">
         <div className="flex flex-row gap-4 max-w-xs">
           <Link
-            href="/dashboard/review"
-            className="text-blue-500 hover:underline"
+            href={reviewPageUrl}
           >
             <button className="primaryBtn">Review</button>
           </Link>
-          <Link href="/dashboard/new">
+          <Link href={newPageUrl}>
             <button className="primaryBtn">New item</button>
           </Link>
         </div>

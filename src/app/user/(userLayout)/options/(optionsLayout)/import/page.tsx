@@ -1,6 +1,6 @@
 "use client";
+import ImportComponent from "@/src/components/user-pages/options/import-page/import";
 import React from "react";
-import ImportComponent from "@/src/components/super-page-options/import-page/import";
 
 export default function Import() {
   return (

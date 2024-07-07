@@ -1,6 +1,6 @@
 "use client";
+import ProgressPage from "@/src/components/user-pages/box/progress-page/progressPage";
 import React from "react";
-import ProgressPage from "@/src/components/super-page-box/progress-page/progressPage";
 
 export default function BoxData() {
   return (

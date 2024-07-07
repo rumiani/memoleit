@@ -13,19 +13,21 @@ import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { isUUID } from "@/src/handlers/home/general/isUUID";
 
 export default function NewItemForm() {
   const path = usePathname();
+  const itemID = path.split("/").pop();
+  const isEditPage = isUUID(itemID!);
   const { title, body, category } = useAppSelector(
     (state) => state.itemState.formData,
   );
   const [createdMessage, setCreatedMessage] = useState(false);
 
   const form = useForm<FormValues>({
-    defaultValues:
-      path.split("/")[2] === "new"
-        ? { title: "", body: "", category: "" }
-        : { title, body, category },
+    defaultValues: isEditPage
+      ? { title, body, category }
+      : { title: "", body: "", category: "" },
     mode: "onBlur",
   });
   const dispatch = useAppDispatch();
@@ -45,9 +47,9 @@ export default function NewItemForm() {
 
   const submitHandler = async (item: FormValues) => {
     try {
-      if (path.split("/")[2] === "edit") {
-        await saveEditedItemHandler(item, path.split("/")[3]);
-        router.push("/box/item/" + path.split("/")[3]);
+      if (isEditPage) {
+        await saveEditedItemHandler(item, itemID!);
+        router.push("/user/box/item/" + itemID!);
       } else {
         saveNewItemToLocal(item);
       }
@@ -69,7 +71,7 @@ export default function NewItemForm() {
       ) : (
         <div
           className={`${
-            path.split("/")[3] === "new" ? "bg-green-100" : "bg-blue-100"
+            isEditPage ? "bg-blue-100" : "bg-green-100"
           } relative max-w-2xl mx-auto gap-2`}
         >
           <form
@@ -86,7 +88,7 @@ export default function NewItemForm() {
               />
             </div>
             <button className="primaryBtn !mx-auto">
-              {path.split("/")[2] === "edit" ? "Update" : "Save"}
+              {isEditPage ? "Update" : "Save"}
             </button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>

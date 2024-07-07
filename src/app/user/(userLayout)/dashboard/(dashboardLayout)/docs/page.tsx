@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import DocsPage from "@/src/components/super-page-dashboard/docs-page/docsPage";
+import DocsPage from "@/src/components/user-pages/dashboard/docs-page/docsPage";
 
 export default function Page() {
   return (

@@ -8,6 +8,17 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
+import {
+  boxDataPageUrl,
+  categoriesPageUrl,
+  docsPageUrl,
+  exportPageUrl,
+  importPageUrl,
+  newPageUrl,
+  reviewPageUrl,
+  searchPageUrl,
+  settingsPageUrl,
+} from "@/src/data/links/pagesLinks";
 
 interface Link {
   url: string;
@@ -30,15 +41,15 @@ export const superPages: SuperPageTypes = {
     icon: <MdDashboard />,
     links: [
       {
-        url: "/user/dashboard/review",
+        url: reviewPageUrl,
         title: "Review",
       },
       {
-        url: "/user/dashboard/docs",
+        url: docsPageUrl,
         title: "Docs",
       },
       {
-        url: "/user/dashboard/new",
+        url: newPageUrl,
         title: "New Item",
       },
     ],
@@ -48,15 +59,15 @@ export const superPages: SuperPageTypes = {
     icon: <FaBoxOpen />,
     links: [
       {
-        url: "/user/box/box-data",
+        url: boxDataPageUrl,
         title: "Box Data",
       },
       {
-        url: "/user/box/categories",
+        url: categoriesPageUrl,
         title: "Categories",
       },
       {
-        url: "/user/box/search",
+        url: searchPageUrl,
         title: "Search Items",
       },
     ],
@@ -66,15 +77,15 @@ export const superPages: SuperPageTypes = {
     icon: <GrDocumentConfig />,
     links: [
       {
-        url: "/user/options/settings",
+        url: settingsPageUrl,
         title: "Settings",
       },
       {
-        url: "/user/options/export",
+        url: exportPageUrl,
         title: "Export",
       },
       {
-        url: "/user/options/import",
+        url: importPageUrl,
         title: "Import",
       },
     ],
@@ -95,7 +106,6 @@ export default function ItemsNav() {
       .catch(() => {
         console.log("Error");
       });
-    // generateToken()
   }, [dispatch]);
   return (
     <nav className="group fixed sm:absolute left-0 bottom-0 sm:bottom-0 flex flex-row sm:flex-col h-20 sm:h-full w-full sm:w-16 sm:hover:w-48 z-50 text-gray-800 bg-gray-100 sm:pt-4 sm:overflow-y-auto">
