@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const path = usePathname();
-  const isWebsite = path.split("/").length === 2;
+  const isWebsite = path.split("/")[1] !=="user";
 
   return (
     <>

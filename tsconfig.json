@@ -29,7 +29,7 @@
     "src/app/providers.ts",
     "src/app/edit/[id]/page.tsx",
     "__jest__/Home.test.jsx",
-    "src/app/(appLayout)/transfer/(transferLayout)/import",
+    "src/app/user/(appLayout)/transfer/(transferLayout)/import",
     "src/components/super-page-options/import-page",
     "src/handlers/itemsToReviewHandler.tss"
 , "src/components/providers/providers.js", "src/app/api/auth/route.js"  ],

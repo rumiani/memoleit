@@ -20,7 +20,7 @@ const CreatedMessage = ({
   };
   return (
     <div className="flex flex-row justify-center items-center gap-2 mx-auto my-12">
-      <Link href="/box/categories" className="text-blue-500 hover:underline">
+      <Link href="/user/box/categories" className="text-blue-500 hover:underline">
         <button className="primaryBtn !w-40">Categories</button>
       </Link>
       <button className="primaryBtn !w-40" onClick={() => newItemHandler()}>

@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 let navLinks = [
-  { name: "Dashboard", href: "/dashboard/review" },
+  { name: "Dashboard", href: "/user/dashboard/review" },
   { name: "Home", href: "/" },
   { name: "Login", href: "/login" },
 ];

@@ -19,7 +19,7 @@ export default function Login() {
     if (session) {
       console.log("signed In");
       setTimeout(() => {
-        redirect("/dashboard/review");
+        redirect("/user/dashboard/review");
       }, 10000);
     } else {
       console.log("signed Out");

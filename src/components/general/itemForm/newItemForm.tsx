@@ -69,7 +69,7 @@ export default function NewItemForm() {
       ) : (
         <div
           className={`${
-            path.split("/")[2] === "new" ? "bg-green-100" : "bg-blue-100"
+            path.split("/")[3] === "new" ? "bg-green-100" : "bg-blue-100"
           } relative max-w-2xl mx-auto gap-2`}
         >
           <form

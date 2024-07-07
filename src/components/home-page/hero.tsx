@@ -18,7 +18,7 @@ export default function Hero() {
         </p>
         <div className="mt-6 flex flex-row justify-center sm:justify-start gap-3">
           <Link
-            href="/dashboard/review"
+            href="/user/dashboard/review"
             rel="noopener"
             className="primaryBtn text-center animate-pulse"
           >

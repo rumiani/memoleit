@@ -28,7 +28,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
 
   const removeBtnFunction = async () => {
     setShowOptions(false);
-    const pageName = path.split("/")[2];
+    const pageName = path.split("/")[3];
     try {
       const foundItem = await db.items.get(item.id);
       if (!foundItem) throw notFoundError("404");
@@ -67,13 +67,13 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
       <DialogOptions showOptions={showOptions} setShowOptions={setShowOptions}>
         <div className="flex flex-col">
           <Link
-            href={`/dashboard/edit/${item.id}`}
+            href={`/user/dashboard/edit/${item.id}`}
             className=" text-yellow-500 hover:text-yellow-700 optionsBtn"
           >
             Edit
           </Link>
           <Link
-            href={`/box/item/${item.id}`}
+            href={`/user/box/item/${item.id}`}
             className=" text-blue-400 hover:text-blue-600 optionsBtn"
           >
             Open Item

@@ -30,15 +30,15 @@ export const superPages: SuperPageTypes = {
     icon: <MdDashboard />,
     links: [
       {
-        url: "/dashboard/review",
+        url: "/user/dashboard/review",
         title: "Review",
       },
       {
-        url: "/dashboard/docs",
+        url: "/user/dashboard/docs",
         title: "Docs",
       },
       {
-        url: "/dashboard/new",
+        url: "/user/dashboard/new",
         title: "New Item",
       },
     ],
@@ -48,15 +48,15 @@ export const superPages: SuperPageTypes = {
     icon: <FaBoxOpen />,
     links: [
       {
-        url: "/box/box-data",
+        url: "/user/box/box-data",
         title: "Box Data",
       },
       {
-        url: "/box/categories",
+        url: "/user/box/categories",
         title: "Categories",
       },
       {
-        url: "/box/search",
+        url: "/user/box/search",
         title: "Search Items",
       },
     ],
@@ -66,15 +66,15 @@ export const superPages: SuperPageTypes = {
     icon: <GrDocumentConfig />,
     links: [
       {
-        url: "/options/settings",
+        url: "/user/options/settings",
         title: "Settings",
       },
       {
-        url: "/options/export",
+        url: "/user/options/export",
         title: "Export",
       },
       {
-        url: "/options/import",
+        url: "/user/options/import",
         title: "Import",
       },
     ],
