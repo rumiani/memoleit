@@ -23,7 +23,7 @@ const Index = () => {
     console.log(formData);
   };
   return (
-    <div className="w-full mx-auto max-w-xl">
+    <div className="w-full h-screen mx-auto max-w-xl">
       <p>
         Get in touch with the developer if you have any suggestions or problems
         that need to be fixed:
