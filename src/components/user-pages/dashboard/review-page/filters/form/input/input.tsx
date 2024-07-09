@@ -81,16 +81,18 @@ checked:bg-blue-600 checked:border-0"
         htmlFor={category.id}
         className=" cursor-pointer pl-2 w-full flex justify-between"
       >
-        <span>{category.name}</span>
-        <span
-          className={`${
-            itemsInfo.pending === 0
-              ? "text-green-500"
-              : "text-red-500 animate-pulse "
-          }`}
-        >
-          Pending: <strong>{itemsInfo.pending}</strong>
-        </span>
+        <div className="flex flex-col w-full">
+          <span>{category.name}</span>
+          <span
+            className={`${
+              itemsInfo.pending === 0
+                ? "text-green-500"
+                : "text-red-500 animate-pulse "
+            } w-full text-end`}
+          >
+            Pending: <strong>{itemsInfo.pending}</strong>
+          </span>
+        </div>
       </label>
       <svg
         className="
