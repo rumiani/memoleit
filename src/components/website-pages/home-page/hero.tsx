@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import heroImage from "@/public/assets/images/leitner.webp";
-import ImgHoverZoom from "../general/imgHoverZoom/imgHoverZoom";
+import ImgHoverZoom from "../../general/imgHoverZoom/imgHoverZoom";
 export default function Hero() {
   return (
     <div className="w-full flex flex-col gap-4 md:flex-row justify-center items-center text-gray-800">

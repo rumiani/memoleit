@@ -13,12 +13,11 @@ import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { isUUID } from "@/src/handlers/home/general/isUUID";
 
 export default function NewItemForm() {
   const path = usePathname();
   const itemID = path.split("/").pop();
-  const isEditPage = isUUID(itemID!);
+  const isEditPage = path.split("/")[3] === "edit";
   const { title, body, category } = useAppSelector(
     (state) => state.itemState.formData,
   );

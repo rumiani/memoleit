@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Features from "./features";
 import Hero from "./hero";
 import Cta from "./cta";

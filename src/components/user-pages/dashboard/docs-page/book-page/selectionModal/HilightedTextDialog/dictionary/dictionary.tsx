@@ -5,7 +5,7 @@ import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { FaRegCopy } from "react-icons/fa";
-import { MdOutlineTranslate } from "react-icons/md";
+import { MdMoveDown, MdOutlineTranslate } from "react-icons/md";
 import { copyToClipboard } from "./handlers/copyToClipboard";
 
 export default function Dictionary() {
@@ -31,9 +31,6 @@ export default function Dictionary() {
       }
       const data = await response.json();
       const definition = data[0].meanings[0].definitions[0].definition;
-      const newBody =
-        body.length > 0 ? body + "\n------------\n" + definition : definition;
-      dispatch(formDataReducer({ body: newBody }));
       setLookUpResult(definition);
       setLookingUp(false);
       setNotFount(false);
@@ -84,6 +81,20 @@ export default function Dictionary() {
                       <FaRegCopy
                         onClick={() => copyToClipboard(lookUpResult)}
                         className="icon !w-10 !p-2"
+                      />
+                      <MdMoveDown
+                        title="Move it to the description."
+                        onClick={() => {
+                          dispatch(
+                            formDataReducer({
+                              body:
+                                body.length > 0
+                                  ? body + "\n------------\n" + lookUpResult
+                                  : lookUpResult,
+                            }),
+                          );
+                        }}
+                        className="icon !p-2 hover:scale-110 cursor-pointer"
                       />
                     </div>
                   )}
