@@ -11,7 +11,7 @@ import LoadingPulse from "../../../general/loading-comps/loadingPulse/loadingPul
 import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { IoIosCloudDone } from "react-icons/io";
-import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
+import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
 
 export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);

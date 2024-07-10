@@ -16,7 +16,6 @@ import { db } from "@/src/services/db";
 import notFoundError from "@/src/handlers/notFoundError";
 import { useRouter } from "next/navigation";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
-import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import { DialogOptions } from "../../dialogOptions/dialogOptions";
 import {
   categoryPageUrl,
@@ -25,6 +24,7 @@ import {
 } from "@/src/data/links/pagesLinks";
 import { getItemUrl } from "@/src/handlers/getUrls/getItemUrl";
 import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
+import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);

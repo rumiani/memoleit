@@ -15,11 +15,11 @@ import {
 } from "@/src/redux/slices/itemStateSlice";
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
-import { numberOfItemsToReviewHandler } from "@/src/handlers/itemsToReviewHandler";
 import ItemCategory from "@/src/components/general/item/itemCategory/itemCategory";
 import Answer from "@/src/components/general/answer/answer";
 import ItemInfo from "@/src/components/general/item/itemInfo/itemInfo";
 import ItemTitle from "@/src/components/general/item/itemTitle/itemTitle";
+import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
 
 export default function ReviewItemCard() {
   const { isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc } =
