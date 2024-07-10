@@ -32,7 +32,7 @@ interface lableTypes {
 const renderCustomBarLabel = (lable: lableTypes) => {
   const { payload, x, y, width, height, value } = lable;
   return (
-    <text x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>
+    <text style={{fontWeight:"bold"}} x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>
       {value}
     </text>
   );
@@ -86,7 +86,7 @@ const BoxChart: React.FC = () => {
             }}
           >
             <Tooltip />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <CartesianGrid stroke="#cccccc99" strokeDasharray="5 5" />
             <Bar
               // label={renderCustomBarLabel}
               dataKey="Reviewed"
@@ -102,7 +102,7 @@ const BoxChart: React.FC = () => {
               stackId="i"
             />
             <XAxis dataKey="name" stroke="#8884d8" />
-            <YAxis />
+            {/* <YAxis /> */}
             {/* <Legend/> */}
           </BarChart>
         </ResponsiveContainer>
