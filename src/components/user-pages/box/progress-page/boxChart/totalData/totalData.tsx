@@ -43,12 +43,12 @@ export default function TotalData({
         <span>Learned: {categoryInfo?.learnedCount}</span>
         <span>Learning: {categoryInfo?.unLearnedCount}</span>
       </div>
-      <div className="flex flex-wrap gap-4 justify-center mt-4">
-        <div className="text-green-500 flex flex-row items-center justify-center gap-2">
+      <div className="flex flex-row gap-4 justify-center mt-4">
+        <div className="text-green-500 flex flex-wrap items-center justify-center gap-2">
           <span className="block w-4 h-3 bg-green-300"></span>
           <h3>Reviewed: {reviewedNumber}</h3>
         </div>
-        <div className="text-red-500 flex flex-row items-center justify-center gap-2">
+        <div className="text-red-500 flex flex-wrap items-center justify-center gap-2">
           <span className="block w-4 h-3 bg-red-500"></span>
           <h3>Pending: {pendingNumber}</h3>
         </div>

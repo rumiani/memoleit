@@ -80,7 +80,7 @@ const BoxChart: React.FC = () => {
             data={data}
             margin={{
               top: 20,
-              right: 20,
+              right: 0,
               left: 0,
               bottom: 5,
             }}
@@ -106,6 +106,7 @@ const BoxChart: React.FC = () => {
             {/* <Legend/> */}
           </BarChart>
         </ResponsiveContainer>
+        <p className="font-bold text-center">Leitner box chart</p>
       </div>
     </div>
   );
