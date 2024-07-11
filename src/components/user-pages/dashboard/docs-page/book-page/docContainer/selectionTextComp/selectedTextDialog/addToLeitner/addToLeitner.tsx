@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function AddToLeitner() {
   const [showForm, setShowForm] = useState<boolean>(false);
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center my-4">
       {showForm ? (
         <NewItemForm />
       ) : (

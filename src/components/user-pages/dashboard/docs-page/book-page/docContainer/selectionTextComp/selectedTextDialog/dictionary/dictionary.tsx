@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { FaRegCopy } from "react-icons/fa";
 import { MdMoveDown, MdOutlineTranslate } from "react-icons/md";
-import { copyToClipboard } from "./handlers/copyToClipboard";
+import { copyToClipboard } from "@/src/handlers/general/copyToClipboard";
 
 export default function Dictionary() {
   const { title, body } = useAppSelector((state) => state.itemState.formData);

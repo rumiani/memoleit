@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
 import { useParams, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
@@ -22,10 +21,11 @@ import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
 import { isCategoryPage, isItemPage, isReviewPage } from "@/src/handlers/general/isPage";
 import { editPageUrl, itemPageUrl } from "@/src/data/links/pagesLinks";
+import { useAppDispatch } from "@/src/app/hooks";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const category = useParams<{ id: string; category: string }>();
   const router = useRouter();
   const path = usePathname();

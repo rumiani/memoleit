@@ -1,17 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { PdfStateTypes } from "@/src/types/interface";
 import { db } from "@/src/services/db";
 import { DialogOptions } from "@/src/components/general/dialogOptions/dialogOptions";
 import { allPdfsReducer, pdfOnEditReducer } from "@/src/redux/slices/pdfStateSlice";
-import { categoryOnEditReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getPDFsHandler } from "../../../handlers/getPDFshandler";
+import { useAppDispatch } from "@/src/app/hooks";
 
 export default function BookOptions({ book }: { book: PdfStateTypes }) {
   const [showOptions, setShowOptions] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const editHandler = () => {
     setShowOptions(false);
     dispatch(pdfOnEditReducer(book.id));

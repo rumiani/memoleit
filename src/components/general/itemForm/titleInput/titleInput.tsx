@@ -2,7 +2,7 @@ import React from "react";
 import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";

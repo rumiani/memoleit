@@ -2,14 +2,14 @@ import React from "react";
 import Link from "next/link";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/src/app/hooks";
 
 const CreatedMessage = ({
   createdMsgHandler,
 }: {
   createdMsgHandler: Function;
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const newItemHandler = () => {
     getCategoriesHandler()
       .then((existedCategories) => {
