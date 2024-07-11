@@ -13,9 +13,7 @@ import { pageNavigationPlugin } from "@react-pdf-viewer/page-navigation";
 import { bookmarkPlugin } from "@react-pdf-viewer/bookmark";
 
 export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
-  const { title } = useAppSelector((state) => state.itemState.formData);
   const documentElement = useRef<HTMLDivElement>(null);
-  const [isDialogOpen, setDialogOpen] = useState(false);
   const pageNavigationPluginInstance = pageNavigationPlugin();
   const bookmarkPluginInstance = bookmarkPlugin();
 
@@ -33,12 +31,12 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
           <div className="flex w-full flex-row justify-between px-2">
             <div className="flex flex-row items-center w-fit">
               <ShowSearchPopover />
-              {title.length > 0 && (
+              {/* {title.length > 0 && (
                 <IoIosAddCircle
                   className="cursor-pointer !w-6 !h-6 !p-0 flex self-center text-green-500 font-bold "
                   onClick={() => setDialogOpen(true)}
                 />
-              )}
+              )} */}
             </div>
             <div className="flex flex-row w-fit justify-between items-center">
               <FullscreenBtn documentElement={documentElement.current!} />
@@ -77,7 +75,7 @@ export default function DocContainer({ pdfUrl }: { pdfUrl: string }) {
           onDocumentLoad={onDocumentLoadSuccess}
         />
       </Worker>
-      <SelectedTextDialog isOpen={isDialogOpen} setDialogOpen={setDialogOpen} />
+      {/* <SelectedTextDialog isOpen={isDialogOpen} setDialogOpen={setDialogOpen} /> */}
     </div>
   );
 }

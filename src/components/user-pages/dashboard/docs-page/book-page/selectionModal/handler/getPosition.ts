@@ -1,14 +1,9 @@
-export default function getPosition(highlightPosition: {
+export default function getPosition({left, top}: {
   top: number;
   left: number;
-}) {
-  return window.innerWidth < 640
-    ? {
-        top: highlightPosition?.top! - 170 + "px",
-        left: highlightPosition?.left! - 35 + "px",
+}) {  
+  return {
+        top: (top + window.scrollY -45) + "px",
+        left: (left + window.scrollX - 5) + "px",
       }
-    : {
-        top: highlightPosition?.top! - 170 + "px",
-        left: highlightPosition?.left! - 110 + "px",
-      };
 }
