@@ -13,18 +13,18 @@ import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { isEditPage } from "@/src/handlers/general/isPage";
 
 export default function NewItemForm() {
   const path = usePathname();
   const itemID = path.split("/").pop();
-  const isEditPage = path.split("/")[3] === "edit";
   const { title, body, category } = useAppSelector(
     (state) => state.itemState.formData,
   );
   const [createdMessage, setCreatedMessage] = useState(false);
 
   const form = useForm<FormValues>({
-    defaultValues: isEditPage
+    defaultValues: isEditPage(path)
       ? { title, body, category }
       : { title: "", body: "", category: "" },
     mode: "onBlur",
@@ -46,7 +46,7 @@ export default function NewItemForm() {
 
   const submitHandler = async (item: FormValues) => {
     try {
-      if (isEditPage) {
+      if (isEditPage(path)) {
         await saveEditedItemHandler(item, itemID!);
         router.push("/user/box/item/" + itemID!);
       } else {
@@ -70,7 +70,7 @@ export default function NewItemForm() {
       ) : (
         <div
           className={`${
-            isEditPage ? "bg-blue-100" : "bg-green-100"
+            isEditPage(path) ? "bg-blue-100" : "bg-green-100"
           } relative max-w-2xl mx-auto gap-2`}
         >
           <form
@@ -87,7 +87,7 @@ export default function NewItemForm() {
               />
             </div>
             <button className="primaryBtn !mx-auto">
-              {isEditPage ? "Update" : "Save"}
+              {isEditPage(path) ? "Update" : "Save"}
             </button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>

@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { db } from "../services/db";
-import { timeToReviewHandler } from "./home/general/timeToReview";
+import { timeToReviewHandler } from "./general/timeToReview";
 
 export const itemsToReviewHandler = async () => {
   try {

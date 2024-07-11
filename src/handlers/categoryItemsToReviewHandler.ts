@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { timeToNowHandler } from "./home/general/timeToNowHandler";
+import { timeToNowHandler } from "./general/timeToNowHandler";
 import { db } from "../services/db";
 type ReviewBoxesType = {
   [key: number]: number;

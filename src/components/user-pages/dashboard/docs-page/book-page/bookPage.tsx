@@ -35,14 +35,14 @@ export default function BookPage({ id }: { id: string }) {
       setPdfUrl(url);
     });
 
-    
-    const handleSelectionChange = async () => {
+    const handleSelectionChange = async (event: {
+      preventDefault: () => void;
+    }) => {
+      event.preventDefault();
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
       setHighlightedText("");
       const setting = await db.setting.where("name").equals("setting").first();
       if (!setting?.leitnerTextSelectionMode!) return;
-      document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-      });
       const selection = window.getSelection();
       if (selection && selection.toString().length > 0) {
         const range = selection.getRangeAt(0);
@@ -82,7 +82,7 @@ export default function BookPage({ id }: { id: string }) {
               }}
             >
               <div className="flex flex-col justify-center items-center">
-                <MdAddBox className="w-10 h-10" />
+                <MdAddBox className="w-10 h-10 bg-white" />
                 <FaCaretDown className="relative text-lg bottom-3" />
               </div>
             </button>

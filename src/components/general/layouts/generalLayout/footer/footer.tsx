@@ -2,14 +2,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isUserRoute } from "@/src/handlers/general/isPage";
 
 const Footer = () => {
   const path = usePathname();
-  const isWebsite = path.split("/")[1] !=="user";
-
   return (
     <>
-      {isWebsite && (
+      {!isUserRoute(path) && (
         <footer className="w-full bg-gray-800 text-white p-2">
           <div className="mx-auto">
             <div className="text-center">

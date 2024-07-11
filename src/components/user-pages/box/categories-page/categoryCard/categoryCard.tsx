@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { timeToNowHandler } from "@/src/handlers/home/general/timeToNowHandler";
+import { timeToNowHandler } from "@/src/handlers/general/timeToNowHandler";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import CardOptions from "./cardOptions/cardOptions";
 import CategoryName from "./categoryName/categoryName";

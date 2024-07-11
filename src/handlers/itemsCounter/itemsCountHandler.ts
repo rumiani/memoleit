@@ -1,5 +1,5 @@
 import { ItemTypes } from "@/src/types/interface";
-import { timeToReviewHandler } from "../home/general/timeToReview";
+import { timeToReviewHandler } from "../general/timeToReview";
 export default function itemsCountHandler(items: ItemTypes[]) {
   const allLearnedItems = items.filter((item: ItemTypes) => item.box > 5);
   const allItemsCount = items.length;

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";
+import { isDocsPage, isNewPage } from "@/src/handlers/general/isPage";
 interface TitleProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
@@ -32,7 +33,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
           onChange: handleInputChange,
           required: "Title is required",
           validate: async (title: string) => {
-            if (path.split("/")[2] === "new") {
+            if (isNewPage(path)) {
               const count = await db.items.where({ title: title }).count();
               return count > 0 ? "Title already exists." : true;
             }
@@ -52,7 +53,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
         })}
       />
       <p className="text-red-500 text-sm  pl-4">{error}</p>
-      {path.split("/")[2] !== "docs" && <TranslateTitle />}
+      {isDocsPage(path) && <TranslateTitle />}
     </div>
   );
 };

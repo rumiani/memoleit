@@ -17,14 +17,11 @@ import notFoundError from "@/src/handlers/notFoundError";
 import { useRouter } from "next/navigation";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { DialogOptions } from "../../dialogOptions/dialogOptions";
-import {
-  categoryPageUrl,
-  editPageUrl,
-  itemPageUrl,
-} from "@/src/data/links/pagesLinks";
 import { getItemUrl } from "@/src/handlers/getUrls/getItemUrl";
 import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
+import { isCategoryPage, isItemPage, isReviewPage } from "@/src/handlers/general/isPage";
+import { editPageUrl, itemPageUrl } from "@/src/data/links/pagesLinks";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -35,13 +32,12 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
 
   const removeBtnFunction = async () => {
     setShowOptions(false);
-    const pageName = path.split("/")[3];
     try {
       const foundItem = await db.items.get(item.id);
       if (!foundItem) throw notFoundError("404");
       await db.items.delete(item.id);
 
-      if (pageName === "review") {
+      if (isReviewPage(path)) {
         const numberOfItems = await numberOfItemsToReviewHandler();
         if (numberOfItems)
           dispatch(numberOfItemsToReviewReducer(numberOfItems));
@@ -52,14 +48,14 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           dispatch(itemReducer(newRandomItem));
         }
       }
-      if (pageName === "category") {
+      if (isCategoryPage(path)) {
         const filteredItemsData = await itemsCategoryIdFilterHandler(
           category.id,
         );
         dispatch(allItemsReducer(filteredItemsData));
         router.push(getCategoryUrl(item.categoryId, item.category));
       }
-      if (pageName === "item") {
+      if (isItemPage(path)) {
         router.push(getItemUrl(item.categoryId, item.category));
       }
       toast.success("The item was removed.");
