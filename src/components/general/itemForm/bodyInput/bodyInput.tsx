@@ -20,11 +20,11 @@ const BodyInput = ({ register, error }: BodyProps) => {
   };
 
   return (
-    <div className=" w-full second-element">
+    <div className="relative w-full second-element">
       <textarea
         rows={5}
         dir="auto"
-        className="primaryInput"
+        className="primaryInput !pb-8"
         id="inputBody"
         placeholder="Write a description here..."
         autoComplete="off"
@@ -42,12 +42,15 @@ const BodyInput = ({ register, error }: BodyProps) => {
         })}
       />
       {formData.body !== "" && (
-        <div className="flex flex-row gap-2 items-center">
+        <div className="absolute bottom-0 p-1 bg-white bg-opacity-90 w-full">
+          <div className="flex flex-row gap-1 justify-start items-center">
+
           <FaWindowClose
             onClick={() => dispatch(formDataReducer({ body: "" }))}
             className="text-red-500 rounded-sm !p-0 hover:font-bold cursor-pointer"
-          />
+            />
           <p>{formData.body.length + "/1000"}</p>
+            </div>
         </div>
       )}
       <p className="text-red-500 text-sm pl-4">{error}</p>

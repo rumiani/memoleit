@@ -55,7 +55,7 @@ export default function Dictionary() {
           }}
         />
         {title.length > 0 && (
-          <div className="w-full sm:w-1/2 flex flex-row justify-between gap-1">
+          <div className="w-full sm:w-1/2 flex flex-row justify-around gap-1">
             <FaRegCopy
               onClick={() => copyToClipboard(title)}
               className="icon !p-2"
@@ -76,26 +76,30 @@ export default function Dictionary() {
               ) : (
                 <div>
                   {lookUpResult !== "" && (
-                    <div className="w-full flex flex-row gap-1 items-center justify-between">
-                      <div>{lookUpResult}</div>
-                      <FaRegCopy
-                        onClick={() => copyToClipboard(lookUpResult)}
-                        className="icon !w-10 !p-2"
-                      />
-                      <MdMoveDown
-                        title="Move it to the description."
-                        onClick={() => {
-                          dispatch(
-                            formDataReducer({
-                              body:
-                                body.length > 0
-                                  ? body + "\n------------\n" + lookUpResult
-                                  : lookUpResult,
-                            }),
-                          );
-                        }}
-                        className="icon !p-2 hover:scale-110 cursor-pointer"
-                      />
+                    <div className="w-full flex flex-wrap items-center justify-between">
+                      <div className="w-full sm:w-2/3">{lookUpResult}</div>
+                      <div className="w-full sm:w-1/3 flex flex-row justify-around gap-1">
+                        <FaRegCopy
+                          onClick={() => copyToClipboard(lookUpResult)}
+                          className="icon !p-2"
+                        />
+                        <TextToSpeechSpeaker text={lookUpResult} />
+
+                        <MdMoveDown
+                          title="Move it to the description."
+                          onClick={() => {
+                            dispatch(
+                              formDataReducer({
+                                body:
+                                  body.length > 0
+                                    ? body + "\n------------\n" + lookUpResult
+                                    : lookUpResult,
+                              }),
+                            );
+                          }}
+                          className="icon !p-2"
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
