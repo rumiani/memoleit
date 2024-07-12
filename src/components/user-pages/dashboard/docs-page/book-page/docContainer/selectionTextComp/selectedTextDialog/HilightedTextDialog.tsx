@@ -10,11 +10,14 @@ export default function HilightedTextDialog({
   setDialogOpen: Function;
 }) {
   return (
-    <div className="fixed z-50 flex flex-col gap-4 my-2 p-4 h-96 overflow-y-scroll">
+    <div className="fixed z-50 flex flex-col gap-4 my-2 p-4 h-96">
       <Dialog isOpen={isOpen} onClose={() => setDialogOpen(false)}>
+        <div className=" overflow-y-scroll h-96 pt-4">
+
         <p>Highlighted Text:</p>
         <Dictionary />
         <AddToLeitner />
+        </div>
       </Dialog>
     </div>
   );
