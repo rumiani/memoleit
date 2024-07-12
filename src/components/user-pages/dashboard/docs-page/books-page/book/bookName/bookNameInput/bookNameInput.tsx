@@ -9,10 +9,11 @@ import {
 } from "@/src/redux/slices/pdfStateSlice";
 import { getPDFsHandler } from "../../../../handlers/getPDFshandler";
 import { db } from "@/src/services/db";
+import { categoryOnEditReducer } from "@/src/redux/slices/categoryStateSlice";
 
 export default function BookNameInput({ book }: { book: PdfStateTypes }) {
   const [newBookName, setNewBookName] = useState<string>(book.name);
-  const inputElement = useRef(null);
+  const inputElement = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
   const changeCategoryNameHandler = (e: {
@@ -21,7 +22,9 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
     setNewBookName(e.target.value);
   };
 
-  const saveCategoryHandler = async () => {
+  const saveBookNameHandler = async () => {
+    if (newBookName.length < 3 && inputElement.current)
+      return inputElement.current.focus();
     try {
       const pdf = await db.pdfs.get(book.id);
       if (!pdf) return toast.error("PDF not found");
@@ -37,10 +40,10 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
   };
 
   return (
-    <div className="w-full relative my-4 flex flex-wrap gap-2">
+    <div className="w-full relative flex flex-wrap">
       <input
         ref={inputElement}
-        className="primaryInput !pr-14"
+        className="primaryInput !h-10"
         placeholder="PDF name"
         autoComplete="off"
         type="text"
@@ -49,17 +52,26 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
         onChange={changeCategoryNameHandler}
       />
       {newBookName.length < 3 && (
-        <p className="text-red-500 text-xs font-bold p-1">
+        <p className="text-red-500 text-xs font-bold px-1">
           The input must be ≥ 3 letters
         </p>
       )}
-      <button
-        onClick={saveCategoryHandler}
-        className="absolute right-2 top-2 icon !p-2 text-xl !w-fit"
-        title="Save the category name"
-      >
-        <FaSave className="text-3xl text-green-600" />
-      </button>
+      <div className="w-full flex flex-row justify-end mt-2">
+        <button
+          onClick={() => dispatch(pdfOnEditReducer(""))}
+          className="redBtn !p-2 text-xl !w-fit"
+          title="Save the category name"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={saveBookNameHandler}
+          className="greenBtn !p-2 text-xl !w-fit"
+          title="Save the category name"
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 }

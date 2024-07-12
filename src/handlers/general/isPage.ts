@@ -1,20 +1,22 @@
 const isNewPage = (path: string) => {
-  return path.split("/")[3] !== "new";
+  return path.split("/")[3] === "new";
 };
 const isEditPage = (path: string) => {
-  return path.split("/")[3] !== "edit";
+  return path.split("/")[3] === "edit";
 };
 const isDocsPage = (path: string) => {
-  return path.split("/")[3] !== "docs";
+  return path.split("/")[3] === "docs";
 };
 const isReviewPage = (path: string) => {
-  return path.split("/")[3] !== "review";
+  return path.split("/")[3] === "review";
 };
 const isCategoryPage = (path: string) => {
-  return path.split("/")[3] !== "category";
+  return path.split("/")[3] === "category";
 };
 const isItemPage = (path: string) => {
-  return path.split("/")[3] !== "item";
+  console.log(path.split("/")[3]);
+  
+  return path.split("/")[3] === "item";
 };
 const isUserRoute = (path: string) => {
   return path.split("/")[1] === "user";

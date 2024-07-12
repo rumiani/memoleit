@@ -16,13 +16,12 @@ export default function Book({ book }: { book: PdfStateTypes }) {
   }
   return (
     <div className="relative w-72 h-52 border border-gray-400 rounded-lg p-4 flex flex-col">
-      <div className="flex flex-row justify-between mb-4">
+      <div className="flex flex-row justify-between">
         <span className="text-xs font-bold">
           {timeToNowHandler(book.createdAt).daysHoursAgo}
         </span>
         <BookOptions book={book} />
       </div>
-
       <BookName book={book}/>
       <span className="absolute bottom-4 left-4">
         Size: {formatFileSize(book.size!)}

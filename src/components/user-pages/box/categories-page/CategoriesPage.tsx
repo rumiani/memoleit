@@ -14,7 +14,7 @@ export default function CategoriesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  useEffect(() => {    
     setIsLoading(true);
     getCategoriesHandler()
       .then((newCategories) => {

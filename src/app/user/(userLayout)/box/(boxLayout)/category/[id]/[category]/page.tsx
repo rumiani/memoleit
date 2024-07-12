@@ -8,7 +8,7 @@ export default function Category({
 }) {
   return (
     <div>
-      <CategoryPage categoryId={params.id} />
+      <CategoryPage categoryId={params.id} categoryName={params.category} />
     </div>
   );
 }

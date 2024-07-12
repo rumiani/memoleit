@@ -16,7 +16,7 @@ export default function CategoryInput({
   category: CategoryTypes;
 }) {
   const [newCategoryName, setNewCategoryName] = useState<string>(category.name);
-  const inputElement = useRef(null);
+  const inputElement = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
   const changeCategoryNameHandler = (e: {
@@ -26,6 +26,7 @@ export default function CategoryInput({
   };
 
   const saveCategoryHandler = async () => {
+    if (newCategoryName.length < 3) return inputElement.current!.focus();
     try {
       await saveCategoryNameHandler({
         categoryId: category.id,
@@ -42,12 +43,12 @@ export default function CategoryInput({
   };
 
   return (
-    <div className=" my-4 flex flex-wrap gap-2">
+    <div className=" flex flex-col my-4">
       <div>
         <input
           ref={inputElement}
           id="inputTitle"
-          className="w-44 h-8 p-1 rounded-lg border px-2 focus:bg-gray-50 text-xl transition-all focus:shadow-lg focus:shadow-gray-200"
+          className="w-full h-8 p-1 rounded-lg border px-2 focus:bg-gray-50 text-xl transition-all focus:shadow-lg focus:shadow-gray-200"
           placeholder="Write a title here..."
           autoComplete="off"
           type="text"
@@ -61,14 +62,22 @@ export default function CategoryInput({
           </p>
         )}
       </div>
-      <div></div>
-      <button
-        onClick={saveCategoryHandler}
-        className="icon !p-2 text-xl !w-fit"
-        title="Save the category name"
-      >
-        <FaSave className="text-3xl text-green-600" />
-      </button>
+      <div className="flex flex-row justify-end my-2">
+        <button
+          onClick={() => dispatch(categoryOnEditReducer(""))}
+          className="redBtn !p-2 text-xl !w-fit"
+          title="Save the category name"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={saveCategoryHandler}
+          className="greenBtn !p-2 text-xl !w-fit"
+          title="Save the category name"
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 }

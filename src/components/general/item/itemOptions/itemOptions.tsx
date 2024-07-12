@@ -19,7 +19,11 @@ import { DialogOptions } from "../../dialogOptions/dialogOptions";
 import { getItemUrl } from "@/src/handlers/getUrls/getItemUrl";
 import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
-import { isCategoryPage, isItemPage, isReviewPage } from "@/src/handlers/general/isPage";
+import {
+  isCategoryPage,
+  isItemPage,
+  isReviewPage,
+} from "@/src/handlers/general/isPage";
 import { editPageUrl, itemPageUrl } from "@/src/data/links/pagesLinks";
 import { useAppDispatch } from "@/src/app/hooks";
 
@@ -56,7 +60,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
         router.push(getCategoryUrl(item.categoryId, item.category));
       }
       if (isItemPage(path)) {
-        router.push(getItemUrl(item.categoryId, item.category));
+        router.push(getCategoryUrl(item.categoryId, item.category));
       }
       toast.success("The item was removed.");
     } catch (error: any) {
@@ -75,12 +79,14 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           >
             Edit
           </Link>
-          <Link
-            href={itemPageUrl + item.id}
-            className=" text-blue-400 hover:text-blue-600 optionsBtn"
-          >
-            Open Item
-          </Link>
+          {!isItemPage(path) && (
+            <Link
+              href={itemPageUrl + item.id}
+              className=" text-blue-400 hover:text-blue-600 optionsBtn"
+            >
+              Open Item
+            </Link>
+          )}
           <button
             onClick={() => removeBtnFunction()}
             className="w-full  text-red-400 hover:text-red-600 optionsBtn "
