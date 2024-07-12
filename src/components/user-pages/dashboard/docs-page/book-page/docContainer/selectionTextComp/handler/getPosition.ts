@@ -3,7 +3,7 @@ export default function getPosition({left, top}: {
   left: number;
 }) {  
   return {
-        top: (top + window.scrollY - 110) + "px",
+        top: (top + window.scrollY - 55) + "px",
         left: (left + window.scrollX ) + "px",
       }
 }
