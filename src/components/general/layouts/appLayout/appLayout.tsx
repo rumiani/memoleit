@@ -18,7 +18,7 @@ import {
   reviewPageUrl,
   searchPageUrl,
   settingsPageUrl,
-} from "@/src/data/links/pagesLinks";
+} from "@/src/handlers/general/pagesLinks";
 
 interface Link {
   url: string;

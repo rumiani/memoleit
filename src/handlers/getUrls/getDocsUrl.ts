@@ -1,5 +1,4 @@
-import { docsPageUrl } from "../../data/links/pagesLinks";
-import { makeUrlFriendly } from "../makeUrlFriendly";
+import { docsPageUrl } from "../general/pagesLinks";
 
 export const getDocsUrl = (id: string, name: string) => {
   return docsPageUrl + "/" + id;

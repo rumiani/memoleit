@@ -1,38 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { db } from "@/src/services/db";
-import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import DocContainer from "./docContainer/docContainer";
 import { toast } from "react-toastify";
 import { capitalize } from "lodash";
+import { pdfReducer } from "@/src/redux/slices/pdfStateSlice";
 
 export default function BookPage({ id }: { id: string }) {
   const { category, title } = useAppSelector(
     (state) => state.itemState.formData,
   );
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-
+  const { pdf } = useAppSelector((state) => state.pdfState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    db.pdfs.get(id).then((book) => {
-      if (!book) return toast.error("PDF was not found");
-      dispatch(formDataReducer({ category: makeUrlFriendly(book.name) }));
-      const blob = new Blob([book?.file!], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-      setPdfUrl(url);
-    });
-
-   
+    const fetchPdf = async () => {
+      try {
+        const pdfFound = await db.pdfs.get(id);
+        if (!pdfFound) return toast.error("PDF was not found");
+        const { file, ...rest } = pdfFound;
+        const url = URL.createObjectURL(pdfFound.file!);
+        dispatch(pdfReducer({ ...rest, url }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPdf();
   }, [id, dispatch]);
 
   return (
     <div className="w-full h-screen my-4">
-      {pdfUrl && (
+      {pdf.url !== "" && (
         <div className="relative">
           <h1 className="font-bold text-center">{capitalize(category)}</h1>
-          <DocContainer pdfUrl={pdfUrl} />
+          <DocContainer />
         </div>
       )}
     </div>

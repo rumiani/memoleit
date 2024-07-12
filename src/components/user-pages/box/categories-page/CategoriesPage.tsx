@@ -7,7 +7,7 @@ import CategoryCard from "./categoryCard/categoryCard";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import LoadingPulses from "@/src/components/general/loading-comps/loadingPulses/loadingPulses";
-import { newPageUrl } from "@/src/data/links/pagesLinks";
+import { newPageUrl } from "@/src/handlers/general/pagesLinks";
 
 export default function CategoriesPage() {
   const { categories } = useAppSelector((state) => state.categoryState);

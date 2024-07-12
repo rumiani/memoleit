@@ -16,7 +16,6 @@ import notFoundError from "@/src/handlers/notFoundError";
 import { useRouter } from "next/navigation";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { DialogOptions } from "../../dialogOptions/dialogOptions";
-import { getItemUrl } from "@/src/handlers/getUrls/getItemUrl";
 import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
 import {
@@ -24,7 +23,7 @@ import {
   isItemPage,
   isReviewPage,
 } from "@/src/handlers/general/isPage";
-import { editPageUrl, itemPageUrl } from "@/src/data/links/pagesLinks";
+import { editPageUrl, itemPageUrl } from "@/src/handlers/general/pagesLinks";
 import { useAppDispatch } from "@/src/app/hooks";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {

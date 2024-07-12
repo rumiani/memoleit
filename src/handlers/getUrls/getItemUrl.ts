@@ -1,4 +1,4 @@
-import { editPageUrl } from "../../data/links/pagesLinks";
+import { editPageUrl } from "../general/pagesLinks";
 import { makeUrlFriendly } from "../makeUrlFriendly";
 
 export const getItemUrl = (id: string, name: string) => {

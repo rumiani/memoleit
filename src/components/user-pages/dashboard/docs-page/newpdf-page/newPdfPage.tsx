@@ -7,7 +7,8 @@ import { allPdfsReducer } from "@/src/redux/slices/pdfStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { CgAttachment } from "react-icons/cg";
 import { IoIosAdd } from "react-icons/io";
-import { getPDFsHandler } from "../handlers/getPDFshandler";
+import getPDFsHandler from "../handlers/getPDFsHandler";
+
 export default function NewPdfPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [displayedName, setDisplayedName] = useState("");
@@ -35,19 +36,21 @@ export default function NewPdfPage() {
     if (foundPdf) return toast.error("The PDF file already exists.");
 
     try {
-      const pdfBlob: BlobPart = await new Promise((resolve, reject) => {
+      const pdfFile: BlobPart = await new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result as ArrayBuffer);
         reader.onerror = reject;
         reader.readAsArrayBuffer(selectedFile);
       });
-
+      const blobFile = new Blob([pdfFile], { type: selectedFile.type });
       await db.pdfs.add({
+        id: uuidv4(),
         name: displayedName,
         pdfName: selectedFile.name,
+        lastVisitedPage: 0,
+        file: blobFile,
+        numberOfPages: 0,
         createdAt: Date.now(),
-        id: uuidv4(),
-        file: new Blob([pdfBlob], { type: selectedFile.type }),
       });
       setSelectedFile(null);
       fileInputRef.current!.value = "";

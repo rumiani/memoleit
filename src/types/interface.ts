@@ -82,6 +82,8 @@ export interface PdfDBTypes {
   name: string;
   pdfName: string;
   file?: Blob;
+  lastVisitedPage: number;
+  numberOfPages:number;
   createdAt: number;
 }
 export interface PdfStateTypes {
@@ -89,6 +91,7 @@ export interface PdfStateTypes {
   name: string;
   pdfName: string;
   url: string;
-  size: number;
+  lastVisitedPage: number;
+  numberOfPages:number;
   createdAt: number;
 }

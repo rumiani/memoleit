@@ -24,7 +24,7 @@ export class MySubClassedDexie extends Dexie {
       categories: "++id,userId, name, status, createdAt",
       setting:
         "++id, name, userId , isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, textToSpeechLang, isDictionaryOn, leitnerTextSelectionMode, tour",
-      pdfs: "++id, name,pdfName, file, createdAt",
+      pdfs: "++id, name,pdfName,lastVisitedPage, numberOfPages, file, createdAt",
     });
   }
 }

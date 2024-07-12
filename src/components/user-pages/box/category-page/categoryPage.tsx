@@ -6,7 +6,7 @@ import { findCategoryById } from "@/src/handlers/findCategoryById";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { categoryReducer } from "@/src/redux/slices/categoryStateSlice";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
-import { categoriesPageUrl } from "@/src/data/links/pagesLinks";
+import { categoriesPageUrl } from "@/src/handlers/general/pagesLinks";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
 import { isEmpty } from "lodash";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";

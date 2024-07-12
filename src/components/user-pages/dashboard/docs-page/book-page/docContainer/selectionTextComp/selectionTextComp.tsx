@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getPosition from "./handlers/getPosition";
+import getPosition from "./handler/getPosition";
 import { db } from "@/src/services/db";
 import { MdAddBox } from "react-icons/md";
 import { FaCaretDown } from "react-icons/fa";

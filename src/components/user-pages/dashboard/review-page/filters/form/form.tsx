@@ -15,7 +15,7 @@ import {
 import { CategoryTypes } from "@/src/types/interface";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import Link from "next/link";
-import { newPageUrl } from "@/src/data/links/pagesLinks";
+import { newPageUrl } from "@/src/handlers/general/pagesLinks";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);

@@ -8,7 +8,8 @@ const initialState: initialPdfStateTypes = {
     name: "",
     pdfName: "",
     url: "",
-    size: 0,
+    lastVisitedPage: 0,
+    numberOfPages:0,
     createdAt: 0,
   },
   pdfs: [],
@@ -23,7 +24,7 @@ export const userStateSlice = createSlice({
       state.pdf = { ...state.pdf, ...action.payload };
     },
     allPdfsReducer: (state, action: PayloadAction<PdfStateTypes[]>) => {
-      state.pdfs = [...action.payload];
+      state.pdfs = action.payload;
     },
     pdfOnEditReducer: (state, action: PayloadAction<string>) => {
       state.pdfOnEdit = action.payload;
@@ -31,6 +32,7 @@ export const userStateSlice = createSlice({
   },
 });
 
-export const { pdfReducer, allPdfsReducer,pdfOnEditReducer } = userStateSlice.actions;
+export const { pdfReducer, allPdfsReducer, pdfOnEditReducer } =
+  userStateSlice.actions;
 
 export default userStateSlice.reducer;

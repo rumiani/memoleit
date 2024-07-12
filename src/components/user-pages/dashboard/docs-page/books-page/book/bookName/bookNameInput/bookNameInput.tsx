@@ -1,15 +1,13 @@
 import { useAppDispatch } from "@/src/app/hooks";
-import { PdfStateTypes } from "@/src/types/interface";
 import React, { useRef, useState } from "react";
-import { FaSave } from "react-icons/fa";
 import { toast } from "react-toastify";
 import {
   allPdfsReducer,
   pdfOnEditReducer,
 } from "@/src/redux/slices/pdfStateSlice";
-import { getPDFsHandler } from "../../../../handlers/getPDFshandler";
 import { db } from "@/src/services/db";
-import { categoryOnEditReducer } from "@/src/redux/slices/categoryStateSlice";
+import getPDFsHandler from "../../../../handlers/getPDFsHandler";
+import { PdfStateTypes } from "@/src/types/interface";
 
 export default function BookNameInput({ book }: { book: PdfStateTypes }) {
   const [newBookName, setNewBookName] = useState<string>(book.name);

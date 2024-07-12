@@ -1,11 +1,10 @@
-import { db } from "@/src/services/db";
-import { PdfStateTypes } from "@/src/types/interface";
 import React, { useEffect, useState } from "react";
 import LoadingPulses from "../../../../general/loading-comps/loadingPulses/loadingPulses";
 import Book from "./book/book";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { allPdfsReducer } from "@/src/redux/slices/pdfStateSlice";
-import { getPDFsHandler } from "../handlers/getPDFshandler";
+import getPDFsHandler from "../handlers/getPDFsHandler";
+import { PdfStateTypes } from "@/src/types/interface";
 
 export default function BooksPage() {
   const { pdfs } = useAppSelector((state) => state.pdfState);
@@ -16,7 +15,7 @@ export default function BooksPage() {
     const fetchPdfs = async () => {
       try {
         const pdfs = await getPDFsHandler();
-        if (pdfs) dispatch(allPdfsReducer(pdfs));
+        dispatch(allPdfsReducer(pdfs!));
         setLoading(false);
       } catch (error) {}
     };

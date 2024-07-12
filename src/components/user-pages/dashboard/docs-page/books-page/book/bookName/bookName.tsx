@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { useAppSelector } from "@/src/app/hooks";
-import { capitalize, startCase } from "lodash";
+import { startCase } from "lodash";
 import BookNameInput from "./bookNameInput/bookNameInput";
-import { PdfStateTypes } from "@/src/types/interface";
 import { getDocsUrl } from "@/src/handlers/getUrls/getDocsUrl";
+import { PdfStateTypes } from "@/src/types/interface";
 
 export default function BookName({ book }: { book: PdfStateTypes }) {
   const { pdfOnEdit } = useAppSelector((state) => state.pdfState);
