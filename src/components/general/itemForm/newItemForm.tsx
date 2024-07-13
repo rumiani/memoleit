@@ -9,7 +9,10 @@ import { FormValues } from "@/src/types/interface";
 import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import BodyInput from "./bodyInput/bodyInput";
-import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
+import {
+  formDataReducer,
+  translatingItemsReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -22,6 +25,7 @@ export default function NewItemForm() {
     (state) => state.itemState.formData,
   );
   const [createdMessage, setCreatedMessage] = useState(false);
+  const { translatingItems } = useAppSelector((state) => state.itemState);
 
   const form = useForm<FormValues>({
     defaultValues: isEditPage(path)
@@ -45,6 +49,11 @@ export default function NewItemForm() {
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = async (item: FormValues) => {
+    dispatch(
+      translatingItemsReducer(
+        translatingItems.filter((translatingItem) => translatingItem !== item.title),
+      ),
+    );
     try {
       if (isEditPage(path)) {
         await saveEditedItemHandler(item, itemID!);
@@ -66,7 +75,7 @@ export default function NewItemForm() {
   return (
     <>
       {createdMessage ? (
-        <CreatedMessage createdMsgHandler={() => setCreatedMessage(false)} />
+        <CreatedMessage setCreatedMessage={() => setCreatedMessage(false)} />
       ) : (
         <div
           className={`${

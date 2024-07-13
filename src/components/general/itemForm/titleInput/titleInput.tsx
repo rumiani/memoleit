@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";
-import { isDocsPage, isNewPage } from "@/src/handlers/general/isPage";
+import { isNewPage } from "@/src/handlers/general/isPage";
 interface TitleProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
@@ -25,7 +25,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
       <input
         dir="auto"
         id="inputTitle"
-        className="first-element primaryInput pr-8"
+        className="first-element primaryInput !pr-12"
         placeholder="Write a title here..."
         autoComplete="off"
         type="text"
@@ -53,7 +53,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
         })}
       />
       <p className="text-red-500 text-sm  pl-4">{error}</p>
-      {isDocsPage(path) && <TranslateTitle />}
+      <TranslateTitle />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export const copyToClipboard = async (text: string) => {
+export const copyToClipboardHandler = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text);
     toast.success("Text copied to clipboard!");

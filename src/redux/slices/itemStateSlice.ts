@@ -26,6 +26,7 @@ const initialState: initialItemStateTypes = {
     lastReview: 0,
   },
   items: [],
+  translatingItems:[],
   numberOfItemsToReview: 0,
 };
 
@@ -48,6 +49,10 @@ export const itemStateSlice = createSlice({
     numberOfItemsToReviewReducer: (state, action: PayloadAction<number>) => {
       state.numberOfItemsToReview = action.payload;
     },
+
+    translatingItemsReducer: (state, action: PayloadAction<string[]>) => {
+      state.translatingItems = [...action.payload];
+    },
   },
 });
 
@@ -56,6 +61,7 @@ export const {
   allItemsReducer,
   formDataReducer,
   numberOfItemsToReviewReducer,
+  translatingItemsReducer
 } = itemStateSlice.actions;
 
 export default itemStateSlice.reducer;

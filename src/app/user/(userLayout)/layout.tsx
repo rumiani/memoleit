@@ -6,7 +6,7 @@ export default async function AppLayout({
   children: React.ReactNode;
 }) {
   return (
-      <div className="px-2 sm:px-6 lg:px-8">
+      <div className=" px-2 sm:px-6 lg:px-8">
         <ItemsNav />
         <div className="sm:ml-14">{children}</div>
       </div>

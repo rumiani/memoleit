@@ -56,8 +56,6 @@ export default function DocContainer() {
     sidebarTabs: () => [],
   });
   useEffect(() => {
-    console.log(pdf.lastVisitedPage);
-    
     return () => {
       const savePDFinfo = async () => {
         const foundPdf = await db.pdfs.get(params.id);
@@ -66,13 +64,12 @@ export default function DocContainer() {
           foundPdf.lastVisitedPage = currentPageNum;
           db.pdfs.put(foundPdf);
         }
-
         const pdfs = await getPDFsHandler();
         if (pdfs) dispatch(allPdfsReducer(pdfs));
       };
       savePDFinfo();
     };
-  }, [params,pdf, currentPageNum, numberOfPages, dispatch]);
+  }, [params, pdf, currentPageNum, numberOfPages, dispatch]);
   return (
     <div
       ref={documentElement}
@@ -96,7 +93,7 @@ export default function DocContainer() {
       </Worker>
       <div
         style={{ width: `${(100 * currentPageNum) / numberOfPages}%` }}
-        className="absolute top-10 z-50 h-1 bg-blue-500"
+        className="absolute top-10 z-10 h-1 bg-blue-500"
       ></div>
       <SelectionTextComp />
     </div>

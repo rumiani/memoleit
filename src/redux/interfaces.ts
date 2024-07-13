@@ -14,6 +14,7 @@ export interface initialItemStateTypes {
   formData: FormDataTypes;
   items: ItemTypes[];
   numberOfItemsToReview: number;
+  translatingItems:string[]
 }
 export interface initialCategoryStateTypes {
   category: CategoryTypes;
