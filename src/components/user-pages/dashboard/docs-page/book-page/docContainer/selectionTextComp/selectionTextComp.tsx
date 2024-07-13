@@ -71,6 +71,7 @@ export default function SelectionTextComp() {
             dispatch(
               translatingItemsReducer([...translatingItems, highlightedText]),
             );
+            setHighlightedText("")
             window.getSelection()!.removeAllRanges()
           }}
         >

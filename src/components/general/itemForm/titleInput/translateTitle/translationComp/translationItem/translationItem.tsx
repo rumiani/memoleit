@@ -53,7 +53,7 @@ export default function TranslationItem({
   return (
     <div className="w-72 p-2  shadow-md shadow-gray-300">
       <div className="flex flex-row justify-between gap-2 items-center">
-        <p className="font-bold">{capitalize(translatingItem)}</p>
+        <p className="font-bold w-full overflow-x-auto">{capitalize(translatingItem)}</p>
         <div className="flex flex-row gap-1">
           <button
             type="button"
@@ -87,7 +87,7 @@ export default function TranslationItem({
       ) : (
         <div className="flex w-full flex-row gap-2 items-center">
           {notFount ? (
-            <p className="text-red-500 mx-auto"> Not Fount</p>
+            <p className="text-red-500 mx-auto"> Not Found</p>
           ) : (
             lookUpResult && (
               <div className="flex flex-row gap-2 justify-between w-full ">
