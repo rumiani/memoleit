@@ -26,9 +26,11 @@ export default function NewPdfPage() {
   };
 
   const handleAddPdf = async () => {
+    if (!selectedFile) return toast.error("You need to select a PDF file.");
     if (displayedName.trim() === "")
       return toast.error("You need a name for your file.");
-    if (!selectedFile) return toast.error("You need to select a PDF file.");
+    if (displayedName.length < 3 || displayedName.length > 20) return;
+    
     const foundPdf = await db.pdfs
       .where("pdfName")
       .equals(selectedFile.name)
@@ -92,6 +94,10 @@ export default function NewPdfPage() {
           className="icon absolute right-0 text-blue-400"
         />
       </div>
+      {displayedName.length < 3 ||
+        (displayedName.length > 20 && (
+          <p className="w-full text-red-500">PDF name must be 3-20 letters</p>
+        ))}
     </div>
   );
 }

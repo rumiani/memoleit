@@ -32,6 +32,6 @@
     "src/app/user/(appLayout)/transfer/(transferLayout)/import",
     "src/components/super-page-options/import-page",
     "src/handlers/itemsToReviewHandler.tss"
-, "src/components/providers/providers.js", "src/app/api/auth/route.js"  ],
+, "src/components/providers/providers.js", "src/app/api/auth/route.js", "src/components/general/item/itemInfo/leitnerPic.tsx"  ],
   "exclude": ["node_modules"]
 }

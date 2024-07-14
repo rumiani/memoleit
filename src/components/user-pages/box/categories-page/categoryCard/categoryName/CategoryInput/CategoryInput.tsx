@@ -26,7 +26,8 @@ export default function CategoryInput({
   };
 
   const saveCategoryHandler = async () => {
-    if (newCategoryName.length < 3) return inputElement.current!.focus();
+    if (newCategoryName.length < 3 || newCategoryName.length > 20)
+      return inputElement.current!.focus();
     try {
       await saveCategoryNameHandler({
         categoryId: category.id,
@@ -56,11 +57,12 @@ export default function CategoryInput({
           value={newCategoryName}
           onChange={changeCategoryNameHandler}
         />
-        {newCategoryName.length < 3 && (
-          <p className="text-red-500 text-xs font-bold p-1">
-            The input must be ≥ 3 letters
-          </p>
-        )}
+        {newCategoryName.length < 3 ||
+          (newCategoryName.length > 20 && (
+            <p className="text-red-500 text-xs font-bold p-1">
+              The input must be ≥ 3 letters
+            </p>
+          ))}
       </div>
       <div className="flex flex-row justify-end my-2">
         <button

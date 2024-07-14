@@ -1,10 +1,8 @@
-import { useAppDispatch } from "@/src/app/hooks";
 import { ItemTypes } from "@/src/types/interface";
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import heroImage from "@/public/assets/images/leitner.webp";
-import Image from "next/image";
 import Dialog from "../../dialog/dialog";
+import LeitnerPic from "./leitnerPic";
 
 export default function ItemInfo({ item }: { item: ItemTypes }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -27,7 +25,7 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
             Item: <strong>{item.title}</strong>
           </span>
           <span>
-            Category:<strong>{item.category}</strong>
+            Category: <strong>{item.category}</strong>
           </span>
           <span>
             Item is in the box: <strong>{item.box}</strong>
@@ -35,7 +33,7 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
           <span>
             Remained reviews: <strong>{6 - item.box}</strong>
           </span>
-          <p className="text-green-500">
+          <p className="text-green-500 text-left">
             - If you know the item,{" "}
             {item.box === 5 ? (
               " the learning proccess will complete and the word will be archived."
@@ -50,29 +48,27 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
             <strong>1</strong>.
           </p>{" "}
         </div>
-        <div className="relative w-72 h-40 bg-slate-400 max-w-lg my-8 mx-auto overflow-hidden">
-          <div className="absolute z-10 flex flex-wrap top-[30%] w-full h-20">
+        <div className="relative w-72 h-40  max-w-lg my-8 mx-auto overflow-hidden">
+          <div className="absolute flex flex-wrap  w-[252px] h-5 ml-[11px] top-[44%]">
             {[1, 2, 3, 4, 5].map((box) => {
               return (
                 <div
                   key={box}
-                  className={`w-1/5 h-14 ${
+                  className={`w-[33px]  h-[19px]  ${box === 2 && "ml-[19px] mr-[22px]"} ${box === 4 && "ml-[25px] mr-[21px]"} ${
                     item.box !== box
-                      ? "bg-gray-500 opacity-50"
-                      : "border-2 border-green-500"
+                      ? "bg-gray-600 opacity-50"
+                      : "bg-green-700 flex justify-center items-center text-white text-sm font-bold "
                   }`}
-                ></div>
+                >
+                  <span className="animate-pulse">
+                    {item.box === box && box}
+                  </span>
+                </div>
               );
             })}
           </div>
-          <Image
-            unoptimized
-            src={heroImage}
-            width={100}
-            alt="Leitner box explained"
-            loading="lazy"
-            className="w-full h-fit scale-125"
-          />
+
+          <LeitnerPic />
         </div>
       </Dialog>
     </div>
