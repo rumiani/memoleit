@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import heroImage from "@/public/assets/images/leitner.webp";
+import heroImage from "@/public/assets/images/forgettingCurve.png";
 import ImgHoverZoom from "../../general/imgHoverZoom/imgHoverZoom";
 export default function Hero() {
   return (
-    <div className="w-full flex flex-col gap-4 md:flex-row justify-center items-center text-gray-800">
-      <div className="w-full lg:w-1/2 md:w-4/5 mx-auto">
+    <div className="w-full flex flex-col sm:flex-row gap-4 justify-center items-center text-gray-800">
+      <div className="w-full sm:w-1/2  mx-auto">
         <h1 className="text-gray-800 text-2xl lg:text-5xl xl:text-5xl font-bold lg:tracking-tight">
           Master Knowledge, One Card at a Time!
         </h1>
@@ -29,7 +29,7 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      <div className="w-full lg:w-1/2">
+      <div className="w-full  sm:w-1/2">
         <ImgHoverZoom src={heroImage} alt="Leitner box explained" />
       </div>
     </div>
