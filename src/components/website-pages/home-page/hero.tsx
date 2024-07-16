@@ -5,7 +5,7 @@ import ImgHoverZoom from "../../general/imgHoverZoom/imgHoverZoom";
 export default function Hero() {
   return (
     <div className="w-full flex flex-col sm:flex-row gap-4 justify-center items-center text-gray-800">
-      <div className="w-full sm:w-1/2  mx-auto">
+      <div className="w-full bg-red-400 sm:w-1/2 h-full  mx-auto">
         <h1 className="text-gray-800 text-2xl lg:text-5xl xl:text-5xl font-bold lg:tracking-tight">
           Master Knowledge, One Card at a Time!
         </h1>
@@ -24,12 +24,17 @@ export default function Hero() {
           >
             Get Started
           </Link>
-          <Link rel="noopener" href="/contact" className="secondaryBtn  text-center ">
+          <Link
+            rel="noopener"
+            href="/contact"
+            className="secondaryBtn  text-center "
+          >
             Contact Us
           </Link>
         </div>
       </div>
-      <div className="w-full  sm:w-1/2">
+      <div className="w-full sm:w-1/2">
+        <h2 className="text-center font-bold">The forgetting curve</h2>
         <ImgHoverZoom src={heroImage} alt="Leitner box explained" />
       </div>
     </div>
