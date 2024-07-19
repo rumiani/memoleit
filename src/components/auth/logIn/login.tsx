@@ -6,25 +6,22 @@ import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import googleLogo from "@/public/assets/images/login/googleLogo.png";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "@/firebase/firebaseConfig";
-import { signInWithGoogle } from "@/firebase/firebaseAuth";
-import { saveUserData } from "@/firebase/firestore";
-import { createToken } from "@/lib/jwt";
+
 export default function Login() {
-  const { data: session } = useSession();
+  const { data: session,status } = useSession();
 
   useEffect(() => {
+    console.log(status);
+    
     if (session) {
-      console.log("signed In");
+      console.log("-------------signed In-----------");
       setTimeout(() => {
-        redirect("/user/dashboard/review");
-      }, 10000);
+        // redirect("/user/dashboard/review");
+      }, 3000);
     } else {
       console.log("signed Out");
     }
-  }, [session]);
+  }, [session,status]);
 
   return (
     <section className="my-12 flex flex-col-reverse sm:flex-row ">
