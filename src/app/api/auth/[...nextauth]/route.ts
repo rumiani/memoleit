@@ -9,59 +9,50 @@ const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        url: "https://accounts.google.com/o/oauth2/auth",
-        params: {
-          scope: "openid profile email",
-        },
-      },
-      httpOptions: {
-        timeout: 10000,
-      },
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: any }) {
-      console.log("---------user----------", user);
-      if (user) {
-        token.id = user.id;
-        token.email = user.email;
-        token.name = user.name;
-      }
-      return token;
-    },
-    async session({ session, token }: { session: any; token: JWT }) {
-      console.log("---------session---------", session);
-      if (session.user) {
-        session.user.id = token.id;
-        session.user.email = token.email;
-        session.user.name = token.name;
-      }
-      return session;
-    },
-    async signIn({ user, account, profile }: any) {
-      if (account.provider === "google") {
-        try {
-          const { name, email } = user;
-          await connectDB();
-          const existingUser = await User.findOne({ email });
-          if (existingUser) return existingUser;
-          const newUser = new User({
-            name: user.name,
-            email: user.email,
-            image: user.image,
-            googleId: account.providerAccountId,
-          });
-          const res = await newUser.save();
-          if (res.status === 200 || res.status === 201) {
-            console.log(res);
-            return user;
-          }
-        } catch (error) {}
-      }
-    },
-  },
+  // callbacks: {
+  //   async jwt({ token, user }: { token: JWT; user?: any }) {
+  //     console.log("---------user----------", user);
+  //     if (user) {
+  //       token.id = user.id;
+  //       token.email = user.email;
+  //       token.name = user.name;
+  //     }
+  //     return token;
+  //   },
+  //   async session({ session, token }: { session: any; token: JWT }) {
+  //     console.log("---------session---------", session);
+  //     if (session.user) {
+  //       session.user.id = token.id;
+  //       session.user.email = token.email;
+  //       session.user.name = token.name;
+  //     }
+  //     return session;
+  //   },
+  //   async signIn({ user, account, profile }: any) {
+  //     if (account.provider === "google") {
+  //       try {
+  //         const { name, email } = user;
+  //         await connectDB();
+  //         const existingUser = await User.findOne({ email });
+  //         if (existingUser) return existingUser;
+  //         const newUser = new User({
+  //           name: user.name,
+  //           email: user.email,
+  //           image: user.image,
+  //           googleId: account.providerAccountId,
+  //         });
+  //         const res = await newUser.save();
+  //         if (res.status === 200 || res.status === 201) {
+  //           console.log(res);
+  //           return user;
+  //         }
+  //       } catch (error) {}
+  //     }
+  //   },
+  // },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
