@@ -5,10 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
+import LoginBtn from "./loginBtn/loginBtn";
 let navLinks = [
   { name: "Dashboard", href: "/user/dashboard/review" },
   { name: "Home", href: "/" },
-  { name: "Login", href: "/login" },
 ];
 
 const Navbar = () => {
@@ -36,7 +36,7 @@ const Navbar = () => {
         </button>
       </div>
       <div
-        className={`bg-gray-900 sm:bg-transparent flex flex-col-reverse w-full p-4 sm:p-0 mt-2 rounded-lg sm:flex-row flex-grow justify-between items-center ${
+        className={`bg-gray-900 sm:bg-transparent flex flex-col w-full p-4 sm:p-0 mt-2 rounded-lg sm:flex-row flex-grow justify-between items-center ${
           isOpen ? "block" : "hidden"
         } sm:flex sm:justify-end text-center`}
       >
@@ -61,6 +61,7 @@ const Navbar = () => {
             );
           })}
         </ul>
+        <LoginBtn/>
       </div>
     </nav>
   );

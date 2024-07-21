@@ -32,6 +32,8 @@ const authOptions: NextAuthOptions = {
   //     return session;
   //   },
   //   async signIn({ user, account, profile }: any) {
+  //     console.log("User account profile",{user, account, profile} );
+      
   //     if (account.provider === "google") {
   //       try {
   //         const { name, email } = user;
@@ -49,7 +51,10 @@ const authOptions: NextAuthOptions = {
   //           console.log(res);
   //           return user;
   //         }
-  //       } catch (error) {}
+  //       } catch (error) {
+  //         console.log("Errorrrrrrr",error);
+          
+  //       }
   //     }
   //   },
   // },

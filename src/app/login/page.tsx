@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
 import Head from "next/head";
-import Login from "../../components/auth/logIn/login";
 import { useSession } from "next-auth/react";
-import LogoutButton from "@/src/components/auth/signOut/signOut";
-
+import LoginBtn from "@/src/components/general/layouts/generalLayout/header/loginBtn/loginBtn";
+import Login from "@/src/components/auth/logIn/login";
 export default function Page() {
   const { data: session } = useSession();
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function Page() {
           content="Memorise everything in an efficent way ..."
         />
       </Head>
-      <section>
+      <section className="h-screen">
         <div>
           {!session ? (
             <Login />
@@ -36,7 +35,6 @@ export default function Page() {
                 Welcome, {session.user?.name}, this is your email:{" "}
                 {session.user?.email}
               </p>
-              <LogoutButton />
             </div>
           )}
         </div>
