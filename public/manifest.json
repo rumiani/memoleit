@@ -37,7 +37,7 @@
   },
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
-  "start_url": "/app/dashboard/review",
+  "start_url": "/user/dashboard/review",
   "display": "standalone",
   "orientation": "any"
 }
