@@ -1,6 +1,5 @@
 import LogoutButton from "@/src/components/auth/signOut/signOut";
-import { signOut, useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import React from "react";
 
 export default function UserOptions() {

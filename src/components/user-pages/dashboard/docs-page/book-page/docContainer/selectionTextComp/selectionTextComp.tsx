@@ -71,8 +71,8 @@ export default function SelectionTextComp() {
             dispatch(
               translatingItemsReducer([...translatingItems, highlightedText]),
             );
-            setHighlightedText("")
-            window.getSelection()!.removeAllRanges()
+            setHighlightedText("");
+            window.getSelection()!.removeAllRanges();
           }}
         >
           <div className="flex flex-col justify-center items-center">

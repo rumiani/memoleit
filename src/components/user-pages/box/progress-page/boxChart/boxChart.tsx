@@ -32,12 +32,19 @@ interface lableTypes {
 const renderCustomBarLabel = (lable: lableTypes) => {
   const { payload, x, y, width, height, value } = lable;
   return (
-    <text style={{fontWeight:"bold"}} x={x + width / 2} y={y} fill="#666" textAnchor="middle" dy={-6}>
+    <text
+      style={{ fontWeight: "bold" }}
+      x={x + width / 2}
+      y={y}
+      fill="#666"
+      textAnchor="middle"
+      dy={-6}
+    >
       {value}
     </text>
   );
 };
-const initialData = [
+const initialData: DataType[] = [
   { name: "Box 1", Reviewed: 0, Pending: 0 },
   { name: "Box 2", Reviewed: 0, Pending: 0 },
   { name: "Box 3", Reviewed: 0, Pending: 0 },
@@ -46,14 +53,14 @@ const initialData = [
 ];
 const BoxChart: React.FC = () => {
   const { category } = useAppSelector((state) => state.categoryState);
-  const [data, setData] = useState<DataType[] | undefined>(undefined);
+  const [data, setData] = useState<DataType[]>(initialData);
   const [categoryId, setCategoryId] = useState<string>("");
 
   useEffect(() => {
     if (!data) {
       boxChartDataHandler(_.cloneDeep(initialData), category.id).then(
         (chartData) => {
-          setData(chartData);
+          if (chartData) setData(chartData);
         },
       );
     }
@@ -61,8 +68,10 @@ const BoxChart: React.FC = () => {
 
   const handleChange = (id: string) => {
     boxChartDataHandler(_.cloneDeep(initialData), id).then((chartData) => {
-      setData(chartData);
-      setCategoryId(id);
+      if (chartData) {
+        setData(chartData);
+        setCategoryId(id);
+      }
     });
   };
 

@@ -15,7 +15,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = usePathname();
   const targetRef = useRef<HTMLDivElement>(null);
-  const { data: session } = useSession();
 
   return (
     <nav
@@ -61,7 +60,7 @@ const Navbar = () => {
             );
           })}
         </ul>
-        <LoginBtn/>
+        {/* <LoginBtn/> */}
       </div>
     </nav>
   );
