@@ -60,7 +60,7 @@ const Navbar = () => {
             );
           })}
         </ul>
-        {/* <LoginBtn/> */}
+        <LoginBtn/>
       </div>
     </nav>
   );
