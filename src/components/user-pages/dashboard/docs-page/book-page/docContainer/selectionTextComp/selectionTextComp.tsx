@@ -13,7 +13,9 @@ import { isEmpty } from "lodash";
 
 export default function SelectionTextComp() {
   const { pdf } = useAppSelector((state) => state.pdfState);
-  const { translatingItems } = useAppSelector((state) => state.itemState);
+  const { translatingItems, formData } = useAppSelector(
+    (state) => state.itemState,
+  );
   const [highlightedText, setHighlightedText] = useState<string>("");
   const [position, setPosition] = useState<{
     top: string;
@@ -65,12 +67,21 @@ export default function SelectionTextComp() {
           className="fixed z-50 animate-merge flex-col text-green-700 w-10 h-10  cursor-pointer p-1 rounded-md"
           onClick={() => {
             setDialogOpen(true);
-            dispatch(
-              formDataReducer({ title: highlightedText, category: pdf.name }),
-            );
-            dispatch(
-              translatingItemsReducer([...translatingItems, highlightedText]),
-            );
+            if (
+              !translatingItems.includes(highlightedText) &&
+              !isEmpty(highlightedText.trim())
+            ) {
+              dispatch(
+                formDataReducer({
+                  title:
+                    formData.title === "" ? highlightedText : formData.title,
+                  category: pdf.name,
+                }),
+              );
+              dispatch(
+                translatingItemsReducer([...translatingItems, highlightedText]),
+              );
+            }
             setHighlightedText("");
             window.getSelection()!.removeAllRanges();
           }}

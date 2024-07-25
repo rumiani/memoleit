@@ -84,7 +84,7 @@ export interface PdfDBTypes {
   pdfName: string;
   file?: Blob;
   lastVisitedPage: number;
-  numberOfPages:number;
+  numberOfPages: number;
   createdAt: number;
 }
 export interface PdfStateTypes {
@@ -93,6 +93,23 @@ export interface PdfStateTypes {
   pdfName: string;
   url: string;
   lastVisitedPage: number;
-  numberOfPages:number;
+  numberOfPages: number;
   createdAt: number;
+}
+export interface DefinitionsTyps {
+  definition: string;
+  example: string;
+  synonyms: string[];
+  antonyms: string[];
+}
+export interface MeaningTypes {
+  definitions: DefinitionsTyps[];
+  partOfSpeech: string;
+  synonyms: string[];
+  antonyms: string[];
+}
+export interface LookUpResultTypes {
+  phonetic: string;
+  meanings: MeaningTypes[];
+  phonetics: { text: string; audio: string }[];
 }

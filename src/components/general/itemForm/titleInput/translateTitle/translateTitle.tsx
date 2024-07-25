@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { MdOutlineTranslate } from "react-icons/md";
 import Dialog from "../../../dialog/dialog";
-import { IoMdOptions } from "react-icons/io";
 import TranslationComp from "./translationComp/translationComp";
 import { translatingItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
+import { FaClipboardList } from "react-icons/fa";
 export default function TranslateTitle() {
   const { title } = useAppSelector((state) => state.itemState.formData);
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -13,25 +12,21 @@ export default function TranslateTitle() {
 
   const dispatch = useAppDispatch();
   return (
-    <>
-      {title.trim().length > 0 && (
-        <div>
-          <button
-            type="button"
-            onClick={() => {
-              setDialogOpen(true);
-              !translatingItems.includes(title) &&
-                dispatch(translatingItemsReducer([...translatingItems, title]));
-            }}
-            className="absolute top-1 right-2 text-3xl icon"
-          >
-            <IoMdOptions />
-          </button>
-          <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
-            <TranslationComp setDialogOpen={setDialogOpen} />
-          </Dialog>
-        </div>
-      )}
-    </>
+    <div>
+      <button
+        type="button"
+        onClick={(e) => {
+          setDialogOpen(true);
+          if (!translatingItems.includes(title) && !isEmpty(title.trim()))
+            dispatch(translatingItemsReducer([...translatingItems, title]));
+        }}
+        className="absolute hover:text-gray-900 text-gray-600 top-1 right-2 text-3xl icon"
+      >
+        <FaClipboardList className=""/>
+      </button>
+      <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
+        <TranslationComp setDialogOpen={setDialogOpen} />
+      </Dialog>
+    </div>
   );
 }
