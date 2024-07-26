@@ -9,13 +9,13 @@ export default function TranslationComp({
 }) {
   const { translatingItems,formData } = useAppSelector((state) => state.itemState);
   if (translatingItems.length === 0) {
-    return <div className="text-red-500">There is no item to add</div>;
+    return <div className="text-red-500 text-center my-8">There is no item to add</div>;
   }
   return (
-    <div className="flex flex-col gap-2 w-full sm:w-96 h-96 overflow-y-auto">
+    <div className="flex flex-col gap-2  overflow-y-auto">
       {translatingItems.map((translatingItem, i) => {
         return (
-          <div key={i} className={`${translatingItem === formData.title && 'bg-green-200'}`}>
+          <div key={i} className={`${translatingItem === formData.title && 'bg-green-200'} w-full`}>
             <TranslationItem
               translatingItem={translatingItem}
               setDialogOpen={setDialogOpen}

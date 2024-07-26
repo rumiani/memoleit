@@ -22,10 +22,12 @@ export default function TranslateTitle() {
         }}
         className="absolute hover:text-gray-900 text-gray-600 top-1 right-2 text-3xl icon"
       >
-        <FaClipboardList className=""/>
+        <FaClipboardList />
       </button>
       <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
-        <TranslationComp setDialogOpen={setDialogOpen} />
+        <div className="min-w-72 sm:w-96 h-96">
+          <TranslationComp setDialogOpen={setDialogOpen} />
+        </div>
       </Dialog>
     </div>
   );

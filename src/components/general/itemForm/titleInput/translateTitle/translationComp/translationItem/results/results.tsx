@@ -17,7 +17,7 @@ export default function Results({
   translatingItem: string;
 }) {
   return (
-    <>
+    <div className="w-full">
       {showMore ? (
         <LongResults
           setDialogOpen={setDialogOpen}
@@ -32,6 +32,6 @@ export default function Results({
           lookUpResults={lookUpResults}
         />
       )}
-    </>
+    </div>
   );
 }

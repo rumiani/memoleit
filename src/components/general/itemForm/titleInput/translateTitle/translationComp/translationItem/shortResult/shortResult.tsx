@@ -23,7 +23,6 @@ export default function ShortResult({
   return (
     <div className="w-full">
       <div>{lookUpResults[0].meanings[0].definitions[0].definition}</div>
-
       <div className="w-full flex flex-row justify-end items-center">
         <MdMoveDown
           title="Move it to the description."

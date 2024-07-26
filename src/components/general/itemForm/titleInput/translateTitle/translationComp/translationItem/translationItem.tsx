@@ -43,7 +43,7 @@ export default function TranslationItem({
     }
   };
   return (
-    <div className="p-2  shadow-md shadow-gray-300">
+    <div className="p-2 shadow-md shadow-gray-300">
       <WordOptions
         translatingItem={translatingItem}
         lookUpHandler={lookUpHandler}
@@ -52,7 +52,7 @@ export default function TranslationItem({
         {lookingUp ? (
           <LoadingPulse />
         ) : (
-          <div className=" flex w-full flex-row gap-2 items-center">
+          <div className="flex flex-row gap-2 items-center">
             {notFount && <p className="text-red-500 mx-auto"> Not Found</p>}
             {lookUpResults && (
               <Results
