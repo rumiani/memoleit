@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { ItemTypes } from "@/src/types/interface";
 import {
@@ -22,6 +22,7 @@ import {
   isCategoryPage,
   isItemPage,
   isReviewPage,
+  isSearchPage,
 } from "@/src/handlers/general/isPage";
 import { editPageUrl, itemPageUrl } from "@/src/handlers/general/pagesLinks";
 import { useAppDispatch } from "@/src/app/hooks";
@@ -32,6 +33,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
   const category = useParams<{ id: string; category: string }>();
   const router = useRouter();
   const path = usePathname();
+  const searchParams = useSearchParams();
 
   const removeBtnFunction = async () => {
     setShowOptions(false);
@@ -60,6 +62,16 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
       }
       if (isItemPage(path)) {
         router.push(getCategoryUrl(item.categoryId, item.category));
+      }
+
+      if (isSearchPage(path)) {
+        const searchTerm = searchParams.toString().trim().substring(2);
+        const resultItems = await db.items
+          .filter((item) =>
+            item.title.toLowerCase().includes(searchTerm.toLowerCase()),
+          )
+          .toArray();
+        dispatch(allItemsReducer(resultItems));
       }
       toast.success("The item was removed.");
     } catch (error: any) {

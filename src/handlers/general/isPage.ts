@@ -14,9 +14,12 @@ const isCategoryPage = (path: string) => {
   return path.split("/")[3] === "category";
 };
 const isItemPage = (path: string) => {
-  console.log(path.split("/")[3]);
   
   return path.split("/")[3] === "item";
+};
+const isSearchPage = (path: string) => {
+  console.log(path.split("/")[2]);
+  return path.split("/")[3] === "search";
 };
 const isUserRoute = (path: string) => {
   return path.split("/")[1] === "user";
@@ -28,5 +31,6 @@ export {
   isReviewPage,
   isCategoryPage,
   isItemPage,
-  isUserRoute
+  isUserRoute,
+  isSearchPage
 };

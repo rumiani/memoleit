@@ -5,6 +5,7 @@ import TranslationComp from "./translationComp/translationComp";
 import { translatingItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
 import { FaClipboardList } from "react-icons/fa";
+
 export default function TranslateTitle() {
   const { title } = useAppSelector((state) => state.itemState.formData);
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function TranslateTitle() {
         <FaClipboardList />
       </button>
       <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
-        <div className="min-w-72 sm:w-96 h-96">
+        <div className="min-w-72 sm:w-96 h-96 overflow-y-auto">
           <TranslationComp setDialogOpen={setDialogOpen} />
         </div>
       </Dialog>

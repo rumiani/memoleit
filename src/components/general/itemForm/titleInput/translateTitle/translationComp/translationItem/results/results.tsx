@@ -17,7 +17,7 @@ export default function Results({
   translatingItem: string;
 }) {
   return (
-    <div className="w-full">
+    <div className="w-full max-h-72 overflow-y-auto">
       {showMore ? (
         <LongResults
           setDialogOpen={setDialogOpen}

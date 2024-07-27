@@ -27,7 +27,7 @@ export default function WordOptions({
       <div className="flex flex-row gap-1">
         <button
           type="button"
-          onClick={() => lookUpHandler(translatingItem)}
+          onClick={() => lookUpHandler(translatingItem.replace(/[^a-zA-Z]/g, ''))}
           className=" icon text-2xl"
         >
           <MdOutlineTranslate />

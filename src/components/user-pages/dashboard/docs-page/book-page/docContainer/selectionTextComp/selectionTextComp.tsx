@@ -10,8 +10,11 @@ import {
 import Dialog from "@/src/components/general/dialog/dialog";
 import NewItemForm from "@/src/components/general/itemForm/newItemForm";
 import { isEmpty } from "lodash";
+import { isDocsPage } from "@/src/handlers/general/isPage";
+import { usePathname } from "next/navigation";
 
 export default function SelectionTextComp() {
+  const path = usePathname();
   const { pdf } = useAppSelector((state) => state.pdfState);
   const { translatingItems, formData } = useAppSelector(
     (state) => state.itemState,
@@ -25,11 +28,11 @@ export default function SelectionTextComp() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log(highlightedText);
-
     const handleSelectionChange = async (event: {
       preventDefault: () => void;
     }) => {
+      setHighlightedText("");
+
       event.preventDefault();
       document.addEventListener("contextmenu", (e) => e.preventDefault());
 
@@ -44,7 +47,7 @@ export default function SelectionTextComp() {
         if (rect.left && rect.top) {
           setPosition({ left: rect.left + "px", top: rect.top - 50 + "px" });
         }
-        setHighlightedText(selection.toString());
+        setHighlightedText(selection.toString().replace(/[^a-zA-Z]/g, ""));
       }
     };
 
@@ -66,18 +69,19 @@ export default function SelectionTextComp() {
           style={{ zIndex: 999, top: position?.top, left: position?.left }}
           className="fixed z-50 animate-merge flex-col text-green-700 w-10 h-10  cursor-pointer p-1 rounded-md"
           onClick={() => {
+            console.log(highlightedText);
+
             setDialogOpen(true);
+            dispatch(
+              formDataReducer({
+                title: highlightedText,
+                category: isDocsPage(path) ? pdf.name : "",
+              }),
+            );
             if (
               !translatingItems.includes(highlightedText) &&
               !isEmpty(highlightedText.trim())
             ) {
-              dispatch(
-                formDataReducer({
-                  title:
-                    formData.title === "" ? highlightedText : formData.title,
-                  category: pdf.name,
-                }),
-              );
               dispatch(
                 translatingItemsReducer([...translatingItems, highlightedText]),
               );
