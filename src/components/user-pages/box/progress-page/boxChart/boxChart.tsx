@@ -57,14 +57,14 @@ const BoxChart: React.FC = () => {
   const [categoryId, setCategoryId] = useState<string>("");
 
   useEffect(() => {
-    if (!data) {
+
       boxChartDataHandler(_.cloneDeep(initialData), category.id).then(
         (chartData) => {
           if (chartData) setData(chartData);
         },
       );
-    }
-  }, [data, category]);
+    
+  }, [ category]);
 
   const handleChange = (id: string) => {
     boxChartDataHandler(_.cloneDeep(initialData), id).then((chartData) => {
@@ -111,7 +111,7 @@ const BoxChart: React.FC = () => {
               stackId="i"
             />
             <XAxis dataKey="name" stroke="#8884d8" />
-            {/* <YAxis /> */}
+            <YAxis />
             {/* <Legend/> */}
           </BarChart>
         </ResponsiveContainer>
