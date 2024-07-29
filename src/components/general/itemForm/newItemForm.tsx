@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import BodyInput from "./bodyInput/bodyInput";
 import {
   formDataReducer,
-  translatingItemsReducer,
+  removeTranslationItemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
@@ -49,11 +49,7 @@ export default function NewItemForm() {
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = async (item: FormValues) => {
-    dispatch(
-      translatingItemsReducer(
-        translatingItems.filter((translatingItem) => translatingItem !== item.title),
-      ),
-    );
+    dispatch(removeTranslationItemReducer(item.title));
     try {
       if (isEditPage(path)) {
         await saveEditedItemHandler(item, itemID!);

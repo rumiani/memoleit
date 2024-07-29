@@ -2,6 +2,7 @@ import {
   CategoryTypes,
   FormDataTypes,
   ItemTypes,
+  LookUpResultTypes,
   PdfStateTypes,
   UserTypes,
 } from "../types/interface";
@@ -14,7 +15,7 @@ export interface initialItemStateTypes {
   formData: FormDataTypes;
   items: ItemTypes[];
   numberOfItemsToReview: number;
-  translatingItems:string[]
+  translatingItems:{[key: string]:LookUpResultTypes[]}
 }
 export interface initialCategoryStateTypes {
   category: CategoryTypes;

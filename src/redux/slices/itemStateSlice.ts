@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialItemStateTypes } from "../interfaces";
-import { ItemTypes } from "../../types/interface";
+import { initialItemStateTypes, initialPdfStateTypes } from "../interfaces";
+import { ItemTypes, LookUpResultTypes } from "../../types/interface";
 
 const initialState: initialItemStateTypes = {
   item: {
@@ -26,7 +26,7 @@ const initialState: initialItemStateTypes = {
     lastReview: 0,
   },
   items: [],
-  translatingItems:[],
+  translatingItems: {},
   numberOfItemsToReview: 0,
 };
 
@@ -50,8 +50,21 @@ export const itemStateSlice = createSlice({
       state.numberOfItemsToReview = action.payload;
     },
 
-    translatingItemsReducer: (state, action: PayloadAction<string[]>) => {
-      state.translatingItems = [...action.payload];
+    translatingItemsReducer: (state, action: PayloadAction<string>) => {
+      if (!state.translatingItems[action.payload])
+        state.translatingItems[action.payload] = [];
+    },
+    definitionOfItemsReducer: (
+      state,
+      action: PayloadAction<{ [key: string]: LookUpResultTypes[] }>,
+    ) => {
+      state.translatingItems[Object.keys(action.payload)[0]] = Object.values(
+        action.payload,
+      )[0];
+    },
+    removeTranslationItemReducer: (state, action: PayloadAction<string>) => {
+      const { [action.payload]: _, ...newTranslatingItems } = state.translatingItems;
+      state.translatingItems = newTranslatingItems
     },
   },
 });
@@ -61,7 +74,9 @@ export const {
   allItemsReducer,
   formDataReducer,
   numberOfItemsToReviewReducer,
-  translatingItemsReducer
+  translatingItemsReducer,
+  definitionOfItemsReducer,
+  removeTranslationItemReducer,
 } = itemStateSlice.actions;
 
 export default itemStateSlice.reducer;

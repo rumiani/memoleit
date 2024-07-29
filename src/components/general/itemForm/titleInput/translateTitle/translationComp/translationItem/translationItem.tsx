@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import LoadingPulse from "../../../../../loading-comps/loadingPulse/loadingPulse";
 import { toast } from "react-toastify";
-import LookUpResults from "./longResults/longResults";
-import { LookUpResultTypes } from "@/src/types/interface";
 import WordOptions from "./wordOptions/wordOptions";
-import ShortResult from "./shortResult/shortResult";
-import LongResults from "./longResults/longResults";
 import Results from "./results/results";
+import { definitionOfItemsReducer } from "@/src/redux/slices/itemStateSlice";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+
 export default function TranslationItem({
   translatingItem,
-  setDialogOpen,
 }: {
   translatingItem: string;
-  setDialogOpen: Function;
 }) {
-  const [lookUpResults, setLookUpResults] = useState<
-    LookUpResultTypes[] | null
-  >(null);
+  const { translatingItems } = useAppSelector((state) => state.itemState);
   const [lookingUp, setLookingUp] = useState<boolean>(false);
   const [notFount, setNotFount] = useState<boolean>(false);
-  const [showMore, setShowMore] = useState(false);
-
+  const [showMore, setShowMore] = useState<boolean>(false);
+  const [errorResult, setErrorResult] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   const lookUpHandler = async (word: string) => {
     setLookingUp(true);
     setNotFount(false);
+    setErrorResult(false);
+
     try {
       const response = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
@@ -33,11 +31,10 @@ export default function TranslationItem({
         toast.error("Please check your connection.");
       } else {
         const lookUpResult = await response.json();
-        setLookUpResults(lookUpResult);
-        console.log(lookUpResult);
-        
+        dispatch(definitionOfItemsReducer({ [word]: lookUpResult }));
       }
-    } catch (error) {
+    } catch (error: any) {
+      setErrorResult(true);
     } finally {
       setLookingUp(false);
     }
@@ -49,17 +46,18 @@ export default function TranslationItem({
         lookUpHandler={lookUpHandler}
       />
       <div>
+        <div className="text-red-500 text-center">
+          {errorResult && "Please check your connection"}
+        </div>
         {lookingUp ? (
           <LoadingPulse />
         ) : (
           <div className="flex flex-row gap-2 items-center">
             {notFount && <p className="text-red-500 mx-auto"> Not Found</p>}
-            {lookUpResults && (
+            {translatingItems[translatingItem] && (
               <Results
                 showMore={showMore}
-                setDialogOpen={setDialogOpen}
                 setShowMore={setShowMore}
-                lookUpResults={lookUpResults}
                 translatingItem={translatingItem}
               />
             )}

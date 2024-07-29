@@ -5,7 +5,9 @@ import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { capitalize, divide } from "lodash";
 import {
+  definitionOfItemsReducer,
   formDataReducer,
+  removeTranslationItemReducer,
   translatingItemsReducer,
 } from "@/src/redux/slices/itemStateSlice";
 
@@ -26,7 +28,7 @@ const CreatedMessage = ({
   };
   return (
     <div>
-      {translatingItems.length === 0 ? (
+      {Object.keys(translatingItems).length === 0 ? (
         <div className="flex flex-row justify-center items-center gap-2 mx-auto my-12">
           <Link
             href="/user/box/categories"
@@ -40,7 +42,7 @@ const CreatedMessage = ({
         </div>
       ) : (
         <div className="w-72 flex flex-wrap gap-1">
-          {translatingItems.map((translatingItem, i) => {
+          {Object.keys(translatingItems).map((translatingItem, i) => {
             return (
               <div
                 key={i}
@@ -58,15 +60,9 @@ const CreatedMessage = ({
                     +
                   </span>
                   <span
-                    onClick={() =>
-                      dispatch(
-                        translatingItemsReducer(
-                          translatingItems.filter(
-                            (item) => item !== translatingItem,
-                          ),
-                        ),
-                      )
-                    }
+                    onClick={() => {
+                      dispatch(removeTranslationItemReducer(translatingItem));
+                    }}
                     className="icon text-3xl text-red-500"
                   >
                     -

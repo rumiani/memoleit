@@ -16,9 +16,7 @@ import { usePathname } from "next/navigation";
 export default function SelectionTextComp() {
   const path = usePathname();
   const { pdf } = useAppSelector((state) => state.pdfState);
-  const { translatingItems, formData } = useAppSelector(
-    (state) => state.itemState,
-  );
+  const { translatingItems } = useAppSelector((state) => state.itemState);
   const [highlightedText, setHighlightedText] = useState<string>("");
   const [position, setPosition] = useState<{
     top: string;
@@ -69,8 +67,6 @@ export default function SelectionTextComp() {
           style={{ zIndex: 999, top: position?.top, left: position?.left }}
           className="fixed z-50 animate-merge flex-col text-green-700 w-10 h-10  cursor-pointer p-1 rounded-md"
           onClick={() => {
-            console.log(highlightedText);
-
             setDialogOpen(true);
             dispatch(
               formDataReducer({
@@ -79,12 +75,10 @@ export default function SelectionTextComp() {
               }),
             );
             if (
-              !translatingItems.includes(highlightedText) &&
+              !Object.keys(translatingItems).includes(highlightedText) &&
               !isEmpty(highlightedText.trim())
             ) {
-              dispatch(
-                translatingItemsReducer([...translatingItems, highlightedText]),
-              );
+              dispatch(translatingItemsReducer(highlightedText));
             }
             setHighlightedText("");
             window.getSelection()!.removeAllRanges();

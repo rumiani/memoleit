@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import TextToSpeechSpeaker from "@/src/components/general/textToSpeech/textToSpeech";
 import {
   formDataReducer,
-  translatingItemsReducer,
+  removeTranslationItemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { capitalize } from "lodash";
 import React from "react";
@@ -27,7 +27,9 @@ export default function WordOptions({
       <div className="flex flex-row gap-1">
         <button
           type="button"
-          onClick={() => lookUpHandler(translatingItem.replace(/[^a-zA-Z]/g, ''))}
+          onClick={() =>
+            lookUpHandler(translatingItem.replace(/[^a-zA-Z]/g, ""))
+          }
           className=" icon text-2xl"
         >
           <MdOutlineTranslate />
@@ -35,11 +37,7 @@ export default function WordOptions({
         <TextToSpeechSpeaker text={translatingItem} />
         <IoMdRemoveCircleOutline
           onClick={() => {
-            dispatch(
-              translatingItemsReducer(
-                translatingItems.filter((item) => item !== translatingItem),
-              ),
-            );
+            dispatch(removeTranslationItemReducer(translatingItem));
             dispatch(formDataReducer({ title: "" }));
           }}
           className="icon !w-8 text-red-500"

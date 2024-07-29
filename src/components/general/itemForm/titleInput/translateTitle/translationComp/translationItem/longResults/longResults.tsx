@@ -1,17 +1,16 @@
-import { LookUpResultTypes } from "@/src/types/interface";
 import React from "react";
 import { FaChevronUp } from "react-icons/fa";
 import Meanings from "./meanings/meanings";
+import { useAppSelector } from "@/src/app/hooks";
 
 export default function LongResults({
-  lookUpResults,
-  setDialogOpen,
   setShowMore,
+  translatingItem,
 }: {
-  lookUpResults: LookUpResultTypes[];
-  setDialogOpen: Function;
   setShowMore: Function;
+  translatingItem: string;
 }) {
+  const { translatingItems } = useAppSelector((state) => state.itemState);
   return (
     <ul className="w-full relative">
       <FaChevronUp
@@ -19,13 +18,11 @@ export default function LongResults({
         onClick={() => setShowMore(false)}
         className="absolute right-0 icon !p-2 cursor-pointer"
       />
-      {lookUpResults.map((result, i) => {
-        return (
-          <ul key={i} className="flex flex-row gap-2 justify-between w-full mt-8">
-            <Meanings result={result} setDialogOpen={setDialogOpen} />
-          </ul>
-        );
-      })}
+      {translatingItems[translatingItem].map((result, i) => (
+        <ul key={i} className="flex flex-row gap-2 justify-between w-full mt-8">
+          <Meanings result={result} />
+        </ul>
+      ))}
     </ul>
   );
 }
