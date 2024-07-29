@@ -45,10 +45,13 @@ export default function ChooseTopic({
       />
       {categories && categories?.length > 0 && (
         <datalist id="categories">
-          {categories.map((category) => {
-            return <option  className="bg-red-500"
-            key={category.name} value={category.name} />;
-          })}
+          {categories.map((category) => (
+            <option
+              className="bg-red-500"
+              key={category.name}
+              value={category.name}
+            />
+          ))}
         </datalist>
       )}
       <p className="text-red-500 text-sm pl-4">{error}</p>

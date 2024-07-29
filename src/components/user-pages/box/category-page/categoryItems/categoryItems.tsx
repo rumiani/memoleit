@@ -16,13 +16,11 @@ export default function CategoryItems() {
         <div className="card_message">No item has been found.</div>
       ) : (
         <div className="flex flex-wrap justify-around gap-4 mb-24">
-          {items.map((item: ItemTypes) => {
-            return (
-              <div key={item.id}>
-                <CategoryItem item={item} />{" "}
-              </div>
-            );
-          })}
+          {items.map((item: ItemTypes) => (
+            <div key={item.id}>
+              <CategoryItem item={item} />{" "}
+            </div>
+          ))}
         </div>
       )}
     </div>

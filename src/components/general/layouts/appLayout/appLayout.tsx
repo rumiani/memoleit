@@ -109,9 +109,9 @@ export default function ItemsNav() {
   }, [dispatch]);
   return (
     <nav className="group fixed z-40 sm:absolute left-0 bottom-0 sm:top-0 flex flex-row sm:flex-col h-20 sm:h-screen sm:pt-24 w-full sm:w-16 sm:hover:w-48 text-gray-800 bg-gray-100 sm:overflow-y-auto">
-      {Object.values(superPages).map((superPage, i) => {
-        return <SuperPage key={i} superPage={superPage} />;
-      })}
+      {Object.values(superPages).map((superPage, i) => (
+        <SuperPage key={i} superPage={superPage} />
+      ))}
       <div></div>
     </nav>
   );

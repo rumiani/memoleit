@@ -31,13 +31,11 @@ export default function BooksPage() {
           </div>
         ) : (
           <div className="flex flex-wrap gap-2 justify-around">
-            {pdfs.map((book: PdfStateTypes, i: number) => {
-              return (
-                <div key={book.id}>
-                  <Book book={book} />
-                </div>
-              );
-            })}
+            {pdfs.map((book: PdfStateTypes, i: number) => (
+              <div key={book.id}>
+                <Book book={book} />
+              </div>
+            ))}
           </div>
         )}
       </div>

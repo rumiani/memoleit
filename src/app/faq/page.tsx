@@ -43,33 +43,30 @@ export default function Faq() {
         <h2 className="text-2xl font-semibold mb-4">
           Frequently asked questions:
         </h2>
-        {q.map((item) => {
-          console.log(openId === item.id);
-          return (
-            <div key={item.id} className=" border-b border-gray-300 p-2 my-4">
-              <button
-                onClick={() => opendAnswerHandler(item.id)}
-                className="flex items-center justify-between w-full"
+        {q.map((item) => (
+          <div key={item.id} className=" border-b border-gray-300 p-2 my-4">
+            <button
+              onClick={() => opendAnswerHandler(item.id)}
+              className="flex items-center justify-between w-full"
+            >
+              <span className="text-lg font-medium">
+                {item.id}. {item.q}
+              </span>
+              <span
+                className={` ${
+                  openId === item.id ? "rotate-180" : "rotate-0"
+                } text-gray-500 text-xl transition-transform transform hover:scale-110`}
               >
-                <span className="text-lg font-medium">
-                  {item.id}. {item.q}
-                </span>
-                <span
-                  className={` ${
-                    openId === item.id ? "rotate-180" : "rotate-0"
-                  } text-gray-500 text-xl transition-transform transform hover:scale-110`}
-                >
-                  <FaChevronDown />
-                </span>
-              </button>
-              {openId === item.id && (
-                <div className="mt-2 transition-all duration-300">
-                  <p className="text-gray-600">{item.a}</p>
-                </div>
-              )}
-            </div>
-          );
-        })}
+                <FaChevronDown />
+              </span>
+            </button>
+            {openId === item.id && (
+              <div className="mt-2 transition-all duration-300">
+                <p className="text-gray-600">{item.a}</p>
+              </div>
+            )}
+          </div>
+        ))}
         <div className="mt-10 text-center text-xl">
           <h3 className="my-4">Have more questions?</h3>
           <Link href="/contact" className="btn_secondary">

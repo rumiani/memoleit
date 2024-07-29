@@ -50,22 +50,18 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
         </div>
         <div className="relative w-72 h-40  max-w-lg my-8 mx-auto overflow-hidden">
           <div className="absolute flex flex-wrap  w-[252px] h-5 ml-[11px] top-[44%]">
-            {[1, 2, 3, 4, 5].map((box) => {
-              return (
-                <div
-                  key={box}
-                  className={`w-[33px]  h-[19px]  ${box === 2 && "ml-[19px] mr-[22px]"} ${box === 4 && "ml-[25px] mr-[21px]"} ${
-                    item.box !== box
-                      ? "bg-gray-600 opacity-50"
-                      : "bg-green-700 flex justify-center items-center text-white text-sm font-bold "
-                  }`}
-                >
-                  <span className="animate-pulse">
-                    {item.box === box && box}
-                  </span>
-                </div>
-              );
-            })}
+            {[1, 2, 3, 4, 5].map((box) => (
+              <div
+                key={box}
+                className={`w-[33px]  h-[19px]  ${box === 2 && "ml-[19px] mr-[22px]"} ${box === 4 && "ml-[25px] mr-[21px]"} ${
+                  item.box !== box
+                    ? "bg-gray-600 opacity-50"
+                    : "bg-green-700 flex justify-center items-center text-white text-sm font-bold "
+                }`}
+              >
+                <span className="animate-pulse">{item.box === box && box}</span>
+              </div>
+            ))}
           </div>
 
           <LeitnerPic />

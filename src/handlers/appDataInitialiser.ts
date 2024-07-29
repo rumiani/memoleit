@@ -10,9 +10,10 @@ import { makeUrlFriendly } from "./makeUrlFriendly";
 
 const hoursAgo = [12, 73, 26, 75, 745, 24, 72, 250, 359, 743];
 const timestamps = hoursAgo.map((hours) => Date.now() - hours * 3600 * 1000);
-const wordsObject = words.map((word, i) => {
-  return { word, box: Math.floor(i / 2) + 1 };
-});
+const wordsObject = words.map((word, i) => ({
+  word,
+  box: Math.floor(i / 2) + 1,
+}));
 
 export const appDataInitialiser = async () => {
   try {

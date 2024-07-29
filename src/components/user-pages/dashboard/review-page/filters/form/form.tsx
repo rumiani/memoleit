@@ -58,10 +58,7 @@ const Form = () => {
         {isEmpty(categories) ? (
           <p className="text-center w-full my-2">
             Go add a{" "}
-            <Link
-              href={newPageUrl}
-              className="text-blue-500 hover:underline"
-            >
+            <Link href={newPageUrl} className="text-blue-500 hover:underline">
               new item
             </Link>{" "}
             to learn.
@@ -75,13 +72,11 @@ const Form = () => {
           {isEmpty(categories) ? (
             <div className="text-red-500 text-center my-16">No categories.</div>
           ) : (
-            categories.map((category, i) => {
-              return (
-                <div key={i}>
-                  <CheckboxInput category={category} />
-                </div>
-              );
-            })
+            categories.map((category, i) => (
+              <div key={i}>
+                <CheckboxInput category={category} />
+              </div>
+            ))
           )}
         </div>
         {categories.length > 1 && (

@@ -14,7 +14,7 @@ export default function CategoriesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {    
+  useEffect(() => {
     setIsLoading(true);
     getCategoriesHandler()
       .then((newCategories) => {
@@ -46,9 +46,9 @@ export default function CategoriesPage() {
         </div>
       ) : (
         <div className="flex flex-wrap justify-center gap-2 mb-28 sm:my-8">
-          {categories.map((category: CategoryTypes, i) => {
-            return <CategoryCard key={i} category={category} />;
-          })}
+          {categories.map((category: CategoryTypes, i) => (
+            <CategoryCard key={i} category={category} />
+          ))}
         </div>
       )}
     </div>
