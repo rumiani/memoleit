@@ -9,17 +9,9 @@ type DialogProps = {
 const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, children }) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
+      if (event.key === "Escape") onClose();
     };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.removeEventListener("keydown", handleKeyDown);
-    }
-
+    if (isOpen) document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -28,7 +20,7 @@ const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-opacity-35 my-8 mx-2 ">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-35">
       <div
         className="fixed inset-0 bg-black opacity-50"
         onClick={onClose}

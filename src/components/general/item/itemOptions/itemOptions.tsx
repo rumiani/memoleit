@@ -46,25 +46,22 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
         const numberOfItems = await numberOfItemsToReviewHandler();
         if (numberOfItems)
           dispatch(numberOfItemsToReviewReducer(numberOfItems));
+
         const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
         if (itemsToReview) {
           dispatch(allItemsReducer(itemsToReview));
           const newRandomItem = randomItemHandler(itemsToReview);
           dispatch(itemReducer(newRandomItem));
         }
-      }
-      if (isCategoryPage(path)) {
+      } else if (isCategoryPage(path)) {
         const filteredItemsData = await itemsCategoryIdFilterHandler(
           category.id,
         );
         dispatch(allItemsReducer(filteredItemsData));
         router.push(getCategoryUrl(item.categoryId, item.category));
-      }
-      if (isItemPage(path)) {
+      } else if (isItemPage(path)) {
         router.push(getCategoryUrl(item.categoryId, item.category));
-      }
-
-      if (isSearchPage(path)) {
+      } else if (isSearchPage(path)) {
         const searchTerm = searchParams.toString().trim().substring(2);
         const resultItems = await db.items
           .filter((item) =>

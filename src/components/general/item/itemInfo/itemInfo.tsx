@@ -63,7 +63,6 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
               </div>
             ))}
           </div>
-
           <LeitnerPic />
         </div>
       </Dialog>

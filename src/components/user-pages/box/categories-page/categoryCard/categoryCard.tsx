@@ -13,7 +13,7 @@ export default function CategoryCard({
   category: CategoryTypes;
 }) {
   const { categories } = useAppSelector((state) => state.categoryState);
-  const { daysHoursAgo, startedDate } = timeToNowHandler(category.createdAt);
+  const { timeLength, startedDate } = timeToNowHandler(category.createdAt);
   const [itemsInfo, setItemsInfo] = useState<ItemsInfoTypes>({
     allItemsCount: 0,
     learnedCount: 0,
@@ -32,7 +32,7 @@ export default function CategoryCard({
           title={"Created At: " + startedDate}
           className="text-bold cursor-default"
         >
-          {daysHoursAgo}
+          {timeLength}
         </span>
         <CardOptions category={category} />
       </div>

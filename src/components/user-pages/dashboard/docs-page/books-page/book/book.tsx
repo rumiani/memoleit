@@ -9,7 +9,7 @@ export default function Book({ book }: { book: PdfStateTypes }) {
     <div className="relative w-72 h-52 border border-gray-400 rounded-lg p-4 flex flex-col">
       <div className="flex flex-row justify-between">
         <span className="text-xs font-bold">
-          {timeToNowHandler(book.createdAt).daysHoursAgo}
+          {timeToNowHandler(book.createdAt).timeLength}
         </span>
         <BookOptions book={book} />
       </div>

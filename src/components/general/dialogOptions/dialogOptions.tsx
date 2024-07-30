@@ -15,16 +15,11 @@ export const DialogOptions: React.FC<DialogOptionsProps> = ({
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        modelRef.current &&
-        !modelRef.current.contains(event.target as Node)
-      ) {
+      if (modelRef.current && !modelRef.current.contains(event.target as Node))
         setShowOptions(false);
-      }
     };
-    if (showOptions) {
-      document.addEventListener("mousedown", handleOutsideClick);
-    }
+    if (showOptions) document.addEventListener("mousedown", handleOutsideClick);
+
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
@@ -40,19 +35,18 @@ export const DialogOptions: React.FC<DialogOptionsProps> = ({
         </div>
       )}
       <div className="icon h-10 w-10 p-1">
-
-      {showOptions ? (
-        <IoClose
-        onClick={() => setShowOptions(false)}
-        className="w-full h-full  p-1"
-        />
-      ) : (
-        <BsThreeDotsVertical
-        onClick={() => setShowOptions(true)}
-        className="w-full h-full p-2"
-        title="Options"
-        />
-      )}
+        {showOptions ? (
+          <IoClose
+            onClick={() => setShowOptions(false)}
+            className="w-full h-full  p-1"
+          />
+        ) : (
+          <BsThreeDotsVertical
+            onClick={() => setShowOptions(true)}
+            className="w-full h-full p-2"
+            title="Options"
+          />
+        )}
       </div>
     </div>
   );

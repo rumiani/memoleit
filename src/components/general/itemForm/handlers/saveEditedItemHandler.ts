@@ -36,7 +36,9 @@ export const saveEditedItemHandler = async (
   } catch (error: any) {
     if (error.name === "404") {
       toast.error("Item was not found");
+    } else {
+      console.error("Error", error);
+      toast.error("An error occurred while updating the item.");
     }
-    console.log("Error", error);
   }
 };
