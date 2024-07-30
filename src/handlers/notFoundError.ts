@@ -1,5 +1,3 @@
 export default function notFoundError(message: string): Error {
-  const error = new Error(message);
-  error.name = "404";
-  return error;
+  return Object.assign(new Error(message), { name: "404" });
 }

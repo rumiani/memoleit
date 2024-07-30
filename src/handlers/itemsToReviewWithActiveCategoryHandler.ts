@@ -4,9 +4,9 @@ import { db } from "../services/db";
 type ReviewBoxesType = {
   [key: number]: number;
 };
+const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
 export const itemsToReviewWithActiveCategoryHandler = async () => {
   try {
-    const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
     const categories = await db.categories.where({ status: 1 }).toArray();
     const items = await db.items
       .where("box")
@@ -19,6 +19,7 @@ export const itemsToReviewWithActiveCategoryHandler = async () => {
       .toArray();
     return items;
   } catch (error) {
-    console.log("Error");
+    console.error("Error fetching items to review:", error);
+    return [];
   }
 };

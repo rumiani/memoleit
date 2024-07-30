@@ -4,13 +4,13 @@ import { timeToReviewHandler } from "./general/timeToReview";
 
 export const numberOfItemsToReviewHandler = async () => {
   try {
-    const count = await db.items
+    return await db.items
       .where("box")
       .below(6)
       .and((item) => timeToReviewHandler(item))
       .count();
-    return count;
   } catch (error) {
-    console.log("Error");
+    console.error("Error counting items to review:", error);
+    return 0;
   }
 };

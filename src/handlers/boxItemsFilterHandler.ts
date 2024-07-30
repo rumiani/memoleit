@@ -5,7 +5,7 @@ export const boxItemsFilterHandler = async (
   boxNumber?: number,
 ) => {
   try {
-    const items = await db.items
+    const items: ItemTypes[] = await db.items
       .where("categoryId")
       .equals(categoryId)
       .toArray();
@@ -13,5 +13,8 @@ export const boxItemsFilterHandler = async (
       return boxNumber ? items && item.box === boxNumber : items;
     });
     return filteredItems;
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error fetching and filtering items:", error);
+    throw error;
+  }
 };

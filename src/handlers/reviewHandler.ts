@@ -12,18 +12,19 @@ export async function reviewHandler(
     const foundItem = await db.items.get(currentItem?.id);
     if (!foundItem) throw notFoundError("404");
 
-    foundItem.lastReview = Date.now();
-    foundItem.box = answer ? foundItem.box + 1 : 1;
-    await db.items.put(foundItem);
+    await db.items.put({
+      ...foundItem,
+      lastReview: Date.now(),
+      box: answer ? foundItem.box + 1 : 1,
+    });
 
-    const newReview = {
+    await db.reviews.add({
       id: uuidv4(),
       userId: userIdTest,
       itemId: foundItem.id,
       answer: answer ? 1 : 0,
       createdAt: Date.now(),
-    };
-    await db.reviews.add(newReview);
+    });
   } catch (error) {
     console.log("Error");
   }
