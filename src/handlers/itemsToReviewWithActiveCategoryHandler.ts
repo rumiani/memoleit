@@ -7,7 +7,9 @@ type ReviewBoxesType = {
 const reviewBoxes: ReviewBoxesType = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
 export const itemsToReviewWithActiveCategoryHandler = async () => {
   try {
-    const categories = await db.categories.where({ status: 1 }).toArray();
+    const categories = await db.categories
+      .filter((category) => category.status === true)
+      .toArray();
     const items = await db.items
       .where("box")
       .below(6)

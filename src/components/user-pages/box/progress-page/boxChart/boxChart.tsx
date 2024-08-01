@@ -111,7 +111,7 @@ const BoxChart: React.FC = () => {
               stackId="i"
             />
             <XAxis dataKey="name" stroke="#8884d8" />
-            <YAxis />
+            {/* <YAxis /> */}
             {/* <Legend/> */}
           </BarChart>
         </ResponsiveContainer>

@@ -33,7 +33,7 @@ export const saveNewItemToLocal = async ({
         id: randomIdGenerator(8),
         userId: userIdTest,
         name: makeUrlFriendly(category),
-        status: 0,
+        status: false,
         createdAt: Date.now(),
       };
       const savedCategoryId = await db.categories.add(categoryObject);

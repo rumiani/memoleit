@@ -27,12 +27,12 @@ const Form = () => {
       const allCategories = await getCategoriesHandler();
       if (selectAll) {
         allCategories!.forEach(
-          (category: CategoryTypes) => (category.status = 0),
+          (category: CategoryTypes) => (category.status = false),
         );
         toast.success("Removed all the categories");
       } else {
         allCategories!.forEach(
-          (category: CategoryTypes) => (category.status = 1),
+          (category: CategoryTypes) => (category.status = true),
         );
         toast.success("Selected all the categories");
       }

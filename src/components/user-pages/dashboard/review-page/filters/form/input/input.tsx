@@ -31,7 +31,7 @@ export default function CheckboxInput({
     try {
       const storedCategory = await db.categories.get(category.id);
       if (!storedCategory) throw notFoundError("404");
-      storedCategory.status = storedCategory.status ? 0 : 1;
+      storedCategory.status = storedCategory.status ? false : true;
       await db.categories.put(storedCategory!);
       storedCategory.status
         ? toast.success("Category items removed from review list.")

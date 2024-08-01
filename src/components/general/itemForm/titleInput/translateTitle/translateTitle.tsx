@@ -1,16 +1,25 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "@/src/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import Dialog from "../../../dialog/dialog";
 import TranslationComp from "./translationComp/translationComp";
 import { FaClipboardList } from "react-icons/fa";
+import {
+  definitionOfItemsReducer,
+  translatingItemsReducer,
+} from "@/src/redux/slices/itemStateSlice";
 
 export default function TranslateTitle() {
+  const { formData } = useAppSelector((state) => state.itemState);
   const [isDialogOpen, setDialogOpen] = useState(false);
+  const dispatch = useAppDispatch();
   return (
     <div>
       <button
         type="button"
-        onClick={(e) => setDialogOpen(true)}
+        onClick={(e) => {
+          dispatch(translatingItemsReducer(formData.title));
+          setDialogOpen(true);
+        }}
         className="absolute hover:text-gray-900 text-gray-600 top-1 right-2 text-3xl icon"
       >
         <FaClipboardList />

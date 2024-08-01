@@ -9,7 +9,11 @@ const reviewBoxes: ReviewBoxesTypes = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 16 };
 export const categoryItemsToReviewHandler = async (categoryId: string) => {
   try {
     const categoryExists =
-      (await db.categories.where({ status: 1, id: categoryId }).count()) > 0;
+      (await db.categories
+        .filter(
+          (category) => category.status === true && category.id === categoryId,
+        )
+        .count()) > 0;
     if (!categoryExists) return [];
 
     return await db.items

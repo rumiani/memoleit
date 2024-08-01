@@ -22,7 +22,7 @@ export const boxChartDataHandler = async (
       itemsToReview = await itemsToReviewHandler();
     } else {
       items = await db.items.where({ categoryId: id }).toArray();
-      itemsToReview = await categoryItemsToReviewHandler(id);
+      itemsToReview = await categoryItemsToReviewHandler(id);      
     }
 
     if (itemsToReview && itemsToReview) {

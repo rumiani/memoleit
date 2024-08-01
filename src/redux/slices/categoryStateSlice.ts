@@ -7,7 +7,7 @@ const initialCategoryState: initialCategoryStateTypes = {
     id: "",
     userId: "",
     name: "",
-    status: 0,
+    status: false,
     createdAt: 0,
   },
   categories: [],

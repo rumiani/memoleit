@@ -23,7 +23,7 @@ export const saveEditedItemHandler = async (
         id: randomIdGenerator(8),
         userId: userIdTest,
         name: makeUrlFriendly(category),
-        status: 1,
+        status: true,
         createdAt: Date.now(),
       });
       item = { ...item, body, title, category, categoryId: createNewCategory };

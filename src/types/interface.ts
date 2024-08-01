@@ -26,7 +26,7 @@ export interface CategoryTypes {
   id: string;
   userId: string;
   name: string;
-  status: number;
+  status: boolean;
   createdAt: number;
 }
 export interface ReviewTypes {

@@ -3,7 +3,7 @@ const categorySchema = z.object({
   id: z.string(),
   userId: z.string(),
   name: z.string(),
-  status: z.number(),
+  status: z.boolean(),
   createdAt: z.number(),
 });
 const itemSchema = z.object({
