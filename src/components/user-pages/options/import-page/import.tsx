@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { saveNewImportedDataHandler } from "./handlers/saveNewImportedDataHandler";
+import { categoriesPageUrl } from "@/src/handlers/general/pagesLinks";
 
 type InputElement = HTMLInputElement | null;
 
@@ -37,7 +38,7 @@ export default function ImportComponent() {
       await saveNewImportedDataHandler(newAppData);
       toast.success("The imported data has been saved");
       toast.info("You have been redirected to categories page");
-      router.push("/box/categories");
+      router.push(categoriesPageUrl);
     } catch (error: any) {
       console.log(error.name);
       if (error.name === "ZodError") toast.error("Invalid data");
