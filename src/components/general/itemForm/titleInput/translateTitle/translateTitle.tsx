@@ -16,7 +16,7 @@ export default function TranslateTitle() {
     <div>
       <button
         type="button"
-        onClick={(e) => {
+        onClick={() => {
           dispatch(translatingItemsReducer(formData.title));
           setDialogOpen(true);
         }}
