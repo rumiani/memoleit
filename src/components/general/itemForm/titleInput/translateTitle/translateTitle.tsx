@@ -4,7 +4,6 @@ import Dialog from "../../../dialog/dialog";
 import TranslationComp from "./translationComp/translationComp";
 import { FaClipboardList } from "react-icons/fa";
 import {
-  definitionOfItemsReducer,
   translatingItemsReducer,
 } from "@/src/redux/slices/itemStateSlice";
 
