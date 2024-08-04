@@ -87,10 +87,10 @@ checked:bg-blue-600 checked:border-0"
             className={`${
               itemsInfo.pending === 0
                 ? "text-green-500"
-                : "text-red-500 animate-pulse "
+                : "text-red-500"
             } w-full text-end`}
           >
-            Pending: <strong>{itemsInfo.pending}</strong>
+            Pending: <strong className=" animate-boldBlink ">{itemsInfo.pending}</strong>
           </span>
         </div>
       </label>

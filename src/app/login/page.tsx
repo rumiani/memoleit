@@ -9,7 +9,7 @@ export default function Page() {
   const { data: session } = useSession();
   useEffect(() => {
     console.log(session);
-    // if (session) redirect("/dashboard/review");
+    if (session) redirect("/user/dashboard/review");
   }, [session]);
   return (
     <>
@@ -27,18 +27,7 @@ export default function Page() {
         />
       </Head>
       <section className="h-screen">
-        <div>
-          {!session ? (
-            <Login />
-          ) : (
-            <div>
-              <p>
-                Welcome, {session.user?.name}, this is your email:{" "}
-                {session.user?.email}
-              </p>
-            </div>
-          )}
-        </div>
+        <Login />
       </section>
     </>
   );
