@@ -29,7 +29,7 @@ export default function Login() {
         <ImgHoverZoom src={loginPic} alt="Phone image" className="h-full" />
       </div>
       <div className="mx-auto my-8 px-8">
-        <h2 className="font-bold text-center">Log in</h2>
+        <h2 className="font-bold text-center">Login</h2>
         <button
           onClick={() => signIn("google")}
           title="Log in with Google"
@@ -43,7 +43,7 @@ export default function Login() {
             className="mx-2 w-8 h-8"
           />
           <h3 className="w-52 h-full pt-2 rounded-e-lg text-white bg-blue-400 hover:bg-blue-500 text-center font-semibold">
-            Sigin in with Google
+            Sign in with Google
           </h3>
         </button>
       </div>

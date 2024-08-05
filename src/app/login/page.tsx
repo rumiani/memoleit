@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import LoginBtn from "@/src/components/general/layouts/generalLayout/header/loginBtn/loginBtn";
 import Login from "@/src/components/auth/logIn/login";
 import { redirect } from "next/navigation";
 export default function Page() {

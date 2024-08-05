@@ -14,9 +14,9 @@ export default withPWA({
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "imgur.com",
+        hostname: "lh3.googleusercontent.com",
         port: "",
-        pathname: "/",
+        pathname: "/a/**",
       },
     ],
   },

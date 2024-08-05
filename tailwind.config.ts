@@ -18,14 +18,14 @@ const config: Config = {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
-        boldBlink: {
-          '0%, 100%': { fontWeight: 'normal' },
-          '50%': { fontWeight: 'bold' },
+        redBlackBlink: {
+          '0%, 100%': { color: 'black' },
+          '50%': { color: 'red' },
         },
       },
       animation: {
         merge: "merge 0.3s ease-in",
-        boldBlink: 'boldBlink 1s ease-in infinite',
+        redBlackBlink: 'redBlackBlink 1s ease-in infinite',
       },
     },
   },
