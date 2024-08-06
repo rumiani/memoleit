@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LoadingPulses from "../../../../general/loading-comps/loadingPulses/loadingPulses";
 import Book from "./book/book";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";

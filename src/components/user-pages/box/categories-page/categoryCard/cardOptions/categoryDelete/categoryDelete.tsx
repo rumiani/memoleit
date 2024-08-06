@@ -1,7 +1,8 @@
 "use client";
+import { useState } from "react";
 import Dialog from "@/src/components/general/dialog/dialog";
 import { CategoryTypes } from "@/src/types/interface";
-import React, { useState } from "react";
+
 export default function CategoryDelete({
   category,
   deleteHandler,

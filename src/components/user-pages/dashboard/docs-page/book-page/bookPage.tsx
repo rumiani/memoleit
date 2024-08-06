@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { db } from "@/src/services/db";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import DocContainer from "./docContainer/docContainer";

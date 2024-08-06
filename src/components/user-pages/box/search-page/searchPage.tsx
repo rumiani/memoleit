@@ -1,10 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchInput from "./searchInput/searchInput";
-import { ItemTypes } from "@/src/types/interface";
 import { db } from "@/src/services/db";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
-import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
 import { useSearchParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import CategoryOptions from "./categoryOptions/categoryOptions";
 import CategoryItems from "./categoryItems/categoryItems";
@@ -8,9 +8,7 @@ import { categoryReducer } from "@/src/redux/slices/categoryStateSlice";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 import { categoriesPageUrl } from "@/src/handlers/general/pagesLinks";
 import { itemsCategoryIdFilterHandler } from "@/src/handlers/itemsCategoryIdFilterHandler";
-import { isEmpty } from "lodash";
 import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
-import { isUUID } from "@/src/handlers/general/isUUID";
 
 export default function CategoryPage({
   categoryId,

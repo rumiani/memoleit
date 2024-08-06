@@ -4,8 +4,7 @@ import {
   categoryOnEditReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
-import React, { useRef, useState } from "react";
-import { FaSave } from "react-icons/fa";
+import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import saveCategoryNameHandler from "../saveCategoryNameHandler";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";

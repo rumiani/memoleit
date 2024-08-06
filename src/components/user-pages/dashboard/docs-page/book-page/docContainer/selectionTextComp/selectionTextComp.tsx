@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "@/src/services/db";
 import { MdAddBox } from "react-icons/md";
 import { FaCaretDown } from "react-icons/fa";

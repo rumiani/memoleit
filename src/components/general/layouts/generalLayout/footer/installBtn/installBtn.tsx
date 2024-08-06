@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { MdOutlineInstallDesktop } from "react-icons/md";
 import { MdOutlineInstallMobile } from "react-icons/md";
 interface BeforeInstallPromptEvent extends Event {

@@ -1,5 +1,6 @@
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 interface DataType {
   name: string;
   Reviewed: number;

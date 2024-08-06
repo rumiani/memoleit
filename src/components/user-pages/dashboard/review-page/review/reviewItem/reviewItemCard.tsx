@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import ItemOptions from "@/src/components/general/item/itemOptions/itemOptions";
 import ItemBody from "@/src/components/general/item/itemBody/itemBody";
 import ItemProgress from "@/src/components/general/item/itemProgress/itemProgress";

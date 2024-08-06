@@ -1,13 +1,10 @@
 import { CategoryTypes } from "@/src/types/interface";
-import React, { useEffect, useRef, useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { IoClose } from "react-icons/io5";
+import { useEffect, useRef, useState } from "react";
 import CategoryDelete from "./categoryDelete/categoryDelete";
 import { useAppDispatch } from "@/src/app/hooks";
 import {
   categoriesReducer,
   categoryOnEditReducer,
-  categoryReducer,
 } from "@/src/redux/slices/categoryStateSlice";
 import { toast } from "react-toastify";
 import deleteCategoryHandler from "../../handlers/deleteCategoryHandler";

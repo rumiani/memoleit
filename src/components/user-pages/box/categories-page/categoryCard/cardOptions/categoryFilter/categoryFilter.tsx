@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import { FormEvent } from "react";
 
 export default function CategoryFilter({ category }: { category: string }) {
   const inputChangeHandler = (e: FormEvent) => {};

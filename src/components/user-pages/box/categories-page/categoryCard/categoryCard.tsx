@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { timeToNowHandler } from "@/src/handlers/general/timeToNowHandler";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
 import CardOptions from "./cardOptions/cardOptions";

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import {
@@ -6,7 +7,6 @@ import {
 } from "@/src/redux/slices/categoryStateSlice";
 import { CategoryTypes } from "@/src/types/interface";
 import { capitalize } from "lodash";
-import React, { useEffect, useState } from "react";
 
 export default function SelectCategory({
   handleChange,

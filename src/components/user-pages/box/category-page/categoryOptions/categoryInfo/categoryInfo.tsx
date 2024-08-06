@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/src/app/hooks";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import { capitalize } from "lodash";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CategoryInfo() {
   const { category } = useAppSelector((state) => state.categoryState);

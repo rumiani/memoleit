@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CheckboxInput from "./input/input";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { isEmpty } from "lodash";

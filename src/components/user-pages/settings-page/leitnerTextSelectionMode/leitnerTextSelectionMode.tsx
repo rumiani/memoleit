@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppSelector } from "@/src/app/hooks";
 import { toast } from "react-toastify";
 import { leitnerTextSelectionModeReducer } from "@/src/redux/slices/settingStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import CheckboxInput from "@/src/components/general/checkBoxInput/input";
+
 export default function LeitnerTextSelectionMode() {
   const { leitnerTextSelectionMode } = useAppSelector(
     (state) => state.settingState,

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { db } from "@/src/services/db";
 import { DialogOptions } from "@/src/components/general/dialogOptions/dialogOptions";

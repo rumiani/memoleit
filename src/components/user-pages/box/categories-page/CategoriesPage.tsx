@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CategoryTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import Link from "next/link";

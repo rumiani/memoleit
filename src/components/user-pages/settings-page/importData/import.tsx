@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { CiImport } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { saveNewImportedDataHandler } from "./handlers/saveNewImportedDataHandler";

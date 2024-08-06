@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/src/app/hooks";
 import { categoryItemsCountHandler } from "@/src/handlers/itemsCounter/categoryItemsCountHandler";
 import notFoundError from "@/src/handlers/notFoundError";
@@ -8,7 +9,6 @@ import {
 } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import { CategoryTypes, ItemsInfoTypes } from "@/src/types/interface";
-import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";

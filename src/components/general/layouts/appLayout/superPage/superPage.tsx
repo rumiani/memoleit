@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import PageLinks from "./subPage/subPage";
 import { capitalize } from "lodash";

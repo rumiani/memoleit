@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Review from "./review/review";
 import Filters from "./filters/filters";
 import {

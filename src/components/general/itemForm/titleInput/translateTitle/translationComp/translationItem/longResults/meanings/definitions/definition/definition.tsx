@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
-import React, { useState } from "react";
+import { useState } from "react";
 import { MdMoveDown } from "react-icons/md";
 
 export default function Definition({definition}:{definition:string}) {
