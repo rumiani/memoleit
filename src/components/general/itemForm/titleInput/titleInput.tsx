@@ -1,4 +1,3 @@
-import React from "react";
 import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";

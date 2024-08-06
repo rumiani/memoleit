@@ -1,4 +1,3 @@
-import React from "react";
 import TranslationItem from "./translationItem/translationItem";
 import { useAppSelector } from "@/src/app/hooks";
 import SelectionTextComp from "@/src/components/user-pages/dashboard/docs-page/book-page/docContainer/selectionTextComp/selectionTextComp";

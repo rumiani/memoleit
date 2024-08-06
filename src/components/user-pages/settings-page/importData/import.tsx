@@ -47,17 +47,19 @@ export default function ImportComponent() {
   };
 
   return (
-    <div className="flex flex-col w-fit mx-auto justify-center gap-4">
-      Choose your text file and then click Import:
-      <input ref={inputElement} type="file" className="file mx-auto" />
-      <button
-        disabled={isDisabled}
-        onClick={importData}
-        className="primaryBtn  !w-fit !flex flex-row justify-center items-center gap-2 hover:bg-blue-600 rounded-lg transition-all duration-600 mx-auto"
-      >
-        Import
-        <CiImport className="w-6 h-6" />
-      </button>
+    <div className="flex flex-col mx-auto gap-4">
+      <strong>Import</strong>
+      <div className="flex flex-col gap-4 justify-center items-center">
+        <input ref={inputElement} type="file" className="file !mx-auto " />
+        <button
+          disabled={isDisabled}
+          onClick={importData}
+          className="primaryBtn !w-fit !flex flex-row justify-center items-center gap-2 hover:bg-blue-600 rounded-lg transition-all duration-600 !mx-auto"
+        >
+          Import
+          <CiImport className="w-6 h-6" />
+        </button>
+      </div>
     </div>
   );
 }

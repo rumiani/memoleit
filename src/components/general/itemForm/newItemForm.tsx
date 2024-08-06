@@ -1,5 +1,5 @@
 import { DevTool } from "@hookform/devtools";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TitleInput from "./titleInput/titleInput";
 import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";

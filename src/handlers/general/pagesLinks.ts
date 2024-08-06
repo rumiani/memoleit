@@ -6,9 +6,7 @@ const boxDataPageUrl = "/user/box/box-data";
 const categoriesPageUrl = "/user/box/categories";
 const searchPageUrl = "/user/box/search";
 
-const settingsPageUrl = "/user/options/settings";
-const exportPageUrl = "/user/options/export";
-const importPageUrl = "/user/options/import";
+const settingsPageUrl = "/user/settings";
 
 const editPageUrl = "/user/dashboard/edit/";
 const itemPageUrl = "/user/box/item/";
@@ -22,8 +20,6 @@ export {
   categoriesPageUrl,
   searchPageUrl,
   settingsPageUrl,
-  exportPageUrl,
-  importPageUrl,
   editPageUrl,
   itemPageUrl,
   categoryPageUrl,

@@ -6,7 +6,7 @@ import notFoundError from "@/src/handlers/notFoundError";
 import { itemReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
 import { superPages } from "@/src/components/general/layouts/appLayout/appLayout";
 import { newPageUrl, reviewPageUrl } from "@/src/handlers/general/pagesLinks";

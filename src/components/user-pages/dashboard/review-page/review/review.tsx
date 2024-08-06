@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import ReviewItemCard from "./reviewItem/reviewItemCard";
 import { useAppSelector } from "@/src/app/hooks";
 

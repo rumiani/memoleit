@@ -1,4 +1,3 @@
-import React from "react";
 interface RightSoundTypes {
   SaveSoundHander: Function;
   sounds: { name: number; src: string }[];

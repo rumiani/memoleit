@@ -1,4 +1,3 @@
-import React from "react";
 import BooksPage from "./books-page/booksPage";
 import NewPdfPage from "./newpdf-page/newPdfPage";
 

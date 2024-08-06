@@ -1,4 +1,3 @@
-import React from "react";
 import TextToSpeech from "./textToSpeech/textToSpeech";
 import ReviewSounds from "./reviewSounds/reviewSounds";
 

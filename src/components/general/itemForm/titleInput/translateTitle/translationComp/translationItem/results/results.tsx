@@ -1,4 +1,3 @@
-import React from "react";
 import LongResults from "../longResults/longResults";
 import ShortResult from "../shortResult/shortResult";
 

@@ -2,7 +2,6 @@ import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { ItemTypes } from "@/src/types/interface";
 import { capitalize } from "lodash";
 import Link from "next/link";
-import React from "react";
 
 export default function ItemCategory({ item }: { item: ItemTypes }) {
   return (

@@ -1,5 +1,4 @@
 import { ItemsInfoTypes } from "@/src/types/interface";
-import React from "react";
 
 export default function ItemsInfo({
   itemsInfo,

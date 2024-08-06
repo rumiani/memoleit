@@ -1,4 +1,3 @@
-import React from "react";
 import { MeaningTypes } from "@/src/types/interface";
 import Definition from "./definition/definition";
 

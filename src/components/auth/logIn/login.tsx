@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import loginPic from "@/public/assets/images/login/login.svg";
 import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import googleLogo from "@/public/assets/images/login/googleLogo.png";
@@ -15,16 +15,14 @@ export default function Login() {
     
     if (session) {
       console.log("-------------signed In-----------");
-      setTimeout(() => {
-        // redirect("/user/dashboard/review");
-      }, 3000);
+      redirect("/user/dashboard/review");
     } else {
       console.log("signed Out");
     }
   }, [session,status]);
 
   return (
-    <section className="my-12 flex flex-col-reverse sm:flex-row ">
+    <section className="  my-12 flex flex-col-reverse sm:flex-row ">
       <div className="my-8 h-auto w-full lg:w-1/2">
         <ImgHoverZoom src={loginPic} alt="Phone image" className="h-full" />
       </div>

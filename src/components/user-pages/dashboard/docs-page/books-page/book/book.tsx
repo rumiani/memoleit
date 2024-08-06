@@ -1,5 +1,4 @@
 import { timeToNowHandler } from "@/src/handlers/general/timeToNowHandler";
-import React from "react";
 import BookOptions from "./bookOptions/bookOptions";
 import BookName from "./bookName/bookName";
 import { PdfStateTypes } from "@/src/types/interface";

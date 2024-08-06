@@ -4,7 +4,6 @@ import {
   removeTranslationItemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { capitalize } from "lodash";
-import React from "react";
 
 export default function TranslatingItems({
   setCreatedMessage,

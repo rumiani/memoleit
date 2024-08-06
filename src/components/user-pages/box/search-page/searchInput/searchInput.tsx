@@ -1,5 +1,4 @@
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const SearchInput = ({ searchTerm }: { searchTerm: string }) => {
   const router = useRouter();

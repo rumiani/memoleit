@@ -1,4 +1,3 @@
-import React from "react";
 import LoadingPulse from "../loadingPulse/loadingPulse";
 
 export default function LoadingPulses() {

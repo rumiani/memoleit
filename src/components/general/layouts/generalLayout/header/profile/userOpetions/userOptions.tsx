@@ -1,9 +1,9 @@
 import LogoutButton from "@/src/components/auth/signOut/signOut";
-import { DialogOptions } from "@/src/components/general/dialogOptions/dialogOptions";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ProfileImage from "./profileImage/profileImage";
+import { IoMdSettings } from "react-icons/io";
+import Link from "next/link";
 export default function UserOptions() {
   const { data: session } = useSession();
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -33,6 +33,10 @@ export default function UserOptions() {
             <ProfileImage session={session} />
             <p className="text-black ">{session?.user?.name}</p>
           </div>
+          <Link href="/user/settings" className="text-gray-800 flex flex-row gap-2 items-center">
+            <IoMdSettings className="text-2xl" />
+            <strong>Settings</strong>
+          </Link>
           <LogoutButton />
         </div>
       ) : (

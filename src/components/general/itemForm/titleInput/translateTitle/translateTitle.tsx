@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import Dialog from "../../../dialog/dialog";
 import TranslationComp from "./translationComp/translationComp";

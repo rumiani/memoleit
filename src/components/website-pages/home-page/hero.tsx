@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import heroImage from "@/public/assets/images/forgettingCurve.png";
 import ImgHoverZoom from "../../general/imgHoverZoom/imgHoverZoom";
 export default function Hero() {

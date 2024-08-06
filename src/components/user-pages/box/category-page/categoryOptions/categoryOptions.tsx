@@ -1,4 +1,3 @@
-import React from "react";
 import CategoryInfo from "./categoryInfo/categoryInfo";
 
 export default function CategoryOptions() {

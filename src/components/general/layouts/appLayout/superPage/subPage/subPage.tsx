@@ -1,6 +1,6 @@
 import { capitalize } from "lodash";
 import Link from "next/link";
-import React from "react";
+
 interface LinksType {
   url: string;
   title: string;

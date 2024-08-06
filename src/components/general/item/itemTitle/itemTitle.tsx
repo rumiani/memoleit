@@ -1,4 +1,3 @@
-import React from "react";
 import { capitalize } from "lodash";
 import { useAppSelector } from "@/src/app/hooks";
 import { ItemTypes } from "@/src/types/interface";

@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import CheckboxInput from "@/src/components/general/checkBoxInput/input";
 import DropDownSounds from "./dropDownSounds/dropDownSounds";

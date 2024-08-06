@@ -1,5 +1,5 @@
 import { ItemTypes } from "@/src/types/interface";
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Dialog from "../../dialog/dialog";
 import LeitnerPic from "./leitnerPic";

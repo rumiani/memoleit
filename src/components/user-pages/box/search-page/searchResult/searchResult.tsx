@@ -1,6 +1,5 @@
 import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
 import { ItemTypes } from "@/src/types/interface";
-import React from "react";
 
 export default function SearchResult({ items }: { items: ItemTypes[] }) {
   return (

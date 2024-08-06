@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/src/app/hooks";
-import React, { useState } from "react";
+import { useState } from "react";
 import Dialog from "../../dialog/dialog";
 import ItemBody from "../../item/itemBody/itemBody";
 import { capitalize } from "lodash";

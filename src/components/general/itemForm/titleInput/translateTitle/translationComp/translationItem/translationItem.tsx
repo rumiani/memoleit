@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LoadingPulse from "../../../../../loading-comps/loadingPulse/loadingPulse";
 import { toast } from "react-toastify";
 import WordOptions from "./wordOptions/wordOptions";

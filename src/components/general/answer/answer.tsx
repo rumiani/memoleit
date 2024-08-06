@@ -1,5 +1,5 @@
 import { ItemTypes } from "@/src/types/interface";
-import React from "react";
+
 interface AnswerTypes {
   goToNextItem: Function;
   item: ItemTypes;

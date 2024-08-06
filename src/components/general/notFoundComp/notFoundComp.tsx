@@ -7,7 +7,6 @@ export default function NotFoundComp() {
     if (path === "/user/dashboard" || path === "/user")
       redirect("/user/dashboard/review");
     if (path === "/user/box") redirect("/user/box/box-data");
-    if (path === "/user/options") redirect("/user/options/settings");
   }, [path]);
   return (
     <div className="h-screen">

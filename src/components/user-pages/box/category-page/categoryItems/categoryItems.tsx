@@ -1,4 +1,3 @@
-import React from "react";
 import { ItemTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
 import { useAppSelector } from "@/src/app/hooks";

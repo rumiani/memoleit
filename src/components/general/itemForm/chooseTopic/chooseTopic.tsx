@@ -1,10 +1,10 @@
-import React from "react";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { FormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import { useLiveQuery } from "dexie-react-hooks";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+
 export default function ChooseTopic({
   register,
   error,

@@ -1,6 +1,6 @@
 "use client";
 import CategoryPage from "@/src/components/user-pages/box/category-page/categoryPage";
-import React from "react";
+
 export default function Category({
   params,
 }: {

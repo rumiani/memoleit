@@ -1,4 +1,3 @@
-import React from "react";
 import { CategoryTypes } from "@/src/types/interface";
 import Link from "next/link";
 import CategoryInput from "./CategoryInput/CategoryInput";

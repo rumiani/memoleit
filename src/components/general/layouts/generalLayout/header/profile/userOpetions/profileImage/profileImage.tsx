@@ -1,6 +1,5 @@
 import { Session } from "next-auth";
 import Image from "next/image";
-import React from "react";
 
 export default function ProfileImage({ session }: { session: Session }) {
   return (

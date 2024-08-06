@@ -2,7 +2,6 @@
 import React, { ReactNode, useEffect } from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
-import { GrDocumentConfig } from "react-icons/gr";
 import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
@@ -12,12 +11,9 @@ import {
   boxDataPageUrl,
   categoriesPageUrl,
   docsPageUrl,
-  exportPageUrl,
-  importPageUrl,
   newPageUrl,
   reviewPageUrl,
   searchPageUrl,
-  settingsPageUrl,
 } from "@/src/handlers/general/pagesLinks";
 
 interface Link {
@@ -71,25 +67,7 @@ export const superPages: SuperPageTypes = {
         title: "Search Items",
       },
     ],
-  },
-  options: {
-    name: "Options",
-    icon: <GrDocumentConfig />,
-    links: [
-      {
-        url: settingsPageUrl,
-        title: "Settings",
-      },
-      {
-        url: exportPageUrl,
-        title: "Export",
-      },
-      {
-        url: importPageUrl,
-        title: "Import",
-      },
-    ],
-  },
+  }
 };
 
 export default function ItemsNav() {
@@ -108,7 +86,7 @@ export default function ItemsNav() {
       });
   }, [dispatch]);
   return (
-    <nav className="group fixed z-40 sm:absolute left-0 bottom-0 sm:top-0 flex flex-row sm:flex-col h-20 sm:h-screen sm:pt-24 w-full sm:w-16 sm:hover:w-48 text-gray-800 bg-gray-100 sm:overflow-y-auto">
+    <nav className="group fixed z-40 sm:absolute left-0 bottom-0 sm:top-0 flex flex-row sm:flex-col h-20 sm:h-full sm:pt-24 w-full sm:w-16 sm:hover:w-48 text-gray-800 bg-gray-100 sm:overflow-y-auto">
       {Object.values(superPages).map((superPage, i) => (
         <SuperPage key={i} superPage={superPage} />
       ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 type DialogOptionsProps = {

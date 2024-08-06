@@ -1,6 +1,6 @@
-import React from "react";
 import { CiExport } from "react-icons/ci";
 import { db } from "@/src/services/db";
+
 export default function ExportComponent() {
   const downloadJsonFile = (
     content: string,
@@ -32,10 +32,10 @@ export default function ExportComponent() {
     }
   };
   return (
-    <div className="w-fit mx-auto flex flex-col gap-4">
-      <p>Export your data as a text file:</p>
+    <div className="w-full flex flex-col gap-4 my-4">
+      <strong>Export</strong>
       <button
-        className="primaryBtn  !w-fit !flex flex-row justify-center items-center gap-2 hover:bg-blue-600 rounded-lg transition-all duration-600 mx-auto"
+        className="primaryBtn !w-fit !flex flex-row justify-center items-center gap-2 hover:bg-blue-600 rounded-lg transition-all duration-600 !mx-auto"
         id="exportHistory"
         onClick={downloadLocalStorageData}
       >

@@ -1,11 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { languages } from "@/src/data/languages";
-import { boxItemsFilterHandler } from "@/src/handlers/boxItemsFilterHandler";
-import { allItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import { textToSpeechLangReducer } from "@/src/redux/slices/settingStateSlice";
 import { db } from "@/src/services/db";
 import { LanguagesTypes } from "@/src/types/interface";
-import React from "react";
 import { toast } from "react-toastify";
 
 export default function LangDropdown() {

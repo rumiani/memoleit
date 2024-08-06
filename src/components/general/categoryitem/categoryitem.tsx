@@ -1,6 +1,5 @@
 "use client";
 import { ItemTypes } from "@/src/types/interface";
-import React from "react";
 import ItemBody from "../item/itemBody/itemBody";
 import ItemProgress from "../item/itemProgress/itemProgress";
 import ItemOptions from "../item/itemOptions/itemOptions";

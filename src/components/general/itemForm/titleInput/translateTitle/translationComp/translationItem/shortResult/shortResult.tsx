@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
-import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { MdMoveDown } from "react-icons/md";
 

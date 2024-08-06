@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { tourReducer } from "@/src/redux/slices/settingStateSlice";
 import { db } from "@/src/services/db";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Joyride from "react-joyride";
 
 const JoyrideNewItem = () => {

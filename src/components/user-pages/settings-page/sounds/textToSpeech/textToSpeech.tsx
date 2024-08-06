@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppSelector } from "@/src/app/hooks";
 import { toast } from "react-toastify";
 import { textToSpeechReducer } from "@/src/redux/slices/settingStateSlice";

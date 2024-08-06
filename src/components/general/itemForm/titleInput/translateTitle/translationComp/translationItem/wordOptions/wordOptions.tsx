@@ -5,7 +5,6 @@ import {
   removeTranslationItemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { capitalize } from "lodash";
-import React from "react";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { MdOutlineTranslate } from "react-icons/md";
 

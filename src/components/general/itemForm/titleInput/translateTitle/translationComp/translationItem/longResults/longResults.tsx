@@ -1,4 +1,3 @@
-import React from "react";
 import { FaChevronUp } from "react-icons/fa";
 import Meanings from "./meanings/meanings";
 import { useAppSelector } from "@/src/app/hooks";

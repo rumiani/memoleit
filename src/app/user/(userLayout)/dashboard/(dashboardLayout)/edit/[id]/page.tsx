@@ -5,7 +5,7 @@ import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/lo
 import notFoundError from "@/src/handlers/notFoundError";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { db } from "@/src/services/db";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NewItemForm from "@/src/components/general/itemForm/newItemForm";
 
 export default function EditPage({ params }: { params: { id: string } }) {
