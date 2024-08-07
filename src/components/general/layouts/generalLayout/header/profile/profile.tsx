@@ -4,7 +4,6 @@ import UserOptions from "./userOpetions/userOptions";
 
 const LoginBtn = () => {
   const { data: session } = useSession();
-console.log(session?.user?.image);
 
   return (
     <div className="text-white flex my-4 sm:ml-8 sm:my-0 sm:mx-4">

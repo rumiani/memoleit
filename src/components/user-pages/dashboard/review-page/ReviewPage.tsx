@@ -25,9 +25,9 @@ export default function ReviewPage() {
         if (numberOfItems)
           dispatch(numberOfItemsToReviewReducer(numberOfItems));
         const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
-        if (itemsToReview) {
+        if (itemsToReview) {          
           dispatch(allItemsReducer(itemsToReview));
-          const newRandomItem = randomItemHandler(itemsToReview);
+          const newRandomItem = randomItemHandler(itemsToReview);          
           dispatch(itemReducer(newRandomItem));
           setLoading(false);
         }

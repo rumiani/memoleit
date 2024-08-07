@@ -73,7 +73,7 @@ export default function ReviewItemCard() {
       <div className="flex flex-row">
         <ItemInfo item={item} />
         <div className="relative w-full flex justify-between">
-          <ItemCategory item={item} />
+          {/* <ItemCategory item={item} /> */}
           <ItemOptions item={item} />
         </div>
       </div>
