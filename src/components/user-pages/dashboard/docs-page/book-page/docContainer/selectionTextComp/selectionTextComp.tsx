@@ -58,7 +58,7 @@ export default function SelectionTextComp() {
   return (
     <div>
       <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
-        <div className="overflow-y-auto h-96">
+        <div className="overflow-y-auto h-96 sm:px-16">
           <NewItemForm />
         </div>
       </Dialog>

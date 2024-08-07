@@ -1,7 +1,6 @@
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { IoIosLogOut } from "react-icons/io";
-
+import { MdOutlineLogout } from "react-icons/md";
 const LogoutButton = () => {
   const router = useRouter();
   return (
@@ -10,12 +9,10 @@ const LogoutButton = () => {
         signOut();
         router.push("/login");
       }}
-      className="text-red-500"
+      className="w-full text-red-500 flex flex-row gap-2 items-center"
     >
-      <div className="flex flex-row gap-2 items-center">
-        <IoIosLogOut className="text-3xl"/>
-        <p>Log out</p>
-      </div>
+      <MdOutlineLogout className="text-3xl " />
+      <strong className="w-full text-center">Log out</strong>
     </button>
   );
 };

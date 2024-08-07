@@ -5,8 +5,8 @@ export default function ProfileImage({ session }: { session: Session }) {
   return (
     <div>
       <Image
-        width={36}
-        height={36}
+        width={28}
+        height={28}
         className="rounded-full"
         src={session.user?.image || "/assets/images/avatar.png"}
         alt={session.user?.name!}

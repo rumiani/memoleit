@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import ProfileImage from "./profileImage/profileImage";
 import { IoMdSettings } from "react-icons/io";
 import Link from "next/link";
+import { MdHome } from "react-icons/md";
+
 export default function UserOptions() {
   const { data: session } = useSession();
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -23,27 +25,39 @@ export default function UserOptions() {
 
   if (!session) return <></>;
   return (
-    <div className="flex flex-col mt-4">
+    <>
       {showOptions ? (
         <div
           ref={modelRef}
-          className="fixed top-16 right-8 rounded-md bg-white shadow-md p-2 flex flex-col gap-4"
+          className="fixed top-10 right-8 rounded-md bg-white shadow-md flex flex-col "
         >
-          <div className="flex flex-row justify-center items-end gap-2">
+          <div className="flex flex-row justify-center items-center gap-2 p-2">
             <ProfileImage session={session} />
             <p className="text-black ">{session?.user?.name}</p>
           </div>
-          <Link href="/user/settings" className="text-gray-800 flex flex-row gap-2 items-center">
-            <IoMdSettings className="text-2xl" />
-            <strong>Settings</strong>
-          </Link>
-          <LogoutButton />
+          <div className="bg-gray-100 text-gray-800 flex flex-col gap-2 p-2">
+            <Link
+            href="/"
+            className=" flex flex-row gap-2 items-center"
+            >
+              <MdHome className="text-3xl"/>
+              <strong className="w-full text-center">Home</strong>
+            </Link>
+            <Link
+              href="/user/settings"
+              className=" flex flex-row gap-2 items-center"
+            >
+              <IoMdSettings className="text-3xl" />
+              <strong className="w-full text-center">Settings</strong>
+            </Link>
+            <LogoutButton />
+          </div>
         </div>
       ) : (
         <button onClick={() => setShowOptions(!showOptions)}>
           <ProfileImage session={session} />
         </button>
       )}
-    </div>
+    </>
   );
 }
