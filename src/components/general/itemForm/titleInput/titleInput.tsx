@@ -33,10 +33,10 @@ const TitleInput = ({ register, error }: TitleProps) => {
           onChange: handleInputChange,
           required: "Title is required",
           validate: async (title: string) => {
-            if (isNewPage(path)) {
-              const count = await db.items.where({ title:toLower(title) }).count();
-              return count > 0 ? "Title already exists." : true;
-            }
+            const count = await db.items
+              .where({ title: toLower(title) })
+              .count();
+            return count > 0 ? "Title already exists." : true;
           },
           pattern: {
             value: /^(?!\s*$).{1,100}$/,
