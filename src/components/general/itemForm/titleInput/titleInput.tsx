@@ -6,6 +6,7 @@ import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";
 import { isNewPage } from "@/src/handlers/general/isPage";
+import { toLower } from "lodash";
 interface TitleProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
@@ -33,7 +34,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
           required: "Title is required",
           validate: async (title: string) => {
             if (isNewPage(path)) {
-              const count = await db.items.where({ title: title }).count();
+              const count = await db.items.where({ title:toLower(title) }).count();
               return count > 0 ? "Title already exists." : true;
             }
           },
