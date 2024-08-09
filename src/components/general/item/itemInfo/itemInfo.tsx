@@ -10,13 +10,13 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
   const closeDialog = () => setDialogOpen(false);
 
   return (
-    <div>
+    <div className="">
       <button
         onClick={openDialog}
         title="This is the progress bar"
-        className="mr-2 mt-4 text-md w-4 h-4 text-gray-600 hover:text-gray-900 rounded-full"
+        className="relative top-[10px] text-md text-gray-600 hover:text-gray-900 rounded-full"
       >
-        <IoInformationCircleOutline />
+        <IoInformationCircleOutline className="text-2xl"/>
       </button>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
