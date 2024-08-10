@@ -23,12 +23,15 @@ export default function TotalData({
 
   useEffect(() => {
     if (data) {
-      let reviewed = 0;
-      let pending = 0;
-      data.forEach((box: any) => {
-        reviewed += box.Reviewed;
-        pending += box.Pending;
-      });
+      const { reviewed, pending } = data.reduce(
+        (acc, box) => {
+          acc.reviewed += box.Reviewed;
+          acc.pending += box.Pending;
+          return acc;
+        },
+        { reviewed: 0, pending: 0 },
+      );
+
       setReviewedNumber(reviewed);
       setPendingNumber(pending);
     }
@@ -38,8 +41,8 @@ export default function TotalData({
   }, [data, categoryId]);
 
   return (
-    <div className="px-6 mb-4 w-full justify-start cursor-default">
-      <div className="flex flex-row justify-around gap-4">
+    <div className="px-6 mb-2 w-full justify-start cursor-default">
+      <div className="flex flex-row justify-around gap-2">
         <span>Items: {categoryInfo?.allItemsCount}</span>
         <span>Learned: {categoryInfo?.learnedCount}</span>
         <span>Learning: {categoryInfo?.unLearnedCount}</span>

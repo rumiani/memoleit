@@ -7,10 +7,11 @@ const categoriesPageUrl = "/user/box/categories";
 const searchPageUrl = "/user/box/search";
 
 const settingsPageUrl = "/user/settings";
-
 const editPageUrl = "/user/dashboard/edit/";
 const itemPageUrl = "/user/box/item/";
 const categoryPageUrl = "/user/box/category/";
+
+const loginPageUrl = "/login"
 
 export {
   reviewPageUrl,
@@ -23,4 +24,5 @@ export {
   editPageUrl,
   itemPageUrl,
   categoryPageUrl,
+  loginPageUrl,
 };

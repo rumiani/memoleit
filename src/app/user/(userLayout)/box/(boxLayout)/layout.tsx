@@ -1,5 +1,5 @@
 "use client";
-import { superPages } from "@/src/components/general/layouts/appLayout/appLayout";
+import { superPages } from "@/src/components/general/layouts/generalLayout/header/profile/userOpetions/superpages/superpages";
 import SuperPageLayout from "@/src/components/general/layouts/superPageLayout/superPageLayout";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {" "}
         <SuperPageLayout links={superPages.box.links} />
       </nav>
-      <div className="my-8 min-h-screen">{children}</div>
+      <div className="mt-4">{children}</div>
     </section>
   );
 }

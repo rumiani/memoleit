@@ -6,11 +6,11 @@ export default function SearchResult({ items }: { items: ItemTypes[] }) {
     <div>
       {items!.length > 0 ? (
         <div>
-          <div className="m-4 w-24">
-            Results: <p className="font-bold inline">{items?.length}</p>
-          </div>
+          <p>
+            <strong>{items?.length}</strong> Results
+          </p>
           <div></div>
-          <div className="flex flex-wrap gap-2 my-16">
+          <div className="flex flex-wrap gap-2">
             {items!.map((item: ItemTypes) => (
               <CategoryItem key={item.id} item={item} />
             ))}

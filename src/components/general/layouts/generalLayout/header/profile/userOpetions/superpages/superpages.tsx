@@ -1,21 +1,23 @@
-"use client";
-import { ReactNode, useEffect } from "react";
-import { MdDashboard } from "react-icons/md";
-import { FaBoxOpen } from "react-icons/fa";
-import SuperPage from "./superPage/superPage";
 import { useAppDispatch } from "@/src/app/hooks";
-import { db } from "@/src/services/db";
-import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import {
   boxDataPageUrl,
   categoriesPageUrl,
   docsPageUrl,
+  loginPageUrl,
   newPageUrl,
   reviewPageUrl,
   searchPageUrl,
+  settingsPageUrl,
 } from "@/src/handlers/general/pagesLinks";
-
+import { storedSettingReducer } from "@/src/redux/slices/settingStateSlice";
+import { db } from "@/src/services/db";
+import { capitalize } from "lodash";
+import Link from "next/link";
+import { ReactNode, useEffect } from "react";
+import { FaBoxOpen } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+import { MdDashboard, MdOutlineLogout } from "react-icons/md";
 interface Link {
   url: string;
   title: string;
@@ -67,10 +69,19 @@ export const superPages: SuperPageTypes = {
         title: "Search Items",
       },
     ],
+  },
+  settings: {
+    name: "Settings",
+    icon: <IoMdSettings />,
+    links: [
+      {
+        url: settingsPageUrl,
+        title: "Settings",
+      },
+    ],
   }
 };
-
-export default function ItemsNav() {
+export default function Superpages() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     appDataInitialiser();
@@ -86,11 +97,19 @@ export default function ItemsNav() {
       });
   }, [dispatch]);
   return (
-    <nav className="group fixed z-40 sm:absolute left-0 bottom-0 sm:top-0 flex flex-row sm:flex-col h-20 sm:h-full sm:pt-24 w-full sm:w-16 sm:hover:w-48 text-gray-800 bg-gray-100 sm:overflow-y-auto">
-      {Object.values(superPages).map((superPage, i) => (
-        <SuperPage key={i} superPage={superPage} />
-      ))}
-      <div></div>
-    </nav>
+    <div>
+      {Object.values(superPages).map((superPage, i) => {
+        return (
+          <Link key={i} href={superPage.links[0].url} >
+            <div className="flex flex-row items-center text-gray-800 border-b border-gray-200 text-2xl p-2 hover:bg-gray-100 group">
+              <span className="group-hover:animate-grayBlackBlink duration-[2s]">{superPage.icon}</span>
+              <span className="text-xl w-full ml-2">
+                {capitalize(superPage.name)}
+              </span>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
   );
 }

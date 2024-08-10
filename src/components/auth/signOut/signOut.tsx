@@ -9,10 +9,10 @@ const LogoutButton = () => {
         signOut();
         router.push("/login");
       }}
-      className="w-full text-red-500 flex flex-row gap-2 items-center"
+      className=" text-red-500 flex flex-row p-2 hover:bg-gray-200"
     >
-      <MdOutlineLogout className="text-3xl " />
-      <strong className="w-full text-center">Log out</strong>
+      <MdOutlineLogout className="text-2xl " />
+      <strong className="pl-2">Log out</strong>
     </button>
   );
 };

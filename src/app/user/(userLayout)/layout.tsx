@@ -1,5 +1,4 @@
 "use client";
-import ItemsNav from "@/src/components/general/layouts/appLayout/appLayout";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -12,9 +11,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   });
 
   return (
-    <div className=" px-2 sm:px-6 lg:px-8">
-      <ItemsNav />
-      <div className="sm:ml-14">{children}</div>
-    </div>
+      <div className="p-2">{children}</div>
   );
 }

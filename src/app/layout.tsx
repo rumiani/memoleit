@@ -74,7 +74,7 @@ export default async function RootLayout({
               className={`relative ${inter.className} max-w-screen-2xl mx-auto`}
             >
               <Header />
-              <main className="pt-24 break-words">{children}</main>
+              <main className="pt-20 break-words">{children}</main>
               <Footer />
             </div>
           </ReduxProvider>

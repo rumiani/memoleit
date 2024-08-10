@@ -19,13 +19,18 @@ const config: Config = {
           to: { opacity: "1" },
         },
         redBlackBlink: {
-          '0%, 100%': { color: 'black' },
-          '50%': { color: 'red' },
+          "0%, 100%": { color: "black" },
+          "50%": { color: "red" },
+        },
+        grayBlackBlink: {
+          "0%, 100%": { color: "black" },
+          "50%": { color: "gray" },
         },
       },
       animation: {
         merge: "merge 0.3s ease-in",
-        redBlackBlink: 'redBlackBlink 1s ease-in infinite',
+        redBlackBlink: "redBlackBlink 1s ease-in infinite",
+        grayBlackBlink: "grayBlackBlink 1s ease-in infinite",
       },
     },
   },

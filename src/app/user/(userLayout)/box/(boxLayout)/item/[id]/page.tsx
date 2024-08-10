@@ -8,7 +8,6 @@ import { db } from "@/src/services/db";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
-import { superPages } from "@/src/components/general/layouts/appLayout/appLayout";
 import { newPageUrl, reviewPageUrl } from "@/src/handlers/general/pagesLinks";
 
 export default function Item({ params }: { params: { id: string } }) {
@@ -16,9 +15,7 @@ export default function Item({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    console.log(superPages);
-    
+  useEffect(() => {    
     setLoading(true);
     db.items
       .get(params.id)

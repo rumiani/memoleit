@@ -21,7 +21,7 @@ export default function ProgressPage() {
   }, [dispatch]);
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full">
       {isLoading ? <LoadingPulse /> : <BoxChart />}
     </div>
   );
