@@ -4,12 +4,17 @@ import GoogleProvider from "next-auth/providers/google";
 import { connectDB } from "@/lib/dbConfig";
 import User from "@/utils/models/user";
 import { JWT } from "next-auth/jwt";
+import GitHubProvider from "next-auth/providers/github";
 
 const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
   // callbacks: {
@@ -33,7 +38,7 @@ const authOptions: NextAuthOptions = {
   //   },
   //   async signIn({ user, account, profile }: any) {
   //     console.log("User account profile",{user, account, profile} );
-      
+
   //     if (account.provider === "google") {
   //       try {
   //         const { name, email } = user;
@@ -53,7 +58,7 @@ const authOptions: NextAuthOptions = {
   //         }
   //       } catch (error) {
   //         console.log("Errorrrrrrr",error);
-          
+
   //       }
   //     }
   //   },

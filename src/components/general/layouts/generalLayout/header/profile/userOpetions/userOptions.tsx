@@ -10,6 +10,7 @@ export default function UserOptions() {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const modelRef = useRef<HTMLDivElement>(null);
   const path = usePathname();
+console.log(session);
 
   useEffect(() => {
     setShowOptions(false);

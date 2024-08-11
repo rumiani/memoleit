@@ -21,9 +21,13 @@ export default function Hero() {
           <Link
             href="/user/dashboard/review"
             rel="noopener"
-            className="primaryBtn text-center animate-pulse"
+            className="primaryBtn text-center "
           >
-            Get Started
+            <span className="text-lg font-bold">G</span>
+            <span>et</span>
+            &nbsp;
+            <span className="text-lg font-bold">S</span>
+            <span>tarted</span>
           </Link>
           <Link
             rel="noopener"
