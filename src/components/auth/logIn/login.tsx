@@ -11,7 +11,7 @@ export default function Login() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    console.log(status);
+    // console.log(status);
 
     if (session) {
       console.log("-------------signed In-----------");
@@ -28,7 +28,7 @@ export default function Login() {
       </div>
       <div className="mx-auto my-8 px-8">
         <h2 className="font-bold text-center">Login</h2>
-        <button
+        {/* <button
           onClick={() => signIn("google")}
           title="Log in with Google"
           className="group my-8 cursor-pointer text-gray-600 hover:text-gray-800 transition-all duration-300 shadow-lg shadow-gray-300 rounded-lg flex flex-row justify-center items-center w-60 h-10 mx-auto text-center"
@@ -43,7 +43,7 @@ export default function Login() {
           <h3 className="w-52 h-full pt-2 rounded-e-lg text-white bg-blue-400 group-hover:bg-blue-500 text-center font-semibold">
             Sign in with Google
           </h3>
-        </button>
+        </button> */}
         <button
           onClick={() => signIn("github")}
           title="Log in with Github"
