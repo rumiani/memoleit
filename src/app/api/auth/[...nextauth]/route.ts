@@ -1,11 +1,9 @@
-connectDB();
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { connectDB } from "@/lib/dbConfig";
 import User from "@/utils/models/user";
 import { JWT } from "next-auth/jwt";
 import GitHubProvider from "next-auth/providers/github";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -25,41 +23,44 @@ const authOptions: NextAuthOptions = {
     },
     async session({ session, token }: { session: any; token: JWT }) {
       session.accessToken = token.accessToken;
-      console.log("---------session and token---------", session);
+      // console.log("---------session and token---------", session);
       return session;
     },
     async signIn({ user, account, profile }: any) {
-      console.log("---------User-------- account---------",{user, account} );
+      // console.log("---------", user, account, profile);
 
-      if (account.provider === "github") {
-        try {
-          const { name, email } = user;
-          await connectDB();
-          console.log(email);
+      const { id: providerId, name, email, image } = user;
+      const { provider, access_token: accessToken } = account;
 
-          const existingUser = await User.findOne({ email });
-          if (existingUser) return existingUser;
+      try {
+        await connectDB();
+        const existingUser = await User.findOne({ email });
+        if (!existingUser) {
           const newUser = new User({
-            name: user.name,
-            email: user.email,
-            image: user.image,
+            providerId,
+            provider,
+            accessToken,
+            name,
+            email,
+            image,
           });
-          const res = await newUser.save();
-          if (res.status === 200 || res.status === 201) {
-            console.log(res);
-            return user;
-          }
-        } catch (error) {
-          console.log("Errorrrrrrr",error);
+          console.log(newUser);
 
+          await newUser.save();
         }
-    }
+        return true;
+      } catch (error) {
+        console.log("Error", "Could not connect to the DB");
+        return false;
+      }
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    // signIn: "/login",
+    signIn: "/login",
+    error: "/login",
   },
+  debug: true,
 };
 
 const handler = NextAuth(authOptions);

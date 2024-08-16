@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI!;
+// const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+
 if (!MONGODB_URI) throw new Error("MONGODB_URI must be defined");
 const opts = {
   bufferCommands: false,
