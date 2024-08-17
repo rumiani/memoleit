@@ -5,10 +5,9 @@ import { useSession } from "next-auth/react";
 import Login from "@/src/components/auth/logIn/login";
 import { redirect } from "next/navigation";
 
-export default function Page() {
+export default function LoginPage() {
   const { data: session } = useSession();
   useEffect(() => {
-    console.log(session);
     if (session) redirect("/user/dashboard/review");
   }, [session]);
   return (

@@ -6,7 +6,7 @@ const UserSchema = new Schema({
   image: String,
   provider: { type: String, required: true },
   providerId: { type: String, required: true, unique: true },
-  accessToken: { type: String ,required: true},
+  accessToken: { type: String, required: true },
   Role: { type: String, default: "user" },
   joinedDate: { type: Date, default: Date.now },
 });
