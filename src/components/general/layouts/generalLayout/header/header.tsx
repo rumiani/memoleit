@@ -1,17 +1,10 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdClose } from "react-icons/io";
+import { useRef } from "react";
 import LoginBtn from "./profile/profile";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const router = usePathname();
   const targetRef = useRef<HTMLDivElement>(null);
-
   return (
     <nav
       ref={targetRef}
@@ -19,9 +12,7 @@ const Navbar = () => {
     >
       <div className="flex items-center justify-between w-full h-full">
         <Link href={"/"}>
-          <p className="text-white align-middle text-xl font-bold">
-            Memoleit
-          </p>
+          <p className="text-white align-middle text-xl font-bold">Memoleit</p>
         </Link>
         <LoginBtn />
       </div>

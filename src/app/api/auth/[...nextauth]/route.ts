@@ -19,13 +19,13 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account }: { token: JWT; account: any }) {
       if (account) token.accessToken = account.access_token;
-      console.log("22:------JWT-------");
+      console.log("22:------JWT-------",token,account);
       
       return token;
     },
     async session({ session, token }: { session: any; token: JWT }) {
       session.accessToken = token.accessToken;
-      console.log("28:-----session------");
+      console.log("28:-----session------",session,token);
       
       // console.log("---------session and token---------", session);
       return session;
@@ -38,7 +38,6 @@ const authOptions: NextAuthOptions = {
 
       try {
         await connectDB();
-        console.log('41:---------after connect --------');
         
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
@@ -66,7 +65,7 @@ const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
   },
-  debug: true,
+  // debug: true,
 };
 
 const handler = NextAuth(authOptions);

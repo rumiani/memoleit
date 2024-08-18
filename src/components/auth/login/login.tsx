@@ -1,26 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
 import loginPic from "@/public/assets/images/login/login.svg";
 import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import googleLogo from "@/public/assets/images/login/googleLogo.png";
-import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { AiFillGithub } from "react-icons/ai";
+
 export default function Login() {
-  // const { data: session, status } = useSession();
-
-  // useEffect(() => {
-  //   // console.log(status);
-
-  //   if (session) {
-  //     console.log("-------------signed In-----------");
-  //     redirect("/user/dashboard/review");
-  //   } else {
-  //     console.log("signed Out");
-  //   }
-  // }, [session, status]);
-
   return (
     <section className="  my-12 flex flex-col-reverse sm:flex-row ">
       <div className="my-8 h-auto w-full lg:w-1/2">

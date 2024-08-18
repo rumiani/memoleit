@@ -3,14 +3,13 @@ import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import ProfileImage from "./profileImage/profileImage";
 import Superpages from "./superpages/superpages";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function UserOptions() {
   const { data: session } = useSession();
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const modelRef = useRef<HTMLDivElement>(null);
   const path = usePathname();
-// console.log(session);
 
   useEffect(() => {
     setShowOptions(false);
