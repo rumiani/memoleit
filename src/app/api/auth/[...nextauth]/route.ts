@@ -24,7 +24,7 @@ const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }: { session: any; token: JWT }) {
-        // console.log("---------session and token---------", session);
+      // console.log("---------session and token---------", session);
       session.accessToken = token.accessToken;
 
       return session;
@@ -57,6 +57,17 @@ const authOptions: NextAuthOptions = {
         console.log("Could not connect to the DB", error);
         return false;
       }
+    },
+  },
+  cookies: {
+    sessionToken: {
+      name: `__Secure-next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
     },
   },
   secret: process.env.NEXTAUTH_SECRET,

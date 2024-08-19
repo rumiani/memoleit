@@ -11,7 +11,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (session) router.push("/user/dashboard/review");
-  }, [session, router]); //
+  }, [session, router]);
   return (
     <>
       <Head>
