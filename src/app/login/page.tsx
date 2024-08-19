@@ -3,13 +3,15 @@ import { useEffect } from "react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Login from "@/src/components/auth/login/login";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const { data: session } = useSession();
+  const router = useRouter();
+
   useEffect(() => {
-    if (session) redirect("/user/dashboard/review");
-  });
+    if (session) router.push("/user/dashboard/review");
+  }, [session, router]); //
   return (
     <>
       <Head>
