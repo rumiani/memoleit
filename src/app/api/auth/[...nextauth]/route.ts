@@ -19,15 +19,14 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account }: { token: JWT; account: any }) {
       if (account) token.accessToken = account.access_token;
-      console.log("22:------JWT-------",token,account);
-      
+      console.log("22:------JWT-------", token, account);
+
       return token;
     },
     async session({ session, token }: { session: any; token: JWT }) {
+        // console.log("---------session and token---------", session);
       session.accessToken = token.accessToken;
-      console.log("28:-----session------",session,token);
-      
-      // console.log("---------session and token---------", session);
+
       return session;
     },
     async signIn({ user, account, profile }: any) {
@@ -38,7 +37,7 @@ const authOptions: NextAuthOptions = {
 
       try {
         await connectDB();
-        
+
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
           const newUser = new User({
@@ -49,13 +48,13 @@ const authOptions: NextAuthOptions = {
             email,
             image,
           });
-          console.log('new user:',newUser);
+          console.log("new user:", newUser);
 
           await newUser.save();
         }
         return true;
       } catch (error) {
-        console.log("Could not connect to the DB",error );
+        console.log("Could not connect to the DB", error);
         return false;
       }
     },

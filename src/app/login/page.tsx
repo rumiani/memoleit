@@ -9,7 +9,7 @@ export default function LoginPage() {
   const { data: session } = useSession();
   useEffect(() => {
     if (session) redirect("/user/dashboard/review");
-  }, [session]);
+  });
   return (
     <>
       <Head>
