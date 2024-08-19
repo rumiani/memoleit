@@ -17,7 +17,7 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
   try {
 
 
-    return NextResponse.json('Hellow');
+    return NextResponse.json('Hello');
   } catch (error) {
     console.log(error);
     

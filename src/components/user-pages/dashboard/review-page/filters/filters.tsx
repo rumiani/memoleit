@@ -27,7 +27,7 @@ export default function Filters() {
   };
 
   return (
-    <div className="relative flex justify-end">
+    <div className="relative">
       <button
         onClick={filterHnadler}
         className="first-element top-10 right-10 icon text-xl !w-fit"

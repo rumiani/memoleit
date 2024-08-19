@@ -25,9 +25,9 @@ export default function ReviewPage() {
         if (numberOfItems)
           dispatch(numberOfItemsToReviewReducer(numberOfItems));
         const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
-        if (itemsToReview) {          
+        if (itemsToReview) {
           dispatch(allItemsReducer(itemsToReview));
-          const newRandomItem = randomItemHandler(itemsToReview);          
+          const newRandomItem = randomItemHandler(itemsToReview);
           dispatch(itemReducer(newRandomItem));
           setLoading(false);
         }
@@ -45,27 +45,25 @@ export default function ReviewPage() {
       </div>
     );
   return (
-    <div className="relative flex flex-col justify-center">
-      <Filters />
-      <div className="flex justify-center text-center sm:mb-24">
-        <div>
-          {numberOfItemsToReview === 0 ? (
-            <div className="my-16 flex flex-col items-center">
-              <span className="text-green-600">
-                There is no item to review.
-              </span>
-              <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
-            </div>
-          ) : (
-            <div>
-              <div className="text-red-600 -mt-4 mb-2">
+    <div className="relative flex flex-col justify-center text-center sm:mb-24">
+      <div>
+        {numberOfItemsToReview === 0 ? (
+          <div className="my-16 flex flex-col items-center">
+            <span className="text-green-600">There is no item to review.</span>
+            <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
+          </div>
+        ) : (
+          <div>
+            <div className="w-80 mx-auto my-4 flex flex-row items-center justify-between">
+              <div className="text-red-600 text-xl">
                 Items to review:
                 <span className="font-bold px-1">{numberOfItemsToReview}</span>
               </div>
-              <Review />
+              <Filters />
             </div>
-          )}
-        </div>
+            <Review />
+          </div>
+        )}
       </div>
     </div>
   );
