@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI!;
-// const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 if (!MONGODB_URI) throw new Error("MONGODB_URI must be defined");
 const opts = {
@@ -12,11 +11,11 @@ export const connectDB = async () => {
   try {
     const { connection } = await mongoose.connect(MONGODB_URI, opts);
     if (connection.readyState === 1) {
-      console.log("-------\n MongoDB Connected \n--------");
+      console.log("MongoDB Connected");
       return Promise.resolve(true);
     }
   } catch (error) {
-    console.error("-------", error);
+    console.error("Error", error);
     return Promise.reject(error);
   }
 };

@@ -6,12 +6,13 @@ import Login from "@/src/components/auth/login/login";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (session) router.push("/user/dashboard/review");
   }, [session, router]);
+  
   return (
     <>
       <Head>

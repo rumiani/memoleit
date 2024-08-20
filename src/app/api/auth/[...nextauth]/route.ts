@@ -17,26 +17,39 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }: { token: JWT; account: any }) {
-      if (account) token.accessToken = account.access_token;
-      console.log("22:------JWT-------", token, account);
-
+    async jwt({
+      token,
+      account,
+      user,
+    }: {
+      token: JWT;
+      account: any;
+      user: any;
+    }) {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.providerId = account.providerId;
+      }
+      if (user) {
+        token.id = user.id;
+      }
+      console.log("JWT", token, account);
       return token;
     },
     async session({ session, token }: { session: any; token: JWT }) {
-      // console.log("---------session and token---------", session);
+      console.log("---------session and token---------", token);
+      session.user.id = token.id;
       session.accessToken = token.accessToken;
-
+      session.providerId = token.providerId;
       return session;
     },
     async signIn({ user, account, profile }: any) {
       // console.log("---------", user, account, profile);
 
-      const { id: providerId, name, email, image } = user;
-      const { provider, access_token: accessToken } = account;
-
       try {
         await connectDB();
+        const { id: providerId, name, email, image } = user;
+        const { provider, access_token: accessToken } = account;
 
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
@@ -48,7 +61,7 @@ const authOptions: NextAuthOptions = {
             email,
             image,
           });
-          console.log("new user:", newUser);
+          console.log("user:", existingUser);
 
           await newUser.save();
         }
@@ -59,23 +72,13 @@ const authOptions: NextAuthOptions = {
       }
     },
   },
-  cookies: {
-    sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
+
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
     error: "/login",
   },
-  // debug: true,
+  // debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);
