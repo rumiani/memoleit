@@ -8,6 +8,7 @@ import {
 import { db } from "@/src/services/db";
 import getPDFsHandler from "../../../../handlers/getPDFsHandler";
 import { PdfStateTypes } from "@/src/types/interface";
+import BooksInfo from "../../../../newpdf-page/booksInfo/booksInfo";
 
 export default function BookNameInput({ book }: { book: PdfStateTypes }) {
   const [newBookName, setNewBookName] = useState<string>(book.name);

@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { CgAttachment } from "react-icons/cg";
 import { IoIosAdd } from "react-icons/io";
 import getPDFsHandler from "../handlers/getPDFsHandler";
+import BooksInfo from "./booksInfo/booksInfo";
 
 export default function NewPdfPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -30,7 +31,7 @@ export default function NewPdfPage() {
     if (displayedName.trim() === "")
       return toast.error("You need a name for your file.");
     if (displayedName.length < 3 || displayedName.length > 20) return;
-    
+
     const foundPdf = await db.pdfs
       .where("pdfName")
       .equals(selectedFile.name)
@@ -69,35 +70,38 @@ export default function NewPdfPage() {
   return (
     <div className="p-4 max-w-96 mx-auto flex flex-col gap-2 items-center">
       <h1 className="font-bold text-center">Add PDF Files</h1>
-      <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
-        <div className="absolute left-0 w-8 h-10 py-2">
-          <CgAttachment className="absolute w-8 h-6 text-blue-400" />
+      <div className="flex flex-row w-full items-center gap-4">
+        <BooksInfo />
+        <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
+          <div className="absolute left-0 w-8 h-10 py-2">
+            <CgAttachment className="absolute w-8 h-6 text-blue-400" />
+            <input
+              className=" w-8 h-10 opacity-0 absolute cursor-pointer"
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+            />
+          </div>
           <input
-            className=" w-8 h-10 opacity-0 absolute cursor-pointer"
-            type="file"
-            accept="application/pdf"
-            onChange={handleFileChange}
-            ref={fileInputRef}
+            className="primaryInput !w-full h-12 !pl-10 !pr-12"
+            type="text"
+            value={displayedName}
+            ref={nameInputRef}
+            onChange={(e) => setDisplayedName(e.target.value)}
+            placeholder="PDF name"
+          />
+
+          <IoIosAdd
+            onClick={handleAddPdf}
+            className="icon absolute right-0 text-blue-400"
           />
         </div>
-        <input
-          className="primaryInput !w-full h-12 !pl-10 !pr-12"
-          type="text"
-          value={displayedName}
-          ref={nameInputRef}
-          onChange={(e) => setDisplayedName(e.target.value)}
-          placeholder="PDF name"
-        />
-
-        <IoIosAdd
-          onClick={handleAddPdf}
-          className="icon absolute right-0 text-blue-400"
-        />
+        {displayedName.length < 3 ||
+          (displayedName.length > 20 && (
+            <p className="w-full text-red-500">PDF name must be 3-20 letters</p>
+          ))}
       </div>
-      {displayedName.length < 3 ||
-        (displayedName.length > 20 && (
-          <p className="w-full text-red-500">PDF name must be 3-20 letters</p>
-        ))}
     </div>
   );
 }
