@@ -1,7 +1,7 @@
 "use client";
 import { v4 as uuidv4 } from "uuid";
 import { ItemTypes } from "../types/interface";
-import words from "@/src/data/initialData.json";
+import words from "@/src/data/initialExampleWords.json";
 import { db } from "../services/db";
 import { userIdTest } from "../services/userId";
 import { reviewSounds } from "../data/reviewSounds";
@@ -30,10 +30,11 @@ export const appDataInitialiser = async () => {
     }
 
     const categoryId = randomIdGenerator(8);
+    const categoryName = makeUrlFriendly("Example")
     const category = {
       id: categoryId,
       userId: userIdTest,
-      name: makeUrlFriendly("11 plus"),
+      name: categoryName,
       status: false,
       createdAt: Date.now() - 1000 * 3600 * 1000,
     };
@@ -47,7 +48,7 @@ export const appDataInitialiser = async () => {
         categoryId,
         title,
         body: "",
-        category: makeUrlFriendly("11 plus"),
+        category: categoryName,
         box: wordsObject[i].box,
         createdAt: Date.now() - 1000 * 3600 * 1000,
         lastReview: timestamps[i],

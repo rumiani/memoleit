@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { categoriesReducer } from "@/src/redux/slices/categoryStateSlice";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
+import { capitalize } from "lodash";
 
 export default function CheckboxInput({
   category,
@@ -81,8 +82,8 @@ checked:bg-blue-600 checked:border-0"
         htmlFor={category.id}
         className=" cursor-pointer pl-2 w-full flex justify-between"
       >
-        <div className="flex flex-col w-full">
-          <span>{category.name}</span>
+        <div className="flex flex-col items-start w-full">
+          <span>{capitalize(category.name)}</span>
           <span
             className={`${
               itemsInfo.pending === 0
