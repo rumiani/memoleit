@@ -5,7 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 
-export default function ChooseTopic({
+export default function ChooseCategory({
   register,
   error,
 }: {
@@ -19,13 +19,13 @@ export default function ChooseTopic({
     dispatch(formDataReducer({ [name]: value }));
   };
   return (
-    <div className=" w-fit flex flex-col">
+    <div className="w-full max-w-64 flex flex-col">
       <input
         list="categories"
         id="category"
         autoComplete="off"
-        className="third-element primaryInput !p-1"
-        placeholder="Add or Choose a category"
+        className="third-element  primaryInput !w-full !text-lg !p-1"
+        placeholder="Add or choose a category"
         {...register("category", {
           onChange: handleInputChange,
           required: "Category is required",

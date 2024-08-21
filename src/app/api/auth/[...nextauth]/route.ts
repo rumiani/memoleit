@@ -37,19 +37,15 @@ const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
       }
-      console.log("JWT", token, account);
       return token;
     },
     async session({ session, token }: { session: any; token: JWT }) {
-      console.log("---------session and token---------", token);
       session.user.id = token.id;
       session.accessToken = token.accessToken;
       session.providerId = token.providerId;
       return session;
     },
     async signIn({ user, account, profile }: any) {
-      // console.log("---------", user, account, profile);
-
       try {
         await connectDB();
         const { id: providerId, name, email, image } = user;
@@ -65,8 +61,6 @@ const authOptions: NextAuthOptions = {
             email,
             image,
           });
-          console.log("user:", existingUser);
-
           await newUser.save();
         }
         return true;
@@ -82,7 +76,7 @@ const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
   },
-  // debug: process.env.NODE_ENV === "development",
+  debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);

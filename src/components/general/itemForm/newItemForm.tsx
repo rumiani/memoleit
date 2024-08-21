@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import TitleInput from "./titleInput/titleInput";
 import Preview from "./preview/preview";
 import { useForm } from "react-hook-form";
-import ChooseTopic from "./chooseTopic/chooseTopic";
 import CreatedMessage from "./CreatedMessage/CreatedMessage";
 import { FormValues } from "@/src/types/interface";
 import { saveNewItemToLocal } from "./handlers/saveNewItemHandler";
@@ -17,6 +16,7 @@ import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { isEditPage } from "@/src/handlers/general/isPage";
+import ChooseCategory from "./chooseCategory/chooseCategory";
 
 export default function NewItemForm() {
   const path = usePathname();
@@ -86,7 +86,7 @@ export default function NewItemForm() {
             <div className="flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl">
               <TitleInput register={register} error={errors.title?.message} />
               <BodyInput register={register} error={errors.body?.message} />
-              <ChooseTopic
+              <ChooseCategory
                 register={register}
                 error={errors.category?.message}
               />
