@@ -13,9 +13,9 @@ export default function BooksInfo() {
       <button
         onClick={openDialog}
         title="This is the progress bar"
-        className="relative top-[10px] text-md text-gray-600 hover:text-gray-900 rounded-full"
+        className=" text-md text-gray-600 hover:text-gray-900 rounded-full"
       >
-        <IoInformationCircleOutline className="text-2xl" />
+        <IoInformationCircleOutline className="text-xl" />
       </button>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
