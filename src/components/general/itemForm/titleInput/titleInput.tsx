@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";
-import { isNewPage } from "@/src/handlers/general/isPage";
+import { isEditPage, isNewPage } from "@/src/handlers/general/isPage";
 import { toLower } from "lodash";
 interface TitleProps {
   register: UseFormRegister<FormValues>;
@@ -33,10 +33,18 @@ const TitleInput = ({ register, error }: TitleProps) => {
           onChange: handleInputChange,
           required: "Title is required",
           validate: async (title: string) => {
-            const count = await db.items
+            const itemsWithThisTitle = await db.items
               .where({ title: toLower(title) })
-              .count();
-            return count > 0 ? "Title already exists." : true;
+              .toArray();
+            if (isEditPage(path)) {
+              return itemsWithThisTitle.length > 2
+                ? "Title already exists."
+                : true;
+            } else {
+              return itemsWithThisTitle.length > 0
+                ? "Title already exists."
+                : true;
+            }
           },
           pattern: {
             value: /^(?!\s*$).{1,100}$/,

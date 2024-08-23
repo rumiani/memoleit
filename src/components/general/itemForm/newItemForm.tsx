@@ -75,7 +75,7 @@ export default function NewItemForm() {
       ) : (
         <div
           className={`${
-            isEditPage(path) ? "bg-blue-100" : "bg-green-100"
+            isEditPage(path) ? "bg-yellow-100" : "bg-green-100"
           } relative max-w-2xl w-full mx-auto gap-2`}
         >
           <form
