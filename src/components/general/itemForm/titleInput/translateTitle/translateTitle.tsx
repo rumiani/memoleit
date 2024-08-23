@@ -24,7 +24,7 @@ export default function TranslateTitle() {
           <FaClipboardList />
         </button>
       )}
-      <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
+      <Dialog isOpen={isDialogOpen} closeBtn closeDialogHandler={()=> setDialogOpen(false)}>
         <div className="min-w-72 sm:w-96 h-96 overflow-y-auto">
           <TranslationComp />
         </div>

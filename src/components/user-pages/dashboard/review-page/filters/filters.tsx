@@ -39,7 +39,7 @@ export default function Filters() {
       {items.length === 0 && numberOfItemsToReview > 0 && (
         <TbHandFinger className="absolute top-12  right-2  text-xl text-green-600 animate-bounce rotate-90" />
       )}
-      <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+      <Dialog isOpen={isDialogOpen} closeDialogHandler={closeDialog}>
         <Form />
       </Dialog>
     </div>

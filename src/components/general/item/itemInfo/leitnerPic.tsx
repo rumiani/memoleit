@@ -3,8 +3,6 @@ const LeitnerPic = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
-    // width={460}
-    // height={250}
     viewBox="-17.16 -35.952 460 250"
   >
     <path

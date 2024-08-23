@@ -10,16 +10,16 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
   const closeDialog = () => setDialogOpen(false);
 
   return (
-    <div className="">
+    <div className="flex justify-start my-2 ml-[6px]">
       <button
         onClick={openDialog}
         title="This is the progress bar"
-        className="relative top-[10px] text-md text-gray-600 hover:text-gray-900 rounded-full"
+        className="text-md text-gray-400 hover:text-gray-900 rounded-full"
       >
         <IoInformationCircleOutline className="text-2xl"/>
       </button>
 
-      <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+      <Dialog isOpen={isDialogOpen} closeBtn closeDialogHandler={closeDialog}>
         <div className="flex flex-col items-start">
           <span>
             Item: <strong>{item.title}</strong>

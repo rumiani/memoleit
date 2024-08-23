@@ -24,7 +24,8 @@ export default function SelectionTextComp() {
   }>({ top: "", left: "" });
   const [isDialogOpen, setDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
-
+  const closeDialog = () => setDialogOpen(false);
+  
   useEffect(() => {
     const handleSelectionChange = async (event: {
       preventDefault: () => void;
@@ -57,7 +58,7 @@ export default function SelectionTextComp() {
 
   return (
     <div>
-      <Dialog isOpen={isDialogOpen} onClose={() => setDialogOpen(false)}>
+      <Dialog isOpen={isDialogOpen} closeBtn closeDialogHandler={closeDialog}>
         <div className="overflow-y-auto h-96 sm:px-16">
           <NewItemForm />
         </div>

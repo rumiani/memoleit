@@ -22,7 +22,7 @@ const Preview = () => {
               className="cursor-pointer text-3xl p-1 text-gray-700 hover:text-black"
               title="Preview"
             />
-            <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+            <Dialog isOpen={isDialogOpen} closeBtn closeDialogHandler={closeDialog}>
               <div className="w-80">
                 <h2 className="font-bold text-gray-500 text-center my-4">
                   Preview

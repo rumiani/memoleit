@@ -76,7 +76,7 @@ export default function NewItemForm() {
         <div
           className={`${
             isEditPage(path) ? "bg-blue-100" : "bg-green-100"
-          } relative max-w-2xl w-full my-4 mx-auto gap-2`}
+          } relative max-w-2xl w-full mx-auto gap-2`}
         >
           <form
             className="flex flex-col justify-center"

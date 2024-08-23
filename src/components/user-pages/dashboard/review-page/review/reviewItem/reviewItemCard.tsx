@@ -69,16 +69,16 @@ export default function ReviewItemCard() {
     );
   }
   return (
-    <div className=" word-box border border-gray-300 rounded-lg pt-0 p-4 mb-24 sm:mb-1 flex flex-col justify-between !w-80 bg-slate-100 mx-auto">
+    <div className=" word-box border border-gray-300 rounded-lg pt-0 p-4 !w-80 bg-slate-100 mx-auto">
       <div className="flex flex-row">
-        <ItemInfo item={item} />
         <div className="relative w-full flex justify-between">
-          {/* <ItemCategory item={item} /> */}
+          <ItemCategory item={item} />
           <ItemOptions item={item} />
         </div>
       </div>
       <ItemProgress itemBoxNumber={item.box} />
       <ItemTitle item={item} />
+      <ItemInfo item={item} />
       <ItemBody body={item.body} />
       <Answer goToNextItem={goToNextItem} item={item} />
     </div>

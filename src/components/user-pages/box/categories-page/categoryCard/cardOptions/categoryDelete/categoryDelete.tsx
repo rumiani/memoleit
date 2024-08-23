@@ -21,7 +21,7 @@ export default function CategoryDelete({
       >
         Delete
       </button>
-      <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Dialog isOpen={isOpen}  closeBtn closeDialogHandler={() => setIsOpen(false)}>
         <div className=" w-full h-full">
           Please write down <strong>{category.name}</strong> then click on the
           delete button.
