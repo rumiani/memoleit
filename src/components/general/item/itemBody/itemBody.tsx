@@ -20,7 +20,7 @@ export default function ItemBody({ body }: { body: string }) {
           {body === "" ? (
             "There is no description for this item."
           ) : (
-            <p>{body}</p>
+            <p className=" whitespace-pre-line">{body}</p>
           )}
         </div>
       )}
