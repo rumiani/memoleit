@@ -28,13 +28,15 @@ export default function CategoryInput({
     if (newCategoryName.length < 3 || newCategoryName.length > 20)
       return inputElement.current!.focus();
     try {
-      await saveCategoryNameHandler({
-        categoryId: category.id,
-        newCategoryName,
-      });
-      const storedCategories = await getCategoriesHandler();
-      dispatch(categoriesReducer(storedCategories!));
-      dispatch(categoryOnEditReducer(""));
+      if (category.name !== newCategoryName) {
+        await saveCategoryNameHandler({
+          categoryId: category.id,
+          newCategoryName,
+        });
+        const storedCategories = await getCategoriesHandler();
+        dispatch(categoriesReducer(storedCategories!));
+        dispatch(categoryOnEditReducer(""));
+      }
       toast.success("category name was saved successfully.");
     } catch (error: any) {
       if (error.name === "404") toast.error("Category not found.");

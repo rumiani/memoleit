@@ -40,10 +40,7 @@ export const saveNewItemToLocal = async ({
       createNewItemHandler(savedCategoryId);
     };
 
-    const foundCategory = await db.categories
-      .where("name")
-      .equals(makeUrlFriendly(category))
-      .first();
+    const foundCategory = await db.categories.where("name").equals(makeUrlFriendly(category)).first();
     if (foundCategory) {
       createNewItemHandler(foundCategory.id);
     } else {

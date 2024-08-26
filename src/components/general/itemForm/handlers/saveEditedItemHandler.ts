@@ -14,25 +14,24 @@ export const saveEditedItemHandler = async (
     let item = await db.items.get(id);
     if (!item) throw notFoundError("404");
 
-    const categoryObject = await db.categories
-      .where("name")
-      .equals(makeUrlFriendly(category))
-      .first();
+    const categoryObject = await db.categories.where("name").equals(makeUrlFriendly(category)).first();
     if (!categoryObject) {
-      const createNewCategory = await db.categories.add({
+      const categoryId = await db.categories.add({
         id: randomIdGenerator(8),
         userId: userIdTest,
         name: makeUrlFriendly(category),
         status: true,
         createdAt: Date.now(),
       });
-      item = { ...item, body, title, category, categoryId: createNewCategory };
+      
+      item = { ...item, body, title, category, categoryId };
       await db.items.put(item);
     } else {
       item = { ...item, body, title };
       await db.items.put(item);
     }
     toast.success("The Item has been updated.");
+
   } catch (error: any) {
     if (error.name === "404") {
       toast.error("Item was not found");
