@@ -38,7 +38,7 @@ const Index = () => {
             <FaTelegram />
           </button>
         </Link>
-        <Link href="mailto:maziar.rumiani@gmail.com">
+        <Link href="mailto:maziar9170@gmail.com">
           <button
             title="Send Email"
             className="text-green-700 text-4xl hover:scale-110"
