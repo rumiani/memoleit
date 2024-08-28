@@ -5,7 +5,7 @@ import {
   removeTranslationItemReducer,
 } from "@/src/redux/slices/itemStateSlice";
 import { capitalize } from "lodash";
-import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { IoMdAddCircleOutline, IoMdRemoveCircleOutline } from "react-icons/io";
 import { MdOutlineTranslate } from "react-icons/md";
 
 export default function WordOptions({
@@ -16,7 +16,7 @@ export default function WordOptions({
   lookUpHandler: Function;
 }) {
   const dispatch = useAppDispatch();
-  const { translatingItems } = useAppSelector((state) => state.itemState);
+  const { formData } = useAppSelector((state) => state.itemState);
 
   return (
     <div className="flex flex-row justify-between gap-2 items-center">
@@ -29,18 +29,24 @@ export default function WordOptions({
           onClick={() =>
             lookUpHandler(translatingItem.replace(/[^a-zA-Z]/g, ""))
           }
-          className=" icon text-2xl"
+          className="icon text-2xl"
         >
           <MdOutlineTranslate />
         </button>
         <TextToSpeechSpeaker text={translatingItem} />
-        <IoMdRemoveCircleOutline
-          onClick={() => {
-            dispatch(removeTranslationItemReducer(translatingItem));
-            dispatch(formDataReducer({ title: "" }));
-          }}
-          className="icon !w-8 text-red-500"
-        />
+        {translatingItem === formData.title ? (
+          <IoMdRemoveCircleOutline
+            onClick={() => dispatch(formDataReducer({ title: "" }))}
+            className="icon !w-8 text-red-500"
+          />
+        ) : (
+          <IoMdAddCircleOutline
+            onClick={() => {
+              dispatch(formDataReducer({ title: translatingItem, body: "" }));
+            }}
+            className="icon !w-8 text-gray-500"
+          />
+        )}
       </div>
     </div>
   );

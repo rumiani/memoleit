@@ -15,11 +15,11 @@ export default function TranslationComp() {
     );
   }
   return (
-    <div className="relative flex flex-col gap-2  overflow-y-auto">
+    <div className="relative w-full flex flex-col gap-2  overflow-y-auto">
       {Object.keys(translatingItems).map((translatingItem, i) => (
         <div
           key={i}
-          className={`${translatingItem === formData.title && "bg-green-200"} w-full`}
+          className={`${translatingItem === formData.title ? "bg-green-200" : "bg-gray-50"} w-full`}
         >
           <TranslationItem translatingItem={translatingItem} />
         </div>

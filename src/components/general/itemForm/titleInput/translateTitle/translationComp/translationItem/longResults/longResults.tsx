@@ -19,7 +19,7 @@ export default function LongResults({
       />
       {translatingItems[translatingItem].map((result, i) => (
         <ul key={i} className="flex flex-row gap-2 justify-between w-full mt-8">
-          <Meanings result={result} />
+          <Meanings translatingItem={translatingItem} result={result} />
         </ul>
       ))}
     </ul>

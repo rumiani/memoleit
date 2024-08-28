@@ -27,23 +27,25 @@ export default function ShortResult({
             }
           </div>
           <div className="w-full flex flex-row justify-end items-center">
-            <MdMoveDown
-              title="Move it to the description."
-              onClick={() => {
-                const meaning =
-                  translatingItems[translatingItem][0].meanings[0]
-                    .definitions[0].definition;
-                dispatch(
-                  formDataReducer({
-                    title: translatingItem,
-                    body: isEmpty(formData.body.trim())
-                      ? meaning
-                      : formData.body + "\n\n" + meaning,
-                  }),
-                );
-              }}
-              className="icon !p-2 hover:scale-110 cursor-pointer"
-            />
+            {translatingItem === formData.title && (
+              <MdMoveDown
+                title="Move it to the description."
+                onClick={() => {
+                  const meaning =
+                    translatingItems[translatingItem][0].meanings[0]
+                      .definitions[0].definition;
+                  dispatch(
+                    formDataReducer({
+                      body: isEmpty(formData.body.trim())
+                        ? meaning
+                        : formData.body + "\n\n" + meaning,
+                    }),
+                  );
+                }}
+                
+                className="icon active:text-green-500 !p-2 hover:scale-110 cursor-pointer"
+              />
+            )}
             <FaChevronDown
               title="See more"
               onClick={() => setShowMore(true)}

@@ -3,8 +3,12 @@ import LoadingPulse from "../../../../../loading-comps/loadingPulse/loadingPulse
 import { toast } from "react-toastify";
 import WordOptions from "./wordOptions/wordOptions";
 import Results from "./results/results";
-import { definitionOfItemsReducer } from "@/src/redux/slices/itemStateSlice";
+import {
+  definitionOfItemsReducer,
+  removeTranslationItemReducer,
+} from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export default function TranslationItem({
   translatingItem,
@@ -40,7 +44,13 @@ export default function TranslationItem({
     }
   };
   return (
-    <div className="p-2 shadow-md shadow-gray-300">
+    <div className="relative p-2 pt-10 shadow-md shadow-gray-300">
+      <IoMdCloseCircle
+        onClick={() => {
+          dispatch(removeTranslationItemReducer(translatingItem));
+        }}
+        className="absolute right-2 top-2 w-4 text-2xl cursor-pointer text-red-500"
+      />
       <WordOptions
         translatingItem={translatingItem}
         lookUpHandler={lookUpHandler}
