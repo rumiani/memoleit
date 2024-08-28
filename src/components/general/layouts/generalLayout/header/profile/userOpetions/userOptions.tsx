@@ -30,7 +30,7 @@ export default function UserOptions() {
       {showOptions ? (
         <div
           ref={modelRef}
-          className="fixed top-10 right-8 rounded-md bg-white shadow-lg flex flex-col "
+          className="fixed w-52 p-2 top-4 right-4 rounded-md bg-white shadow-lg flex flex-col "
         >
           <div className="flex flex-row justify-center items-center gap-2 p-4">
             <ProfileImage session={session} />

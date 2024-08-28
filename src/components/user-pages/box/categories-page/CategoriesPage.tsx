@@ -32,7 +32,7 @@ export default function CategoriesPage() {
     return <LoadingPulses />;
   }
   return (
-    <div>
+    <div className="p-2">
       {isEmpty(categories) ? (
         <div className="card_message text-red-500">
           You have not created a category yet.
@@ -45,10 +45,13 @@ export default function CategoriesPage() {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-wrap justify-center gap-2">
-          {categories.map((category: CategoryTypes, i) => (
-            <CategoryCard key={i} category={category} />
-          ))}
+        <div>
+          <p>All the categories:</p>
+          <div className="flex flex-wrap justify-center gap-2 my-4">
+            {categories.map((category: CategoryTypes, i) => (
+              <CategoryCard key={i} category={category} />
+            ))}
+          </div>
         </div>
       )}
     </div>

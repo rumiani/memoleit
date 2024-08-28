@@ -6,7 +6,7 @@ export default function SearchResult({ items }: { items: ItemTypes[] }) {
     <div>
       {items!.length > 0 ? (
         <div>
-          <p>
+          <p className="mt-4">
             <strong>{items?.length}</strong> Results
           </p>
           <div></div>

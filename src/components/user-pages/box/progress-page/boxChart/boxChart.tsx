@@ -91,7 +91,7 @@ const BoxChart: React.FC = () => {
               top: 20,
               right: 0,
               left: 0,
-              bottom: 5,
+              bottom: 0,
             }}
           >
             <Tooltip />
