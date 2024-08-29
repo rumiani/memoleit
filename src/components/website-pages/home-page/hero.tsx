@@ -3,8 +3,8 @@ import heroImage from "@/public/assets/images/forgettingCurve.png";
 import ImgHoverZoom from "../../general/imgHoverZoom/imgHoverZoom";
 export default function Hero() {
   return (
-    <div className="w-full flex flex-col sm:flex-row gap-4 justify-center  text-gray-800 py-4">
-      <div className="w-full flex flex-col justify-between sm:w-1/2 mx-auto">
+    <div className="w-full flex flex-col md:flex-row gap-4 justify-center  text-gray-800 py-4">
+      <div className="w-full flex flex-col justify-between md:w-1/2 mx-auto">
         <div>
           <h1 className="text-gray-800 text-2xl lg:text-5xl xl:text-5xl font-bold">
             Master Knowledge, One Card at a Time!
@@ -38,10 +38,20 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      <div className="w-full sm:w-1/2">
-        <h2 className="text-center font-bold">Basic tutorial</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/5xpwDEKXwDc?si=uHoarz_43Lto6QPb&amp;start=13" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-        {/* <ImgHoverZoom src={heroImage} alt="Leitner box explained" /> */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
+          <h2 className="text-center font-bold">Basic tutorial</h2>
+        <div className="relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0">
+          {" "}
+          <iframe
+            width="100%"
+            className="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/5xpwDEKXwDc?si=uHoarz_43Lto6QPb&amp;start=13"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </div>
   );

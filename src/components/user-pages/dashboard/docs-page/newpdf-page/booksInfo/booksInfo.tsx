@@ -33,15 +33,18 @@ export default function BooksInfo() {
               interrupting your reading.
             </p>{" "}
             <span className="text-gray-600">Watch the video bellow:</span>
-            <iframe
-              width="100%"
-              height="315"
-              src="https://www.youtube.com/embed/5xpwDEKXwDc?si=uHoarz_43Lto6QPb&amp;start=77"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+            <div className="relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0">
+              {" "}
+              <iframe
+                width="100%"
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/5xpwDEKXwDc?si=uHoarz_43Lto6QPb&amp;start=77"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
         </div>
       </Dialog>
