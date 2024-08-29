@@ -38,17 +38,18 @@ const BodyInput = ({ register, error }: BodyProps) => {
             ),
             message: `Title must be ${limits.minItemBodyLimit}-${limits.maxItemBodyLimit} character`,
           },
-
         })}
       />
       {formData.body !== "" && (
-        <div className="absolute bottom-0 p-1 bg-white bg-opacity-90 w-full">
+        <div className="absolute bottom-0 border-t border-gray-200 p-1 bg-white bg-opacity-90 w-full">
           <div className="flex flex-row gap-1 justify-start items-center">
             <FaWindowClose
               onClick={() => dispatch(formDataReducer({ body: "" }))}
-              className="text-red-500 rounded-sm !p-0 hover:font-bold cursor-pointer"
+              className="text-red-500 text-xl rounded-sm !p-0 hover:font-bold cursor-pointer"
             />
-            <p>{formData.body.length + "/1000"}</p>
+            <p className="text-gray-500">
+              {formData.body.length + " / " + limits.maxItemBodyLimit}
+            </p>
           </div>
         </div>
       )}
