@@ -4,6 +4,7 @@ import { UseFormRegister } from "react-hook-form";
 import { useLiveQuery } from "dexie-react-hooks";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+import limits from "@/src/handlers/general/limits/limits";
 
 export default function ChooseCategory({
   register,
@@ -30,16 +31,18 @@ export default function ChooseCategory({
           onChange: handleInputChange,
           required: "Category is required",
           pattern: {
-            value: /^[a-zA-Z0-9\s\-]+$/,
+            value: new RegExp(
+              `^[a-zA-Z0-9\\s\\-]{${limits.minItemcategoryLimit},${limits.maxItemcategoryLimit}}$`,
+            ),
             message: "Please enter only a-z, 0-9, - or space.",
           },
           minLength: {
-            value: 3,
-            message: "Input must be 3 - 20 character long.",
+            value: limits.minItemcategoryLimit,
+            message: `Input must be ${limits.minItemcategoryLimit}-${limits.maxItemcategoryLimit} characters long`,
           },
           maxLength: {
-            value: 20,
-            message: "Input must be 3 - 20 characters long.",
+            value: limits.maxItemcategoryLimit,
+            message: `Input must be ${limits.minItemcategoryLimit}-${limits.maxItemcategoryLimit} characters long`,
           },
         })}
       />

@@ -46,7 +46,7 @@ export default function ReviewPage() {
       </div>
     );
   return (
-    <div className="relative flex flex-col justify-center text-center mt-72 sm:mt-4">
+    <div className="relative flex flex-col justify-center text-center my-8 sm:mt-4">
       <div>
         {numberOfItemsToReview === 0 ? (
           <div className="my-16 flex flex-col items-center">

@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import saveCategoryNameHandler from "../saveCategoryNameHandler";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
+import limits from "@/src/handlers/general/limits/limits";
 
 export default function CategoryInput({
   category,
@@ -25,7 +26,7 @@ export default function CategoryInput({
   };
 
   const saveCategoryHandler = async () => {
-    if (newCategoryName.length < 3 || newCategoryName.length > 20)
+    if (isNotCategoryInputValidator(newCategoryName))
       return inputElement.current!.focus();
     try {
       if (category.name !== newCategoryName) {
@@ -43,7 +44,16 @@ export default function CategoryInput({
       console.log("Error");
     }
   };
-
+  const isNotCategoryInputValidator = (inputText: string) => {
+    const regexValidator = new RegExp(
+      `^[a-zA-Z0-9\\s\\-]{${limits.minItemcategoryLimit},${limits.maxItemcategoryLimit}}$`,
+    );
+    return (
+      !regexValidator.test(inputText) ||
+      inputText.length < limits.minItemcategoryLimit ||
+      inputText.length > limits.maxItemcategoryLimit
+    );
+  };
   return (
     <div className=" flex flex-col my-4">
       <div>
@@ -58,12 +68,12 @@ export default function CategoryInput({
           value={newCategoryName}
           onChange={changeCategoryNameHandler}
         />
-        {newCategoryName.length < 3 ||
-          (newCategoryName.length > 20 && (
-            <p className="text-red-500 text-xs font-bold p-1">
-              The input must be ≥ 3 letters
-            </p>
-          ))}
+        {isNotCategoryInputValidator(newCategoryName) && (
+          <p className="text-red-500 text-xs font-bold p-1">
+            The input must be a-z, 0-9, - or space and{" "}
+            {limits.minItemcategoryLimit}-{limits.maxItemcategoryLimit} letters
+          </p>
+        )}
       </div>
       <div className="flex flex-row justify-end my-2">
         <button

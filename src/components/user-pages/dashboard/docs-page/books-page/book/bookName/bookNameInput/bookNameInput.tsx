@@ -8,7 +8,7 @@ import {
 import { db } from "@/src/services/db";
 import getPDFsHandler from "../../../../handlers/getPDFsHandler";
 import { PdfStateTypes } from "@/src/types/interface";
-import BooksInfo from "../../../../newpdf-page/booksInfo/booksInfo";
+import limits from "@/src/handlers/general/limits/limits";
 
 export default function BookNameInput({ book }: { book: PdfStateTypes }) {
   const [newBookName, setNewBookName] = useState<string>(book.name);
@@ -22,7 +22,7 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
   };
 
   const saveBookNameHandler = async () => {
-    if (newBookName.length < 3 && inputElement.current)
+    if (isNotValidInputName(newBookName) && inputElement.current)
       return inputElement.current.focus();
     try {
       const pdf = await db.pdfs.get(book.id);
@@ -37,7 +37,12 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
       console.log("Error");
     }
   };
-
+  const isNotValidInputName = (inputText: string) => {
+    return (
+      inputText.length < limits.minDocNameLimit ||
+      inputText.length > limits.maxDocNameLimit
+    );
+  };
   return (
     <div className="w-full relative flex flex-wrap">
       <input
@@ -50,9 +55,10 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
         value={newBookName}
         onChange={changeCategoryNameHandler}
       />
-      {newBookName.length < 3 && (
+      {isNotValidInputName(newBookName) && (
         <p className="text-red-500 text-xs font-bold px-1">
-          The input must be ≥ 3 letters
+          The input must be {limits.minDocNameLimit}-{limits.maxDocNameLimit}{" "}
+          letters
         </p>
       )}
       <div className="w-full flex flex-row justify-end mt-2">

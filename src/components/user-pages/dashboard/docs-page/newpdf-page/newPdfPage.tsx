@@ -9,6 +9,7 @@ import { CgAttachment } from "react-icons/cg";
 import { IoIosAdd } from "react-icons/io";
 import getPDFsHandler from "../handlers/getPDFsHandler";
 import BooksInfo from "./booksInfo/booksInfo";
+import limits from "@/src/handlers/general/limits/limits";
 
 export default function NewPdfPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -28,7 +29,8 @@ export default function NewPdfPage() {
 
   const handleAddPdf = async () => {
     if (!selectedFile) return toast.error("You need to select a PDF file.");
-    if (displayedName.length < 3 || displayedName.length > 20) return nameInputRef.current?.focus();
+    if (isNotValidInputName(displayedName))
+      return nameInputRef.current?.focus();
 
     const foundPdfName = await db.pdfs
       .where({ pdfName: selectedFile.name })
@@ -65,7 +67,12 @@ export default function NewPdfPage() {
       console.log(error);
     }
   };
-
+  const isNotValidInputName = (inputText: string) => {
+    return (
+      inputText.length < limits.minDocNameLimit ||
+      inputText.length > limits.maxDocNameLimit
+    );
+  };
   return (
     <div className="p-4 max-w-96 mx-auto flex flex-col gap-2 items-center">
       <h1 className="font-bold text-center">Add PDF Files</h1>
@@ -99,8 +106,11 @@ export default function NewPdfPage() {
               className="icon absolute right-0 text-blue-400"
             />
           </div>
-          {(selectedFile && displayedName.length < 3 || displayedName.length > 20) && (
-            <p className="w-full text-red-500">PDF name must be 3-20 letters</p>
+          {selectedFile && isNotValidInputName(displayedName) && (
+            <p className="w-full text-red-500">
+              PDF name must be {limits.minDocNameLimit}-{limits.maxDocNameLimit}{" "}
+              letters
+            </p>
           )}
         </div>
       </div>

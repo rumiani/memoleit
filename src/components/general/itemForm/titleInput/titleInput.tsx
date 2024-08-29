@@ -5,8 +5,10 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";
-import { isEditPage, isNewPage } from "@/src/handlers/general/isPage";
+import { isEditPage } from "@/src/handlers/general/isPage";
 import { toLower } from "lodash";
+import limits from "@/src/handlers/general/limits/limits";
+
 interface TitleProps {
   register: UseFormRegister<FormValues>;
   error: string | undefined;
@@ -47,16 +49,10 @@ const TitleInput = ({ register, error }: TitleProps) => {
             }
           },
           pattern: {
-            value: /^(?!\s*$).{1,100}$/,
-            message: "Title must be 1-100 character",
-          },
-          minLength: {
-            value: 1,
-            message: "Input must be 1 - 100 character long",
-          },
-          maxLength: {
-            value: 100,
-            message: "Input must be 1 - 100 characters long",
+            value: new RegExp(
+              `^(?!\\s*$).{${limits.minTitleLimit},${limits.maxTitleLimit}}$`,
+            ),
+            message: `Title must be ${limits.minTitleLimit}-${limits.maxTitleLimit} character`,
           },
         })}
       />

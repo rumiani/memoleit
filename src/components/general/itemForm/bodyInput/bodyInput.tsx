@@ -4,6 +4,7 @@ import { UseFormRegister } from "react-hook-form";
 import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { FaWindowClose } from "react-icons/fa";
+import limits from "@/src/handlers/general/limits/limits";
 
 interface BodyProps {
   register: UseFormRegister<FormValues>;
@@ -31,14 +32,13 @@ const BodyInput = ({ register, error }: BodyProps) => {
         {...register("body", {
           onChange: handleInputChange,
           required: "Body is required",
-          minLength: {
-            value: 1,
-            message: "Input must be 1 - 1000 character long",
+          pattern: {
+            value: new RegExp(
+              `^(?!\\s*$).{${limits.minItemBodyLimit},${limits.maxItemBodyLimit}}$`,
+            ),
+            message: `Title must be ${limits.minItemBodyLimit}-${limits.maxItemBodyLimit} character`,
           },
-          maxLength: {
-            value: 1000,
-            message: "Input must be 1 - 1000 characters long",
-          },
+
         })}
       />
       {formData.body !== "" && (

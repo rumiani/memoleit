@@ -12,6 +12,7 @@ import NewItemForm from "@/src/components/general/itemForm/newItemForm";
 import { isEmpty } from "lodash";
 import { isDocsPage } from "@/src/handlers/general/isPage";
 import { usePathname } from "next/navigation";
+import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 
 export default function SelectionTextComp() {
   const path = usePathname();
@@ -72,7 +73,7 @@ export default function SelectionTextComp() {
             dispatch(
               formDataReducer({
                 title: highlightedText,
-                category: isDocsPage(path) ? pdf.name : "",
+                category: isDocsPage(path) ? makeUrlFriendly(pdf.name).substring(19) : "",
               }),
             );
             if (
