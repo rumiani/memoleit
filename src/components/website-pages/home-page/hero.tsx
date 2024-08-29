@@ -39,8 +39,9 @@ export default function Hero() {
         </div>
       </div>
       <div className="w-full sm:w-1/2">
-        <h2 className="text-center font-bold">The forgetting curve</h2>
-        <ImgHoverZoom src={heroImage} alt="Leitner box explained" />
+        <h2 className="text-center font-bold">Basic tutorial</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/JaHrCOGeO3U?si=uHoarz_43Lto6QPb&amp;start=13" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+        {/* <ImgHoverZoom src={heroImage} alt="Leitner box explained" /> */}
       </div>
     </div>
   );

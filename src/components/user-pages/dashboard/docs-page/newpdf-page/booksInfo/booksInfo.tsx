@@ -22,13 +22,15 @@ export default function BooksInfo() {
         closeBtn
         closeDialogHandler={() => setDialogOpen(false)}
       >
-        <div className="relative pt-4">
+        <div className="relative">
           <div className="flex flex-col items-start">
             Add PDF books to the app and study.
             <br />
             Highlight new words to check their meaning and pronunciation, then
             add them to the Leitner box for later review, all without
-            interrupting your reading.
+            interrupting your reading. <br />
+            Check the video bellow:
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/JaHrCOGeO3U?si=uHoarz_43Lto6QPb&amp;start=77" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           </div>
         </div>
       </Dialog>
