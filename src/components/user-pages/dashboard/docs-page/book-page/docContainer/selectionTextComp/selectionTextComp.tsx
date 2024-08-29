@@ -73,7 +73,7 @@ export default function SelectionTextComp() {
             dispatch(
               formDataReducer({
                 title: highlightedText,
-                category: isDocsPage(path) ? makeUrlFriendly(pdf.name).substring(19) : "",
+                category: isDocsPage(path) ? makeUrlFriendly(pdf.name).substring(0,19) : "",
               }),
             );
             if (
