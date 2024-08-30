@@ -15,8 +15,8 @@ import {
 import { saveEditedItemHandler } from "./handlers/saveEditedItemHandler";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { isEditPage } from "@/src/handlers/general/isPage";
 import ChooseCategory from "./chooseCategory/chooseCategory";
+import appPages from "@/src/data/appPages/appPages";
 
 export default function NewItemForm() {
   const path = usePathname();
@@ -28,7 +28,7 @@ export default function NewItemForm() {
   const { translatingItems } = useAppSelector((state) => state.itemState);
 
   const form = useForm<FormValues>({
-    defaultValues: isEditPage(path)
+    defaultValues:appPages.isEditPage(path)
       ? { title, body, category }
       : { title: "", body: "", category: "" },
     mode: "onBlur",
@@ -51,7 +51,7 @@ export default function NewItemForm() {
   const submitHandler = async (item: FormValues) => {
     dispatch(removeTranslationItemReducer(item.title));
     try {
-      if (isEditPage(path)) {
+      if (appPages.isEditPage(path)) {
         await saveEditedItemHandler(item, itemID!);
         router.push("/user/box/item/" + itemID!);
       } else {
@@ -75,7 +75,7 @@ export default function NewItemForm() {
       ) : (
         <div
           className={`${
-            isEditPage(path) ? "bg-yellow-100" : "bg-green-100"
+            appPages.isEditPage(path) ? "bg-yellow-100" : "bg-green-100"
           } relative max-w-2xl w-full mx-auto gap-2`}
         >
           <form
@@ -92,7 +92,7 @@ export default function NewItemForm() {
               />
             </div>
             <button className="primaryBtn !mx-auto">
-              {isEditPage(path) ? "Update" : "Save"}
+              {appPages.isEditPage(path) ? "Update" : "Save"}
             </button>
             {/* <DevTool control={control} placement="top-right" /> */}
           </form>

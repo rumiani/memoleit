@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Dialog from "../../dialog/dialog";
 import LeitnerPic from "./leitnerPic";
+import { capitalize } from "lodash";
 
 export default function ItemInfo({ item }: { item: ItemTypes }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -22,10 +23,10 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
       <Dialog isOpen={isDialogOpen} closeBtn closeDialogHandler={closeDialog}>
         <div className="flex flex-col items-start">
           <span>
-            Item: <strong>{item.title}</strong>
+            Item: <strong>{capitalize(item.title)}</strong>
           </span>
           <span>
-            Category: <strong>{item.category}</strong>
+            Category: <strong>{capitalize(item.category)}</strong>
           </span>
           <span>
             Item is in the box: <strong>{item.box}</strong>
@@ -36,16 +37,18 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
           <p className="text-green-500 text-left">
             - If you know the item,{" "}
             {item.box === 5 ? (
-              " the learning proccess will complete and the word will be archived."
+              <>
+              the learning proccess will complete and the word will be <strong className="border-b border-green-500">archived</strong>.
+              </>
             ) : (
               <>
-                it will move to the box <strong>{item.box + 1}</strong> &nbsp;
+                it will move to the box <strong className="border-b border-green-500">{item.box + 1}</strong> &nbsp;
               </>
             )}
           </p>
           <p className="text-red-500">
             - If you don&apos;t know it, it will move to the box{" "}
-            <strong>1</strong>.
+            <strong className="border-b border-red-500">1</strong>.
           </p>{" "}
         </div>
         <div className="relative w-72 h-40  max-w-lg my-8 mx-auto overflow-hidden">

@@ -64,11 +64,19 @@ export default function ReviewSounds() {
   return (
     <div className="w-full flex flex-wrap gap-x-4  justify-between">
       <CheckboxInput
-        value="Review Sounds"
+        value="Review Card Sounds"
         status={isReviewSoundOn}
         handleInputChange={handleInputChange}
       />
       <div className="flex flex-row justify-center">
+        <div className="ml-10">
+          <p className="text-center text-sm text-green-600 font-bold">I Know</p>
+          <DropDownSounds
+            SaveSoundHander={rightSoundSaveHander}
+            soundSrc={rightAnswerSoundSrc}
+            sounds={reviewSounds.right}
+          />
+        </div>
         <div className="">
           <p className="text-center text-sm text-red-500 font-bold">
             I Do&apos;nt Know
@@ -77,14 +85,6 @@ export default function ReviewSounds() {
             soundSrc={wrongAnswerSoundSrc}
             SaveSoundHander={wrongSoundSaveHander}
             sounds={reviewSounds.wrong}
-          />
-        </div>
-        <div className="ml-10">
-          <p className="text-center text-sm text-green-600 font-bold">I Know</p>
-          <DropDownSounds
-            SaveSoundHander={rightSoundSaveHander}
-            soundSrc={rightAnswerSoundSrc}
-            sounds={reviewSounds.right}
           />
         </div>
       </div>

@@ -5,9 +5,9 @@ import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { usePathname } from "next/navigation";
 import TranslateTitle from "./translateTitle/translateTitle";
-import { isEditPage } from "@/src/handlers/general/isPage";
 import { toLower } from "lodash";
 import limits from "@/src/handlers/general/limits/limits";
+import appPages from "@/src/data/appPages/appPages";
 
 interface TitleProps {
   register: UseFormRegister<FormValues>;
@@ -38,7 +38,7 @@ const TitleInput = ({ register, error }: TitleProps) => {
             const itemsWithThisTitle = await db.items
               .where({ title: toLower(title) })
               .toArray();
-            if (isEditPage(path)) {
+            if (appPages.isEditPage(path)) {
               return itemsWithThisTitle.length > 2
                 ? "Title already exists."
                 : true;

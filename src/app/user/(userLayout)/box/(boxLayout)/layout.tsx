@@ -4,11 +4,8 @@ import SuperPageLayout from "@/src/components/general/layouts/superPageLayout/su
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <section>
-      <nav>
-        {" "}
-        <SuperPageLayout links={superPages.box.links} />
-      </nav>
-      <div className="mt-4">{children}</div>
+      <SuperPageLayout links={superPages.box.links} />
+      {children}
     </section>
   );
 }

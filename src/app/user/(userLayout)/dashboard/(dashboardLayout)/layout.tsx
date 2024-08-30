@@ -23,10 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [dispatch]);
   return (
     <section>
-      <nav>
-        {" "}
-        <SuperPageLayout links={superPages.dashboard.links} />
-      </nav>
+      <SuperPageLayout links={superPages.dashboard.links} />
       {children}
     </section>
   );

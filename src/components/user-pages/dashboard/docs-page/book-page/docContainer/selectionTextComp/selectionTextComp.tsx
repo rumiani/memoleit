@@ -10,9 +10,9 @@ import {
 import Dialog from "@/src/components/general/dialog/dialog";
 import NewItemForm from "@/src/components/general/itemForm/newItemForm";
 import { isEmpty } from "lodash";
-import { isDocsPage } from "@/src/handlers/general/isPage";
 import { usePathname } from "next/navigation";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
+import appPages from "@/src/data/appPages/appPages";
 
 export default function SelectionTextComp() {
   const path = usePathname();
@@ -73,7 +73,7 @@ export default function SelectionTextComp() {
             dispatch(
               formDataReducer({
                 title: highlightedText,
-                category: isDocsPage(path) ? makeUrlFriendly(pdf.name).substring(0,29) : "",
+                category: appPages.isDocsPage(path) ? makeUrlFriendly(pdf.name).substring(0,29) : "",
               }),
             );
             if (

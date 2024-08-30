@@ -18,14 +18,9 @@ import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToRe
 import { DialogOptions } from "../../dialogOptions/dialogOptions";
 import { getCategoryUrl } from "@/src/handlers/getUrls/getCategoryUrl";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
-import {
-  isCategoryPage,
-  isItemPage,
-  isReviewPage,
-  isSearchPage,
-} from "@/src/handlers/general/isPage";
 import { editPageUrl, itemPageUrl } from "@/src/handlers/general/pagesLinks";
 import { useAppDispatch } from "@/src/app/hooks";
+import appPages from "@/src/data/appPages/appPages";
 
 export default function ItemOptions({ item }: { item: ItemTypes }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -42,7 +37,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
       if (!foundItem) throw notFoundError("404");
       await db.items.delete(item.id);
 
-      if (isReviewPage(path)) {
+      if (appPages.isReviewPage(path)) {
         const numberOfItems = await numberOfItemsToReviewHandler();
         if (numberOfItems)
           dispatch(numberOfItemsToReviewReducer(numberOfItems));
@@ -53,15 +48,15 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           const newRandomItem = randomItemHandler(itemsToReview);
           dispatch(itemReducer(newRandomItem));
         }
-      } else if (isCategoryPage(path)) {
+      } else if (appPages.isCategoryPage(path)) {
         const filteredItemsData = await itemsCategoryIdFilterHandler(
           category.id,
         );
         dispatch(allItemsReducer(filteredItemsData));
         router.push(getCategoryUrl(item.categoryId, item.category));
-      } else if (isItemPage(path)) {
+      } else if (appPages.isItemPage(path)) {
         router.push(getCategoryUrl(item.categoryId, item.category));
-      } else if (isSearchPage(path)) {
+      } else if (appPages.isSearchPage(path)) {
         const searchTerm = searchParams.toString().trim().substring(2);
         const resultItems = await db.items
           .filter((item) =>
@@ -87,7 +82,7 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
           >
             Edit
           </Link>
-          {!isItemPage(path) && (
+          {!appPages.isItemPage(path) && (
             <Link
               href={itemPageUrl + item.id}
               className=" text-blue-400 hover:text-blue-600 optionsBtn"

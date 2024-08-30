@@ -66,7 +66,7 @@ export const superPages: SuperPageTypes = {
       },
       {
         url: searchPageUrl,
-        title: "Search Items",
+        title: "Search",
       },
     ],
   },
