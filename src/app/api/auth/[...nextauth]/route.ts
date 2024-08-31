@@ -10,16 +10,14 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      httpOptions: {
-        timeout: 10000,
-      }
+      httpOptions: { timeout: 10000 }
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
-  
+
   callbacks: {
     async jwt({
       token,
@@ -40,6 +38,13 @@ const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }: { session: any; token: JWT }) {
+      // await connectDB();
+      // const user = await User.findOne({ email: session.user.email });
+      // if (user?.isBlocked) {
+      //   throw new Error("User is blocked"); // Optional: Redirect to an error page
+      // }
+      // console.log(46,session.user);
+      
       session.user.id = token.id;
       session.accessToken = token.accessToken;
       session.providerId = token.providerId;
@@ -52,6 +57,9 @@ const authOptions: NextAuthOptions = {
         const { provider, access_token: accessToken } = account;
 
         const existingUser = await User.findOne({ email });
+        // if (existingUser && existingUser.isActive) {
+        //   return false;
+        // }
         if (!existingUser) {
           const newUser = new User({
             providerId,
@@ -76,7 +84,7 @@ const authOptions: NextAuthOptions = {
     signIn: "/login",
     error: "/login",
   },
-  debug: process.env.NODE_ENV === "development",
+  // debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);

@@ -30,7 +30,7 @@ export default function Login() {
             Sign in with Google
           </h3>
         </button>
-        <button
+        {/*<button
           onClick={() => signIn("github")}
           title="Log in with Github"
           className="group my-8 cursor-pointer text-gray-600 hover:text-gray-800 transition-all duration-300 shadow-lg shadow-gray-300 rounded-lg flex flex-row justify-center items-center w-60 h-10 mx-auto text-center"
@@ -39,7 +39,7 @@ export default function Login() {
           <h3 className="w-52 h-full pt-2 rounded-e-lg text-white bg-gray-700 group-hover:bg-gray-900 text-center font-semibold">
             Sign in with Github
           </h3>
-        </button>
+        </button> */}
       </div>
     </section>
   );

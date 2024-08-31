@@ -32,9 +32,9 @@ export default function UserOptions() {
           ref={modelRef}
           className="fixed w-52 p-2 top-4 right-4 rounded-md bg-white shadow-lg flex flex-col "
         >
-          <div className="flex flex-row justify-center items-center gap-2 p-4">
+          <div className="flex flex-row justify-center items-center gap-2 p-2">
             <ProfileImage session={session} />
-            <p className="text-black ">{session?.user?.name}</p>
+            <p className="text-gray-600 w-full ">{session?.user?.name}asdfsdf as dfds sdf</p>
           </div>
           <div className=" text-gray-800 flex flex-col">
             <Superpages />

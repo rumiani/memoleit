@@ -17,7 +17,7 @@ export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const { numberOfItemsToReview } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
-
+  const [userCount, setUserCount] = useState<number | null>(null);
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -37,6 +37,18 @@ export default function ReviewPage() {
       }
     };
     fetchItems();
+
+    const fetchUserCount = async () => {
+      try {
+        const response = await fetch('/api/userCount');
+        const data = await response.json();        
+        setUserCount(data.count);
+      } catch (error) {
+        console.error('Error fetching user count:', error);
+      }
+    };
+
+    fetchUserCount();
   }, [dispatch]);
 
   if (loading)
@@ -66,6 +78,7 @@ export default function ReviewPage() {
           </div>
         )}
       </div>
+      {userCount && <div className="text-start w-80 px-1 font-bold text-sm mx-auto">Users: {userCount} </div>}
     </div>
   );
 }
