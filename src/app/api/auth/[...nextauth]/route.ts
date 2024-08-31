@@ -5,7 +5,7 @@ import User from "@/utils/models/user";
 import { JWT } from "next-auth/jwt";
 import GitHubProvider from "next-auth/providers/github";
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,

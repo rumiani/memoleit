@@ -1,17 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/dbConfig";
 import User from "@/utils/models/user";
 import { getServerSession } from 'next-auth';
-import { cookies } from 'next/headers';
-// import { authOptions } from "@/src/app/api/auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/route";
+
 export async function GET(req: NextRequest) {
-  // const session = await getServerSession({
-  //   cookies: cookies(),
-  //   authOptions : authOptions,
-  // });
-  //     if (!session) {
-  //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  // }
+  const session = await getServerSession(authOptions);  
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   try {
     await connectDB();
     const userCount = await User.countDocuments();
