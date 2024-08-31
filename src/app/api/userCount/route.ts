@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/dbConfig";
 import User from "@/utils/models/user";
 import { getServerSession } from 'next-auth';
 import { cookies } from 'next/headers';
-import { authOptions } from "@/src/app/api/auth/[...nextauth]/route";
+// import { authOptions } from "@/src/app/api/auth/[...nextauth]/route";
 export async function GET(req: NextRequest) {
   // const session = await getServerSession({
   //   cookies: cookies(),

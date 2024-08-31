@@ -78,7 +78,7 @@ export default function ReviewPage() {
           </div>
         )}
       </div>
-      {userCount && <div className="text-start w-80 px-1 font-bold text-sm mx-auto">Users: {userCount} </div>}
+      {userCount && <div title="Number of users using this app" className=" cursor-default text-start w-80 px-1 font-bold text-sm mx-auto">Users: {userCount} </div>}
     </div>
   );
 }
