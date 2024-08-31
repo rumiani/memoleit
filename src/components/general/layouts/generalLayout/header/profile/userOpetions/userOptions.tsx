@@ -34,7 +34,7 @@ export default function UserOptions() {
         >
           <div className="flex flex-row justify-center items-center gap-2 p-2">
             <ProfileImage session={session} />
-            <p className="text-gray-600 w-full ">{session?.user?.name}asdfsdf as dfds sdf</p>
+            <p className="text-gray-600 w-full ">{session?.user?.name}</p>
           </div>
           <div className=" text-gray-800 flex flex-col">
             <Superpages />
