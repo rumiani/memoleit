@@ -5,7 +5,6 @@ import User from "@/utils/models/user";
 import { JWT } from "next-auth/jwt";
 import GitHubProvider from "next-auth/providers/github";
 
-
 export const authOptions: NextAuthOptions = {
     providers: [
       GoogleProvider({
@@ -85,5 +84,5 @@ export const authOptions: NextAuthOptions = {
       signIn: "/login",
       error: "/login",
     },
-    // debug: process.env.NODE_ENV === "development",
+    debug: process.env.NODE_ENV === "development",
   };

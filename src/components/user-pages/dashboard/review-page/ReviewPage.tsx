@@ -22,7 +22,6 @@ export default function ReviewPage() {
     const fetchItems = async () => {
       try {
         const numberOfItems = await numberOfItemsToReviewHandler();
-        
         if (numberOfItems)
           dispatch(numberOfItemsToReviewReducer(numberOfItems));
         const itemsToReview = await itemsToReviewWithActiveCategoryHandler();
