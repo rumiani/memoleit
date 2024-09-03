@@ -77,11 +77,11 @@ const BoxChart: React.FC = () => {
 
   return (
     <div className="max-w-2xl m-5 mx-auto">
-      <div className="flex flex-wrap justify-around items-center -mb-12">
+      <div className="flex flex-wrap justify-around items-center -mb-10">
         <SelectCategory handleChange={handleChange} />
         <TotalData categoryId={categoryId} data={data} />
       </div>
-      <div className="w-full h-[400px] bg-blue-50 pt-8">
+      <div className="w-full h-[400px] bg-blue-50 pt-10">
         <ResponsiveContainer>
           <BarChart
             width={500}

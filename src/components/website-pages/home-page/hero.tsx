@@ -1,7 +1,10 @@
 import Link from "next/link";
-import heroImage from "@/public/assets/images/forgettingCurve.png";
-import ImgHoverZoom from "../../general/imgHoverZoom/imgHoverZoom";
+
+import { useState } from "react";
+import Spinner from "../../general/loading-comps/spinner/spinner";
 export default function Hero() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <div className="w-full flex flex-col md:flex-row gap-4 justify-center  text-gray-800 py-4">
       <div className="w-full flex flex-col justify-between md:w-1/2 mx-auto">
@@ -39,10 +42,18 @@ export default function Hero() {
         </div>
       </div>
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
-          <h2 className="text-center font-bold">Basic tutorial</h2>
-        <div className="relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0">
+        <h2 className="text-center font-bold">Basic tutorial</h2>
+        {isLoading && (
+              <div className="w-full flex justify-center p-8">
+                <Spinner size={50} />
+              </div>
+            )}
+        <div
+          className={`relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0 ${isLoading ? "hidden" : ""}`}
+        >
           {" "}
           <iframe
+            onLoad={() => setIsLoading(false)}
             width="100%"
             className="absolute top-0 left-0 w-full h-full"
             src="https://www.youtube.com/embed/5xpwDEKXwDc?si=uHoarz_43Lto6QPb&amp;start=13"

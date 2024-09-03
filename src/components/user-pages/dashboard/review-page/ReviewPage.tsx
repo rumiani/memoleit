@@ -18,6 +18,7 @@ export default function ReviewPage() {
   const { numberOfItemsToReview } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
   const [userCount, setUserCount] = useState<number | null>(null);
+  
   useEffect(() => {
     const fetchItems = async () => {
       try {

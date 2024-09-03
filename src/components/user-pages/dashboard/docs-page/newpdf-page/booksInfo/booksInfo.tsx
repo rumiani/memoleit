@@ -1,20 +1,21 @@
 import Dialog from "@/src/components/general/dialog/dialog";
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import { IoMdCloseCircle } from "react-icons/io";
+import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 
 export default function BooksInfo() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative flex items-center">
+    <>
       <button
         onClick={openDialog}
-        title="This is the progress bar"
-        className="absolute right-0 top-3 text-md text-gray-600 hover:text-gray-900 rounded-full"
+        title="Check out the tutorial"
+        className="text-sm text-gray-600 hover:text-gray-900 rounded-full"
       >
-        <IoInformationCircleOutline className="text-2xl" />
+        <IoInformationCircleOutline className="text-lg" />
       </button>
 
       <Dialog
@@ -33,9 +34,15 @@ export default function BooksInfo() {
               interrupting your reading.
             </p>{" "}
             <span className="text-gray-600">Watch the video bellow:</span>
-            <div className="relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0">
+            {isLoading && (
+              <div className="w-full flex justify-center p-8">
+                <Spinner size={50} />
+              </div>
+            )}
+            <div className={`relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0 ${isLoading ? 'hidden' : ''}`}>
               {" "}
               <iframe
+                onLoad={() => setIsLoading(false)}
                 width="100%"
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/5xpwDEKXwDc?si=uHoarz_43Lto6QPb&amp;start=77"
@@ -48,6 +55,6 @@ export default function BooksInfo() {
           </div>
         </div>
       </Dialog>
-    </div>
+    </>
   );
 }

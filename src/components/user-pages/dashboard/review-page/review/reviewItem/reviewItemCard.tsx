@@ -63,7 +63,7 @@ export default function ReviewItemCard() {
 
   if (loading) {
     return (
-      <div className="my-24">
+      <div className="my-10">
         <Spinner size={100} />
       </div>
     );

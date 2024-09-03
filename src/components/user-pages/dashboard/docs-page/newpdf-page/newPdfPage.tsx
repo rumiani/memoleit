@@ -75,9 +75,11 @@ export default function NewPdfPage() {
   };
   return (
     <div className="p-4 max-w-96 mx-auto flex flex-col gap-2 items-center">
-      <h1 className="font-bold text-center">Add PDF Files</h1>
-      <div className="flex flex-row w-full gap-3">
+      <div className="flex gap-2">
         <BooksInfo />
+        <h1 className="font-bold text-center">Add PDF Files</h1>
+      </div>
+      <div className="flex flex-row w-full gap-3">
         <div className="flex flex-col">
           <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
             <div className="absolute left-0 w-8 h-10 py-2">
