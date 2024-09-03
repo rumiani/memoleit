@@ -68,7 +68,7 @@ export default function ReviewSounds() {
         status={isReviewSoundOn}
         handleInputChange={handleInputChange}
       />
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row gap-2 justify-center">
         <div className="ml-10">
           <p className="text-center text-sm text-green-600 font-bold">I Know</p>
           <DropDownSounds
