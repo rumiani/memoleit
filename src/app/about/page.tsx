@@ -45,7 +45,7 @@ export default function About() {
           </div>
         </div>
         <div className="w-full max-w-96 lg:w-1/3 my-8 mx-auto">
-          <ImgHoverZoom src={aboutImage} alt="Astronaut in the air" />
+          <ImgHoverZoom src={aboutImage} alt="Leitner" />
         </div>
       </div>
     </>

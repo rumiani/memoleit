@@ -68,7 +68,7 @@ export default async function RootLayout({
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
         <NextAuthProvider >
           <ReduxProvider>
-            <SpeedInsights />
+            {/* <SpeedInsights /> */}
             <ToastContainer limit={3} autoClose={3000} closeOnClick />
             <div
               className={`relative ${inter.className} max-w-screen-2xl mx-auto`}
