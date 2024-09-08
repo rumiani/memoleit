@@ -27,7 +27,7 @@ export default function SuperPage({
             <SupePageIcon />
           </span>
         </Link>
-        <span className="sm:group-hover:block hidden text-xl font-bold">
+        <span className="block sm:hidden sm:group-hover:block text-xl font-bold">
           {capitalize(superPage.name)}
         </span>
         <FaChevronDown
