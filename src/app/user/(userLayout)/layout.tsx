@@ -1,5 +1,6 @@
 "use client";
 
+import AppLayoutComp from "@/src/components/general/layouts/sideBarLayout/appLayout";
 import { useEffect } from "react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -36,5 +37,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     checkAndUpdateStatus();
   }, []);
 
-  return <div className="p-2">{children}</div>;
+  return (
+    <div className="p-2">
+      <AppLayoutComp />
+      <div className="sm:ml-14">{children}</div>
+    </div>
+  );
 }

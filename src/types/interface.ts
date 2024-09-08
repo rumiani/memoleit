@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 export interface ItemTypes {
   id: string;
   userId: string;
@@ -112,4 +114,15 @@ export interface LookUpResultTypes {
   phonetic: string;
   meanings: MeaningTypes[];
   phonetics: { text: string; audio: string }[];
+}
+export interface LinksTypes {
+  url: string;
+  lable: string;
+  name: string;
+}
+export interface SuperPageTypes {
+  name: string;
+  lable: string;
+  icon: IconType;
+  links: LinksTypes[];
 }

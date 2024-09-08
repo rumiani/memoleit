@@ -1,16 +1,17 @@
+import { LinksTypes } from "@/src/types/interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function SuperPageLayout({
   links,
 }: {
-  links: { url: string; title: string }[];
+  links: LinksTypes[];
 }) {
   const pathname = usePathname();
 
   return (
     <div className="flex flex-row gap-4 w-full max-w-96 m-4">
-      {links.map((link: { url: string; title: string }, i: number) => (
+      {links.map((link: LinksTypes, i: number) => (
         <Link
           href={link.url}
           key={i}
@@ -19,7 +20,7 @@ export default function SuperPageLayout({
           <span
             className={`${pathname === link.url && "border-b-4 border-blue-500 font-bold"} w-1/3  p-1 px-2`}
           >
-            {link.title}
+            {link.lable}
           </span>
         </Link>
       ))}

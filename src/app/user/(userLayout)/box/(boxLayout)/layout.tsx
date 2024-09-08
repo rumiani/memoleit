@@ -1,10 +1,11 @@
 "use client";
-import { superPages } from "@/src/components/general/layouts/generalLayout/header/profile/userOpetions/superpages/superpages";
 import SuperPageLayout from "@/src/components/general/layouts/superPageLayout/superPageLayout";
+import { superPages } from "@/src/data/superPages/superPages";
 export default function Layout({ children }: { children: React.ReactNode }) {
+  
   return (
     <section>
-      <SuperPageLayout links={superPages.box.links} />
+      <SuperPageLayout links={superPages[1].links} />
       {children}
     </section>
   );
