@@ -9,11 +9,11 @@ import { userIdTest } from "@/src/services/userId";
 import { v4 as uuidv4 } from "uuid";
 
 export const saveImportedCSVHandler = async (
-    scvArrayData: string,
+    csvArrayData: string,
     fileName: string,
 ) => {
   try {
-    const validatedData = csvDataSchema.parse(scvArrayData);
+    const validatedData = csvDataSchema.parse(csvArrayData);
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly(fileName);
     const category = {

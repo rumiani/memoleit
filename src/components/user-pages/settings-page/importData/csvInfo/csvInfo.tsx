@@ -2,7 +2,7 @@ import Dialog from "@/src/components/general/dialog/dialog";
 import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import csvFormatImage from "@/public/assets/images/scv-format.png"
+import csvFormatImage from "@/public/assets/images/csv-format.png"
 export default function CsvInfo() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);

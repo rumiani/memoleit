@@ -2,7 +2,7 @@ import Dialog from "@/src/components/general/dialog/dialog";
 import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import csvFormatImage from "@/public/assets/images/scv-format.png";
+import csvFormatImage from "@/public/assets/images/csv-format.png";
 export default function TextInfo() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);
@@ -25,7 +25,7 @@ export default function TextInfo() {
         <div className="relative text-lg">
           <p>The JSON format is the default export format of the app.</p>
           <p>You can only import the exported file from this app.</p>
-          <p>If you do not have a json format, then uce a SCV file exported from a spreadsheet app.</p>
+          <p>If you do not have a json format, then uce a CSV file exported from a spreadsheet app.</p>
           
         </div>
       </Dialog>
