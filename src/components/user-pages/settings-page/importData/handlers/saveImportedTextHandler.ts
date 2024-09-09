@@ -3,12 +3,12 @@
 import { db } from "@/src/services/db";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import { isEmpty } from "lodash";
-import { dataSchema } from "../validation/validation";
+import { textDataSchema } from "../validation/textValidation";
 import { ItemTypes } from "@/src/types/interface";
 
-export const saveNewImportedDataHandler = async (newJsonData: string) => {
+export const saveImportedTextHandler = async (newJsonData: string) => {
   try {
-    const validatedData = dataSchema.parse(newJsonData);
+    const validatedData = textDataSchema.parse(newJsonData);
     const existingCategories = await db.categories
       .where("name")
       .anyOf(validatedData.categories.map((category: any) => category.name))

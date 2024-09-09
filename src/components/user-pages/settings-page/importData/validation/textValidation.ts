@@ -18,7 +18,7 @@ const itemSchema = z.object({
   lastReview: z.number(),
 });
 
-export const dataSchema = z.object({
+export const textDataSchema = z.object({
   items: z.array(itemSchema),
   categories: z.array(categorySchema),
 });
