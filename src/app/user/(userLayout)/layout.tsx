@@ -38,9 +38,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="p-2">
+    <div className="">
       <AppLayoutComp />
-      <div className="sm:ml-14">{children}</div>
+      <div className="sm:ml-14 m-2">{children}</div>
     </div>
   );
 }

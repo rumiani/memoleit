@@ -10,7 +10,7 @@ export default function SuperPageLayout({
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-row gap-4 w-full max-w-96 m-4">
+    <div className="flex flex-row gap-4 w-full max-w-96 my-4">
       {links.map((link: LinksTypes, i: number) => (
         <Link
           href={link.url}
