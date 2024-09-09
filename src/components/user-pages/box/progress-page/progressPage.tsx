@@ -20,9 +20,5 @@ export default function ProgressPage() {
       .catch(() => console.log("error"));
   }, [dispatch]);
 
-  return (
-    <div className="w-full">
-      {isLoading ? <LoadingPulse /> : <BoxChart />}
-    </div>
-  );
+  return <>{isLoading ? <LoadingPulse /> : <BoxChart />}</>;
 }

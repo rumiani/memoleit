@@ -23,13 +23,13 @@ export default function SuperPage({
           onClick={() => setShowMenu(!showMenu)}
           className={`${pathname.split("/")[2] === superPage.name ? "text-gray-900" : "text-gray-500"} w-full  flex flex-row cursor-pointer justify-between gap-2`}
         >
-          <div className="flex flex-row gap-2 items-end">
-          <span title={superPage.name}>
-            <SupePageIcon />
-          </span>
-          <span className="block sm:hidden sm:group-hover:block text-xl font-bold">
-            {capitalize(superPage.name)}
-          </span>
+          <div className="flex flex-row gap-2 ">
+            <span title={superPage.name}>
+              <SupePageIcon />
+            </span>
+            <span className="block sm:hidden sm:group-hover:block text-xl font-bold">
+              {capitalize(superPage.name)}
+            </span>
           </div>
           <FaChevronDown
             className={`${
