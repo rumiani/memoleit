@@ -1,8 +1,7 @@
 import Dialog from "@/src/components/general/dialog/dialog";
-import ImgHoverZoom from "@/src/components/general/imgHoverZoom/imgHoverZoom";
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import csvFormatImage from "@/public/assets/images/csv-format.png";
+
 export default function TextInfo() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);
@@ -12,7 +11,7 @@ export default function TextInfo() {
       <button
         onClick={openDialog}
         title="Check out the tutorial"
-        className="text-sm text-gray-600 hover:text-gray-900 rounded-full"
+        className=" text-gray-600 hover:text-gray-900 rounded-full"
       >
         <IoInformationCircleOutline className="text-lg" />
       </button>
@@ -22,10 +21,9 @@ export default function TextInfo() {
         closeBtn
         closeDialogHandler={() => setDialogOpen(false)}
       >
-        <div className="relative text-lg">
-          <p>The JSON format is the default export format of the app.</p>
-          <p>You can only import the exported file from this app.</p>
-          <p>If you do not have a json format, then uce a CSV file exported from a spreadsheet app.</p>
+        <div className="relative p-2 text-base">
+          <strong>The JSON format is the default export format of the app.</strong>
+          <p>If you do not have a <strong>JSON</strong> file exported from this app, then use a <strong>CSV</strong> file exported from a spreadsheet app.</p>
           
         </div>
       </Dialog>

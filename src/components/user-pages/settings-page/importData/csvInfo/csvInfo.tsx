@@ -12,7 +12,7 @@ export default function CsvInfo() {
       <button
         onClick={openDialog}
         title="Check out the tutorial"
-        className="text-sm text-gray-600 hover:text-gray-900 rounded-full"
+        className=" text-gray-600 hover:text-gray-900 rounded-full"
       >
         <IoInformationCircleOutline className="text-lg" />
       </button>
@@ -24,10 +24,10 @@ export default function CsvInfo() {
       >
         <div className="relative">
           <div className="flex flex-col items-start">
-            <h2 className="text-center font-bold">
+            <p className="text-center text-base">
               This is the proper format for a CSV file:
-            </h2>
-            <div className="w-full max-96 p-4">
+            </p>
+            <div className="w-full max-96 p-4 text-base">
 
             <ImgHoverZoom src={csvFormatImage} alt="CSV format" />
             <p className="text-black text-center text-sm">CSV Format</p>
