@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav
       ref={targetRef}
-      className="fixed z-50 w-full h-16 top-0 bg-gray-800 px-4 py-2 flex flex-col sm:flex-row justify-between"
+      className=" sticky z-50 w-full h-16 top-0 bg-gray-800 px-4 py-2 flex flex-col sm:flex-row justify-between"
     >
       <div className="flex items-center justify-between w-full h-full">
         <Link href={"/"}>

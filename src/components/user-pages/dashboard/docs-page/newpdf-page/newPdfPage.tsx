@@ -74,14 +74,13 @@ export default function NewPdfPage() {
     );
   };
   return (
-    <div className="p-4 max-w-96 mx-auto flex flex-col gap-2 items-center">
+    <div className="p-4 w-full max-w-lg mx-auto flex flex-col gap-2 items-center justify-center">
       <div className="flex gap-2">
         <BooksInfo />
         <h1 className="font-bold text-center">Add PDF Files</h1>
       </div>
-      <div className="flex flex-row w-full gap-3">
         <div className="flex flex-col">
-          <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
+          <div className="relative p-0 bg-red-200 mx-auto flex flex-row justify-center items-center">
             <div className="absolute left-0 w-8 h-10 py-2">
               <CgAttachment
                 className={` ${selectedFile ? " text-green-500 " : " text-blue-400 "}absolute w-8 h-6 `}
@@ -95,7 +94,7 @@ export default function NewPdfPage() {
               />
             </div>
             <input
-              className="primaryInput !w-full h-12 !pl-10 !pr-12"
+              className="primaryInput h-12 !pl-10 !pr-12 !w-full"
               type="text"
               value={displayedName}
               ref={nameInputRef}
@@ -103,10 +102,12 @@ export default function NewPdfPage() {
               placeholder="PDF name"
             />
 
-            <IoIosAdd
-              onClick={handleAddPdf}
-              className="icon absolute right-0 text-blue-400"
-            />
+            {selectedFile && (
+              <IoIosAdd
+                onClick={handleAddPdf}
+                className="icon absolute right-0 text-blue-400 !text-4xl"
+              />
+            )}
           </div>
           {selectedFile && isNotValidInputName(displayedName) && (
             <p className="w-full text-red-500">
@@ -115,7 +116,6 @@ export default function NewPdfPage() {
             </p>
           )}
         </div>
-      </div>
     </div>
   );
 }
