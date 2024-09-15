@@ -26,15 +26,14 @@ export default function SelectionTextComp() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
   const closeDialog = () => setDialogOpen(false);
-  
+
   useEffect(() => {
     const handleSelectionChange = async (event: {
       preventDefault: () => void;
     }) => {
-      setHighlightedText("");
-
       event.preventDefault();
       document.addEventListener("contextmenu", (e) => e.preventDefault());
+      setHighlightedText("");
 
       const setting = await db.setting.where("name").equals("setting").first();
       if (!setting?.leitnerTextSelectionMode!) return;
@@ -55,7 +54,7 @@ export default function SelectionTextComp() {
     return () => {
       document.removeEventListener("selectionchange", handleSelectionChange);
     };
-  }, [highlightedText]);
+  }, []);
 
   return (
     <div>
@@ -73,7 +72,9 @@ export default function SelectionTextComp() {
             dispatch(
               formDataReducer({
                 title: highlightedText,
-                category: appPages.isDocsPage(path) ? makeUrlFriendly(pdf.name).substring(0,29) : "",
+                category: appPages.isDocsPage(path)
+                  ? makeUrlFriendly(pdf.name).substring(0, 29)
+                  : "",
               }),
             );
             if (
