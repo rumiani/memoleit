@@ -1,6 +1,7 @@
 "use client";
 
 import AppLayoutComp from "@/src/components/general/layouts/sideBarLayout/appLayout";
+import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
 import { useEffect } from "react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -35,6 +36,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Call this function when you want to check and update the status
     checkAndUpdateStatus();
+  }, []);
+  useEffect(() => {
+    appDataInitialiser();
   }, []);
 
   return (

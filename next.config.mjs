@@ -1,5 +1,3 @@
-/** @type {import("next").NextConfig} */
-
 import withPWAInit from "@ducanh2912/next-pwa";
 
 const withPWA = withPWAInit({
@@ -26,7 +24,7 @@ export default withPWA({
       },
     ],
   },
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.resolve.alias.canvas = false;
     return config;
   },

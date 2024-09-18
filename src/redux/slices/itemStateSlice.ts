@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialItemStateTypes, initialPdfStateTypes } from "../interfaces";
+import { initialItemStateTypes } from "../interfaces";
 import { ItemTypes, LookUpResultTypes } from "../../types/interface";
 
 const initialState: initialItemStateTypes = {

@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import getPDFsHandler from "../../handlers/getPDFsHandler";
 import { allPdfsReducer } from "@/src/redux/slices/pdfStateSlice";
 import { useParams } from "next/navigation";
+// import "@/public/pdfWorker/pdf.worker.min.js";
 
 export default function DocContainer() {
   const params = useParams();
@@ -56,6 +57,7 @@ export default function DocContainer() {
     sidebarTabs: () => [],
   });
   useEffect(() => {
+
     return () => {
       const savePDFinfo = async () => {
         const foundPdf = await db.pdfs.get(params.id);
@@ -75,7 +77,12 @@ export default function DocContainer() {
       ref={documentElement}
       className="relative flex flex-col h-screen overflow-y-auto mb-24 sm:mb-0"
     >
-      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+      <Worker
+        workerUrl={
+          // '/pdfjs-dist/build/pdf.worker.min.js' ||
+          "https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js"
+        }
+      >
         <Viewer
           fileUrl={pdf.url}
           plugins={[
