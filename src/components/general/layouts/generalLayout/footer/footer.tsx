@@ -16,10 +16,10 @@ const Footer = () => {
                 FAQ
               </Link>
               <Link href="/contact" className="">
-                Contact Us
+                Contact us
               </Link>
               <Link href="/about" className="">
-                About Us
+                About us
               </Link>
               <InstallPWA />
             </div>

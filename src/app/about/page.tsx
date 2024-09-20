@@ -40,7 +40,7 @@ export default function About() {
           </div>
           <div className="mt-6 mx-auto flex justify-center">
             <Link href="/contact" className="btn_primary mx-auto">
-              <button className="primaryBtn">Contact Us</button>
+              <button className="primaryBtn">Contact us</button>
             </Link>
           </div>
         </div>

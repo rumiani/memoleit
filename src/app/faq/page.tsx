@@ -96,7 +96,7 @@ export default function Faq() {
         <div className="mt-10 text-center text-xl">
           <h3 className="my-4">Have more questions?</h3>
           <Link href="/contact" className="btn_secondary">
-            <button className="primaryBtn min-w-48">Contact Us</button>
+            <button className="primaryBtn min-w-48">Contact us</button>
           </Link>
         </div>
       </div>

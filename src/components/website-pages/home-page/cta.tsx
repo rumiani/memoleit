@@ -10,7 +10,7 @@ export default function Cta() {
       </p>
       <div className="flex mt-5">
         <Link href="/user/dashboard/review" className="primaryBtn">
-          Get Started
+          Get started
         </Link>
       </div>
     </div>

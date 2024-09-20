@@ -17,8 +17,7 @@ export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const { numberOfItemsToReview } = useAppSelector((state) => state.itemState);
   const dispatch = useAppDispatch();
-  const [userCount, setUserCount] = useState<number | null>(null);
-  
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -37,18 +36,6 @@ export default function ReviewPage() {
       }
     };
     fetchItems();
-
-    const fetchUserCount = async () => {
-      try {
-        const response = await fetch('/api/userCount');
-        const data = await response.json();        
-        setUserCount(data.count);
-      } catch (error) {
-        console.error('Error fetching user count:', error);
-      }
-    };
-
-    fetchUserCount();
   }, [dispatch]);
 
   if (loading)
@@ -59,26 +46,23 @@ export default function ReviewPage() {
     );
   return (
     <div className="relative flex flex-col justify-center text-center my-8 sm:mt-4">
-      <div>
-        {numberOfItemsToReview === 0 ? (
-          <div className="my-16 flex flex-col items-center">
-            <span className="text-green-600">There is no item to review.</span>
-            <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
-          </div>
-        ) : (
-          <div>
-            <div className="w-80 mx-auto my-4 flex flex-row items-center justify-between">
-              <div className="text-red-600 text-xl">
-                Items to review:
-                <span className="font-bold px-1">{numberOfItemsToReview}</span>
-              </div>
-              <Filters />
+      {numberOfItemsToReview === 0 ? (
+        <div className="my-16 flex flex-col items-center">
+          <span className="text-green-600">There is no item to review.</span>
+          <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
+        </div>
+      ) : (
+        <div>
+          <div className="w-80 mx-auto my-4 flex flex-row items-center justify-between">
+            <div className="text-red-600 text-xl">
+              Items to review:
+              <span className="font-bold px-1">{numberOfItemsToReview}</span>
             </div>
-            <Review />
+            <Filters />
           </div>
-        )}
-      </div>
-      {userCount && <div title="Number of users using this app" className=" cursor-default text-start w-80 px-1 font-bold text-sm mx-auto">Users: {userCount} </div>}
+          <Review />
+        </div>
+      )}
     </div>
   );
 }

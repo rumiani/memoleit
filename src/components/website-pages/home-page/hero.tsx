@@ -26,18 +26,14 @@ export default function Hero() {
             rel="noopener"
             className="primaryBtn text-center "
           >
-            <span className="text-lg font-bold">G</span>
-            <span>et</span>
-            &nbsp;
-            <span className="text-lg font-bold">S</span>
-            <span>tarted</span>
+            <span>Get started</span>
           </Link>
           <Link
             rel="noopener"
             href="/contact"
             className="secondaryBtn  text-center "
           >
-            Contact Us
+            Contact us
           </Link>
         </div>
       </div>
