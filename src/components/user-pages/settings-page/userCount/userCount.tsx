@@ -13,7 +13,6 @@ export default function UserCount() {
         console.error("Error fetching user count:", error);
       }
     };
-
     fetchUserCount();
   });
   return (
@@ -23,7 +22,7 @@ export default function UserCount() {
           title="Number of users using this app"
           className="w-full cursor-default text-start px-1 font-bold text-sm mx-auto"
         >
-          Users: {userCount}{" "}
+          Total users: {userCount}{" "}
         </div>
       )}
     </div>
