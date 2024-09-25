@@ -2,7 +2,6 @@ import { db } from "../services/db";
 import { ItemTypes } from "../types/interface";
 import { categoryItemsToReviewHandler } from "./categoryItemsToReviewHandler";
 import { itemsToReviewHandler } from "./itemsToReviewHandler";
-import { numberOfItemsToReviewHandler } from "./numberOfItemsToReviewHandler";
 
 interface InitialDataType {
   name: string;
