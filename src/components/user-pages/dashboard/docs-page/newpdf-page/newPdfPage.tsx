@@ -80,7 +80,7 @@ export default function NewPdfPage() {
         <h1 className="font-bold text-center">Add PDF Files</h1>
       </div>
         <div className="flex flex-col">
-          <div className="relative p-0 bg-red-200 mx-auto flex flex-row justify-center items-center">
+          <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
             <div className="absolute left-0 w-8 h-10 py-2">
               <CgAttachment
                 className={` ${selectedFile ? " text-green-500 " : " text-blue-400 "}absolute w-8 h-6 `}

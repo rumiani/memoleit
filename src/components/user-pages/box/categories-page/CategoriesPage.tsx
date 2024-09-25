@@ -46,7 +46,6 @@ export default function CategoriesPage() {
         </div>
       ) : (
         <div>
-          <p>All the categories:</p>
           <div className="flex flex-wrap justify-center gap-2 my-4">
             {categories.map((category: CategoryTypes, i) => (
               <CategoryCard key={i} category={category} />
