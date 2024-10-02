@@ -15,7 +15,7 @@ export default function Result({ answer }: { answer: string }) {
           ),
           // Tailwind CSS for ```code blocks```
           code: ({ children }) => (
-            <code className="bg-gray-200 text-red-500 px-2 py-1 rounded">
+            <code className="text-blue-500 px-1 py-1 rounded">
               {children}
             </code>
           ),
