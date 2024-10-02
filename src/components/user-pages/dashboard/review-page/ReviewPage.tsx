@@ -15,7 +15,9 @@ import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToRevi
 
 export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
-  const { numberOfItemsToReview } = useAppSelector((state) => state.itemState);
+  const { numberOfItemsToReview, items } = useAppSelector(
+    (state) => state.itemState,
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -53,10 +55,11 @@ export default function ReviewPage() {
         </div>
       ) : (
         <div>
-          <div className="w-80 mx-auto my-4 flex flex-row items-center justify-between">
-            <div className="text-red-600 text-xl">
-              Items to review:
-              <span className="font-bold px-1">{numberOfItemsToReview}</span>
+          <div className="w-80 mx-auto  flex flex-row items-center justify-between">
+            <div className="text-gray-600 text-start text-sm ">
+              All to review: <strong>{numberOfItemsToReview}</strong>
+              <br />
+              Selected to review: <strong>{items.length}</strong>
             </div>
             <Filters />
           </div>

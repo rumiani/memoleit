@@ -61,26 +61,25 @@ export default function ReviewItemCard() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="my-10">
-        <Spinner size={100} />
-      </div>
-    );
-  }
   return (
-    <div className=" word-box border border-gray-300 rounded-lg pt-0 p-4 !w-80 bg-slate-100 mx-auto">
-      <div className="flex flex-row">
-      <ItemInfo item={item} />
-        <div className="relative w-full flex justify-between">
-          <ItemCategory item={item} />
-          <ItemOptions item={item} />
+    <div className="flex justify-center">
+      {loading ? (
+        <Spinner size={100} />
+      ) : (
+        <div className=" word-box border border-gray-300 rounded-lg pt-0 p-4 !w-80 bg-slate-100 mx-auto">
+          <div className="flex flex-row">
+            <ItemInfo item={item} />
+            <div className="relative w-full flex justify-between">
+              <ItemCategory item={item} />
+              <ItemOptions item={item} />
+            </div>
+          </div>
+          <ItemProgress itemBoxNumber={item.box} />
+          <ItemTitle item={item} />
+          <ItemBody body={item.body} />
+          <Answer goToNextItem={goToNextItem} item={item} />
         </div>
-      </div>
-      <ItemProgress itemBoxNumber={item.box} />
-      <ItemTitle item={item} />
-      <ItemBody body={item.body} />
-      <Answer goToNextItem={goToNextItem} item={item} />
+      )}
     </div>
   );
 }

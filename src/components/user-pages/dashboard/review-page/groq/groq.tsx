@@ -49,7 +49,7 @@ export default function GroqInterface() {
           <div className="flex flex-row gap-2 items-center justify-center">
             <GroqInfo />
             <button className="primaryBtn !w-fit" onClick={writeAStoryWithGroq}>
-              Read a story containing your words
+              Read a story with your selected words
             </button>
           </div>
 
