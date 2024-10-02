@@ -11,7 +11,7 @@ export default function ItemInfo({ item }: { item: ItemTypes }) {
   const closeDialog = () => setDialogOpen(false);
 
   return (
-    <div className="flex justify-start relative top-6 ml-[6px]">
+    <div className="flex justify-start relative top-1 mr-2">
       <button
         onClick={openDialog}
         title="This is the progress bar"

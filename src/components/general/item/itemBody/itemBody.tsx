@@ -11,7 +11,7 @@ export default function ItemBody({ body }: { body: string }) {
     <div className="mb-4">
       <button
         onClick={() => setShowBody(!showBody)}
-        className="text-blue-500  mx-auto block text-center"
+        className="text-blue-500  mx-auto block text-center cursor-pointer"
       >
         {showBody ? "Hide" : "See"} Answer
       </button>
