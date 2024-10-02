@@ -1,46 +1,56 @@
 "use client";
 
 import { db } from "@/src/services/db";
-import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import { isEmpty } from "lodash";
 import { textDataSchema } from "../validation/textValidation";
 import { ItemTypes } from "@/src/types/interface";
+import { userIdTest } from "@/src/services/userId";
 
 export const saveImportedTextHandler = async (newJsonData: string) => {
   try {
     const validatedData = textDataSchema.parse(newJsonData);
-    const existingCategories = await db.categories
-      .where("name")
-      .anyOf(validatedData.categories.map((category: any) => category.name))
-      .toArray();
-    const uniqueCategories = validatedData.categories.filter(
-      (category: any) =>
-        !existingCategories.some(
-          (existingCategory) => existingCategory.name === category.name,
-        ),
-    );
-    if (!isEmpty(uniqueCategories))
-      await db.categories.bulkAdd(uniqueCategories);
 
-    const newItems: ItemTypes[] = [];
-    const existingItems = await db.items
-      .where("id")
-      .anyOf(validatedData.items.map((item: any) => item.id))
-      .toArray();
-    const uniqueItems = validatedData.items.filter(
-      (item: any) =>
-        !existingItems.some((existingItem) => existingItem.id === item.id),
+    const categoriesToAdd = [];
+    const itemsToAdd: ItemTypes[] = [];
+
+    // Gather categories to add, avoiding duplicates
+    const existingCategoryIds = new Set(
+      (await db.categories.toArray()).map((category) => category.id),
     );
-    for (const importedItem of uniqueItems) {
-      const existedCategory = await db.categories.get({
-        name: makeUrlFriendly(importedItem.category),
-      });
-      if (existedCategory) {
-        newItems.push(importedItem);
+
+    for (const importedCategory of validatedData.categories) {
+      if (!existingCategoryIds.has(importedCategory.id)) {
+        categoriesToAdd.push(importedCategory);
       }
     }
-    if (!isEmpty(newItems)) {
-      await db.items.bulkAdd(newItems);
+
+    const existingItemIds = new Set(
+      (await db.items.toArray()).map((item) => item.id),
+    );
+
+    for (const item of validatedData.items) {
+      if (!existingItemIds.has(item.id)) {
+        const existedCategory = await db.categories.get({
+          id: item.categoryId,
+        });
+        if (!existedCategory) {
+          const newCategory = {
+            id: item.categoryId,
+            userId: userIdTest,
+            name: item.category,
+            status: true,
+            createdAt: Date.now(),
+          };
+          categoriesToAdd.push(newCategory);
+        }
+        itemsToAdd.push(item); // Add the item regardless, as it's new
+      }
+    }
+    if (categoriesToAdd.length > 0) {
+      await db.categories.bulkAdd(categoriesToAdd);
+    }
+    if (itemsToAdd.length > 0) {
+      await db.items.bulkAdd(itemsToAdd);
     }
   } catch (error) {
     throw error;

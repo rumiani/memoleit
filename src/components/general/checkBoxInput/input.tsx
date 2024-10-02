@@ -9,9 +9,6 @@ export default function CheckboxInput({
   status,
   handleInputChange,
 }: checkBoxProps) {
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
   return (
     <div className=" p-2 rounded-lg transition-all duration-300">
       <div className="flex relative ">

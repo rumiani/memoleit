@@ -3,6 +3,7 @@ import { isEmpty } from "lodash";
 import { useAppSelector } from "@/src/app/hooks";
 import BoxesDropdown from "./boxesDropdown/BoxesDropdown";
 import CategoryItem from "@/src/components/general/categoryitem/categoryitem";
+import { useEffect } from "react";
 
 export default function CategoryItems() {
   const { category } = useAppSelector((state) => state.categoryState);

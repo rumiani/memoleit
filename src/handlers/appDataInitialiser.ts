@@ -18,19 +18,10 @@ const wordsObject = words.map((word, i) => ({
 export const appDataInitialiser = async () => {
   try {
     const isFirstTime = await db.setting.count();
-    if (isFirstTime > 0) {
-      // const items = await db.items.toArray();
-      // for (const item of items) {
-      //   try {
-      //     item.body = convertFromRaw(JSON.parse(item.body)).getPlainText();
-      //   } catch (error) {}
-      //   await db.items.update(item.id, { body: item.body });
-      // }
-      return;
-    }
+    if (isFirstTime > 0) return;
 
     const categoryId = randomIdGenerator(8);
-    const categoryName = makeUrlFriendly("Example Category")
+    const categoryName = makeUrlFriendly("Example Category");
     const category = {
       id: categoryId,
       userId: userIdTest,

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { IoMdSettings } from "react-icons/io";
 
 export default function Superpages() {
-  console.log(superPages);
   return (
     <div className="flex flex-col text-lg">
       {superPages.map((superPage, i) => {

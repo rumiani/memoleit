@@ -18,7 +18,7 @@ export default function CategoryPage({
   categoryName: string;
 }) {
   const { category } = useAppSelector((state) => state.categoryState);
-  // const [isCategory, setIsCategory] = useState<boolean | undefined>(false);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function CategoryPage({
       } catch (error) {}
     };
     fetchCategoryItems();
-  }, [categoryId, dispatch,categoryName]);
+  }, [categoryId, dispatch, categoryName]);
   if (isLoading) {
     return <LoadingPulse />;
   }
