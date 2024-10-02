@@ -30,7 +30,7 @@ export const appDataInitialiser = async () => {
     }
 
     const categoryId = randomIdGenerator(8);
-    const categoryName = makeUrlFriendly("Example")
+    const categoryName = makeUrlFriendly("Example Category")
     const category = {
       id: categoryId,
       userId: userIdTest,
