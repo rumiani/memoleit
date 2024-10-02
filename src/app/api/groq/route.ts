@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function getGroqChatCompletion(data: string) {
+const getGroqChatCompletion = (data: string) => {
   return groq.chat.completions.create({
     messages: [
       {
@@ -34,4 +34,4 @@ export async function getGroqChatCompletion(data: string) {
     ],
     model: "llama3-8b-8192",
   });
-}
+};
