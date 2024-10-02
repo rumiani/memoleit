@@ -7,15 +7,12 @@ import { divide, isEmpty } from "lodash";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 import GroqInfo from "./groqInfo/groqInfo";
 import wordsHighlighter from "./wordsHighlighter/wordsHighlighter";
-interface GroqResultTypes {
-  message: string;
-  answer: string;
-}
+
 export default function GroqInterface() {
   const { items } = useAppSelector((state) => state.itemState);
 
   const [words, setWords] = useState<string[]>([]);
-  const [result, setResult] = useState<GroqResultTypes>();
+  const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   useEffect(() => {
@@ -25,6 +22,8 @@ export default function GroqInterface() {
 
   const writeAStoryWithGroq = async () => {
     setLoading(true);
+    setError(false);
+    setResult(null);
     try {
       const response = await fetch("/api/groq", {
         method: "POST",
@@ -33,11 +32,9 @@ export default function GroqInterface() {
         },
         body: JSON.stringify(words),
       });
-      const responseResult: GroqResultTypes = await response.json();
-      setResult({
-        message: responseResult.message,
-        answer: wordsHighlighter(responseResult.answer, words),
-      });
+      const responseResult = await response.json();
+      const highlightedResult = wordsHighlighter(responseResult.answer, words);
+      setResult(highlightedResult);
     } catch (error) {
       setError(true);
     } finally {
@@ -60,8 +57,12 @@ export default function GroqInterface() {
             <LoadingPulse />
           ) : (
             <div>
-              {error && <p className="text-red-500">{result!.answer}</p>}
-              {result && <Result answer={result!.answer} />}
+              {error && (
+                <p className="text-red-500">
+                  Something went wrong, please check your connection!
+                </p>
+              )}
+              {result && <Result answer={result} />}
             </div>
           )}
         </div>
