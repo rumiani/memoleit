@@ -75,17 +75,17 @@ export default function CategoryInput({
           </p>
         )}
       </div>
-      <div className="flex flex-row justify-end my-2">
+      <div className="flex flex-row justify-end my-2 gap-2">
         <button
           onClick={() => dispatch(categoryOnEditReducer(""))}
-          className="redBtn !p-2 text-xl !w-fit"
+          className="redBtn text-xl"
           title="Save the category name"
         >
           Cancel
         </button>
         <button
           onClick={saveCategoryHandler}
-          className="greenBtn !p-2 text-xl !w-fit"
+          className="greenBtn text-xl"
           title="Save the category name"
         >
           Save

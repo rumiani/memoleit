@@ -12,6 +12,7 @@ import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { IoIosCloudDone } from "react-icons/io";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
+import GroqInterface from "./groq/groq";
 
 export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -54,16 +55,30 @@ export default function ReviewPage() {
           <IoIosCloudDone className="text-green-600 text-5xl w-36 h-36" />
         </div>
       ) : (
-        <div>
-          <div className="w-80 mx-auto  flex flex-row items-center justify-between">
-            <div className="text-gray-600 text-start text-sm ">
-              All to review: <strong>{numberOfItemsToReview}</strong>
-              <br />
-              Selected to review: <strong>{items.length}</strong>
+        <div className="flex  flex-col justify-center lg:flex-row lg:justify-around gap-4 px-4">
+          <div className="w-full lg:w-1/2 ">
+            <div className="w-full max-w-80 mx-auto">
+              <div className="flex flex-row items-center justify-between mb-1">
+                <div className="text-gray-600 text-start text-sm ">
+                  {items.length === 0 ? (
+                    <span>
+                      All items to review:{" "}
+                      <strong>{numberOfItemsToReview}</strong>
+                    </span>
+                  ) : (
+                    <span>
+                      Selected items to review: <strong>{items.length}</strong>
+                    </span>
+                  )}
+                </div>
+                <Filters />
+              </div>
+              <Review />
             </div>
-            <Filters />
           </div>
-          <Review />
+          <div className="w-full lg:w-1/2">
+            <GroqInterface />
+          </div>
         </div>
       )}
     </div>

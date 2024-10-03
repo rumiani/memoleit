@@ -45,26 +45,32 @@ export default function GroqInterface() {
   return (
     <div>
       {!isEmpty(words) && (
-        <div className="flex flex-col my-4 justify-center items-center">
-          <div className="flex flex-row gap-2 items-center justify-center">
-            <GroqInfo />
-            <button className="primaryBtn !w-fit" onClick={writeAStoryWithGroq}>
-              Read a story with your selected words
+        <div className="flex flex-col justify-center items-center gap-2 mb-12">
+          <div className="flex flex-row gap-2 items-center">
+            <GroqInfo words={words} />
+            <button
+              title="Generate a story with your selected items"
+              className="primaryBtn !m-0 !w-52"
+              onClick={writeAStoryWithGroq}
+            >
+              Generate a story
             </button>
           </div>
 
-          {loading ? (
-            <LoadingPulse />
-          ) : (
-            <div>
-              {error && (
-                <p className="text-red-500">
-                  Something went wrong, please check your connection!
-                </p>
-              )}
-              {result && <Result answer={result} />}
-            </div>
-          )}
+          <div className="w-full">
+            {loading ? (
+              <LoadingPulse />
+            ) : (
+              <>
+                {error && (
+                  <p className="text-red-500">
+                    Something went wrong, please check your connection!
+                  </p>
+                )}
+                {result && <Result answer={result} />}
+              </>
+            )}
+          </div>
         </div>
       )}
     </div>

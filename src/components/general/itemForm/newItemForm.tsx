@@ -91,7 +91,7 @@ export default function NewItemForm() {
                 error={errors.category?.message}
               />
             </div>
-            <button className="primaryBtn !mx-auto">
+            <button className="primaryBtn mx-auto my-2">
               {appPages.isEditPage(path) ? "Update" : "Save"}
             </button>
             {/* <DevTool control={control} placement="top-right" /> */}

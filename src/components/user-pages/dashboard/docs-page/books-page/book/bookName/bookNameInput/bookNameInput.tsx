@@ -61,17 +61,18 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
           letters
         </p>
       )}
-      <div className="w-full flex flex-row justify-end mt-2">
+      <div className="w-full flex flex-row justify-end m-2 gap-2">
+
         <button
           onClick={() => dispatch(pdfOnEditReducer(""))}
-          className="redBtn !p-2 text-xl !w-fit"
+          className="redBtn text-xl"
           title="Save the category name"
         >
           Cancel
         </button>
         <button
           onClick={saveBookNameHandler}
-          className="greenBtn !p-2 text-xl !w-fit"
+          className="greenBtn text-xl"
           title="Save the category name"
         >
           Save
