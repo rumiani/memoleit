@@ -17,8 +17,24 @@ const wordsObject = words.map((word, i) => ({
 
 export const appDataInitialiser = async () => {
   try {
-    const isFirstTime = await db.setting.count();
-    if (isFirstTime > 0) return;
+    const setting = await db.setting.where("name").equals("setting").first();
+    if (setting?.wordLists) return;
+    const settings = {
+      id: randomIdGenerator(8),
+      name: "setting",
+      userId: userIdTest,
+      selectAllCategories: false,
+      isReviewSoundOn: false,
+      rightAnswerSoundSrc: reviewSounds.right[0].src,
+      wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
+      isTextToSpeechOn: true,
+      textToSpeechLang: "en-US",
+      isDictionaryOn: false,
+      leitnerTextSelectionMode: true,
+      wordLists: [],
+      tour: { reviewTour: false, newItemTour: false, boxTour: false },
+    };
+    await db.setting.add(settings);
 
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly("Example Category");
@@ -47,23 +63,6 @@ export const appDataInitialiser = async () => {
     });
 
     await db.items.bulkPut(itemsData);
-
-    const settings = {
-      id: randomIdGenerator(8),
-      name: "setting",
-      userId: userIdTest,
-      selectAllCategories: false,
-      isReviewSoundOn: false,
-      rightAnswerSoundSrc: reviewSounds.right[0].src,
-      wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
-      isTextToSpeechOn: true,
-      textToSpeechLang: "en-US",
-      isDictionaryOn: false,
-      leitnerTextSelectionMode: true,
-      wordLists: [],
-      tour: { reviewTour: false, newItemTour: false, boxTour: false },
-    };
-    await db.setting.add(settings);
     return true;
   } catch (error) {
     console.log("error", error);
