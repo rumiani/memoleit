@@ -17,25 +17,6 @@ const wordsObject = words.map((word, i) => ({
 
 export const appDataInitialiser = async () => {
   try {
-    const setting = await db.setting.where("name").equals("setting").first();
-    if (setting?.wordLists) return;
-    const settings = {
-      id: randomIdGenerator(8),
-      name: "setting",
-      userId: userIdTest,
-      selectAllCategories: false,
-      isReviewSoundOn: false,
-      rightAnswerSoundSrc: reviewSounds.right[0].src,
-      wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
-      isTextToSpeechOn: true,
-      textToSpeechLang: "en-US",
-      isDictionaryOn: false,
-      leitnerTextSelectionMode: true,
-      wordLists: [],
-      tour: { reviewTour: false, newItemTour: false, boxTour: false },
-    };
-    await db.setting.add(settings);
-
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly("Example Category");
     const category = {
@@ -45,7 +26,6 @@ export const appDataInitialiser = async () => {
       status: false,
       createdAt: Date.now() - 1000 * 3600 * 1000,
     };
-    await db.categories.add(category);
 
     const itemsData: ItemTypes[] = [];
     words?.forEach((title, i) => {
@@ -61,8 +41,31 @@ export const appDataInitialiser = async () => {
         lastReview: timestamps[i],
       });
     });
-
-    await db.items.bulkPut(itemsData);
+    //
+    let setting = await db.setting.where("name").equals("setting").first();
+    if (setting) {
+      // update setting
+      setting.wordLists = setting.wordLists || [];
+    } else {
+      setting = {
+        id: randomIdGenerator(8),
+        name: "setting",
+        userId: userIdTest,
+        selectAllCategories: false,
+        isReviewSoundOn: false,
+        rightAnswerSoundSrc: reviewSounds.right[0].src,
+        wrongAnswerSoundSrc: reviewSounds.wrong[0].src,
+        isTextToSpeechOn: true,
+        textToSpeechLang: "en-US",
+        isDictionaryOn: false,
+        leitnerTextSelectionMode: true,
+        wordLists: [],
+        tour: { reviewTour: false, newItemTour: false, boxTour: false },
+      };
+      await db.categories.add(category);
+      await db.items.bulkPut(itemsData);
+    }
+    await db.setting.put(setting);
     return true;
   } catch (error) {
     console.log("error", error);

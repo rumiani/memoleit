@@ -40,9 +40,9 @@ export interface ReviewTypes {
 }
 export interface wordListTypes {
   name: string;
-  lable:string;
+  lable: string;
   status: boolean;
-  words:string[]
+  words: string[];
 }
 export interface SettingTypes {
   id: string;
@@ -51,6 +51,7 @@ export interface SettingTypes {
   isReviewSoundOn: boolean;
   rightAnswerSoundSrc: string;
   wrongAnswerSoundSrc: string;
+  selectAllCategories: boolean;
   isTextToSpeechOn: boolean;
   textToSpeechLang: string;
   isDictionaryOn: boolean;
