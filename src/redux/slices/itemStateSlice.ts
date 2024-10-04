@@ -28,6 +28,7 @@ const initialState: initialItemStateTypes = {
   items: [],
   translatingItems: {},
   numberOfItemsToReview: 0,
+  generatedStory:""
 };
 
 export const itemStateSlice = createSlice({
@@ -66,6 +67,9 @@ export const itemStateSlice = createSlice({
       const { [action.payload]: _, ...newTranslatingItems } = state.translatingItems;
       state.translatingItems = newTranslatingItems
     },
+    generatedStoryReducer: (state, action: PayloadAction<string>) => {
+      state.generatedStory = action.payload
+    },
   },
 });
 
@@ -77,6 +81,7 @@ export const {
   translatingItemsReducer,
   definitionOfItemsReducer,
   removeTranslationItemReducer,
+  generatedStoryReducer
 } = itemStateSlice.actions;
 
 export default itemStateSlice.reducer;

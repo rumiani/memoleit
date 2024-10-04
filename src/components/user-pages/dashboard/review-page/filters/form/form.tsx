@@ -1,8 +1,7 @@
 import { useState } from "react";
-import CheckboxInput from "./input/input";
+import CheckboxInput from "./CheckBoxInput/CheckBoxInput";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { isEmpty } from "lodash";
-import CheckBoxInput from "./CheckBoxInput/CheckBoxInput";
 import { db } from "@/src/services/db";
 import { toast } from "react-toastify";
 import { getCategoriesHandler } from "@/src/handlers/getCategoriesHandler";
@@ -16,11 +15,13 @@ import { CategoryTypes } from "@/src/types/interface";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import Link from "next/link";
 import { newPageUrl } from "@/src/handlers/general/pagesLinks";
+import CheckBoxInputAll from "./CheckBoxInputAll/CheckBoxInputAll";
 
 const Form = () => {
   const { categories } = useAppSelector((state) => state.categoryState);
   const [selectAll, setSelectAll] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const selectedCategories = categories.filter((category) => category.status);
 
   const selectAllHandler = async () => {
     try {
@@ -53,7 +54,7 @@ const Form = () => {
     <>
       <form
         method="dialog"
-        className="h-full text-lg flex flex-col justify-center p-1 w-full mx-auto max-w-96"
+        className="h-full text-lg flex flex-col justify-center w-full mx-auto max-w-96"
       >
         {isEmpty(categories) ? (
           <p className="text-center w-full my-2">
@@ -64,11 +65,11 @@ const Form = () => {
             to learn.
           </p>
         ) : (
-          <p className="text-center w-full my-2">
+          <p className="text-center w-full mb-2">
             Choose your category to review
           </p>
         )}
-        <div className="h-64 overflow-y-auto">
+        <div className="max-h-80 overflow-visible overflow-y-scroll bg-gray-100 my-2">
           {isEmpty(categories) ? (
             <div className="text-red-500 text-center my-16">No categories.</div>
           ) : (
@@ -80,15 +81,27 @@ const Form = () => {
           )}
         </div>
         {categories.length > 1 && (
-          <div className="p-4">
-            <CheckBoxInput
-              isChecked={selectAll}
-              id="all"
-              name="All"
-              inputChangeHandler={selectAllHandler}
-            />
-          </div>
+          <CheckBoxInputAll
+            isChecked={selectAll}
+            id="all"
+            name={
+              categories.length === selectedCategories.length
+                ? "Deselect all"
+                : "Select all"
+            }
+            inputChangeHandler={selectAllHandler}
+          />
         )}
+        <div className="flex flex-col text-start">
+          <span>
+            All categories:
+            <strong>{categories.length}</strong>
+          </span>
+          <span>
+            Selected Categoris:
+            <strong>{selectedCategories.length}</strong>
+          </span>
+        </div>
       </form>
     </>
   );

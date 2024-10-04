@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Dialog from "@/src/components/general/dialog/dialog";
 
-export default function GroqInfo({ words }: { words: string[] }) {
+export default function GroqInfo({ words }: { words: string }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);
   const closeDialog = () => setDialogOpen(false);
@@ -28,7 +28,7 @@ export default function GroqInfo({ words }: { words: string[] }) {
         </div>
         <div className="text-start my-4">
           <strong>Selected words to review:</strong> <br />{" "}
-          <span className="text-blue-500">{words.join(", ")}</span>
+          <span className="text-blue-500">{words}</span>
         </div>
       </Dialog>
     </div>

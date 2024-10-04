@@ -15,7 +15,8 @@ export interface initialItemStateTypes {
   formData: FormDataTypes;
   items: ItemTypes[];
   numberOfItemsToReview: number;
-  translatingItems:{[key: string]:LookUpResultTypes[]}
+  translatingItems:{[key: string]:LookUpResultTypes[]};
+  generatedStory:string;
 }
 export interface initialCategoryStateTypes {
   category: CategoryTypes;

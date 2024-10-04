@@ -1,13 +1,13 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-export default function Result({ answer }: { answer: string }) {
+export default function Story({ story }: { story: string }) {
   return (
     <div className="w-full mx-auto max-w-xl bg-gray-100 p-4 rounded-lg shadow-lg text-justify">
       <h2 className="font-bold text-start">Your story:</h2>
       <ReactMarkdown
         // eslint-disable-next-line react/no-children-prop
-        children={answer}
+        children={story}
         remarkPlugins={[remarkGfm]}
         components={{
           // Tailwind CSS for **bold**

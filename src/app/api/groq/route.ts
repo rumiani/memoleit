@@ -6,7 +6,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req: NextRequest) {
   const wrodsArray = await req.json();
-  const prompt = storyPrompt + wrodsArray.join(",");
+  const prompt = storyPrompt + wrodsArray;
   const chatCompletion = await getGroqChatCompletion(prompt);
   const answer = chatCompletion.choices[0]?.message?.content || "";
 
