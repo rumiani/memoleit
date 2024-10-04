@@ -44,7 +44,7 @@ export default function ActivateWordLists() {
 
   return (
     <div className="w-full flex flex-col gap-x-4 justify-between">
-      <strong>Select words lists</strong>
+      <strong>Select word lists</strong>
       {wordLists.map((wordList, i) => {
         return (
           <div key={i}>
