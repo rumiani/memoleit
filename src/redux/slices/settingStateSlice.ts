@@ -12,6 +12,7 @@ const initialCategoryState: SettingTypes = {
   textToSpeechLang: "",
   isDictionaryOn: false,
   leitnerTextSelectionMode: false,
+  wordLists:[],
   tour: { reviewTour: false, newItemTour: false, boxTour: false },
 };
 

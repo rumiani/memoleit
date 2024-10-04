@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 interface checkBoxProps {
   value: string;
   status: boolean;

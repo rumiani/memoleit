@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import ChooseCategory from "./chooseCategory/chooseCategory";
 import appPages from "@/src/data/appPages/appPages";
+import WordLists from "./wordsList/wordLists/wordLists";
 
 export default function NewItemForm() {
   const path = usePathname();
@@ -28,7 +29,7 @@ export default function NewItemForm() {
   const { translatingItems } = useAppSelector((state) => state.itemState);
 
   const form = useForm<FormValues>({
-    defaultValues:appPages.isEditPage(path)
+    defaultValues: appPages.isEditPage(path)
       ? { title, body, category }
       : { title: "", body: "", category: "" },
     mode: "onBlur",
@@ -76,8 +77,10 @@ export default function NewItemForm() {
         <div
           className={`${
             appPages.isEditPage(path) ? "bg-yellow-100" : "bg-green-100"
-          } relative max-w-2xl w-full mx-auto gap-2`}
+          } relative max-w-2xl w-full mx-auto gap-2 py-1`}
         >
+          <WordLists />
+
           <form
             className="flex flex-col justify-center"
             noValidate

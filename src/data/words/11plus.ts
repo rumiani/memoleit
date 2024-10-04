@@ -1,4 +1,4 @@
-[
+export const elevenPlus = [
   "Abandon",
   "Absence",
   "Absurd",
@@ -498,5 +498,5 @@
   "Wound",
   "Wretched",
   "Yacht",
-  "Yield"
-]
+  "Yield",
+];

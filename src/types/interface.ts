@@ -38,6 +38,12 @@ export interface ReviewTypes {
   answer: number;
   createdAt: number;
 }
+export interface wordListTypes {
+  name: string;
+  lable:string;
+  status: boolean;
+  words:string[]
+}
 export interface SettingTypes {
   id: string;
   name: string;
@@ -49,6 +55,7 @@ export interface SettingTypes {
   textToSpeechLang: string;
   isDictionaryOn: boolean;
   leitnerTextSelectionMode: boolean;
+  wordLists: wordListTypes[];
   tour: { reviewTour: boolean; newItemTour: boolean; boxTour: boolean };
 }
 export interface UserTypes {

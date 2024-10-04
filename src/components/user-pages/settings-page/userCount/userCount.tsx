@@ -14,7 +14,7 @@ export default function UserCount() {
       }
     };
     fetchUserCount();
-  });
+  },[]);
   return (
     <div>
       {userCount && (

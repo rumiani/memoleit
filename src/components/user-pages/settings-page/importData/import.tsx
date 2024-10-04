@@ -64,7 +64,7 @@ export default function ImportComponent() {
   };
 
   return (
-    <div className="flex flex-col mx-auto gap-4">
+    <div className="w-full flex flex-col mx-auto gap-4 my-4">
       <div className="flex flex-row justify-between">
         <strong>Import</strong>
         <div className="mx-2 text-gray-600 text-xs flex items-center w-fit gap-1">

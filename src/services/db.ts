@@ -23,7 +23,7 @@ export class MySubClassedDexie extends Dexie {
       reviews: "++id,userId, itemId, answer, createdAt",
       categories: "++id,userId, name, status, createdAt",
       setting:
-        "++id, name, userId , isReviewSoundOn, rightAnswerSoundSrc,  wrongAnswerSoundSrc, isTextToSpeechOn, textToSpeechLang, isDictionaryOn, leitnerTextSelectionMode, tour",
+        "++id, name, userId , isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc, isTextToSpeechOn, textToSpeechLang, isDictionaryOn, leitnerTextSelectionMode, wordGroups, tour",
       pdfs: "++id, name,pdfName,lastVisitedPage, numberOfPages, file, createdAt",
     });
   }

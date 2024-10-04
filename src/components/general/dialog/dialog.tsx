@@ -1,3 +1,4 @@
+"use client"
 import { useEffect } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -12,7 +13,7 @@ const Dialog: React.FC<DialogProps> = ({
   isOpen,
   closeDialogHandler,
   children,
-  closeBtn,
+  closeBtn
 }) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

@@ -62,7 +62,7 @@ export default function ReviewSounds() {
   };
 
   return (
-    <div className="w-full flex flex-wrap gap-x-4  justify-between">
+    <div className="w-full flex flex-col lg:flex-row justify-between">
       <CheckboxInput
         value="Review Card Sounds"
         status={isReviewSoundOn}

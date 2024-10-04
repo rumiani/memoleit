@@ -60,10 +60,11 @@ export const appDataInitialiser = async () => {
       textToSpeechLang: "en-US",
       isDictionaryOn: false,
       leitnerTextSelectionMode: true,
+      wordLists: [],
       tour: { reviewTour: false, newItemTour: false, boxTour: false },
     };
     await db.setting.add(settings);
-    return true
+    return true;
   } catch (error) {
     console.log("error", error);
   }

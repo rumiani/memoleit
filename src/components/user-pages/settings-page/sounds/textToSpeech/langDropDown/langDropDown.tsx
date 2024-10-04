@@ -25,7 +25,7 @@ export default function LangDropdown() {
     }
   };
   return (
-    <div className="w-fit flex flex-col justify-center items-start mb-4">
+    <div className="w-fit mx-auto lg:mx-0 mb-4">
       <select
         value={textToSpeechLang}
         className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 bg-gray-100 text-gray-800"
