@@ -19,7 +19,6 @@ export const appDataInitialiser = async () => {
   try {
     const isFirstTime = await db.setting.count();
     if (isFirstTime > 0) return;
-console.log(5);
 
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly("Example Category");
@@ -64,6 +63,7 @@ console.log(5);
       tour: { reviewTour: false, newItemTour: false, boxTour: false },
     };
     await db.setting.add(settings);
+    return true
   } catch (error) {
     console.log("error", error);
   }

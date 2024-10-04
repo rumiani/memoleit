@@ -2,9 +2,16 @@
 
 import AppLayoutComp from "@/src/components/general/layouts/sideBarLayout/appLayout";
 import { appDataInitialiser } from "@/src/handlers/appDataInitialiser";
+import { db } from "@/src/services/db";
 import { useEffect } from "react";
+import { useAppDispatch } from "../../hooks";
+import {
+  leitnerTextSelectionModeReducer,
+  storedSettingReducer,
+} from "@/src/redux/slices/settingStateSlice";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
@@ -37,9 +44,23 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     // Call this function when you want to check and update the status
     checkAndUpdateStatus();
   }, []);
+  
   useEffect(() => {
-    appDataInitialiser();
-  }, []);
+    const appInitialisationHandler = async () => {
+      await appDataInitialiser();
+      db.setting
+        .where("name")
+        .equals("setting")
+        .first()
+        .then((setting) => {
+          dispatch(storedSettingReducer(setting!));
+        })
+        .catch((error) => {
+          console.log("Womething went wrong when trying to load the settings");
+        });
+    };
+    appInitialisationHandler();
+  }, [dispatch]);
 
   return (
     <>

@@ -11,17 +11,17 @@ export default function LeitnerTextSelectionMode() {
     (state) => state.settingState,
   );
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    db.setting
-      .where("name")
-      .equals("setting")
-      .first()
-      .then((setting) => {
-        dispatch(
-          leitnerTextSelectionModeReducer(setting?.leitnerTextSelectionMode!),
-        );
-      });
-  }, [leitnerTextSelectionMode, dispatch]);
+  // useEffect(() => {
+  //   db.setting
+  //     .where("name")
+  //     .equals("setting")
+  //     .first()
+  //     .then((setting) => {
+  //       dispatch(
+  //         leitnerTextSelectionModeReducer(setting?.leitnerTextSelectionMode!),
+  //       );
+  //     });
+  // }, [leitnerTextSelectionMode, dispatch]);
   const handleInputChange = async () => {
     await db.setting
       .where("name")

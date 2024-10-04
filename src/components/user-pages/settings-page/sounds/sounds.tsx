@@ -3,7 +3,7 @@ import ReviewSounds from "./reviewSounds/reviewSounds";
 
 export default function Sounds() {
   return (
-    <div className="">
+    <div>
       <strong>Sounds</strong>
       <div>
         <TextToSpeech />
