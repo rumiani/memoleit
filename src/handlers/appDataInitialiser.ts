@@ -19,6 +19,7 @@ export const appDataInitialiser = async () => {
   try {
     const isFirstTime = await db.setting.count();
     if (isFirstTime > 0) return;
+console.log(5);
 
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly("Example Category");

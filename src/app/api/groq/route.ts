@@ -1,10 +1,16 @@
+import { authOptions } from "@/lib/auth/authOptions";
 import { storyPrompt } from "@/src/data/storyPrompt";
 import Groq from "groq-sdk";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const wrodsArray = await req.json();
   const prompt = storyPrompt + wrodsArray;
   const chatCompletion = await getGroqChatCompletion(prompt);
