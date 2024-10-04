@@ -1,4 +1,5 @@
 import CheckboxInput from "@/src/components/general/checkBoxInput/input";
+import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 import { db } from "@/src/services/db";
 import { wordListTypes } from "@/src/types/interface";
 import { isEmpty } from "lodash";
@@ -14,8 +15,9 @@ export default function ActivateWordList({
   setWordLists: Function;
 }) {
   const [status, setStatus] = useState<boolean>(wordList.status);
-
+  const [loading, setLoading] = useState<boolean>(false);
   const downloadWordListHandler = async (listName: string) => {
+    setLoading(true);
     try {
       const response = await fetch("/api/wordlist/" + listName);
       const data = await response.json();
@@ -27,8 +29,13 @@ export default function ActivateWordList({
       foundWordList?.words.push(...data.words);
       await db.setting.put(setting!);
       setWordLists(setting?.wordLists!);
+      toast.success(
+        listName + " word list has been downloaded, you can now activate it.",
+      );
     } catch (error) {
       console.error("Error fetching user count:", error);
+    } finally {
+      setLoading(false);
     }
   };
   const handleInputChange = async (listName: string) => {
@@ -52,10 +59,11 @@ export default function ActivateWordList({
       {isEmpty(wordList.words) ? (
         <button
           onClick={() => downloadWordListHandler(wordList.name)}
+          disabled={loading}
           className="primaryBtn flex justify-between gap-2"
         >
           <span>{wordList.lable}</span>
-          <FaDownload />
+          {loading ? <Spinner size={10} /> : <FaDownload />}
         </button>
       ) : (
         <CheckboxInput

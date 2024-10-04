@@ -9,10 +9,11 @@ const initialCategoryState: SettingTypes = {
   rightAnswerSoundSrc: "",
   wrongAnswerSoundSrc: "",
   isTextToSpeechOn: false,
+  selectAllCategories: false,
   textToSpeechLang: "",
   isDictionaryOn: false,
   leitnerTextSelectionMode: false,
-  wordLists:[],
+  wordLists: [],
   tour: { reviewTour: false, newItemTour: false, boxTour: false },
 };
 
