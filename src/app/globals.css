@@ -55,3 +55,11 @@ input[type="number"] {
 .rpv-core__inner-pages {
   @apply overflow-y-auto;
 }
+
+.target-component {
+  @apply transition-colors duration-1000 ease-in-out;
+}
+
+.target-component.highlight {
+  @apply  shadow-2xl shadow-blue-500 p-2 animate-bounce;
+}

@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
 import { wordListTypes } from "@/src/types/interface";
 import ActivateWordList from "./activateWordList/activateWordList";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 const defaultWordLists: wordListTypes[] = [
   { name: "words11plus", lable: "11 plus", status: false, words: [] },
@@ -37,17 +39,39 @@ export default function ActivateWordLists() {
     initialisingWordLists();
   }, [dispatch]);
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const targetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const highlight = searchParams.get("highlight");
+
+    if (highlight === "targetComponent" && targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      targetRef.current.classList.add("highlight");
+      setTimeout(() => {
+        targetRef.current?.classList.remove("highlight");
+      }, 3000);
+      toast.info("Download and add some word lists")
+    }
+  }, [searchParams]);
   return (
-    <div className="w-full flex flex-col gap-x-4 justify-between">
+    <div
+      ref={targetRef}
+      className="target-component w-full flex flex-col gap-x-4 justify-between"
+    >
       <strong>Select word lists</strong>
       <div className="p-2 flex flex-wrap gap-2">
-      {wordLists.map((wordList, i) => {
-        return (
-          <div key={i}>
-            <ActivateWordList wordList={wordList} setWordLists={setWordLists} />
-          </div>
-        );
-      })}
+        {wordLists.map((wordList, i) => {
+          return (
+            <div key={i}>
+              <ActivateWordList
+                wordList={wordList}
+                setWordLists={setWordLists}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
