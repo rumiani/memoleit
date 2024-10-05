@@ -67,7 +67,7 @@ export default function ActivateWordList({
         </button>
       ) : (
         <CheckboxInput
-          value={wordList.name}
+          value={wordList.lable}
           status={status}
           handleInputChange={() => handleInputChange(wordList.name)}
         />
