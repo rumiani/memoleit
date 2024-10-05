@@ -3,7 +3,8 @@ import LeitnerTextSelectionMode from "./leitnerTextSelectionMode/leitnerTextSele
 import ImportComponent from "./importData/import";
 import ExportComponent from "./exportData/export";
 import UserCount from "./userCount/userCount";
-import ActivateWordsGroups from "./activateWordlists/activateWordlists";
+import React from "react";
+import ActivateWordLists from "./activateWordlists/activateWordlists";
 export default function SettingsPage() {
   return (
     <div className="w-full max-w-xl mx-auto mb-24 flex flex-col gap-4 sm:my-8 p-4 border border-gray-300">
@@ -15,7 +16,9 @@ export default function SettingsPage() {
       <div className="w-full border-[0.5px] border-gray-200"></div>
       <ImportComponent />
       <div className="w-full border-[0.5px] border-gray-200"></div>
-      <ActivateWordsGroups/>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <ActivateWordLists />
+      </React.Suspense>
       <div className="w-full border-[0.5px] border-gray-200"></div>
       <UserCount />
     </div>
