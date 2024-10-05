@@ -3,6 +3,7 @@ import WordList from "./wordList/wordList";
 import { wordListTypes } from "@/src/types/interface";
 import { db } from "@/src/services/db";
 import { isEmpty } from "lodash";
+
 export default function WordLists() {
   const [wordLists, setWordLists] = useState<wordListTypes[]>([]);
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function WordLists() {
     fetchWordLists();
   }, []);
   return (
-    <div className="m-2">
+    <div className="flex flex-wrap gap-2 p-2">
       {!isEmpty(wordLists) &&
         wordLists.map((wordList, i) => {
           return (

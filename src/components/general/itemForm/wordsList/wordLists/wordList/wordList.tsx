@@ -44,7 +44,7 @@ export default function WordList({ wordList }: { wordList: wordListTypes }) {
           title="Show words"
           className="secondaryBtn"
         >
-          11 plus
+          {wordList.lable}
         </button>
       )}
 

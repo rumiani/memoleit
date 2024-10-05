@@ -1,4 +1,4 @@
-export const elevenPlus = [
+export const words11Plus = [
   "Abandon",
   "Absence",
   "Absurd",

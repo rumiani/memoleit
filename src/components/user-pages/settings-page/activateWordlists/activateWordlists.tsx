@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/src/app/hooks";
-import { toast } from "react-toastify";
-import { leitnerTextSelectionModeReducer } from "@/src/redux/slices/settingStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { db } from "@/src/services/db";
-import CheckboxInput from "@/src/components/general/checkBoxInput/input";
 import { wordListTypes } from "@/src/types/interface";
-import { isEmpty } from "lodash";
-import { FaDownload } from "react-icons/fa6";
 import ActivateWordList from "./activateWordList/activateWordList";
 
 const defaultWordLists: wordListTypes[] = [
-  { name: "11plus", lable: "11 plus", status: false, words: [] },
+  { name: "words11plus", lable: "11 plus", status: false, words: [] },
+  { name: "words504", lable: "504", status: false, words: [] },
 ];
 
 export default function ActivateWordLists() {
@@ -45,6 +40,7 @@ export default function ActivateWordLists() {
   return (
     <div className="w-full flex flex-col gap-x-4 justify-between">
       <strong>Select word lists</strong>
+      <div className="p-2 flex flex-wrap gap-2">
       {wordLists.map((wordList, i) => {
         return (
           <div key={i}>
@@ -52,6 +48,7 @@ export default function ActivateWordLists() {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }
