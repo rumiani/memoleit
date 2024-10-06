@@ -77,6 +77,11 @@ export interface FormValues {
   category: string;
   categoryId: string;
 }
+export interface EssayValues {
+  topic: string;
+  body: string;
+  task: string;
+}
 
 export interface ItemsInfoTypes {
   allItemsCount: number;

@@ -23,6 +23,11 @@ export const superPages: SuperPageTypes[] = [
         name: "new",
         url: "/user/dashboard/new",
       },
+      {
+        lable: "Writing",
+        name: "writing",
+        url: "/user/dashboard/writing",
+      },
     ],
   },
   {

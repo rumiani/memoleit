@@ -1,5 +1,6 @@
 import {
   CategoryTypes,
+  EssayValues,
   FormDataTypes,
   ItemTypes,
   LookUpResultTypes,
@@ -27,4 +28,8 @@ export interface initialPdfStateTypes {
   pdf: PdfStateTypes;
   pdfs: PdfStateTypes[];
   pdfOnEdit:string;
+}
+export interface initialEssayTypes {
+  essay:EssayValues;
+  essayResult:string;
 }

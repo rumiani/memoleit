@@ -1,5 +1,5 @@
 import { authOptions } from "@/lib/auth/authOptions";
-import { storyPrompt } from "@/src/data/storyPrompt";
+import { essayPrompt } from "@/src/data/storyPrompt";
 import Groq from "groq-sdk";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,19 +11,19 @@ export async function POST(req: NextRequest) {
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const wrodsArray = await req.json();
-  const prompt = storyPrompt + wrodsArray;
+  const { essay } = await req.json();
+  const prompt = essayPrompt(essay) + essay;
   const chatCompletion = await getGroqChatCompletion(prompt);
   const answer = chatCompletion.choices[0]?.message?.content || "";
 
   try {
     return NextResponse.json(
-      { message: "Story generated successfully.", answer },
+      { message: "Essay result generated successfully/", answer },
       { status: 201 },
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "Failed to generate a story." },
+      { message: "Failed to generate an essay result." },
       { status: 500 },
     );
   }

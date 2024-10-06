@@ -1,6 +1,8 @@
 const reviewPageUrl = "/user/dashboard/review";
 const docsPageUrl = "/user/dashboard/docs";
 const newPageUrl = "/user/dashboard/new";
+const writingPageUrl = "/user/dashboard/writing";
+
 
 const boxDataPageUrl = "/user/box/box-data";
 const categoriesPageUrl = "/user/box/categories";
@@ -17,6 +19,7 @@ export {
   reviewPageUrl,
   docsPageUrl,
   newPageUrl,
+  writingPageUrl,
   boxDataPageUrl,
   categoriesPageUrl,
   searchPageUrl,

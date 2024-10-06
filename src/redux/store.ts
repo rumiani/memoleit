@@ -4,6 +4,7 @@ import settingStateSlice from "./slices/settingStateSlice";
 import itemStateSlice from "./slices/itemStateSlice";
 import userStateSlice from "./slices/userStateSlice";
 import pdfStateSlice from "./slices/pdfStateSlice";
+import essayStateSlice from "./slices/essayStateSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -13,6 +14,7 @@ export const makeStore = () => {
       categoryState: categoryStateSlice,
       settingState: settingStateSlice,
       pdfState: pdfStateSlice,
+      essayState:essayStateSlice,
     },
   });
 };
