@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { essayResultReducer } from "@/src/redux/slices/essayStateSlice";
 import AITopic from "./AITopic/AITopic";
 import TestTypeInput from "./testTypeInput/testTypeInput";
+import WritingInfo from "./writingInfo/writingInfo";
+import { toast } from "react-toastify";
 
 export default function EssayForm() {
   const { topic, task, body, type } = useAppSelector(
@@ -52,8 +54,11 @@ export default function EssayForm() {
       }
       const result = await response.json();
       dispatch(essayResultReducer(result.answer));
+      toast.success("Your essay has been analysed successfully");
     } catch (error) {
-      console.error("Error sending data:", error);
+      toast.error(
+        "Something went wrong, please try again or check your network",
+      );
     }
   };
 
@@ -65,6 +70,12 @@ export default function EssayForm() {
   }, [reset]);
   return (
     <div className="relative max-w-2xl w-full mx-auto gap-2 py-1">
+      <div className="flex flex-row gap-2 justify-center items-center">
+        <WritingInfo />
+        <h2 className="text-center font-bold my-4">
+          Write a General Training essay and analyze it with AI
+        </h2>
+      </div>
       <form
         className="flex flex-col justify-center"
         noValidate
