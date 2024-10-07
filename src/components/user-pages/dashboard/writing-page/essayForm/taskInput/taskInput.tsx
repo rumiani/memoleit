@@ -35,7 +35,7 @@ export default function TaskInput({
         >
           {essayOptions.tasks.map((task) => {
             return (
-              <option className="bg-red-500" value={task.value}>
+              <option className="bg-red-500" key={task.name} value={task.value}>
                 {task.name}
               </option>
             );

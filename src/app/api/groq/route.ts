@@ -1,5 +1,5 @@
 import { authOptions } from "@/lib/auth/authOptions";
-import { storyPrompt } from "@/src/data/storyPrompt";
+import { storyPrompt } from "@/src/data/essay/storyPrompt";
 import Groq from "groq-sdk";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";

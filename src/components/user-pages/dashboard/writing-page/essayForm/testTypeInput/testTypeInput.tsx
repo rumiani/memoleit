@@ -34,7 +34,7 @@ export default function TestTypeInput({
         >
           {essayOptions.types.map((type) => {
             return (
-              <option className="bg-red-500" value={type.value}>
+              <option className="bg-red-500" key={type.name} value={type.value}>
                 {type.name}
               </option>
             );

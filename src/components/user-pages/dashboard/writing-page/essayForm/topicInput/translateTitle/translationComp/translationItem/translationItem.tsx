@@ -1,5 +1,4 @@
 import { useState } from "react";
-import LoadingPulse from "../../../../../loading-comps/loadingPulse/loadingPulse";
 import { toast } from "react-toastify";
 import WordOptions from "./wordOptions/wordOptions";
 import Results from "./results/results";
@@ -9,6 +8,7 @@ import {
 } from "@/src/redux/slices/itemStateSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { IoMdCloseCircle } from "react-icons/io";
+import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 
 export default function TranslationItem({
   translatingItem,

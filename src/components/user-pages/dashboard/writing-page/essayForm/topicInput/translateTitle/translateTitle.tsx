@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import Dialog from "../../../dialog/dialog";
 import TranslationComp from "./translationComp/translationComp";
 import { FaClipboardList } from "react-icons/fa";
 import { translatingItemsReducer } from "@/src/redux/slices/itemStateSlice";
 import { isEmpty } from "lodash";
+import Dialog from "@/src/components/general/dialog/dialog";
 
 export default function TranslateTitle() {
   const { formData, translatingItems } = useAppSelector(
