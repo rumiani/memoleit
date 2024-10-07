@@ -8,13 +8,15 @@ import TopicInput from "./topicInput/topicInput";
 import BodyInput from "./bodyInput/bodyInput";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { essayResultReducer } from "@/src/redux/slices/essayStateSlice";
+import AITopic from "./AITopic/AITopic";
+import TestTypeInput from "./testTypeInput/testTypeInput";
 
 export default function EssayForm() {
-  const { topic, task, body } = useAppSelector(
+  const { topic, task, body, type } = useAppSelector(
     (state) => state.essayState.essay,
   );
   const form = useForm<EssayValues>({
-    defaultValues: { topic, body, task },
+    defaultValues: { topic, body, task, type },
     mode: "onBlur",
   });
 
@@ -35,10 +37,9 @@ export default function EssayForm() {
 
   const submitHandler = async (essay: EssayValues, e: any) => {
     e.preventDefault();
-    console.log('req');
-    
+
     try {
-      const response = await fetch("/api/essay", {
+      const response = await fetch("/api/essay/evaluate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,9 +51,7 @@ export default function EssayForm() {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
-      console.log(result);
-      
-      dispatch(essayResultReducer(result));
+      dispatch(essayResultReducer(result.answer));
     } catch (error) {
       console.error("Error sending data:", error);
     }
@@ -62,7 +61,7 @@ export default function EssayForm() {
     reset();
   }
   useEffect(() => {
-    reset({ topic, body, task });
+    // reset({ topic,task, body, type  });
   }, [reset]);
   return (
     <div className="relative max-w-2xl w-full mx-auto gap-2 py-1">
@@ -72,11 +71,18 @@ export default function EssayForm() {
         onSubmit={handleSubmit(submitHandler)}
       >
         <div className="flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl">
+          <div className="flex flex-row w-full justify-around">
+            <SelectTask register={register} error={errors.task?.message} />
+            <TestTypeInput register={register} error={errors.type?.message} />
+            <AITopic setValue={setValue} />
+          </div>
           <TopicInput register={register} error={errors.topic?.message} />
-          <SelectTask register={register} error={errors.task?.message} />
           <BodyInput register={register} error={errors.body?.message} />
         </div>
-        <button className="primaryBtn !w-fit mx-auto my-2">
+        <button
+          title="Analise my writing with AI"
+          className="primaryBtn !w-fit mx-auto my-2"
+        >
           Analise my writing with AI
         </button>
         {/* <DevTool control={control} placement="top-right" /> */}

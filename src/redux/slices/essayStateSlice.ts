@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialEssayTypes } from "../interfaces";
 
 const initialState: initialEssayTypes = {
-  essay: { topic: "", body: "", task: "1" },
+  essay: { topic: "", body: "", task: "1", type: "general" },
   essayResult: "",
 };
 

@@ -81,6 +81,7 @@ export interface EssayValues {
   topic: string;
   body: string;
   task: string;
+  type:string;
 }
 
 export interface ItemsInfoTypes {

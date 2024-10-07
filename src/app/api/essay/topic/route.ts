@@ -1,5 +1,6 @@
 import { authOptions } from "@/lib/auth/authOptions";
-import { essayPrompt } from "@/src/data/storyPrompt";
+import { essayPrompt } from "@/src/data/essay/essayPrompt";
+import topicPrompt from "@/src/data/essay/topicPrompt";
 import Groq from "groq-sdk";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -12,7 +13,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { essay } = await req.json();
-  const prompt = essayPrompt(essay) + essay;
+  console.log("--------",essay);
+  
+  const prompt = topicPrompt(essay.task, essay.type);
+  console.log(prompt);
+  
   const chatCompletion = await getGroqChatCompletion(prompt);
   const answer = chatCompletion.choices[0]?.message?.content || "";
 

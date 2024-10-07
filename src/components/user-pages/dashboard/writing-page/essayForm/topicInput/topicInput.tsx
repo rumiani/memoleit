@@ -1,30 +1,29 @@
-import { EssayValues, FormValues } from "@/src/types/interface";
-import { UseFormRegister } from "react-hook-form";
-import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
-import { useAppDispatch } from "@/src/app/hooks";
-import { db } from "@/src/services/db";
-import { usePathname } from "next/navigation";
-import { toLower } from "lodash";
+import { EssayValues } from "@/src/types/interface";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import limits from "@/src/handlers/general/limits/limits";
-import appPages from "@/src/data/appPages/appPages";
+import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
+import { useEffect } from "react";
 
 interface TopicProps {
   register: UseFormRegister<EssayValues>;
   error: string | undefined;
 }
 const TopicInput = ({ register, error }: TopicProps) => {
-  const path = usePathname();
+  const { essay } = useAppSelector((state) => state.essayState);
+
   const dispatch = useAppDispatch();
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
-    const { name, value } = event.target;
-    dispatch(formDataReducer({ [name]: value }));
+    console.log(essay.topic.length);
+    
+    dispatch(essayFormDataReducer({ topic: event.target.value }));
   };
 
   return (
     <div className="relative w-full">
       <textarea
-        rows={1}
+        rows={3}
         dir="auto"
         id="inputTopic"
         placeholder="Write a topic for your essay..."
