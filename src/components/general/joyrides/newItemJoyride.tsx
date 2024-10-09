@@ -47,9 +47,7 @@ const JoyrideNewItem = () => {
           setting.tour.newItemTour = false;
           await db.setting.put(setting);
         }
-      } catch (error) {
-        console.log("Error");
-      }
+      } catch (error) {}
     }
   };
 

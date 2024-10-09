@@ -27,9 +27,7 @@ export default function ExportComponent() {
         setting,
       });
       downloadJsonFile(appDataJson, "memoleit-data.txt", "text/plain");
-    } catch (error) {
-      console.log("Error");
-    }
+    } catch (error) {}
   };
   return (
     <div className="w-full flex flex-col gap-4 my-4">

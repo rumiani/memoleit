@@ -7,7 +7,5 @@ export const allItemsCountHandler = (categoryId: string) => {
     .then((items) => {
       return itemsCountHandler(items);
     })
-    .catch(() => {
-      console.log(Error);
-    });
+    .catch(() => {});
 };

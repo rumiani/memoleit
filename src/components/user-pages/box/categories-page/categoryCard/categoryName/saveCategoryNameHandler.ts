@@ -28,14 +28,12 @@ export default async function saveCategoryNameHandler({
         item.categoryId = newCategoryNameExist.id;
         item.category = newCategoryNameExist.name;
       }
-        await db.categories.delete(categoryId);
+      await db.categories.delete(categoryId);
     } else {
       category.name = newCategoryName;
       for (const item of items) item.category = newCategoryName;
       await db.categories.put(category);
     }
     await db.items.bulkPut(items);
-  } catch (error) {
-    console.log("Error");
-  }
+  } catch (error) {}
 }

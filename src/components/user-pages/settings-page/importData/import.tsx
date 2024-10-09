@@ -27,7 +27,6 @@ export default function ImportComponent() {
         header: true,
         complete: (result) => {
           const rows = result.data as { word: string; meaning: string }[];
-          console.log(rows);
           saveData(rows, fileType, file.name);
         },
       });
@@ -55,9 +54,7 @@ export default function ImportComponent() {
       toast.info("You have been redirected to categories page");
       router.push(categoriesPageUrl);
     } catch (error: any) {
-      console.log(error);
       if (error.name === "ZodError") toast.error("Invalid file data");
-      console.log("Error uploading");
     } finally {
       setIsDisabled(false);
     }

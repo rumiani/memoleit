@@ -4,12 +4,10 @@ import { authOptions } from "@/lib/auth/authOptions";
 import { words504 } from "@/src/data/words/words504";
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  if (!session)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  console.log('--------');
-  
   try {
+    const session = await getServerSession(authOptions);
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     return NextResponse.json({ words: words504 });
   } catch (error) {
     return NextResponse.json(

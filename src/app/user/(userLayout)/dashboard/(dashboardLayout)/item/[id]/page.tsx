@@ -34,7 +34,6 @@ export default function Item({ params }: { params: { id: string } }) {
         }, 1000);
       })
       .catch(() => {
-        console.log("Error");
         setTimeout(() => {
           setLoading(false);
           setLoading(false);

@@ -9,7 +9,5 @@ export const itemsToReviewHandler = async () => {
       .below(6)
       .and((item) => timeToReviewHandler(item))
       .toArray();
-  } catch (error) {
-    console.log("Error");
-  }
+  } catch (error) {}
 };

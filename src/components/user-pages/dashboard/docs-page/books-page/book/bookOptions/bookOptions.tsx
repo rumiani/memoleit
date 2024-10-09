@@ -3,7 +3,10 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { db } from "@/src/services/db";
 import { DialogOptions } from "@/src/components/general/dialogOptions/dialogOptions";
-import { allPdfsReducer, pdfOnEditReducer } from "@/src/redux/slices/pdfStateSlice";
+import {
+  allPdfsReducer,
+  pdfOnEditReducer,
+} from "@/src/redux/slices/pdfStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import getPDFsHandler from "../../../handlers/getPDFsHandler";
 import { PdfStateTypes } from "@/src/types/interface";
@@ -22,11 +25,9 @@ export default function BookOptions({ book }: { book: PdfStateTypes }) {
       await db.pdfs.delete(book.id);
       toast.success("PDF was removed.");
       const pdfs = await getPDFsHandler();
-  
+
       dispatch(allPdfsReducer(pdfs!));
-    } catch (error: any) {
-      console.log("Error fetching pdfs");
-    }
+    } catch (error) {}
   };
 
   return (

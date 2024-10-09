@@ -11,7 +11,5 @@ export const categoryItemsCountHandler = async (categoryId?: string) => {
       items = await db.items.where({ categoryId }).toArray();
     }
     return itemsCountHandler(items);
-  } catch (error) {
-    console.log("Error");
-  }
+  } catch (error) {}
 };

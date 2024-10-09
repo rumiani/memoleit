@@ -17,7 +17,7 @@ const CreatedMessage = ({
       .then((existedCategories) => {
         if (existedCategories) dispatch(categoriesReducer(existedCategories));
       })
-      .catch(() => console.log("error"));
+      .catch(() => {});
     setCreatedMessage();
   };
   return (

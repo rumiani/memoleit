@@ -11,7 +11,5 @@ export default async function getPDFsHandler() {
       statePdfs.push({ ...pdf, url });
     });
     return statePdfs;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }

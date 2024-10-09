@@ -21,9 +21,7 @@ export default function Filters() {
       openDialog();
       const storedCategories = await getCategoriesHandler();
       if (storedCategories) dispatch(categoriesReducer(storedCategories));
-    } catch (error) {
-      console.log("Error");
-    }
+    } catch (error) {}
   };
 
   return (

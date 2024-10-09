@@ -34,7 +34,6 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
       dispatch(pdfOnEditReducer(""));
     } catch (error: any) {
       if (error.name === "404") toast.error("Category not found.");
-      console.log("Error");
     }
   };
   const isNotValidInputName = (inputText: string) => {
@@ -62,7 +61,6 @@ export default function BookNameInput({ book }: { book: PdfStateTypes }) {
         </p>
       )}
       <div className="w-full flex flex-row justify-end m-2 gap-2">
-
         <button
           onClick={() => dispatch(pdfOnEditReducer(""))}
           className="redBtn text-xl"

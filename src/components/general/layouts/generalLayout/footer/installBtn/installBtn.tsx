@@ -15,7 +15,6 @@ const InstallPWA: React.FC = () => {
   useEffect(() => {
     const handler = (e: BeforeInstallPromptEvent) => {
       e.preventDefault();
-      console.log("beforeinstallprompt fired");
       setSupportsPWA(true);
       setPromptInstall(e);
     };

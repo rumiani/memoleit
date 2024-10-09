@@ -50,7 +50,6 @@ export default function CheckboxInput({
       if ((error.name = "404")) {
         toast.error("Category not found.");
       }
-      console.log("Error");
     }
   };
 
@@ -59,9 +58,7 @@ export default function CheckboxInput({
       .then((itemsInfo) => {
         if (itemsInfo) setItemsInfo(itemsInfo);
       })
-      .catch(() => {
-        console.log("Error");
-      });
+      .catch(() => {});
   }, [category]);
 
   return (

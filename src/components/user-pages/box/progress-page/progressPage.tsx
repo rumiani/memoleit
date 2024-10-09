@@ -17,7 +17,7 @@ export default function ProgressPage() {
         dispatch(categoriesReducer(newCategories!));
         setIsLoading(false);
       })
-      .catch(() => console.log("error"));
+      .catch(() => {});
   }, [dispatch]);
 
   return <>{isLoading ? <LoadingPulse /> : <BoxChart />}</>;

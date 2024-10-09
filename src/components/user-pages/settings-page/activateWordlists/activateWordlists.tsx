@@ -35,9 +35,7 @@ export default function ActivateWordLists() {
           await db.setting.put(setting!);
           setWordLists(setting?.wordLists!);
         }
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     initialisingWordLists();
   }, []);

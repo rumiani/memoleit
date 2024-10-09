@@ -67,7 +67,6 @@ export default function ItemOptions({ item }: { item: ItemTypes }) {
       }
       toast.success("The item was removed.");
     } catch (error: any) {
-      console.log("Error");
       if ((error.name = "404")) toast.error("Item was not found");
     }
   };

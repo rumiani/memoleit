@@ -3,7 +3,8 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { FaTelegram } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
-const Index = () => {
+
+const Page = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +21,6 @@ const Index = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
   };
   return (
     <div className="w-full h-screen mx-auto max-w-xl">
@@ -123,4 +123,4 @@ const Index = () => {
     </>
   );
 };
-export default Index;
+export default Page;

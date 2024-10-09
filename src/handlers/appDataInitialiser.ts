@@ -67,7 +67,5 @@ export const appDataInitialiser = async () => {
     }
     await db.setting.put(setting);
     return true;
-  } catch (error) {
-    console.log("error", error);
-  }
+  } catch (error) {}
 };

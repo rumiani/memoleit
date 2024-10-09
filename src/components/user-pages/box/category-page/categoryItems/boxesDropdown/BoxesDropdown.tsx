@@ -27,9 +27,7 @@ export default function BoxesDropdown({ categoryId }: { categoryId: string }) {
         boxNumber,
       );
       dispatch(allItemsReducer(filteredItemsData!));
-    } catch (error) {
-      console.log("Error");
-    }
+    } catch (error) {}
   };
   return (
     <div className="w-32 flex flex-col justify-center items-start mb-4">

@@ -33,7 +33,6 @@ export default function EditPage({ params }: { params: { id: string } }) {
         }, 1000);
       })
       .catch(() => {
-        console.log("Error");
         setTimeout(() => {
           setLoading(false);
         }, 1000);

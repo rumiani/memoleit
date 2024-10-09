@@ -3,20 +3,16 @@ import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import limits from "@/src/handlers/general/limits/limits";
 import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 
 interface TopicProps {
   register: UseFormRegister<EssayValues>;
   error: string | undefined;
 }
 const TopicInput = ({ register, error }: TopicProps) => {
-  const { essay } = useAppSelector((state) => state.essayState);
-
   const dispatch = useAppDispatch();
 
-  const handleInputChange = (event: { target: { name: any; value: any } }) => {
-    console.log(essay.topic.length);
-    
+  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(essayFormDataReducer({ topic: event.target.value }));
   };
 

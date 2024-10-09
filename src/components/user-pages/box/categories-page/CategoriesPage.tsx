@@ -25,7 +25,7 @@ export default function CategoriesPage() {
           setIsLoading(false);
         }
       })
-      .catch(() => console.log("error"));
+      .catch(() => {});
   }, [dispatch]);
 
   if (isLoading) {

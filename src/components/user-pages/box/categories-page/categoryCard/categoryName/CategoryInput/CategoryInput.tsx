@@ -41,7 +41,6 @@ export default function CategoryInput({
       toast.success("category name was saved successfully.");
     } catch (error: any) {
       if (error.name === "404") toast.error("Category not found.");
-      console.log("Error");
     }
   };
   const isNotCategoryInputValidator = (inputText: string) => {

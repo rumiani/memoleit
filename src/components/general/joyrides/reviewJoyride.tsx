@@ -53,9 +53,7 @@ export default function ReviewJoyride() {
           setting.tour.reviewTour = false;
           await db.setting.put(setting);
         }
-      } catch (error) {
-        console.log("Error");
-      }
+      } catch (error) {}
     }
   };
 

@@ -25,7 +25,5 @@ export async function reviewHandler(
       answer: answer ? 1 : 0,
       createdAt: Date.now(),
     });
-  } catch (error) {
-    console.log("Error");
-  }
+  } catch (error) {}
 }

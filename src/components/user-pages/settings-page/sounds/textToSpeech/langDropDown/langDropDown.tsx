@@ -20,9 +20,7 @@ export default function LangDropdown() {
         .modify({ textToSpeechLang: langCode });
       dispatch(textToSpeechLangReducer(langCode));
       toast.success("Text to speech language has changed.");
-    } catch (error) {
-      console.log("Error");
-    }
+    } catch (error) {}
   };
   return (
     <div className="w-fit mx-auto lg:mx-0 mb-4">

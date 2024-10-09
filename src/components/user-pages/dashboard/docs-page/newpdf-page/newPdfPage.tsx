@@ -63,9 +63,7 @@ export default function NewPdfPage() {
 
       const pdfs = await getPDFsHandler();
       if (pdfs) dispatch(allPdfsReducer(pdfs));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const isNotValidInputName = (inputText: string) => {
     return (
@@ -79,43 +77,43 @@ export default function NewPdfPage() {
         <BooksInfo />
         <h1 className="font-bold text-center">Add PDF Files</h1>
       </div>
-        <div className="flex flex-col">
-          <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
-            <div className="absolute left-0 w-8 h-10 py-2">
-              <CgAttachment
-                className={` ${selectedFile ? " text-green-500 " : " text-blue-400 "}absolute w-8 h-6 `}
-              />
-              <input
-                className="w-8 h-10 opacity-0 absolute cursor-pointer"
-                type="file"
-                accept="application/pdf"
-                onChange={handleFileChange}
-                ref={fileInputRef}
-              />
-            </div>
-            <input
-              className="primaryInput h-12 !pl-10 !pr-12 !w-full"
-              type="text"
-              value={displayedName}
-              ref={nameInputRef}
-              onChange={(e) => setDisplayedName(e.target.value)}
-              placeholder="PDF name"
+      <div className="flex flex-col">
+        <div className="relative p-0 mx-auto flex flex-row justify-center items-center">
+          <div className="absolute left-0 w-8 h-10 py-2">
+            <CgAttachment
+              className={` ${selectedFile ? " text-green-500 " : " text-blue-400 "}absolute w-8 h-6 `}
             />
-
-            {selectedFile && (
-              <IoIosAdd
-                onClick={handleAddPdf}
-                className="icon absolute right-0 text-blue-400 !text-4xl"
-              />
-            )}
+            <input
+              className="w-8 h-10 opacity-0 absolute cursor-pointer"
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+            />
           </div>
-          {selectedFile && isNotValidInputName(displayedName) && (
-            <p className="w-full text-red-500">
-              PDF name must be {limits.minDocNameLimit}-{limits.maxDocNameLimit}{" "}
-              letters
-            </p>
+          <input
+            className="primaryInput h-12 !pl-10 !pr-12 !w-full"
+            type="text"
+            value={displayedName}
+            ref={nameInputRef}
+            onChange={(e) => setDisplayedName(e.target.value)}
+            placeholder="PDF name"
+          />
+
+          {selectedFile && (
+            <IoIosAdd
+              onClick={handleAddPdf}
+              className="icon absolute right-0 text-blue-400 !text-4xl"
+            />
           )}
         </div>
+        {selectedFile && isNotValidInputName(displayedName) && (
+          <p className="w-full text-red-500">
+            PDF name must be {limits.minDocNameLimit}-{limits.maxDocNameLimit}{" "}
+            letters
+          </p>
+        )}
+      </div>
     </div>
   );
 }

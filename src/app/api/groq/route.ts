@@ -11,12 +11,12 @@ export async function POST(req: NextRequest) {
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const wrodsArray = await req.json();
-  const prompt = storyPrompt + wrodsArray;
-  const chatCompletion = await getGroqChatCompletion(prompt);
-  const answer = chatCompletion.choices[0]?.message?.content || "";
-
   try {
+    const wrodsArray = await req.json();
+    const prompt = storyPrompt + wrodsArray;
+    const chatCompletion = await getGroqChatCompletion(prompt);
+    const answer = chatCompletion.choices[0]?.message?.content || "";
+
     return NextResponse.json(
       { message: "Story generated successfully.", answer },
       { status: 201 },

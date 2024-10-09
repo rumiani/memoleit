@@ -1,12 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
-import {
-  essayFormDataReducer,
-  essayResultReducer,
-} from "@/src/redux/slices/essayStateSlice";
+import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
 import { EssayValues } from "@/src/types/interface";
 import React, { useState } from "react";
-import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormSetValue } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function AITopic({
@@ -17,6 +14,7 @@ export default function AITopic({
   const { essay } = useAppSelector((state) => state.essayState);
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+
   const AITopicGenerator = async () => {
     setLoading(true);
     try {
@@ -28,9 +26,8 @@ export default function AITopic({
         body: JSON.stringify({ essay }),
       });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+      if (!response.ok) throw new Error("Network response was not ok");
+
       const result = await response.json();
       setValue("topic", result.answer);
       dispatch(essayFormDataReducer({ topic: result.answer }));

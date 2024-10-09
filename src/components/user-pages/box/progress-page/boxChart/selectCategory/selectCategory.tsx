@@ -24,7 +24,7 @@ export default function SelectCategory({
       .then((storedCategories) => {
         if (storedCategories) dispatch(categoriesReducer(storedCategories));
       })
-      .catch((error) => console.log("error"));
+      .catch((error) => {});
   }, [dispatch]);
 
   const dropdownChangeHnadler = (

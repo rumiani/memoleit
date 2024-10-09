@@ -21,12 +21,9 @@ export default function ReviewSounds() {
       .equals("setting")
       .modify({ isReviewSoundOn: !isReviewSoundOn })
       .then((res) => {
-        console.log(res);
         dispatch(reviewSoundsReducer(!isReviewSoundOn));
       })
-      .catch(() => {
-        console.log("error");
-      });
+      .catch(() => {});
     if (isReviewSoundOn) {
       toast.success("Review sounds turned off");
     } else {
@@ -43,9 +40,7 @@ export default function ReviewSounds() {
         dispatch(rightAnswerSoundSrcReducer(soundSrc));
         toast.success("Sound has changed");
       })
-      .catch(() => {
-        console.log("Error");
-      });
+      .catch(() => {});
   };
   const wrongSoundSaveHander = (soundSrc: string) => {
     db.setting
@@ -56,9 +51,7 @@ export default function ReviewSounds() {
         dispatch(wrongAnswerSoundSrcReducer(soundSrc));
         toast.success("Sound has changed");
       })
-      .catch(() => {
-        console.log("Error");
-      });
+      .catch(() => {});
   };
 
   return (

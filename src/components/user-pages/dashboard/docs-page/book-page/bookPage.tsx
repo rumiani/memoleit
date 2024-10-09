@@ -21,9 +21,7 @@ export default function BookPage({ id }: { id: string }) {
         const { file, ...rest } = pdfFound;
         const url = URL.createObjectURL(pdfFound.file!);
         dispatch(pdfReducer({ ...rest, url }));
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchPdf();
   }, [id, dispatch]);

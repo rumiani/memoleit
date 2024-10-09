@@ -34,9 +34,7 @@ export default function ReviewPage() {
           dispatch(itemReducer(newRandomItem));
           setLoading(false);
         }
-      } catch (error) {
-        console.log("Error");
-      }
+      } catch (error) {}
     };
     fetchItems();
   }, [dispatch]);
