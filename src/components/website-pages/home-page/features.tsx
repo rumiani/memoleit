@@ -4,30 +4,30 @@ const features = [
   {
     title: "Customizable Flashcards",
     description:
-      "Create and manage flashcards tailored to your learning goals.",
+      "Easily create and personalize flashcards to suit your learning objectives.",
     icon: <IoSettings />,
   },
   {
-    title: "Leitner Box Organization",
+    title: "AI-Enhanced Context Learning",
     description:
-      "Organize your flashcards into boxes based on familiarity and saved time.",
+      "Generate stories with AI using your chosen words to master vocabulary in context.",
     icon: <IoSettings />,
   },
   {
-    title: "Spaced Repetition Scheduling",
+    title: "In-Depth Essay Analysis",
     description:
-      "Review your flashcards at optimal intervals for long-term retention.",
+      "Write essays, analyze them with AI, and receive personalized improvement tips.",
     icon: <IoSettings />,
   },
   {
-    title: "Progress Tracking",
+    title: "Seamless PDF Integration",
     description:
-      "Monitor your progress and see how you're advancing through the boxes.",
+      "Upload, read, and highlight PDFs without interrupting your flow, add terms directly to your Leitner box.",
     icon: <IoSettings />,
   },
   {
-    title: "Mobile Compatibility",
-    description: "Study on the go with a mobile-friendly platform.",
+    title: "CSV and Word Package Support",
+    description: "Import custom word lists via CSV files and download ready-made word packages to expand your library.",
     icon: <IoSettings />,
   },
 ];

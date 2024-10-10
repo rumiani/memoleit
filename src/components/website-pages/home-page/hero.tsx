@@ -10,14 +10,18 @@ export default function Hero() {
       <div className="w-full flex flex-col justify-between md:w-1/2 mx-auto">
         <div>
           <h1 className="text-gray-800 text-2xl lg:text-5xl xl:text-5xl font-bold">
-            Master Knowledge, One Card at a Time!
+            Master Your Learning with AI-Powered Flashcards
           </h1>
           <p className="text-lg text-justify mt-4 text-slate-600 max-w-xl">
-            Memoleit is an innovative learning platform that helps you master
-            new topics using the proven Leitner method. Harness the power of
-            spaced repetition to improve memory retention and recall while
-            making your study sessions more efficient and engaging. Join our
-            community and accelerate your learning journey today!
+            Welcome to your ultimate personalized learning platform! MemoLeit
+            combines the power of spaced repetition with advanced AI tools to
+            help you learn faster and more effectively. Create and organize
+            custom flashcards, and master new vocabulary with AI-generated
+            stories that place your words in real-life context. Improve your
+            writing with detailed AI essay analysis, upload and highlight PDFs,
+            and seamlessly add new terms to your study deck. You can even import
+            words through CSV or download curated word packages. Dive in and
+            watch your knowledge grow every day!
           </p>
         </div>
         <div className="mt-6 flex flex-row justify-center sm:justify-start gap-3">
@@ -40,10 +44,10 @@ export default function Hero() {
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center">
         <h2 className="text-center font-bold">Basic tutorial</h2>
         {isLoading && (
-              <div className="w-full flex justify-center p-8">
-                <Spinner size={50} />
-              </div>
-            )}
+          <div className="w-full flex justify-center p-8">
+            <Spinner size={50} />
+          </div>
+        )}
         <div
           className={`relative w-full pb-[56.25%] md:pb-[50%] lg:pb-[45%] h-0 ${isLoading ? "hidden" : ""}`}
         >
