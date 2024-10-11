@@ -1,6 +1,6 @@
 import { authOptions } from "@/lib/auth/authOptions";
 import { essayPrompt } from "@/src/data/essay/essayPrompt";
-import topicPrompt from "@/src/data/essay/topicPrompt";
+import topicPrompt from "@/src/data/essay/essaytopicPrompt";
 import Groq from "groq-sdk";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";

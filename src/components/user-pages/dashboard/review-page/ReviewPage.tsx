@@ -12,7 +12,7 @@ import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { IoIosCloudDone } from "react-icons/io";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
-import GroqInterface from "./groq/groq";
+import GroqInterface from "./storyGenerator/storyGenerator";
 
 export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
