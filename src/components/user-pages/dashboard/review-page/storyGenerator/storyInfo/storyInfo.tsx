@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Dialog from "@/src/components/general/dialog/dialog";
 
-export default function GroqInfo({ words }: { words: string }) {
+export default function StoryInfo({ words }: { words: string }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);
   const closeDialog = () => setDialogOpen(false);

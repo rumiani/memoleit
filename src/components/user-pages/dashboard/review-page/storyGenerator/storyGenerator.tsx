@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import { isEmpty } from "lodash";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
-import GroqInfo from "./groqInfo/groqInfo";
+import GroqInfo from "./storyInfo/storyInfo";
 import wordsHighlighter from "./wordsHighlighter/wordsHighlighter";
 import Story from "./story/story";
 import { generatedStoryReducer } from "@/src/redux/slices/itemStateSlice";
@@ -22,7 +22,7 @@ export default function GroqInterface() {
 
   useEffect(() => {
     const wordsArray = items.map((item) => item.title);
-    const words = wordsArray.join(",");
+    const words = wordsArray.join(", ");
     setWordsArray(wordsArray);
     setWords(words);
   }, [items]);
