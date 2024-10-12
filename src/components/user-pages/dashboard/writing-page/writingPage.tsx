@@ -8,7 +8,7 @@ import { isEmpty } from "lodash";
 export default function WritingPage() {
   const { essayResult } = useAppSelector((state) => state.essayState);
   return (
-    <div>
+    <div className="mb-16 sm:mb-2">
       <div className="relative w-full my-4">
         {isEmpty(essayResult) ? (
           <EssayForm />

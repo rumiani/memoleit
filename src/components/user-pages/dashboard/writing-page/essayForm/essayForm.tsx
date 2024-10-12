@@ -1,24 +1,27 @@
 import { DevTool } from "@hookform/devtools";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { EssayValues } from "@/src/types/interface";
 import { useRouter } from "next/navigation";
-import SelectTask from "./taskInput/taskInput";
 import TopicInput from "./topicInput/topicInput";
 import BodyInput from "./bodyInput/bodyInput";
 import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
-import { essayResultReducer } from "@/src/redux/slices/essayStateSlice";
+import {
+  essayFormDataReducer,
+  essayResultReducer,
+} from "@/src/redux/slices/essayStateSlice";
 import AITopic from "./AITopic/AITopic";
-import TestTypeInput from "./testTypeInput/testTypeInput";
 import WritingInfo from "./writingInfo/writingInfo";
 import { toast } from "react-toastify";
+import TaskInput from "./taskInput/taskInput";
+import TypeInput from "./typeInput/typeInput";
+import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 
 export default function EssayForm() {
-  const { topic, task, body, type } = useAppSelector(
-    (state) => state.essayState.essay,
-  );
+  const [loading, setLoading] = useState<boolean>(false);
+
   const form = useForm<EssayValues>({
-    defaultValues: { topic, body, task, type },
+    defaultValues: { topic: "", body: "", task: "1", type: "general" },
     mode: "onBlur",
   });
 
@@ -38,8 +41,8 @@ export default function EssayForm() {
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   const submitHandler = async (essay: EssayValues, e: any) => {
+    setLoading(true);
     e.preventDefault();
-
     try {
       const response = await fetch("/api/essay/evaluate", {
         method: "POST",
@@ -54,11 +57,15 @@ export default function EssayForm() {
       }
       const result = await response.json();
       dispatch(essayResultReducer(result.answer));
+      dispatch(essayFormDataReducer({ ...essay }));
+
       toast.success("Your essay has been analysed successfully");
     } catch (error) {
       toast.error(
         "Something went wrong, please try again or check your network",
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,7 +76,7 @@ export default function EssayForm() {
     // reset({ topic,task, body, type  });
   }, [reset]);
   return (
-    <div className="relative max-w-2xl w-full mx-auto gap-2 py-1">
+    <div className="relative max-w-2xl w-full mx-auto gap-2 py-1 mb-16">
       <div className="flex flex-row gap-2 justify-center items-center">
         <WritingInfo />
         <h2 className="text-center font-bold my-4">
@@ -83,18 +90,25 @@ export default function EssayForm() {
       >
         <div className="flex flex-col gap-2 items-center p-2 md:p-4 my-2 rounded-xl">
           <div className="flex flex-row w-full justify-around">
-            <SelectTask register={register} error={errors.task?.message} />
-            <TestTypeInput register={register} error={errors.type?.message} />
-            <AITopic setValue={setValue} />
+            <TaskInput register={register} watch={watch} />
+            <TypeInput register={register} watch={watch} />
+
+            <AITopic setValue={setValue} watch={watch} />
           </div>
           <TopicInput register={register} error={errors.topic?.message} />
-          <BodyInput register={register} error={errors.body?.message} />
+          <BodyInput
+            register={register}
+            watch={watch}
+            error={errors.body?.message}
+          />
         </div>
         <button
+          disabled={loading}
           title="Analise my writing with AI"
-          className="primaryBtn !w-fit mx-auto my-2"
+          className="primaryBtn !w-fit mx-auto my-2 flex flex-row gap-2"
         >
-          Analise my writing with AI
+          <span>Analise my writing with AI</span>
+          {loading && <Spinner size={18} />}
         </button>
         {/* <DevTool control={control} placement="top-right" /> */}
       </form>

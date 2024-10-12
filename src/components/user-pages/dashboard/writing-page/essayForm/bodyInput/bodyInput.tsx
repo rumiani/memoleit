@@ -1,8 +1,6 @@
-import { ChangeEvent } from "react";
-import { EssayValues, FormValues } from "@/src/types/interface";
-import { UseFormRegister } from "react-hook-form";
-import { formDataReducer } from "@/src/redux/slices/itemStateSlice";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { EssayValues } from "@/src/types/interface";
+import { UseFormRegister, UseFormWatch } from "react-hook-form";
+import { useAppDispatch } from "@/src/app/hooks";
 import { FaWindowClose } from "react-icons/fa";
 import limits from "@/src/handlers/general/limits/limits";
 import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
@@ -10,16 +8,18 @@ import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
 interface EssayProps {
   register: UseFormRegister<EssayValues>;
   error: string | undefined;
+  watch: UseFormWatch<EssayValues>;
 }
-export default function BodyInput({ register, error }: EssayProps) {
-  const { essay } = useAppSelector((state) => state.essayState);
+export default function BodyInput({ register, error, watch }: EssayProps) {
   const dispatch = useAppDispatch();
-
-  const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(essayFormDataReducer({ body: event.target.value }));
-    // event.target.style.height = "auto";
-    // event.target.style.height = event.target.scrollHeight + 40 + "px";
-    // if (event.target.value === "") event.target.style.height = 200 + "px";
+  const bodyText = watch("body");
+  const essayTask = watch("task");
+  const validateBody = (bodyText: string) => {
+    const minWordCount = essayTask === "1" ? 150 : 250;
+    return (
+      bodyText.split(" ").length > minWordCount ||
+      `Essay must be at least ${minWordCount} words.`
+    );
   };
 
   return (
@@ -33,21 +33,8 @@ export default function BodyInput({ register, error }: EssayProps) {
           rows={5}
           dir="auto"
           {...register("body", {
-            onChange: handleInputChange,
             required: "Body is required",
-            validate: (body) => {
-              if (essay.task === "1") {
-                return (
-                  body.split(" ").length > 150 ||
-                  "Essay must be at least 150 words."
-                );
-              } else {
-                return (
-                  body.split(" ").length > 250 ||
-                  "Essay must be at least 250 words."
-                );
-              }
-            },
+            validate: validateBody,
             pattern: {
               value: new RegExp(
                 `^\\S(.|\\s){${limits.minEssayLimit - 1},${limits.maxEssayLimit - 1}}\\S$`,
@@ -56,7 +43,7 @@ export default function BodyInput({ register, error }: EssayProps) {
             },
           })}
         />
-        {essay.body !== "" && (
+        {bodyText !== "" && (
           <div className="absolute bottom-0 flex flex-row justify-between border-t border-gray-200 p-1 bg-white bg-opacity-90 w-full">
             <div className="flex flex-row gap-1 justify-start items-center">
               <FaWindowClose
@@ -64,11 +51,13 @@ export default function BodyInput({ register, error }: EssayProps) {
                 className="text-red-500 text-xl rounded-sm !p-0 hover:font-bold cursor-pointer"
               />
               <p className="text-gray-500">
-                {essay.body.length + " / " + limits.maxEssayLimit}
+                {bodyText.length + " / " + limits.maxEssayLimit}
               </p>
             </div>
-            <p className="text-gray-500">
-              {essay.body.split(" ").length} words
+            <p
+              className={`${validateBody(bodyText) ? "text-gray-500" : "text-red-500"} `}
+            >
+              {bodyText.split(" ").length} words
             </p>
           </div>
         )}

@@ -1,22 +1,25 @@
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
-import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
 import { EssayValues } from "@/src/types/interface";
 import React, { useState } from "react";
-import { UseFormSetValue } from "react-hook-form";
+import { UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function AITopic({
   setValue,
+  watch,
 }: {
   setValue: UseFormSetValue<EssayValues>;
+  watch: UseFormWatch<EssayValues>;
 }) {
-  const { essay } = useAppSelector((state) => state.essayState);
   const [loading, setLoading] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
+  const topic = watch("topic");
+  const task = watch("task");
+  const body = watch("body");
+  const type = watch("type");
 
   const AITopicGenerator = async () => {
     setLoading(true);
+    const essay = { topic, task, body, type };
     try {
       const response = await fetch("/api/essay/topic", {
         method: "POST",
@@ -30,7 +33,6 @@ export default function AITopic({
 
       const result = await response.json();
       setValue("topic", result.answer);
-      dispatch(essayFormDataReducer({ topic: result.answer }));
       toast.success("A new topic has been generated");
     } catch (error) {
       toast.error("Something went wrong, please check your network");
