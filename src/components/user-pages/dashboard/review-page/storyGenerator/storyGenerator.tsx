@@ -9,13 +9,13 @@ import wordsHighlighter from "./wordsHighlighter/wordsHighlighter";
 import Story from "./story/story";
 import { generatedStoryReducer } from "@/src/redux/slices/itemStateSlice";
 import { storyTopics } from "@/src/data/story/storyTopics";
+import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 
 export default function GroqInterface() {
   const { items, generatedStory } = useAppSelector((state) => state.itemState);
   const [words, setWords] = useState<string>("");
   const [wordsArray, setWordsArray] = useState<string[]>([]);
   const [topic, setTopic] = useState<string>("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const dispatch = useAppDispatch();
@@ -77,12 +77,13 @@ export default function GroqInterface() {
             <div className="flex flex-row items-center justify-between w-full">
               <GroqInfo words={words} />
               <button
-                disabled={topic === ""}
+                disabled={topic === "" || loading}
                 title="Generate a story with your selected items"
-                className="primaryBtn disabled:opacity-50 !m-0 !w-52"
+                className="primaryBtn disabled:opacity-50 !m-0 !w-52 flex flex-row gap-2"
                 onClick={writeAStoryWithGroq}
               >
-                Generate a story
+                <span>Generate a story</span>
+                {loading && <Spinner size={18} />}
               </button>
             </div>
           </div>
