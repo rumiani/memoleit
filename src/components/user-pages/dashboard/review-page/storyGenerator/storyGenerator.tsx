@@ -11,7 +11,7 @@ import { generatedStoryReducer } from "@/src/redux/slices/itemStateSlice";
 import { storyTopics } from "@/src/data/story/storyTopics";
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 
-export default function GroqInterface() {
+export default function StoryGenerator() {
   const { items, generatedStory } = useAppSelector((state) => state.itemState);
   const [words, setWords] = useState<string>("");
   const [wordsArray, setWordsArray] = useState<string[]>([]);

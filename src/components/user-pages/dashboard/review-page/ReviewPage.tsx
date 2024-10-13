@@ -12,7 +12,7 @@ import { randomItemHandler } from "@/src/handlers/randomItemHandler";
 import { itemsToReviewWithActiveCategoryHandler } from "@/src/handlers/itemsToReviewWithActiveCategoryHandler";
 import { IoIosCloudDone } from "react-icons/io";
 import { numberOfItemsToReviewHandler } from "@/src/handlers/numberOfItemsToReviewHandler";
-import GroqInterface from "./storyGenerator/storyGenerator";
+import StoryGenerator from "./storyGenerator/storyGenerator";
 
 export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -75,7 +75,7 @@ export default function ReviewPage() {
             </div>
           </div>
           <div className="w-full lg:w-1/2">
-            <GroqInterface />
+            <StoryGenerator />
           </div>
         </div>
       )}
