@@ -1,33 +1,29 @@
 type TaskType = {
-  general: string;
-  academic: string;
+  one: string;
+  two: string;
 };
 
 type OptionsType = {
   [key: string]: TaskType;
 };
 export default function topicPrompt(
-  task: keyof OptionsType,
-  type: keyof TaskType,
+  type: keyof OptionsType,
+  task: keyof TaskType,
 ) {
   const options: OptionsType = {
-    "1": {
-      general:
-        "write in a personal, semi-formal or formal style that needs to be at least 150 words",
-      academic:
-        "write in a personal, semi-formal or formal style that needs to be at least 150 words",
+    general: {
+      one: "write in a personal, semi-formal or formal style that needs to be at least 150 words",
+      two: "give reasons for your answer and include examples from your own knowledge or experience that needs to be at least 250 words",
     },
-    "2": {
-      general:
-        "give reasons for your answer and include examples from your own knowledge or experience that needs to be at least 250 words",
-      academic:
-        "give reasons for your answer and include examples from your own knowledge or experience that needs to be at least 250 words",
+    academic: {
+      one: "write in a personal, semi-formal or formal style that needs to be at least 150 words",
+      two: "give reasons for your answer and include examples from your own knowledge or experience that needs to be at least 250 words",
     },
   };
 
   return `Give me a topic for task ${task} of 
             ${type} IELTS exam with these requirements:
-            ${options[task][type]}.
+            ${options[type][task]}.
             remember to cut to the chase and only give me the topic with zero extra words or explanation or intruduction.
             `;
 }

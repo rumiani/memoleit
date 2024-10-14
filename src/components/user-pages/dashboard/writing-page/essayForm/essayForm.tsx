@@ -21,7 +21,7 @@ export default function EssayForm() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const form = useForm<EssayValues>({
-    defaultValues: { topic: "", body: "", task: "1", type: "general" },
+    defaultValues: { topic: "", body: "", task: "one", type: "general" },
     mode: "onBlur",
   });
 
@@ -56,6 +56,7 @@ export default function EssayForm() {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
+      
       dispatch(essayResultReducer(result.answer));
       dispatch(essayFormDataReducer({ ...essay }));
 

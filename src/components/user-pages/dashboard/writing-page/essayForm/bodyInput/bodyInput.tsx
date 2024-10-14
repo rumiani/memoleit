@@ -15,7 +15,7 @@ export default function BodyInput({ register, error, watch }: EssayProps) {
   const bodyText = watch("body");
   const essayTask = watch("task");
   const validateBody = (bodyText: string) => {
-    const minWordCount = essayTask === "1" ? 150 : 250;
+    const minWordCount = essayTask === "one" ? 150 : 250;
     return (
       bodyText.split(" ").length > minWordCount ||
       `Essay must be at least ${minWordCount} words.`

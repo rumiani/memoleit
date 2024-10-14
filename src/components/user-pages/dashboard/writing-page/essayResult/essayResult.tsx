@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { EssayInfo } from "./essayInfo/essayInfo";
@@ -7,9 +7,27 @@ import {
   essayResultReducer,
 } from "@/src/redux/slices/essayStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
+import { useAppSelector } from "@/src/app/hooks";
 
-export default function EssayResult({ result }: { result: string }) {
+export default function EssayResult() {
+  const { essayResult } = useAppSelector((state) => state.essayState);
+
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    console.log(essayResult);
+try {
+  
+  const jsonString = JSON.stringify(essayResult).match(/{.*?}/);
+  console.log(jsonString);
+  if (jsonString) {
+    console.log(JSON.parse(jsonString[0]));
+  }
+} catch (error) {
+  console.log('something went wrong');
+  
+}
+  }, [essayResult]);
+
   return (
     <div>
       <div className="flex flex-row gap-2 justify-center">
@@ -19,7 +37,7 @@ export default function EssayResult({ result }: { result: string }) {
       <div className="w-full mx-auto max-w-xl bg-gray-100 p-4 rounded-lg shadow-lg text-justify">
         <ReactMarkdown
           // eslint-disable-next-line react/no-children-prop
-          children={result}
+          children={essayResult}
           remarkPlugins={[remarkGfm]}
           components={{
             // Tailwind CSS for **bold**

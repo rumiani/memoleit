@@ -30,7 +30,7 @@ export default function TaskInput({
         </select>
 
         <p className="text-center w-24 text-sm text-gray-500">
-          {taskText === "1" ? "150 words" : "250 words"}
+          {taskText === "one" ? 150 : 250} words
         </p>
       </div>
     </div>

@@ -13,7 +13,7 @@ export default function WritingPage() {
         {isEmpty(essayResult) ? (
           <EssayForm />
         ) : (
-          <EssayResult result={essayResult} />
+          <EssayResult/>
         )}
       </div>
     </div>
