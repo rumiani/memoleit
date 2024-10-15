@@ -14,7 +14,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { essay } = await req.json();
-    const prompt = topicPrompt(essay.task, essay.type);
+    
+    const prompt = topicPrompt(essay);
+    console.log(topicPrompt);
+    
     const chatCompletion = await getGroqChatCompletion(prompt);
     const answer = chatCompletion.choices[0]?.message?.content || "";
 
@@ -23,6 +26,8 @@ export async function POST(req: NextRequest) {
       { status: 201 },
     );
   } catch (error) {
+    console.log(error);
+    
     return NextResponse.json(
       { message: "Failed to generate an essay result." },
       { status: 500 },

@@ -80,8 +80,8 @@ export interface FormValues {
 export interface EssayValues {
   topic: string;
   body: string;
-  task: string;
-  type:string;
+  type: "general" | "academic";
+  task: "one" | "two";
 }
 
 export interface ItemsInfoTypes {

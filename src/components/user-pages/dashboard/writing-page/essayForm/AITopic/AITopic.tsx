@@ -19,7 +19,7 @@ export default function AITopic({
 
   const AITopicGenerator = async () => {
     setLoading(true);
-    const essay = { topic, task, body, type };
+    const essay = { topic, task, body, type };    
     try {
       const response = await fetch("/api/essay/topic", {
         method: "POST",

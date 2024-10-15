@@ -13,20 +13,6 @@ export default function EssayResult() {
   const { essayResult } = useAppSelector((state) => state.essayState);
 
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    console.log(essayResult);
-try {
-  
-  const jsonString = JSON.stringify(essayResult).match(/{.*?}/);
-  console.log(jsonString);
-  if (jsonString) {
-    console.log(JSON.parse(jsonString[0]));
-  }
-} catch (error) {
-  console.log('something went wrong');
-  
-}
-  }, [essayResult]);
 
   return (
     <div>
