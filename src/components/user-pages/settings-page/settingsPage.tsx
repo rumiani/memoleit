@@ -19,7 +19,6 @@ export default function SettingsPage() {
       <React.Suspense fallback={<div>Loading...</div>}>
         <ActivateWordLists />
       </React.Suspense>
-      <div className="w-full border-[0.5px] border-gray-200"></div>
       <UserCount />
     </div>
   );

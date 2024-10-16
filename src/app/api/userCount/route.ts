@@ -9,9 +9,13 @@ export async function GET(req: NextRequest) {
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    await connectDB();
-    const userCount = await User.countDocuments();
-    return NextResponse.json({ count: userCount });
+    const isAdmin = session.user?.email === process.env.ADMIN;
+    if (isAdmin) {
+      await connectDB();
+      const userCount = await User.countDocuments();
+      return NextResponse.json({ count: userCount });
+    }
+    return NextResponse.json({ error: "Not admin" }, { status: 403 });
   } catch (error) {
     console.error("Failed to fetch user count:", error);
     return NextResponse.json(

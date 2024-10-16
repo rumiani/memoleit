@@ -20,7 +20,7 @@ export default function UserCount() {
       {userCount && (
         <div
           title="Number of users using this app"
-          className="w-full cursor-default text-start px-1 font-bold text-sm mx-auto"
+          className="w-full cursor-default text-start px-1 font-bold text-sm mx-auto border-t border-gray-200 pt-4"
         >
           Total users: {userCount}{" "}
         </div>
