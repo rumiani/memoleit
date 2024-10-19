@@ -1,15 +1,21 @@
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
 import { EssayValues } from "@/src/types/interface";
 import React, { useState } from "react";
-import { UseFormSetValue, UseFormWatch } from "react-hook-form";
+import {
+  UseFormGetValues,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function AITopic({
   setValue,
   watch,
+  getValues,
 }: {
   setValue: UseFormSetValue<EssayValues>;
   watch: UseFormWatch<EssayValues>;
+  getValues: UseFormGetValues<EssayValues>;
 }) {
   const [loading, setLoading] = useState<boolean>(false);
   const topic = watch("topic");
@@ -19,7 +25,8 @@ export default function AITopic({
 
   const AITopicGenerator = async () => {
     setLoading(true);
-    const essay = { topic, task, body, type };    
+
+    const essay = { topic, task, body, type };
     try {
       const response = await fetch("/api/essay/topic", {
         method: "POST",
@@ -32,8 +39,19 @@ export default function AITopic({
       if (!response.ok) throw new Error("Network response was not ok");
 
       const result = await response.json();
-      setValue("topic", result.answer);
-      toast.success("A new topic has been generated");
+      setValue("topic", "");
+
+      let index = 0;
+      const intervalId = setInterval(() => {
+        if (result.streamArray.length === 0) {
+          toast.success("A new topic has been generated");
+          clearInterval(intervalId);
+          return;
+        }
+        const chunk = result.streamArray.shift();
+        setValue("topic", getValues("topic") + chunk);
+        index++;
+      }, 100);
     } catch (error) {
       toast.error("Something went wrong, please check your network");
     } finally {

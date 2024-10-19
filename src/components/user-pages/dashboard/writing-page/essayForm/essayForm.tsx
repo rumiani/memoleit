@@ -4,7 +4,7 @@ import { EssayValues } from "@/src/types/interface";
 import { useRouter } from "next/navigation";
 import TopicInput from "./topicInput/topicInput";
 import BodyInput from "./bodyInput/bodyInput";
-import { useAppDispatch, useAppSelector } from "@/src/app/hooks";
+import { useAppDispatch } from "@/src/app/hooks";
 import {
   essayFormDataReducer,
   essayResultReducer,
@@ -55,6 +55,7 @@ export default function EssayForm() {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
+      console.log(result);
       
       dispatch(essayResultReducer(result.answer));
       dispatch(essayFormDataReducer({ ...essay }));
@@ -93,7 +94,7 @@ export default function EssayForm() {
             <TaskInput register={register} watch={watch} />
             <TypeInput register={register} watch={watch} />
 
-            <AITopic setValue={setValue} watch={watch} />
+            <AITopic setValue={setValue} watch={watch} getValues={getValues}/>
           </div>
           <TopicInput register={register} error={errors.topic?.message} />
           <BodyInput

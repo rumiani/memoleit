@@ -1,5 +1,5 @@
+import ollama from "ollama";
 import { authOptions } from "@/lib/auth/authOptions";
-import groqEssayEvaluator from "@/lib/groqEssayEvaluator/groqEssayEvaluator";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,13 +9,12 @@ export async function POST(req: NextRequest) {
     if (!session)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const { essay } = await req.json();
-    const evaluation = await groqEssayEvaluator(essay);
+    const { prompt } = await req.json();
+    console.log(prompt);
+
+    const answer = await llamaHandler(prompt);
     return NextResponse.json(
-      {
-        message: "Essay result generated successfully/",
-        essay: { essay, evaluation },
-      },
+      { message: "Essay result generated successfully/", answer },
       { status: 201 },
     );
   } catch (error) {
@@ -27,3 +26,11 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+const llamaHandler = async (prompt: string) => {
+  const response = await ollama.chat({
+    model: "phi3",
+    messages: [{ role: "user", content: prompt }],
+  });
+  return response.message.content;
+};

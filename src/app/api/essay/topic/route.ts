@@ -14,20 +14,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { essay } = await req.json();
-    
-    const prompt = topicPrompt(essay);
-    console.log(topicPrompt);
-    
-    const chatCompletion = await getGroqChatCompletion(prompt);
-    const answer = chatCompletion.choices[0]?.message?.content || "";
 
+    const prompt = topicPrompt(essay);
+    console.log(prompt);
+
+    const stream = await getGroqChatCompletion(prompt);
+    const streamArray = [];
+    for await (const chunk of stream) {
+      const streamChunk = chunk.choices[0]?.delta?.content || "";
+      streamArray.push(streamChunk);
+    }
     return NextResponse.json(
-      { message: "Essay result generated successfully/", answer },
+      { message: "Essay result generated successfully/", streamArray },
       { status: 201 },
     );
   } catch (error) {
     console.log(error);
-    
+
     return NextResponse.json(
       { message: "Failed to generate an essay result." },
       { status: 500 },
@@ -44,5 +47,7 @@ const getGroqChatCompletion = (data: string) => {
       },
     ],
     model: "llama3-8b-8192",
+    max_tokens: 1024,
+    stream: true,
   });
 };

@@ -12,9 +12,5 @@ export default function topicPrompt(essay: EssayValues) {
     },
   };
 
-  return `Give me a topic for task ${essay.task} of 
-            ${essay.type} IELTS exam with these requirements:
-            ${options[essay.type][essay.task]}.
-            remember to cut to the chase and only give me the topic with zero extra words or explanation or intruduction.
-            `;
+  return `Give me a topic for task ${essay.task} of ${essay.type} IELTS exam with these requirements: ${options[essay.type][essay.task]}. remember to cut to the chase and only give me the topic with zero extra words or explanation or intruduction.`;
 }
