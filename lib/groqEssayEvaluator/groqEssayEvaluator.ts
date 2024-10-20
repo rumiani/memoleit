@@ -1,27 +1,23 @@
-import { EssayValues } from "@/src/types/interface";
+import { EssayEvaluation, EssayValues } from "@/src/types/interface";
 import Groq from "groq-sdk";
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-type EssayEvaluation = {
-  taskAchievement: string;
-  coherenceAndCohesion: string;
-  lexicalResource: string;
-  grammaticalRangeAndAccuracy: string;
-  score: number;
-  isRelatedToTopic: boolean;
-};
 
 const schema = {
   type: "object",
   properties: {
-    "Task Achievement": { type: "string", title: "Task Achievement" },
-    "Coherence and Cohesion": {
+    taskAchievement: { type: "string", title: "Task Achievement" },
+    coherenceAndCohesion: {
       type: "string",
       title: "Coherence and Cohesion",
     },
-    "Lexical Resource": { type: "string", title: "Lexical Resource" },
-    "Grammatical Range and Accuracy": {
+    lexicalResource: { type: "string", title: "Lexical Resource" },
+    grammaticalRangeAndAccuracy: {
       type: "string",
       title: "Grammatical Range and Accuracy",
+    },
+    suggestions: {
+      type: "string",
+      title: "Suggestions to write a better essay in the future",
     },
     score: {
       type: "number",
@@ -30,13 +26,14 @@ const schema = {
       minimum: 1,
       maximum: 9,
     },
-    isRelatedToTopic: { type: "boolean", title: "Is related to Topic" },
+    isRelatedToTopic: { type: "boolean", title: "True if the essay is related to Topic and false if it is not" },
   },
   required: [
-    "Task Achievement",
-    "Coherence and Cohesion",
-    "Lexical Resource",
-    "Grammatical Range and Accuracy",
+    "taskAchievement",
+    "coherenceAndCohesion",
+    "lexicalResource",
+    "grammaticalRangeAndAccuracy",
+    "suggestions",
     "score",
     "isRelatedToTopic",
   ],
@@ -67,12 +64,14 @@ const groqEssayEvaluator = async (
   });
 
   const parsed = JSON.parse(chatCompletion.choices[0].message.content!);
+console.log(parsed);
 
   return {
-    taskAchievement: parsed["Task Achievement"],
-    coherenceAndCohesion: parsed["Coherence and Cohesion"],
-    lexicalResource: parsed["Lexical Resource"],
-    grammaticalRangeAndAccuracy: parsed["Grammatical Range and Accuracy"],
+    taskAchievement: parsed["taskAchievement"],
+    coherenceAndCohesion: parsed["coherenceAndCohesion"],
+    lexicalResource: parsed["lexicalResource"],
+    grammaticalRangeAndAccuracy: parsed["grammaticalRangeAndAccuracy"],
+    suggestions: parsed["suggestions"],
     score: parsed.score,
     isRelatedToTopic: parsed.isRelatedToTopic,
   };

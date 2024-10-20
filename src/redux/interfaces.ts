@@ -1,5 +1,6 @@
 import {
   CategoryTypes,
+  EssayEvaluation,
   EssayValues,
   FormDataTypes,
   ItemTypes,
@@ -16,8 +17,8 @@ export interface initialItemStateTypes {
   formData: FormDataTypes;
   items: ItemTypes[];
   numberOfItemsToReview: number;
-  translatingItems:{[key: string]:LookUpResultTypes[]};
-  generatedStory:string;
+  translatingItems: { [key: string]: LookUpResultTypes[] };
+  generatedStory: string;
 }
 export interface initialCategoryStateTypes {
   category: CategoryTypes;
@@ -27,9 +28,9 @@ export interface initialCategoryStateTypes {
 export interface initialPdfStateTypes {
   pdf: PdfStateTypes;
   pdfs: PdfStateTypes[];
-  pdfOnEdit:string;
+  pdfOnEdit: string;
 }
 export interface initialEssayTypes {
-  essay:EssayValues;
-  essayResult:string;
+  essay: EssayValues;
+  essayResult: EssayEvaluation;
 }

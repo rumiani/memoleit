@@ -55,9 +55,7 @@ export default function EssayForm() {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
-      console.log(result);
-      
-      dispatch(essayResultReducer(result.answer));
+      dispatch(essayResultReducer(result.essay.evaluation));
       dispatch(essayFormDataReducer({ ...essay }));
 
       toast.success("Your essay has been analysed successfully");
@@ -94,7 +92,7 @@ export default function EssayForm() {
             <TaskInput register={register} watch={watch} />
             <TypeInput register={register} watch={watch} />
 
-            <AITopic setValue={setValue} watch={watch} getValues={getValues}/>
+            <AITopic setValue={setValue} watch={watch} getValues={getValues} />
           </div>
           <TopicInput register={register} error={errors.topic?.message} />
           <BodyInput
@@ -111,7 +109,6 @@ export default function EssayForm() {
           <span>Analise my writing with AI</span>
           {loading && <Spinner size={18} />}
         </button>
-        {/* <DevTool control={control} placement="top-right" /> */}
       </form>
     </div>
   );
