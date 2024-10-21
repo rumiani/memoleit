@@ -20,35 +20,10 @@ export default function EssayResult() {
         <strong className="text-center block">Your Essay analisis</strong>
         <EssayInfo />
       </div>
-      <div className="w-full mx-auto max-w-xl bg-gray-100 p-4 rounded-lg shadow-lg text-justify">
-        <ReactMarkdown
-          // eslint-disable-next-line react/no-children-prop
-          children={essayResult}
-          remarkPlugins={[remarkGfm]}
-          components={{
-            // Tailwind CSS for **bold**
-            strong: ({ children }) => (
-              <strong className="font-bold text-lg">{children}</strong>
-            ),
-            // Tailwind CSS for ```code blocks```
-            code: ({ children }) => (
-              <code className="text-blue-500 px-1 py-1 rounded">
-                {children}
-              </code>
-            ),
-            // Tailwind CSS for ```code blocks``` in a block (``` multi-line)
-            pre: ({ children }) => (
-              <pre className="bg-gray-800 text-green-400 p-4 rounded-lg overflow-x-auto">
-                {children}
-              </pre>
-            ),
-          }}
-        />
-      </div>
+      <div></div>
       <button
         onClick={() => {
           dispatch(essayFormDataReducer({ topic: "", body: "" }));
-          dispatch(essayResultReducer(""));
         }}
         className="primaryBtn !w-fit m-4 mx-auto"
       >

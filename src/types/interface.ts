@@ -142,11 +142,11 @@ export interface SuperPageTypes {
 }
 
 export interface EssayEvaluation  {
-  taskAchievement: string;
-  coherenceAndCohesion: string;
-  lexicalResource: string;
-  grammaticalRangeAndAccuracy: string;
-  suggestions:string;
-  score: number;
+  taskAchievement: {title:string,value:string};
+  coherenceAndCohesion: {title:string,value:string};
+  lexicalResource: {title:string,value:string};
+  grammaticalRangeAndAccuracy: {title:string,value:string};
+  suggestions:{title:string,value:string};
+  score: {title:string,value:string};
   isRelatedToTopic: boolean;
 };

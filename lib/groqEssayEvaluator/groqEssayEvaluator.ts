@@ -67,7 +67,7 @@ const groqEssayEvaluator = async (
 console.log(parsed);
 
   return {
-    taskAchievement: parsed["taskAchievement"],
+    taskAchievement: {title:"Task Achievement", value:parsed["taskAchievement"]},
     coherenceAndCohesion: parsed["coherenceAndCohesion"],
     lexicalResource: parsed["lexicalResource"],
     grammaticalRangeAndAccuracy: parsed["grammaticalRangeAndAccuracy"],

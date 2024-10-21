@@ -27,7 +27,6 @@ export const itemStateSlice = createSlice({
     },
     essayResultReducer: (state, action: PayloadAction<EssayEvaluation>) => {
       console.log(action.payload);
-      
       state.essayResult = { ...state.essayResult, ...action.payload };
     },
   },

@@ -55,6 +55,8 @@ export default function EssayForm() {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
+      console.log(result);
+      
       dispatch(essayResultReducer(result.essay.evaluation));
       dispatch(essayFormDataReducer({ ...essay }));
 

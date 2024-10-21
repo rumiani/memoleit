@@ -3,7 +3,6 @@ import React from "react";
 import EssayResult from "./essayResult/essayResult";
 import EssayForm from "./essayForm/essayForm";
 import { useAppSelector } from "@/src/app/hooks";
-import { isEmpty } from "lodash";
 
 export default function WritingPage() {
   const { essayResult } = useAppSelector((state) => state.essayState);
