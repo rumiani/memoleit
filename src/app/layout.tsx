@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/src/components/general/layouts/generalLayout/footer/footer";
 import Header from "@/src/components/general/layouts/generalLayout/header/header";
 import NextAuthProvider from "../components/providers/providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -77,6 +78,7 @@ export default async function RootLayout({
               <main className="break-words">{children}</main>
               <Footer />
             </div>
+            <Analytics />
           </ReduxProvider>
         </NextAuthProvider>
       </body>
