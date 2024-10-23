@@ -48,7 +48,7 @@ const groqEssayEvaluator = async (
       {
         role: "system",
         content: `You are an IELTS essay evaluation system that scores the essay based on the IELTS essay requirements. 
-            Evaluate the following essay for IELTS ${essay.type} writng task ${essay.task} 
+            Evaluate the following essay for IELTS ${essay.type} writng task ${essay.task}.
             The evaluation must follow this JSON schema: ${jsonSchema}.
             Please make sure the response is a valid JSON object and also the essay is about the topic otherwise put the isRelatedToTopic value to false.`,
       },
@@ -64,7 +64,6 @@ const groqEssayEvaluator = async (
   });
 
   const parsed = JSON.parse(chatCompletion.choices[0].message.content!);
-console.log(parsed);
 
   return {
     taskAchievement: {title:"Task Achievement", value:parsed["taskAchievement"]},
