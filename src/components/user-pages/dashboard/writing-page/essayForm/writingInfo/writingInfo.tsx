@@ -21,19 +21,7 @@ export default function WritingInfo() {
       <Dialog isOpen={isDialogOpen} closeBtn closeDialogHandler={closeDialog}>
         <div className="text-start">
           <h2 className="text-center font-bold">AI essay analyser</h2>
-          <br />
-          - Write an essay and ask for AI alnelise it.
-          <br />- Here are the criteries that AI will anelise your essay based
-          on:
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-          </ul>
-        </div>
-        <div className="text-start my-4">
-          <strong>Selected words to review:</strong> <br />{" "}
+          <br />- Write an essay and ask AI to alnelise it.
         </div>
       </Dialog>
     </div>

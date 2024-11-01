@@ -6,16 +6,11 @@ import { useAppSelector } from "@/src/app/hooks";
 
 export default function WritingPage() {
   const { essayResult } = useAppSelector((state) => state.essayState);
-  console.log(essayResult);
-  
+
   return (
     <div className="mb-16 sm:mb-2">
       <div className="relative w-full my-4">
-        {essayResult.taskAchievement === "" ? (
-          <EssayForm />
-        ) : (
-          <EssayResult/>
-        )}
+        {essayResult.isRelatedToTopic ? <EssayResult /> : <EssayForm />}
       </div>
     </div>
   );

@@ -140,13 +140,13 @@ export interface SuperPageTypes {
   icon: IconType;
   links: LinksTypes[];
 }
-
-export interface EssayEvaluation  {
-  taskAchievement: {title:string,value:string};
-  coherenceAndCohesion: {title:string,value:string};
-  lexicalResource: {title:string,value:string};
-  grammaticalRangeAndAccuracy: {title:string,value:string};
-  suggestions:{title:string,value:string};
-  score: {title:string,value:string};
+export interface TitleValueType {
+  title: string;
+  value: string;
+}
+export interface EssayEvaluation {
+  properties: TitleValueType[];
+  suggestions: string;
+  score: string;
   isRelatedToTopic: boolean;
-};
+}

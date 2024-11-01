@@ -5,12 +5,9 @@ import { EssayEvaluation } from "@/src/types/interface";
 const initialState: initialEssayTypes = {
   essay: { topic: "", body: "", task: "one", type: "general" },
   essayResult: {
-    taskAchievement: "",
-    coherenceAndCohesion: "",
-    lexicalResource: "",
-    grammaticalRangeAndAccuracy: "",
+    properties: [],
     suggestions: "",
-    score: 0,
+    score: "",
     isRelatedToTopic: false,
   },
 };
@@ -26,7 +23,6 @@ export const itemStateSlice = createSlice({
       state.essay = { ...state.essay, ...action.payload };
     },
     essayResultReducer: (state, action: PayloadAction<EssayEvaluation>) => {
-      console.log(action.payload);
       state.essayResult = { ...state.essayResult, ...action.payload };
     },
   },

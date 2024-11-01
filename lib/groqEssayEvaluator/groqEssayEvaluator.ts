@@ -26,7 +26,10 @@ const schema = {
       minimum: 1,
       maximum: 9,
     },
-    isRelatedToTopic: { type: "boolean", title: "True if the essay is related to Topic and false if it is not" },
+    isRelatedToTopic: {
+      type: "boolean",
+      title: "True if the essay is related to Topic and false if it is not",
+    },
   },
   required: [
     "taskAchievement",
@@ -66,10 +69,24 @@ const groqEssayEvaluator = async (
   const parsed = JSON.parse(chatCompletion.choices[0].message.content!);
 
   return {
-    taskAchievement: {title:"Task Achievement", value:parsed["taskAchievement"]},
-    coherenceAndCohesion: parsed["coherenceAndCohesion"],
-    lexicalResource: parsed["lexicalResource"],
-    grammaticalRangeAndAccuracy: parsed["grammaticalRangeAndAccuracy"],
+    properties: [
+      {
+        title: "Task Achievement",
+        value: parsed["taskAchievement"],
+      },
+      {
+        title: "Coherence And Cohesion",
+        value: parsed["coherenceAndCohesion"],
+      },
+      {
+        title: "Lexical Resource",
+        value: parsed["lexicalResource"],
+      },
+      {
+        title: "Grammatical Range And Accuracy",
+        value: parsed["grammaticalRangeAndAccuracy"],
+      },
+    ],
     suggestions: parsed["suggestions"],
     score: parsed.score,
     isRelatedToTopic: parsed.isRelatedToTopic,
