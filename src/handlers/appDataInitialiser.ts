@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { ItemTypes } from "../types/interface";
 import words from "@/src/data/initialExampleWords.json";
 import { db } from "../services/db";
-import { userIdTest } from "../services/userId";
 import { reviewSounds } from "../data/reviewSounds";
 import { randomIdGenerator } from "./randomID";
 import { makeUrlFriendly } from "./makeUrlFriendly";
@@ -15,13 +14,15 @@ const wordsObject = words.map((word, i) => ({
   box: Math.floor(i / 2) + 1,
 }));
 
-export const appDataInitialiser = async () => {
+export const appDataInitialiser = async (session:any) => {
+  console.log(session);
+  
   try {
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly("Example Category");
     const category = {
       id: categoryId,
-      userId: userIdTest,
+      userId: session.user.email,
       name: categoryName,
       status: false,
       createdAt: Date.now() - 1000 * 3600 * 1000,
@@ -31,7 +32,7 @@ export const appDataInitialiser = async () => {
     words?.forEach((title, i) => {
       itemsData!.push({
         id: uuidv4(),
-        userId: userIdTest,
+        userId: session.user.email,
         categoryId,
         title,
         body: "",
@@ -50,7 +51,7 @@ export const appDataInitialiser = async () => {
       setting = {
         id: randomIdGenerator(8),
         name: "setting",
-        userId: userIdTest,
+        userId: session.user.email,
         selectAllCategories: false,
         isReviewSoundOn: false,
         rightAnswerSoundSrc: reviewSounds.right[0].src,

@@ -9,8 +9,10 @@ import {
   leitnerTextSelectionModeReducer,
   storedSettingReducer,
 } from "@/src/redux/slices/settingStateSlice";
+import { useSession } from "next-auth/react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+  const { data: session } = useSession();
   const dispatch = useAppDispatch();
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -38,7 +40,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const appInitialisationHandler = async () => {
-      await appDataInitialiser();
+      await appDataInitialiser(session);
       db.setting
         .where("name")
         .equals("setting")
@@ -49,7 +51,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         .catch((error) => {});
     };
     appInitialisationHandler();
-  }, [dispatch]);
+  }, [dispatch, session]);
 
   return (
     <>

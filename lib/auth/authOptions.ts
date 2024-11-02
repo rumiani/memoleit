@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { connectDB } from "@/lib/dbConfig";
 import User from "@/utils/models/user";
@@ -75,7 +75,7 @@ export const authOptions: NextAuthOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              content: `🎉 New user signed up!\nUsername: ${name}\nEmail: ${email}`,
+              content: `🎉 New user signed up!\nname: ${name}\nEmail: ${email}`,
             }),
           });
         }
