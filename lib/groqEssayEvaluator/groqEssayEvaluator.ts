@@ -1,4 +1,4 @@
-import { EssayEvaluation, EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 import Groq from "groq-sdk";
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -43,8 +43,8 @@ const schema = {
 };
 
 const groqEssayEvaluator = async (
-  essay: EssayValues,
-): Promise<EssayEvaluation> => {
+  essay: EssayFormValues,
+): Promise<any> => {
   const jsonSchema = JSON.stringify(schema, null, 4);
   const chatCompletion = await groq.chat.completions.create({
     messages: [
