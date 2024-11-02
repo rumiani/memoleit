@@ -3,6 +3,7 @@ import { EssayInfo } from "./essayInfo/essayInfo";
 import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
 import { useAppDispatch } from "@/src/app/hooks";
 import { EssayObjectTypes } from "@/src/types/interface";
+import Link from "next/link";
 
 export default function Essay({ essay }: { essay: EssayObjectTypes }) {
   const dispatch = useAppDispatch();
@@ -35,14 +36,16 @@ export default function Essay({ essay }: { essay: EssayObjectTypes }) {
           </div>{" "}
         </div>
       </div>
-      <button
-        onClick={() => {
-          dispatch(essayFormDataReducer({ topic: "", body: "" }));
-        }}
-        className="primaryBtn sm:mb-2 mb-20 !w-fit m-4 mx-auto"
-      >
-        Write a new essay
-      </button>
+      <Link href="/user/essay/essay-form">
+        <button
+          onClick={() => {
+            dispatch(essayFormDataReducer({ topic: "", body: "" }));
+          }}
+          className="primaryBtn sm:mb-2 mb-20 !w-fit m-4 mx-auto"
+        >
+          Write a new essay
+        </button>
+      </Link>
     </div>
   );
 }
