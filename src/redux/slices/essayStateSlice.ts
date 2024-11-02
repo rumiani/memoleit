@@ -1,14 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialEssayTypes } from "../interfaces";
-import { EssayEvaluation } from "@/src/types/interface";
+import { EssayObjectTypes } from "@/src/types/interface";
 
 const initialState: initialEssayTypes = {
   essay: { topic: "", body: "", task: "one", type: "general" },
-  essayResult: {
+  essayObject: {
+    id: "",
+    user: "",
+    topic: "",
+    body: "",
+    type: "general",
+    task: "one",
     properties: [],
     suggestions: "",
-    score: "",
+    score: "0",
     isRelatedToTopic: false,
+    createdAt: 0,
   },
 };
 
@@ -22,13 +29,13 @@ export const itemStateSlice = createSlice({
     ) => {
       state.essay = { ...state.essay, ...action.payload };
     },
-    essayResultReducer: (state, action: PayloadAction<EssayEvaluation>) => {
-      state.essayResult = { ...state.essayResult, ...action.payload };
+    essayObjectReducer: (state, action: PayloadAction<EssayObjectTypes>) => {
+      state.essayObject = { ...state.essayObject, ...action.payload };
     },
   },
 });
 
-export const { essayFormDataReducer, essayResultReducer } =
+export const { essayFormDataReducer, essayObjectReducer } =
   itemStateSlice.actions;
 
 export default itemStateSlice.reducer;

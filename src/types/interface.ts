@@ -77,12 +77,6 @@ export interface FormValues {
   category: string;
   categoryId: string;
 }
-export interface EssayValues {
-  topic: string;
-  body: string;
-  type: "general" | "academic";
-  task: "one" | "two";
-}
 
 export interface ItemsInfoTypes {
   allItemsCount: number;
@@ -144,9 +138,24 @@ export interface TitleValueType {
   title: string;
   value: string;
 }
-export interface EssayEvaluation {
+
+export interface EssayFormValues {
+  topic: string;
+  body: string;
+  type: "general" | "academic";
+  task: "one" | "two";
+}
+
+export interface EssayObjectTypes {
+  id: string;
+  user: string;
+  topic: string;
+  body: string;
+  type: "general" | "academic";
+  task: "one" | "two";
   properties: TitleValueType[];
   suggestions: string;
   score: string;
   isRelatedToTopic: boolean;
+  createdAt: number;
 }

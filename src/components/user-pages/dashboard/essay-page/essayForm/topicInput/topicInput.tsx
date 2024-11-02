@@ -1,9 +1,9 @@
-import { EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 import { UseFormRegister } from "react-hook-form";
 import limits from "@/src/handlers/general/limits/limits";
 
 interface TopicProps {
-  register: UseFormRegister<EssayValues>;
+  register: UseFormRegister<EssayFormValues>;
   error: string | undefined;
 }
 const TopicInput = ({ register, error }: TopicProps) => {

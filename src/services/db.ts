@@ -1,6 +1,7 @@
 import Dexie, { Table } from "dexie";
 import {
   CategoryTypes,
+  EssayObjectTypes,
   ItemTypes,
   PdfDBTypes,
   ReviewTypes,
@@ -14,6 +15,7 @@ export class MySubClassedDexie extends Dexie {
   reviews!: Table<ReviewTypes>;
   setting!: Table<SettingTypes>;
   pdfs!: Table<PdfDBTypes>;
+  essays!: Table<EssayObjectTypes>;
 
   constructor() {
     super("memoLeitDatabase");
@@ -25,6 +27,8 @@ export class MySubClassedDexie extends Dexie {
       setting:
         "++id, name, userId , isReviewSoundOn, rightAnswerSoundSrc, wrongAnswerSoundSrc, isTextToSpeechOn, textToSpeechLang, isDictionaryOn, leitnerTextSelectionMode, wordGroups, tour",
       pdfs: "++id, name,pdfName,lastVisitedPage, numberOfPages, file, createdAt",
+      essays:
+        "++id, user, topic, body, type, task, properties, suggestions, score, isRelatedToTopic, createdAt",
     });
   }
 }

@@ -1,4 +1,4 @@
-import { EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 import { UseFormRegister, UseFormWatch } from "react-hook-form";
 import { useAppDispatch } from "@/src/app/hooks";
 import { FaWindowClose } from "react-icons/fa";
@@ -6,9 +6,9 @@ import limits from "@/src/handlers/general/limits/limits";
 import { essayFormDataReducer } from "@/src/redux/slices/essayStateSlice";
 
 interface EssayProps {
-  register: UseFormRegister<EssayValues>;
+  register: UseFormRegister<EssayFormValues>;
   error: string | undefined;
-  watch: UseFormWatch<EssayValues>;
+  watch: UseFormWatch<EssayFormValues>;
 }
 export default function BodyInput({ register, error, watch }: EssayProps) {
   const dispatch = useAppDispatch();

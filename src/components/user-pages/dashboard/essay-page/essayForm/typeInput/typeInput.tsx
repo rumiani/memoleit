@@ -1,4 +1,4 @@
-import { EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 import { UseFormRegister, UseFormWatch } from "react-hook-form";
 import { essayOptions } from "@/src/data/essay/essayOptions";
 
@@ -6,8 +6,8 @@ export default function TypeInput({
   register,
   watch,
 }: {
-  register: UseFormRegister<EssayValues>;
-  watch: UseFormWatch<EssayValues>;
+  register: UseFormRegister<EssayFormValues>;
+  watch: UseFormWatch<EssayFormValues>;
 }) {
   const typeText = watch("type");
   return (

@@ -1,15 +1,14 @@
 "use client";
 
 import { db } from "@/src/services/db";
-import { isEmpty } from "lodash";
 import { textDataSchema } from "../validation/textValidation";
 import { ItemTypes } from "@/src/types/interface";
-import { userIdTest } from "@/src/services/userId";
+import { getSession } from "next-auth/react";
 
 export const saveImportedTextHandler = async (newJsonData: string) => {
   try {
+    const session = await getSession();
     const validatedData = textDataSchema.parse(newJsonData);
-
     const categoriesToAdd = [];
     const itemsToAdd: ItemTypes[] = [];
 
@@ -36,7 +35,7 @@ export const saveImportedTextHandler = async (newJsonData: string) => {
         if (!existedCategory) {
           const newCategory = {
             id: item.categoryId,
-            userId: userIdTest,
+            userId: session?.user?.email!,
             name: item.category,
             status: true,
             createdAt: Date.now(),

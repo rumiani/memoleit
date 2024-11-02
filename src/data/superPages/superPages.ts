@@ -1,7 +1,7 @@
 import { SuperPageTypes } from "@/src/types/interface";
 import { MdDashboard } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
-
+import { GiStabbedNote } from "react-icons/gi";
 export const superPages: SuperPageTypes[] = [
   {
     lable: "Dashboard",
@@ -22,12 +22,7 @@ export const superPages: SuperPageTypes[] = [
         lable: "New Item",
         name: "new",
         url: "/user/dashboard/new",
-      },
-      {
-        lable: "Writing",
-        name: "writing",
-        url: "/user/dashboard/writing",
-      },
+      }
     ],
   },
   {
@@ -50,6 +45,28 @@ export const superPages: SuperPageTypes[] = [
         name: "search",
         url: "/user/box/search",
       },
+    ],
+  },
+  {
+    lable: "Essay",
+    name: "essay",
+    icon: GiStabbedNote,
+    links: [
+      {
+        lable: "Essay Form",
+        name: "essay-form",
+        url: "/user/essay/essay-form",
+      },
+      {
+        lable: "Essays",
+        name: "essays",
+        url: "/user/essay/essays",
+      },
+      // {
+      //   lable: "Writing",
+      //   name: "writing",
+      //   url: "/user/writing/writing-data",
+      // },
     ],
   },
 ];

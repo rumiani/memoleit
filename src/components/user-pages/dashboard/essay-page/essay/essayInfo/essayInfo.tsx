@@ -3,9 +3,9 @@ import { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import Dialog from "@/src/components/general/dialog/dialog";
 import { useAppSelector } from "@/src/app/hooks";
+import { EssayObjectTypes } from "@/src/types/interface";
 
-export const EssayInfo = () => {
-  const { essay } = useAppSelector((state) => state.essayState);
+export const EssayInfo = ({ essay }: { essay: EssayObjectTypes }) => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const openDialog = () => setDialogOpen(true);
   const closeDialog = () => setDialogOpen(false);
@@ -24,12 +24,14 @@ export const EssayInfo = () => {
         <div>
           <h2 className="text-center font-bold">Your essay</h2>
           <div className="h-96 text-start overflow-y-auto">
-            <strong>Topic</strong>
-            <br />
-            <p>{essay.topic}</p>
-            <strong>Essay</strong>
-            <br />
-            <p>{essay.body}</p>
+            <div className="flex flex-col">
+              <strong>Topic</strong>
+              <p className="px-2">{essay.topic}</p>
+            </div>
+            <div className="flex flex-col">
+              <strong>Essay</strong>
+              <p className="px-2">{essay.body}</p>
+            </div>
           </div>
         </div>
       </Dialog>

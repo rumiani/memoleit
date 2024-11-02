@@ -2,9 +2,9 @@ import { toast } from "react-toastify";
 import { db } from "@/src/services/db";
 import notFoundError from "@/src/handlers/notFoundError";
 import { randomIdGenerator } from "@/src/handlers/randomID";
-import { userIdTest } from "@/src/services/userId";
 import { FormValues } from "@/src/types/interface";
 import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
+import { getSession } from "next-auth/react";
 
 export const saveEditedItemHandler = async (
   { title, body, category }: FormValues,
@@ -13,12 +13,12 @@ export const saveEditedItemHandler = async (
   try {
     let item = await db.items.get(id);
     if (!item) throw notFoundError("404");
-
+    const session = await getSession();
     const categoryObject = await db.categories.where("name").equals(makeUrlFriendly(category)).first();
     if (!categoryObject) {
       const categoryId = await db.categories.add({
         id: randomIdGenerator(8),
-        userId: userIdTest,
+        userId: session?.user?.email!,
         name: makeUrlFriendly(category),
         status: true,
         createdAt: Date.now(),

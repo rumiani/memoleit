@@ -1,7 +1,7 @@
 import {
   CategoryTypes,
-  EssayEvaluation,
-  EssayValues,
+  EssayFormValues,
+  EssayObjectTypes,
   FormDataTypes,
   ItemTypes,
   LookUpResultTypes,
@@ -31,6 +31,6 @@ export interface initialPdfStateTypes {
   pdfOnEdit: string;
 }
 export interface initialEssayTypes {
-  essay: EssayValues;
-  essayResult: EssayEvaluation;
+  essay: EssayFormValues;
+  essayObject: EssayObjectTypes;
 }

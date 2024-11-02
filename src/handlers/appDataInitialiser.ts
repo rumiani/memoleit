@@ -14,9 +14,7 @@ const wordsObject = words.map((word, i) => ({
   box: Math.floor(i / 2) + 1,
 }));
 
-export const appDataInitialiser = async (session:any) => {
-  console.log(session);
-  
+export const appDataInitialiser = async (session:any) => {  
   try {
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly("Example Category");

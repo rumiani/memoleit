@@ -1,5 +1,5 @@
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
-import { EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 import React, { useState } from "react";
 import {
   UseFormGetValues,
@@ -13,9 +13,9 @@ export default function AITopic({
   watch,
   getValues,
 }: {
-  setValue: UseFormSetValue<EssayValues>;
-  watch: UseFormWatch<EssayValues>;
-  getValues: UseFormGetValues<EssayValues>;
+  setValue: UseFormSetValue<EssayFormValues>;
+  watch: UseFormWatch<EssayFormValues>;
+  getValues: UseFormGetValues<EssayFormValues>;
 }) {
   const [loading, setLoading] = useState<boolean>(false);
   const topic = watch("topic");

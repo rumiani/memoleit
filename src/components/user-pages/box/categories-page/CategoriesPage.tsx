@@ -32,7 +32,7 @@ export default function CategoriesPage() {
     return <LoadingPulses />;
   }
   return (
-    <div className="p-2">
+    <div>
       {isEmpty(categories) ? (
         <div className="card_message text-red-500">
           You have not created a category yet.

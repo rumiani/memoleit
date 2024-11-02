@@ -2,6 +2,7 @@ import { authOptions } from "@/lib/auth/authOptions";
 import groqEssayEvaluator from "@/lib/groqEssayEvaluator/groqEssayEvaluator";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,10 +12,23 @@ export async function POST(req: NextRequest) {
 
     const { essay } = await req.json();
     const evaluation = await groqEssayEvaluator(essay);
+    const essayObject = {
+      id: uuidv4(),
+      user: session?.user?.email!,
+      topic: essay.topic,
+      task: essay.task,
+      body: essay.body,
+      type: essay.type,
+      properties: evaluation.properties,
+      suggestions: evaluation.suggestions,
+      score: evaluation.score,
+      isRelatedToTopic: evaluation.isRelatedToTopic,
+      createdAt: Date.now(),
+    };
     return NextResponse.json(
       {
         message: "Essay result generated successfully/",
-        essay: { essay, evaluation },
+        essayObject,
       },
       { status: 201 },
     );

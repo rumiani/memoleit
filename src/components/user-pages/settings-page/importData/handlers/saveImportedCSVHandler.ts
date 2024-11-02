@@ -5,20 +5,21 @@ import { makeUrlFriendly } from "@/src/handlers/makeUrlFriendly";
 import { ItemTypes } from "@/src/types/interface";
 import { csvDataSchema } from "../validation/csvValidation";
 import { randomIdGenerator } from "@/src/handlers/randomID";
-import { userIdTest } from "@/src/services/userId";
 import { v4 as uuidv4 } from "uuid";
+import { getSession } from "next-auth/react";
 
 export const saveImportedCSVHandler = async (
     csvArrayData: string,
     fileName: string,
 ) => {
   try {
+    const session = await getSession();
     const validatedData = csvDataSchema.parse(csvArrayData);
     const categoryId = randomIdGenerator(8);
     const categoryName = makeUrlFriendly(fileName);
     const category = {
       id: categoryId,
-      userId: userIdTest,
+      userId: session?.user?.email!,
       name: categoryName,
       status: false,
       createdAt: Date.now(),
@@ -29,7 +30,7 @@ export const saveImportedCSVHandler = async (
 
       itemsData!.push({
         id: uuidv4(),
-        userId: userIdTest,
+        userId: session?.user?.email!,
         categoryId,
         title:Object.values(item)[0],
         body:Object.values(item)[1],

@@ -1,31 +1,27 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 import { useRouter } from "next/navigation";
 import TopicInput from "./topicInput/topicInput";
 import BodyInput from "./bodyInput/bodyInput";
-import { useAppDispatch } from "@/src/app/hooks";
-import {
-  essayFormDataReducer,
-  essayResultReducer,
-} from "@/src/redux/slices/essayStateSlice";
 import AITopic from "./AITopic/AITopic";
 import WritingInfo from "./writingInfo/writingInfo";
 import { toast } from "react-toastify";
 import TaskInput from "./taskInput/taskInput";
 import TypeInput from "./typeInput/typeInput";
 import Spinner from "@/src/components/general/loading-comps/spinner/spinner";
+import { saveEssayToLocal } from "./handlers/saveEssayHandler";
 
 export default function EssayForm() {
   const [loading, setLoading] = useState<boolean>(false);
 
-  const form = useForm<EssayValues>({
+  const form = useForm<EssayFormValues>({
     defaultValues: { topic: "", body: "", task: "one", type: "general" },
     mode: "onBlur",
   });
 
-  const dispatch = useAppDispatch();
   const router = useRouter();
+
   const {
     register,
     control,
@@ -39,7 +35,7 @@ export default function EssayForm() {
 
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
-  const submitHandler = async (essay: EssayValues, e: any) => {
+  const submitHandler = async (essay: EssayFormValues, e: any) => {
     setLoading(true);
     e.preventDefault();
     try {
@@ -54,12 +50,10 @@ export default function EssayForm() {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const result = await response.json();
-      console.log(result);
-      
-      dispatch(essayResultReducer(result.essay.evaluation));
-      dispatch(essayFormDataReducer({ ...essay }));
-
+      const { essayObject } = await response.json();
+      const saveResult = await saveEssayToLocal(essayObject);
+      console.log(saveResult);
+      router.push("/user/essay/essays/" + saveResult);
       toast.success("Your essay has been analysed successfully");
     } catch (error) {
       toast.error(
@@ -77,7 +71,7 @@ export default function EssayForm() {
     // reset({ topic,task, body, type  });
   }, [reset]);
   return (
-    <div className="relative max-w-2xl w-full mx-auto gap-2 py-1 mb-16">
+    <div className="relative max-w-2xl w-full mx-auto gap-2">
       <div className="flex flex-row gap-2 justify-center items-center">
         <WritingInfo />
         <h2 className="text-center font-bold my-4">
@@ -106,7 +100,7 @@ export default function EssayForm() {
         <button
           disabled={loading}
           title="Analise my writing with AI"
-          className="primaryBtn !w-fit mx-auto my-2 flex flex-row gap-2"
+          className="primaryBtn !w-fit mx-auto flex flex-row gap-2"
         >
           <span>Analise my writing with AI</span>
           {loading && <Spinner size={18} />}

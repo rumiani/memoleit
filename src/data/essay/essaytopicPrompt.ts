@@ -1,6 +1,6 @@
-import { EssayValues } from "@/src/types/interface";
+import { EssayFormValues } from "@/src/types/interface";
 
-export default function topicPrompt(essay: EssayValues) {
+export default function topicPrompt(essay: EssayFormValues) {
   const options = {
     general: {
       one: "write in a personal, semi-formal or formal style that needs to be at least 150 words",
