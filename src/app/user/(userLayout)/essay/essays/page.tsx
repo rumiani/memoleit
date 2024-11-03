@@ -24,7 +24,7 @@ export default function Essays() {
       }
     };
     fetchEssays();
-  }, []);
+  }, [dispatch]);
   if (isLoading) {
     return <LoadingPulses />;
   }
