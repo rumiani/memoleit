@@ -33,4 +33,5 @@ export interface initialPdfStateTypes {
 export interface initialEssayTypes {
   essay: EssayFormValues;
   essayObject: EssayObjectTypes;
+  allEssays:EssayObjectTypes[];
 }

@@ -17,6 +17,7 @@ const initialState: initialEssayTypes = {
     isRelatedToTopic: false,
     createdAt: 0,
   },
+  allEssays: [],
 };
 
 export const itemStateSlice = createSlice({
@@ -32,10 +33,13 @@ export const itemStateSlice = createSlice({
     essayObjectReducer: (state, action: PayloadAction<EssayObjectTypes>) => {
       state.essayObject = { ...state.essayObject, ...action.payload };
     },
+    allEssaysReducer: (state, action: PayloadAction<EssayObjectTypes[]>) => {
+      state.allEssays = [...action.payload];
+    },
   },
 });
 
-export const { essayFormDataReducer, essayObjectReducer } =
+export const { essayFormDataReducer, essayObjectReducer, allEssaysReducer } =
   itemStateSlice.actions;
 
 export default itemStateSlice.reducer;

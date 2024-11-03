@@ -5,7 +5,7 @@ import notFoundError from "@/src/handlers/notFoundError";
 import { db } from "@/src/services/db";
 import { useEffect, useState } from "react";
 import { essayObjectReducer } from "@/src/redux/slices/essayStateSlice";
-import Essay from "@/src/components/user-pages/dashboard/essay-page/essay/essay";
+import Essay from "@/src/components/user-pages/essay/essay-page/essay";
 import LoadingPulse from "@/src/components/general/loading-comps/loadingPulse/loadingPulse";
 
 export default function Item({ params }: { params: { id: string } }) {
@@ -14,7 +14,7 @@ export default function Item({ params }: { params: { id: string } }) {
   const { essayObject } = useAppSelector((state) => state.essayState);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {    
+  useEffect(() => {
     setNotFound(false);
     const fetchEssay = async () => {
       try {
@@ -32,6 +32,11 @@ export default function Item({ params }: { params: { id: string } }) {
     fetchEssay();
   }, [params, dispatch]);
 
-  if (loading) return <div className="my-4"><LoadingPulse /></div>;
+  if (loading)
+    return (
+      <div className="my-4">
+        <LoadingPulse />
+      </div>
+    );
   return <>{notFound ? <NotFoundComp /> : <Essay essay={essayObject} />}</>;
 }
