@@ -1,4 +1,4 @@
-On [11Plus](https://11plus.vercel.app/) , you can memorise and review notes, words, formulas etc, in a much efficient and faster way
+On [Memoleit](https://Memoleit.rumiani.ir/) , you can memorise and review notes, words, formulas etc, in a much efficient and faster way
 
 ## Getting Started
 
